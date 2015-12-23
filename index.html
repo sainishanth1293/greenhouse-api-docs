@@ -503,6 +503,155 @@ Remember — a happy kitten is an authenticated kitten!
 </tr>
 </tbody></table>
 
+          <h1 id="applications">Applications</h1>
+
+<h2 id="the-application-object">The application object</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4341</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"candidate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23123</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"prospect"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"applied_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T18:03:45Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"last_activity_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-27T16:12:02Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"credited_to"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4080</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kate Austen"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"rejected_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"rejection_reason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"jobs"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"current_stage"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"answers"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Applications tie candidates to jobs. There are 2 kinds of applications: candidates and prospects. Candidate applications always have exactly 1 job. Prospect applications can have 0 or more jobs.</p>
+
+<h3 id="attributes">Attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Data type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>integer</td>
+<td>Application object ID</td>
+</tr>
+<tr>
+<td>candidate_id</td>
+<td>integer</td>
+<td>ID of the candidate associated with the application</td>
+</tr>
+<tr>
+<td>prospect</td>
+<td>boolean</td>
+<td>If true, this candidate is a prospect</td>
+</tr>
+</tbody></table>
+
+<h2 id="list-all-applications">List all applications</h2>
+<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/applications'</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4341</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"candidate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23123</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"prospect"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"applied_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T18:03:45Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"last_activity_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-27T16:12:02Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"credited_to"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4080</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kate Austen"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"rejected_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"rejection_reason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"jobs"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"current_stage"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"answers"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="err">...</span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>List all of an organization&rsquo;s applications.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/applications</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>per_page</td>
+<td>10</td>
+<td>optional</td>
+</tr>
+<tr>
+<td>page</td>
+<td>1</td>
+<td>optional</td>
+</tr>
+</tbody></table>
+
+<h2 id="retrieve-an-application">Retrieve an application</h2>
+<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/applications/4341'</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4341</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"candidate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23123</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"prospect"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"applied_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T18:03:45Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"last_activity_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-27T16:12:02Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"credited_to"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4080</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kate Austen"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"rejected_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"rejection_reason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"jobs"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"current_stage"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"answers"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Retrieve an application by its <code class="prettyprint">id</code>.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/applications/{id}</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>ID of the application to retrieve</td>
+</tr>
+</tbody></table>
+
       </div>
       <div class="dark-box">
           <div class="lang-selector">
