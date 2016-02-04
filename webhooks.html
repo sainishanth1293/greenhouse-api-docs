@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Webhooks | Greenhouse</title>
+    <title>Web Hooks | Greenhouse</title>
 
     <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
     <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
@@ -13,7 +13,7 @@
 
       <script>
         $(function() {
-          setupLanguages(["shell","ruby"]);
+          setupLanguages(["json"]);
         });
       </script>
   </head>
@@ -28,8 +28,7 @@
     <div class="tocify-wrapper">
       <a href="/"><img src="images/logo.png" /></a>
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
+              <a href="#" data-language-name="json">json</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -39,26 +38,91 @@
       </div>
         <ul class="toc-footer">
             <li><a href='https://www.greenhouse.io/' target="_blank">Learn more about Greenhouse</a></li>
-            <li><a href='https://github.com/capablemonkey/greenhouse-api-docs' target="_blank">GitHub repository</a></li>
+            <li><a href='https://github.com/grnhse/greenhouse-api-docs' target="_blank">GitHub repository</a></li>
             <li><a href="/" title="">Developers Home</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id="webhooks">Webhooks</h1>
+        
+          <h1 id="introduction">Introduction</h1>
 
-<p>Lorem ipsum.</p>
+<h2 id="what-is-a-web-hook">What is a web hook?</h2>
 
-<h2 id="a-webhook-for-you-madam-39">A Webhook for you, madam&rsquo;</h2>
+<p>A web hook is a simple event-notification system. When an event occurs in Greenhouse, a payload of JSON data containing information about the event is sent via POST to a specified endpoint URL over HTTPS.</p>
 
-<h2 id="and-one-for-you-too-sir">And one for you too, sir!</h2>
+<p>Each delivery will include a <code class="prettyprint">Greenhouse-Event-ID</code> header. This will contain an unique id associated with this delivery.</p>
+
+<h2 id="creating-a-web-hook">Creating a web hook</h2>
+
+<p>Web hooks have three components. A name, an endpoint URL, and a secret key.</p>
+
+<ul>
+<li><strong>Name</strong>: The name is simply a reference for you. It can contain any string value.</li>
+<li><strong>Endpoint URL</strong>: This is the URL to which we will send the POST data when the event occurs. This must be a valid URL and must be https. When the web hook is saved or updated, we will attempt to ping this URL with a payload containing some configuration settings for the web hook. If this ping fails, we will create the web hook in a disabled state and notify you that the ping has failed.</li>
+<li><strong>Secret Key</strong>: This secret key will be used to generate a signature header that you may use to verify the hook data was sent from Greenhouse. The secret key will be used in conjunction with the web hook&rsquo;s payload to generate a digital signature.</li>
+</ul>
+
+<h2 id="advanced-settings">Advanced settings</h2>
+
+<p>Advanced settings allow customers with certain other security needs to use web hooks for their system. In most cases, users will not need to configure these.</p>
+
+<ul>
+<li>Basic authentication username / password: These credentials are supplied if the web hook request needs to authenticate at the destination with HTTP Basic Authorization. These credentials will be encoded in to a HTTP Authorization header. See RFC 2617 for additional details.</li>
+<li>Additional Headers: This textarea should contain any additional HTTP headers that will allow the POST request access to your environment. These headers will be included exactly as pasted, but may not include the following headers already reserved by Greenhouse: Content-Type, Content-Length, Greenhouse-Event-ID, Authorization, User-Agent, and Signature. Please consult with your technology department before including anything in this field.</li>
+</ul>
+
+<h2 id="disabled-web-hooks">Disabled web hooks</h2>
+
+<p>If a web hook is disabled, it will not trigger when the event occurs. Web hooks become disabled automatically if a ping event fails on create or update. They need to be manually re-enabled if this occurs.</p>
+
+<h2 id="authentication">Authentication</h2>
+<pre class="highlight plaintext"><code>Signature: sha256 37d2725109df92747ffcee59833a1d1262d74b9703fa1234c789407218b4a4ef
+</code></pre>
+
+<blockquote>
+<p>To compute the HMAC digest in Ruby:</p>
+</blockquote>
+<pre class="highlight ruby"><code><span class="n">digest</span> <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">Digest</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s1">'sha256'</span><span class="p">)</span>
+<span class="n">signature</span> <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">HMAC</span><span class="p">.</span><span class="nf">hexdigest</span><span class="p">(</span><span class="n">digest</span><span class="p">,</span> <span class="n">secret_key</span><span class="p">,</span> <span class="n">body</span><span class="p">)</span>
+</code></pre>
+
+<blockquote>
+<p>To compute the HMAC digest in PHP:</p>
+</blockquote>
+<pre class="highlight php"><code><span class="cp">&lt;?php</span>
+  <span class="c1">// Requires PHP &gt;= 5.1.2 and PECL hash &gt;= 1.1
+</span>  <span class="nv">$signature</span> <span class="o">=</span> <span class="nb">hash_hmac</span><span class="p">(</span><span class="s1">'sha256'</span><span class="p">,</span> <span class="nv">$body</span><span class="p">,</span> <span class="nv">$secret_key</span><span class="p">);</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+
+<blockquote>
+<p>The <code class="prettyprint">body</code> variable in the above code samples refers to the entire content of the JSON response. Not just the <code class="prettyprint">payload</code> attribute.</p>
+</blockquote>
+
+<p>Greenhouse uses a digital signature which is generated using the secret key entered when creating a web hook and the body of the web hook&rsquo;s request. This data is contained within the Signature header.</p>
+
+<p>The header contains: the SHA algorithm used to generate the signature, a space, and the signature. To verify the request came from Greenhouse, compute the HMAC digest using your secret key and the body and compare it to the signature portion (after the space) contained in the header. If they match, you can be sure the web hook was sent from Greenhouse.</p>
+
+<h1 id="events">Events</h1>
+
+          <h2 id="candidate-created">Candidate created</h2>
+
+          <h2 id="prospect-created">Prospect created</h2>
+
+<p>The New Prospect Application event occurs when a new prospect application is created.</p>
+
+          <h2 id="candidate-stage-change">Candidate stage change</h2>
+
+          <h2 id="candidate-hired">Candidate hired</h2>
+
+          <h2 id="candidate-prospect-rejected">Candidate/Prospect rejected</h2>
 
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
+                <a href="#" data-language-name="json">json</a>
           </div>
       </div>
     </div>

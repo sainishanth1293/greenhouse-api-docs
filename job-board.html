@@ -39,7 +39,7 @@
       </div>
         <ul class="toc-footer">
             <li><a href='https://www.greenhouse.io/' target="_blank">Learn more about Greenhouse</a></li>
-            <li><a href='https://github.com/capablemonkey/greenhouse-api-docs' target="_blank">GitHub repository</a></li>
+            <li><a href='https://github.com/grnhse/greenhouse-api-docs' target="_blank">GitHub repository</a></li>
             <li><a href="/" title="">Developers Home</a></li>
         </ul>
     </div>
@@ -47,13 +47,145 @@
       <div class="dark-box"></div>
       <div class="content">
         
+          <h1 id="introduction">Introduction</h1>
+
+<p>With our Job Board API, you will have easy access to a simple JSON representation of your company&rsquo;s offices, departments, and published jobs. Since we give you access to the raw data, you can build careers pages with a unique look and feel, construct department-level pages, and more!</p>
+
+<p>We support JSONP callbacks, and have a POST method which can be used to build your own online job application form.</p>
+
+<h2 id="jsonp">JSONP</h2>
+<pre class="highlight html"><code><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"http://localhost-api.greenhouse.io/v1/example/method/url?callback="</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre>
+
+<p>To call a method via JSONP (http://en.wikipedia.org/wiki/JSONP), insert the script tag below into your HTML document with an appropriate method URL and provide your own method name in the &ldquo;callback&rdquo; querystring parameter. NOTE: The callback name may only contain numbers, letters, underscore, and period.</p>
+
+<h2 id="authentication">Authentication</h2>
+
+<aside class="success">
+Job Board data is publically available, so authentication is not required for any GET endpoints.
+</aside>
+
+<p>Only the application submission endpoint (<code class="prettyprint">POST /v1/applications</code>) requires Basic Auth.  <a href="#submit-an-application">Read more</a>.</p>
+
           <h1 id="jobs">Jobs</h1>
 
-<p>blah blah</p>
+<h2 id="list-jobs">List jobs</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">44444</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Product Engineer"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2013-07-02T19:39:23Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"location"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"San Francisco, CA"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"absolute_url"</span><span class="p">:</span><span class="s2">"http://your.co/careers?gh_jid=444444"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"internal_job_id"</span><span class="p">:</span><span class="mi">55555</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"metadata"</span><span class="p">:[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
-<h2 id="jobs-sub">Jobs sub</h2>
+<p>Returns the list of all job posts. The <code class="prettyprint">id</code> field contains the unique identifier for the job post, while <code class="prettyprint">internal_job_id</code> contains the unique identifier for the job itself. Any job custom fields you have selected to be exposed in the job board API will be shown in the <code class="prettyprint">metadata</code> attribute.</p>
 
-<p>blah blah</p>
+<aside class="warning">
+When submitting a job application, you will use the <code>id</code> field to specify the application&rsquo;s target job post. 
+</aside>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.greenhouse.io/v1/boards/{job_board_id}/embed/jobs</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>job_board_id</td>
+<td>The unique URL token for the job board.</td>
+</tr>
+</tbody></table>
+
+<h3 id="optional-querystring-parameters">Optional Querystring Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>content</td>
+<td>If set to <code class="prettyprint">true</code>, include the description of each job post.</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>integer</td>
+<td>Job ID</td>
+</tr>
+<tr>
+<td>title</td>
+<td>string</td>
+<td>Job title</td>
+</tr>
+<tr>
+<td>updated_at</td>
+<td>datetime</td>
+<td>Timestamp of last change to this job</td>
+</tr>
+<tr>
+<td>location.name</td>
+<td>string</td>
+<td>Job location</td>
+</tr>
+<tr>
+<td>absolute_url</td>
+<td>string</td>
+<td>URL of the job post&rsquo;s description page</td>
+</tr>
+<tr>
+<td>internal_job_id</td>
+<td>integer</td>
+<td>TODO: what is this?</td>
+</tr>
+<tr>
+<td>metadata</td>
+<td>array</td>
+<td>Contains custom fields TODO: describe custom field objects</td>
+</tr>
+</tbody></table>
+
+<h2 id="retrieve-a-job">Retrieve a job</h2>
+
+          <h1 id="offices">Offices</h1>
+
+<h2 id="list-offices">List offices</h2>
+
+<h2 id="retrieve-an-office">Retrieve an office</h2>
+
+          <h1 id="departments">Departments</h1>
+
+<h2 id="list-departments">List departments</h2>
+
+<h2 id="retrieve-a-department">Retrieve a department</h2>
+
+          <h1 id="job-boards">Job Boards</h1>
+
+<h2 id="retrieve-job-board">Retrieve job board</h2>
+
+          <h1 id="applications">Applications</h1>
+
+<h2 id="submit-an-application">Submit an application</h2>
 
       </div>
       <div class="dark-box">
