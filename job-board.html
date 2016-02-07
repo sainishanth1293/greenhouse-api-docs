@@ -96,7 +96,7 @@ When submitting a job application, you will use the <code>id</code> field to spe
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://api.greenhouse.io/v1/boards/{job_board_id}/embed/jobs</code></p>
+<p><code class="prettyprint">GET https://api.greenhouse.io/v1/boards/{board_token}/embed/jobs</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -107,8 +107,8 @@ When submitting a job application, you will use the <code>id</code> field to spe
 </tr>
 </thead><tbody>
 <tr>
-<td>job_board_id</td>
-<td>The unique URL token for the job board.</td>
+<td>board_token</td>
+<td>Job Board URL token</td>
 </tr>
 </tbody></table>
 
@@ -171,26 +171,519 @@ When submitting a job application, you will use the <code>id</code> field to spe
 </tbody></table>
 
 <h2 id="retrieve-a-job">Retrieve a job</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">44444</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Product Engineer"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2013-07-02T19:39:23Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"location"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"San Francisco, CA"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"content"</span><span class="p">:</span><span class="s2">"This is the job description. &amp;amp;lt;p&amp;amp;gt;Any HTML included through the hosted job application editor will be automatically converted into corresponding HTML entitites.&amp;amp;lt;/p&amp;amp;gt;"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"absolute_url"</span><span class="p">:</span><span class="s2">"http://your.co/careers?gh_jid=444444"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"internal_job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">55555</span><span class="p">,</span><span class="w">
+  </span><span class="err">//</span><span class="w"> </span><span class="err">NOTE</span><span class="p">:</span><span class="w"> </span><span class="err">questions</span><span class="w"> </span><span class="err">will</span><span class="w"> </span><span class="err">only</span><span class="w"> </span><span class="err">appear</span><span class="w"> </span><span class="err">if</span><span class="w"> </span><span class="s2">"questions"</span><span class="w"> </span><span class="err">parameter</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">set</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="s2">"questions"</span><span class="err">:</span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"required"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">"First Name"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"fields"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"first_name"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">denotes</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="nt">"name"</span><span class="w"> </span><span class="err">attribute</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">field</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"input_text"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"required"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">"Resume"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"fields"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"resume"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"input_file"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"resume_text"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"textarea"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"required"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">"Do you like apples?"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"fields"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"question_2222"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"multi_value_single_select"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"values"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"value"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">"No"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"value"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">"Yes"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"metadata"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">12345</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Field Name"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"value_type"</span><span class="p">:</span><span class="s2">"text"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"Some value"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Returns a job post. Setting the questions querystring parameter to <code class="prettyprint">&quot;true&quot;</code> will include the list of job application fields; these fields can be used to dynamically construct your own job application form. </p>
+
+<p>Any job custom fields you have selected to be exposed in the job board API will be shown in the <code class="prettyprint">metadata</code> attribute.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.greenhouse.io/v1/boards/{board_token}/embed/job?id={job_id}</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>board_token</td>
+<td>Job Board URL token</td>
+</tr>
+</tbody></table>
+
+<h3 id="querystring-parameters">Querystring Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>job_id</td>
+<td>ID of the office to retrieve</td>
+</tr>
+<tr>
+<td>questions</td>
+<td><em>(optional)</em> If set to <code class="prettyprint">true</code>, include the list of job application fields.</td>
+</tr>
+</tbody></table>
+
+<h3 id="questions">Questions</h3>
+
+<p>Possible field types:</p>
+
+<table><thead>
+<tr>
+<th>Type</th>
+<th>How to represent</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>input_file</td>
+<td>Represent with an input of type file</td>
+</tr>
+<tr>
+<td>input_text</td>
+<td>Represent with an input of type text</td>
+</tr>
+<tr>
+<td>textarea</td>
+<td>Represent with a textarea</td>
+</tr>
+<tr>
+<td>multi_value_single_select</td>
+<td>Can be represented as either a set of radio buttons or a select</td>
+</tr>
+<tr>
+<td>multi_value_multi_select</td>
+<td>Can be represented as either a set of checkboxes or a multi-select</td>
+</tr>
+</tbody></table>
+
+<p>Please note that it is possible for multiple fields to be aggregated beneath a single question. The &ldquo;Resume&rdquo; field is a prime example, with both an input_file and textarea type accepted. If marked as required, then we expect at least one of these fields to contain a valid value when your form is submitted to the <a href="#applications">application submission</a> endpoint.</p>
 
           <h1 id="offices">Offices</h1>
 
 <h2 id="list-offices">List offices</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"offices"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">11111</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"San Francisco"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"departments"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">33333</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Engineering"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"jobs"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">44444</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Product Engineer"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"location"</span><span class="p">:{</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"San Francisco, CA"</span><span class="w">
+              </span><span class="p">},</span><span class="w">
+              </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2013-07-02T19:39:23Z"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"absolute_url"</span><span class="p">:</span><span class="s2">"http://your.co/careers?gh_jid=444444"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">55555</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Mobile Engineer - iOS"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"location"</span><span class="p">:{</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"San Francisco, CA"</span><span class="w">
+              </span><span class="p">},</span><span class="w">
+              </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2013-07-02T19:39:23Z"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"absolute_url"</span><span class="p">:</span><span class="s2">"http://your.co/careers?gh_jid=55555"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="err">}</span><span class="p">,</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">22222</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Account Management"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"jobs"</span><span class="p">:[</span><span class="w">
+
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="err">//</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="err">Each</span><span class="w"> </span><span class="err">dept</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">listed</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">each</span><span class="w"> </span><span class="err">office</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="err">More</span><span class="w"> </span><span class="err">offices</span><span class="w"> </span><span class="err">here</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Returns a list of all of your organization&rsquo;s departments and jobs, grouped by office.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.greenhouse.io/v1/boards/{board_token}/embed/offices</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>board_token</td>
+<td>Job Board URL token</td>
+</tr>
+</tbody></table>
 
 <h2 id="retrieve-an-office">Retrieve an office</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">11111</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"San Francisco"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"departments"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">33333</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Engineering"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"jobs"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">44444</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Product Engineer"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"location"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"San Francisco, CA"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2013-07-02T19:39:23Z"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"absolute_url"</span><span class="p">:</span><span class="s2">"http://your.co/careers?gh_jid=444444"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">55555</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Mobile Engineer - iOS"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"location"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"San Francisco, CA"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2013-07-02T19:39:23Z"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"absolute_url"</span><span class="p">:</span><span class="s2">"http://your.co/careers?gh_jid=55555"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">22222</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Account Management"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"jobs"</span><span class="p">:[]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Returns a list of your organization&rsquo;s departments and jobs for the given <code class="prettyprint">officeId</code></p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.greenhouse.io/v1/boards/{board_token}/embed/office?id={office_id}</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>board_token</td>
+<td>Job Board URL token</td>
+</tr>
+</tbody></table>
+
+<h3 id="querystring-parameters">Querystring Parameters</h3>
+
+<p>office_id | ID of the office to retrieve</p>
 
           <h1 id="departments">Departments</h1>
 
 <h2 id="list-departments">List departments</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"departments"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">33333</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Engineering"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"jobs"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">44444</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Product Engineer"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"location"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"San Francisco, CA"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2013-07-02T19:39:23Z"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"absolute_url"</span><span class="p">:</span><span class="s2">"http://your.co/careers?gh_jid=444444"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">55555</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Mobile Engineer - iOS"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"location"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"San Francisco, CA"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2013-07-02T19:39:23Z"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"absolute_url"</span><span class="p">:</span><span class="s2">"http://your.co/careers?gh_jid=55555"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="err">}</span><span class="p">,</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">22222</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Account Management"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"jobs"</span><span class="p">:[</span><span class="w">
+
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="err">All</span><span class="w"> </span><span class="err">departments</span><span class="w"> </span><span class="err">are</span><span class="w"> </span><span class="err">listed</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Returns a list of your organization&rsquo;s departments and jobs</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.greenhouse.io/v1/boards/{board_token}/embed/departments</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>board_token</td>
+<td>Job Board URL token</td>
+</tr>
+</tbody></table>
 
 <h2 id="retrieve-a-department">Retrieve a department</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">33333</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Engineering"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"jobs"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">44444</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Product Engineer"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"location"</span><span class="p">:{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"San Francisco, CA"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2013-07-02T19:39:23Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"absolute_url"</span><span class="p">:</span><span class="s2">"http://your.co/careers?gh_jid=444444"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">55555</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Mobile Engineer - iOS"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"location"</span><span class="p">:{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"San Francisco, CA"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2013-07-02T19:39:23Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"absolute_url"</span><span class="p">:</span><span class="s2">"http://your.co/careers?gh_jid=55555"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Returns a list of jobs for a given <code class="prettyprint">department_id</code>.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.greenhouse.io/v1/boards/{board_token}/embed/department?id={department_id}</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>board_token</td>
+<td>Job Board URL token</td>
+</tr>
+</tbody></table>
+
+<h3 id="querystring-parameters">Querystring Parameters</h3>
+
+<p>department_id | ID of the department to retrieve</p>
 
           <h1 id="job-boards">Job Boards</h1>
 
 <h2 id="retrieve-job-board">Retrieve job board</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Your Organization"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;...&lt;/p&gt;"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Returns your organization&rsquo;s name and job board content. </p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.greenhouse.io/v1/boards/{board_token}/embed</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>board_token</td>
+<td>Job Board URL token</td>
+</tr>
+</tbody></table>
 
           <h1 id="applications">Applications</h1>
 
 <h2 id="submit-an-application">Submit an application</h2>
+<pre class="highlight html"><code><span class="c">&lt;!--
+EXAMPLE FORM BELOW (simplified):
+
+Please keep in mind that the HTTP Basic Auth API token is a secret key.  Any form posts should be proxied by your own servers.  Any direct post to the /applications POST method would reveal your secret key to anybody that views source--which would be a very bad thing.
+--&gt;</span>
+<span class="nt">&lt;form</span> <span class="na">method=</span><span class="s">"POST"</span> <span class="na">action=</span><span class="s">"!!REQUEST MUST BE PROXIED ON YOUR SERVERS!!"</span> <span class="na">enctype=</span><span class="s">'multipart/form-data'</span><span class="nt">&gt;</span>
+  <span class="c">&lt;!-- represents the ID of the job post --&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"id"</span> <span class="na">value=</span><span class="s">"55555"</span> <span class="nt">/&gt;</span>
+  <span class="c">&lt;!-- place the value of the gh_src URL parameter in the field below --&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"mapped_url_token"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;label&gt;</span>First Name <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"first_name"</span> <span class="nt">/&gt;&lt;/label&gt;&lt;br/&gt;</span>
+  <span class="nt">&lt;label&gt;</span>Last Name <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"last_name"</span> <span class="nt">/&gt;&lt;/label&gt;&lt;br/&gt;</span>
+  <span class="nt">&lt;label&gt;</span>Email <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"email"</span> <span class="nt">/&gt;&lt;/label&gt;&lt;br/&gt;</span>
+  <span class="nt">&lt;label&gt;</span>Phone <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"phone"</span> <span class="nt">/&gt;&lt;/label&gt;&lt;br/&gt;</span>
+  <span class="c">&lt;!-- "location" is any geocode-able string --&gt;</span>
+  <span class="nt">&lt;label&gt;</span>Location <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"location"</span> <span class="nt">/&gt;&lt;/label&gt;&lt;br/&gt;</span>
+  <span class="c">&lt;!-- If using a geocoding service, include the longitude and latitude --&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"longitude"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"latitude"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;label&gt;</span>Resume <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"file"</span> <span class="na">name=</span><span class="s">"resume"</span> <span class="nt">/&gt;&lt;/label&gt;&lt;br/&gt;</span>
+  <span class="nt">&lt;label&gt;</span>Cover Letter <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"file"</span> <span class="na">name=</span><span class="s">"cover_letter"</span> <span class="nt">/&gt;&lt;/label&gt;&lt;br/&gt;</span>
+  <span class="nt">&lt;label&gt;</span>LinkedIn Profile <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"question_5555"</span> <span class="nt">/&gt;&lt;/label&gt;&lt;br/&gt;</span>
+  <span class="nt">&lt;label&gt;</span>Some dropdown
+    <span class="nt">&lt;select</span> <span class="na">name=</span><span class="s">"question_3333"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;option&gt;&lt;/option&gt;</span>
+      <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"1"</span><span class="nt">&gt;</span>Yes<span class="nt">&lt;/option&gt;</span>
+      <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"0"</span><span class="nt">&gt;</span>No<span class="nt">&lt;/option&gt;</span>
+    <span class="nt">&lt;/select&gt;</span>
+  <span class="nt">&lt;/label&gt;&lt;br/&gt;</span>
+  <span class="nt">&lt;label&gt;</span>Multi select with checkboxes<span class="nt">&lt;br/&gt;</span>
+    <span class="nt">&lt;label&gt;&lt;input</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">name=</span><span class="s">"question_2222[]"</span> <span class="na">value=</span><span class="s">"2"</span> <span class="nt">/&gt;</span> Red<span class="nt">&lt;/label&gt;&lt;br/&gt;</span>
+    <span class="nt">&lt;label&gt;&lt;input</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">name=</span><span class="s">"question_2222[]"</span> <span class="na">value=</span><span class="s">"5"</span> <span class="nt">/&gt;</span> Orange<span class="nt">&lt;/label&gt;</span>
+  <span class="nt">&lt;/label&gt;&lt;br/&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+</code></pre>
+
+<p>Use this endpoint to submit a new application.  Accepts a multipart form POST representing a job application. </p>
+
+<p>A form which correctly represents the data required by this method would be constructed from the &ldquo;questions&rdquo; array available via the /job API method, this set of fields is job-specific (more details available in job method documentation).</p>
+
+<aside class="warning">
+    This method requires HTTP Basic Auth over SSL/TLS: the Basic Auth username is your API key (found on the API Credentials page), no password is required. 
+</aside>
+
+<aside class="warning">
+    <strong>IF BUILDING YOUR OWN APPLICATION FORM</strong><br>
+    You can submit applications directly using this endpoint and dynamically construct application forms for each job using the List Jobs endpoint. In general, we would encourage customers to make use of the Embedded Job Application before going to the trouble of building their own form. Our application form is well tested, validated, battle hardened, and has built-in spam protection measures&ndash;building your own form can introduce a number of challenges which are typically not worth the additional effort.
+</aside>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://api.greenhouse.io/v1/applications/</code></p>
+
+<h3 id="form-parameters">Form Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Job post ID</td>
+</tr>
+<tr>
+<td>mapped_url_token</td>
+<td><em>(optional)</em> If present, the <code class="prettyprint">gh_src</code> URL parameter, which is used to indicate the referral source of this application.</td>
+</tr>
+<tr>
+<td>first_name</td>
+<td>Applicant&rsquo;s first name</td>
+</tr>
+<tr>
+<td>last_name</td>
+<td>Applicant&rsquo;s last name</td>
+</tr>
+<tr>
+<td>email</td>
+<td>Applicant&rsquo;s email adress</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>Applicant&rsquo;s phone number</td>
+</tr>
+<tr>
+<td>location</td>
+<td>Applicant&rsquo;s location.  Accepts any geocode-able string.</td>
+</tr>
+<tr>
+<td>longitude</td>
+<td>If using a geocoding service, include longitude</td>
+</tr>
+<tr>
+<td>latitude</td>
+<td>If using a geocoding service, include latitude</td>
+</tr>
+</tbody></table>
 
       </div>
       <div class="dark-box">
