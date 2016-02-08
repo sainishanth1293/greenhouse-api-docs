@@ -17,6 +17,13 @@
           setupLanguages(["shell","ruby"]);
         });
       </script>
+
+    <script type="text/javascript">
+!function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+analytics.load("2q7wwCrJormvWKrplqZYR2gXyxLK5Uhx");
+analytics.page()
+}}();
+</script>
   </head>
 
   <body class="harvest">
@@ -43,6 +50,9 @@
         <ul class="search-results"></ul>
       <div id="toc">
       </div>
+      <ul class="toc-appendage">
+        <li id="github_link"><a href="https://github.com/grnhse/greenhouse-api-docs/tree/master/source/includes/harvest" title="View on Github" target="_blank">View on GitHub</a></li>
+      </ul>
         <ul class="toc-footer">
             <li><a href="/job-board.html" title="Job Board API">Job Board API</a></li>
             <li><a href='/webhooks.html' title="Web Hooks">Web Hooks</a></li>
@@ -77,10 +87,6 @@
 <p>We have usage examples for cURL and Ruby! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
 
 <p>This documentation is open source! Feel free to leave feedback as issues in the <a href="https://github.com/capablemonkey/greenhouse-api-docs">GitHub repo</a> or fork it and contribute changes!</p>
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
 
 <h2 id="authentication">Authentication</h2>
 
@@ -3610,48 +3616,20 @@ X-RateLimit-Remaining: 49
 </tr>
 </thead><tbody>
 <tr>
-<td>400</td>
-<td>Bad Request &ndash; Your request sucks</td>
-</tr>
-<tr>
 <td>401</td>
-<td>Unauthorized &ndash; Your API key is wrong</td>
+<td>Unauthorized &ndash; Invalid Harvest API key.  Check to make sure you&rsquo;ve passing it in via the <code class="prettyprint">Authorization</code> header (Basic Auth)</td>
 </tr>
 <tr>
 <td>403</td>
-<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
+<td>Forbidden &ndash; You do not have access to that record.</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found &ndash; The specified kitten could not be found</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone &ndash; The kitten requested has been removed from our servers</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&rsquo;m a teapot</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slow down!</td>
+<td>Not Found &ndash; Resource not found</td>
 </tr>
 <tr>
 <td>500</td>
-<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
+<td>Server Error &ndash; We had a problem with our server. Try again later or contact us: support@greenhouse.io</td>
 </tr>
 </tbody></table>
 
