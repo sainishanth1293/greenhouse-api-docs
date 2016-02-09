@@ -84,7 +84,7 @@ analytics.page()
 <li>Advance, move, and reject applications.</li>
 </ol>
 
-<p>We have usage examples for cURL and Ruby! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>We have usage examples for cURL (and soon, Ruby)! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
 
 <p>This documentation is open source! Feel free to leave feedback as issues in the <a href="https://github.com/capablemonkey/greenhouse-api-docs">GitHub repo</a> or fork it and contribute changes!</p>
 
@@ -180,9 +180,37 @@ X-RateLimit-Remaining: 49
 <li>We reserve the right to add more properties to objects, but will never change or remove them</li>
 </ul>
 
+<h2 id="errors">Errors</h2>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>401</td>
+<td>Unauthorized &ndash; Invalid Harvest API key.  Check to make sure you&rsquo;ve passing it in via the <code class="prettyprint">Authorization</code> header (Basic Auth)</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden &ndash; You do not have access to that record.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found &ndash; Resource not found</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Server Error &ndash; We had a problem with our server. Try again later or contact us: support@greenhouse.io</td>
+</tr>
+</tbody></table>
+
           <h1 id="activity-feed">Activity Feed</h1>
 
 <h2 id="the-activity-feed-object">The activity feed object</h2>
+
+<h3 id="noteworthy-attributes">Noteworthy attributes</h3>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"note"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -243,7 +271,7 @@ X-RateLimit-Remaining: 49
 </tr>
 <tr>
 <td>activity</td>
-<td>An array of event associated with this candidate</td>
+<td>An array of events associated with this candidate</td>
 </tr>
 </tbody></table>
 
@@ -323,10 +351,10 @@ X-RateLimit-Remaining: 49
 
 <h2 id="the-application-object">The application object</h2>
 
-<p>Applications are created when a candidate applies for a job.  They can one of several stages.  The final</p>
+<p>Applications are created when a candidate applies for a job.</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">985314</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"person_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">978031</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"candidate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">978031</span><span class="p">,</span><span class="w">
   </span><span class="nt">"prospect"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="nt">"applied_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T20:11:39Z"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"last_activity_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-27T16:13:15Z"</span><span class="p">,</span><span class="w">
@@ -352,6 +380,8 @@ X-RateLimit-Remaining: 49
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
+<h3 id="noteworthy-attributes">Noteworthy attributes</h3>
+
 <table><thead>
 <tr>
 <th>Attribute</th>
@@ -361,6 +391,26 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>id</td>
 <td>Application ID</td>
+</tr>
+<tr>
+<td>prospect</td>
+<td>If <code class="prettyprint">true</code>, this is a prospect application which means that the associated person is a prospect and has not yet applied for this job.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>One of: <code class="prettyprint">rejected</code>, <code class="prettyprint">active</code>, <code class="prettyprint">paused</code>, <code class="prettyprint">completed</code>, <code class="prettyprint">unvisited</code>, <code class="prettyprint">hired</code>, <code class="prettyprint">converted</code>.</td>
+</tr>
+<tr>
+<td>jobs</td>
+<td>An array containing the <a href="#jobs">job</a> that the candidate applied for.</td>
+</tr>
+<tr>
+<td>candidate_id</td>
+<td>The ID of the <a href="#candidates">candidate</a> who is applying for this job.</td>
+</tr>
+<tr>
+<td>current_stage</td>
+<td>The current <a href="#job-stages">stage</a> that this application is in.</td>
 </tr>
 </tbody></table>
 
@@ -465,7 +515,7 @@ X-RateLimit-Remaining: 49
 </code></pre>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">985314</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"person_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">978031</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"candidate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">978031</span><span class="p">,</span><span class="w">
   </span><span class="nt">"prospect"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="nt">"applied_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T20:11:39Z"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"last_activity_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-27T16:13:15Z"</span><span class="p">,</span><span class="w">
@@ -540,7 +590,7 @@ X-RateLimit-Remaining: 49
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">985314</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"person_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">978031</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"candidate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">978031</span><span class="p">,</span><span class="w">
   </span><span class="nt">"prospect"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="nt">"applied_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T20:11:39Z"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"last_activity_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-27T16:13:15Z"</span><span class="p">,</span><span class="w">
@@ -625,7 +675,7 @@ X-RateLimit-Remaining: 49
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">985314</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"person_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">978031</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"candidate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">978031</span><span class="p">,</span><span class="w">
   </span><span class="nt">"prospect"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="nt">"applied_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T20:11:39Z"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"last_activity_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-27T16:13:15Z"</span><span class="p">,</span><span class="w">
@@ -716,7 +766,7 @@ X-RateLimit-Remaining: 49
   </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Senior Digital Marketing Manager"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-05-29T18:19:00Z"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"last_activity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-05-29T20:01:05Z"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dev-localhost.s3.amazonaws.com/people/photos/006/801/407/original/photo.jpg?AWSAccessKeyId=AKIAJOIDJAU24P2KP55A&amp;Expires=1453190734&amp;Signature=sd1cv%2BQuFCL%2F2TDJeBH5r4mM0jU%3D"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://blah.s3.amazonaws.com/people/photos/006/801/407/original/photo.jpg?AWSAccessKeyId=AKIAJOIDJAU24P2KP55A&amp;Expires=1453190734&amp;Signature=sd1cv%2BQuFCL%2F2TDJeBH5r4mM0jU%3D"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"attachments"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
   </span><span class="nt">"application_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="mi">7827056</span><span class="w">
@@ -767,6 +817,8 @@ X-RateLimit-Remaining: 49
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
+<h3 id="noteworthy-attributes">Noteworthy attributes</h3>
+
 <table><thead>
 <tr>
 <th>Attribute</th>
@@ -778,8 +830,24 @@ X-RateLimit-Remaining: 49
 <td>The candidate&rsquo;s unique identifier</td>
 </tr>
 <tr>
-<td>first_name</td>
-<td>Candidate&rsquo;s first name</td>
+<td>company</td>
+<td>The company the candidate is currently employed at</td>
+</tr>
+<tr>
+<td>title</td>
+<td>The candidate&rsquo;s current title</td>
+</tr>
+<tr>
+<td>application_ids</td>
+<td>Array of <a href="#applications">application</a> IDs associated with this candidate. Can contain none, one, or several application IDs.</td>
+</tr>
+<tr>
+<td>recruiter</td>
+<td>The recruiter <a href="#users">user</a> who is responsible for this candidate.</td>
+</tr>
+<tr>
+<td>coordinator</td>
+<td>The coordinator <a href="#users">user</a> who is responsible for this candidate.</td>
 </tr>
 </tbody></table>
 
@@ -800,7 +868,7 @@ X-RateLimit-Remaining: 49
     </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Senior Digital Marketing Manager"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-05-29T18:19:00Z"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"last_activity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-05-29T20:01:05Z"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dev-localhost.s3.amazonaws.com/people/photos/006/801/407/original/photo.jpg?AWSAccessKeyId=AKIAJOIDJAU24P2KP55A&amp;Expires=1453190734&amp;Signature=sd1cv%2BQuFCL%2F2TDJeBH5r4mM0jU%3D"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://blah.s3.amazonaws.com/people/photos/006/801/407/original/photo.jpg?AWSAccessKeyId=AKIAJOIDJAU24P2KP55A&amp;Expires=1453190734&amp;Signature=sd1cv%2BQuFCL%2F2TDJeBH5r4mM0jU%3D"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"attachments"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
     </span><span class="nt">"application_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="mi">7827056</span><span class="w">
@@ -892,7 +960,7 @@ X-RateLimit-Remaining: 49
   </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Senior Digital Marketing Manager"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-05-29T18:19:00Z"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"last_activity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-05-29T20:01:05Z"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dev-localhost.s3.amazonaws.com/people/photos/006/801/407/original/photo.jpg?AWSAccessKeyId=AKIAJOIDJAU24P2KP55A&amp;Expires=1453190734&amp;Signature=sd1cv%2BQuFCL%2F2TDJeBH5r4mM0jU%3D"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"photo_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://blah.s3.amazonaws.com/people/photos/006/801/407/original/photo.jpg?AWSAccessKeyId=AKIAJOIDJAU24P2KP55A&amp;Expires=1453190734&amp;Signature=sd1cv%2BQuFCL%2F2TDJeBH5r4mM0jU%3D"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"attachments"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
   </span><span class="nt">"application_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="mi">7827056</span><span class="w">
@@ -1508,6 +1576,8 @@ X-RateLimit-Remaining: 49
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
+<h3 id="noteworthy-attributes">Noteworthy attributes</h3>
+
 <table><thead>
 <tr>
 <th>Attribute</th>
@@ -1517,6 +1587,10 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>id</td>
 <td>The email template&rsquo;s unique identifier</td>
+</tr>
+<tr>
+<td>type</td>
+<td>One of: <code class="prettyprint">new_candidate</code>, <code class="prettyprint">weekly_status</code>, <code class="prettyprint">daily_recruiting</code>, <code class="prettyprint">stage_transition</code>, <code class="prettyprint">new_scorecard</code>, <code class="prettyprint">new_referral</code>, <code class="prettyprint">agency_candidate_status</code>, <code class="prettyprint">agency_candidate_stage</code>, <code class="prettyprint">take_home_test_email</code>, <code class="prettyprint">candidate_auto_reply</code>, <code class="prettyprint">candidate_rejection</code>, <code class="prettyprint">scorecard_reminder</code>, <code class="prettyprint">interviewer_invite</code>, <code class="prettyprint">candidate_email</code>, <code class="prettyprint">team_email</code>, <code class="prettyprint">none</code>, <code class="prettyprint">extending_offer</code>, <code class="prettyprint">new_agency_submission</code>, <code class="prettyprint">non_admin_welcome</code>, <code class="prettyprint">job_admin_welcome</code>, <code class="prettyprint">site_admin_welcome</code>, <code class="prettyprint">prospect_referral_receipt</code>, <code class="prettyprint">candidate_referral_receipt</code>, <code class="prettyprint">candidate_availability_request</code>, <code class="prettyprint">candidate_availability_confirmation</code></td>
 </tr>
 </tbody></table>
 
@@ -1655,6 +1729,8 @@ X-RateLimit-Remaining: 49
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
+<h3 id="noteworthy-attributes">Noteworthy attributes</h3>
+
 <table><thead>
 <tr>
 <th>Attribute</th>
@@ -1664,6 +1740,18 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>id</td>
 <td>The scheduled interview&rsquo;s unique identifier</td>
+</tr>
+<tr>
+<td>status</td>
+<td>One of: <code class="prettyprint">to_be_scheduled</code>, <code class="prettyprint">scheduled</code>, <code class="prettyprint">awaiting_feedback</code>, <code class="prettyprint">complete</code>, <code class="prettyprint">skipped</code>, <code class="prettyprint">collect_feedback</code>, <code class="prettyprint">to_be_sent</code>, <code class="prettyprint">sent</code>, <code class="prettyprint">received</code></td>
+</tr>
+<tr>
+<td>organizer</td>
+<td>The <a href="#users">user</a> who is the organizer for this interview</td>
+</tr>
+<tr>
+<td>interviewers</td>
+<td>An array containing the <a href="#users">users</a> who have interviews with this candidate, including, if applicable, the ID of the scorecard they completed</td>
 </tr>
 </tbody></table>
 
@@ -1789,6 +1877,8 @@ X-RateLimit-Remaining: 49
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
+<h3 id="noteworthy-attributes">Noteworthy attributes</h3>
+
 <table><thead>
 <tr>
 <th>Attribute</th>
@@ -1798,6 +1888,22 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>id</td>
 <td>The job&rsquo;s unique identifier</td>
+</tr>
+<tr>
+<td>status</td>
+<td>One of <code class="prettyprint">open</code>, <code class="prettyprint">closed</code>, <code class="prettyprint">draft</code>.</td>
+</tr>
+<tr>
+<td>departments</td>
+<td>An array containing the <a href="#department">department</a> which this job belongs to.</td>
+</tr>
+<tr>
+<td>offices</td>
+<td>An array containing the <a href="#offices">offices</a> this job is associated with.</td>
+</tr>
+<tr>
+<td>custom_fields</td>
+<td>Contains any custom job fields which have been defined by your organization.</td>
 </tr>
 </tbody></table>
 
@@ -2043,6 +2149,8 @@ X-RateLimit-Remaining: 49
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
+<h3 id="noteworthy-attributes">Noteworthy attributes</h3>
+
 <table><thead>
 <tr>
 <th>Attribute</th>
@@ -2050,8 +2158,20 @@ X-RateLimit-Remaining: 49
 </tr>
 </thead><tbody>
 <tr>
-<td>title</td>
-<td>Job post&rsquo;s title</td>
+<td>internal</td>
+<td>If <code class="prettyprint">true</code>, this job post has been posted (or is <em>to be posted</em>) on an internal job board.</td>
+</tr>
+<tr>
+<td>external</td>
+<td>If <code class="prettyprint">true</code>, this job post has been posted (or is <em>to be posted</em>) on an external job board.</td>
+</tr>
+<tr>
+<td>job_id</td>
+<td>The ID of the <a href="#jobs">job</a> that this job post is for.</td>
+</tr>
+<tr>
+<td>questions</td>
+<td>An array of questions associated with this job post.</td>
 </tr>
 </tbody></table>
 
@@ -2216,6 +2336,10 @@ X-RateLimit-Remaining: 49
 <td>id</td>
 <td>The job stage&rsquo;s unique identifier</td>
 </tr>
+<tr>
+<td>interviews</td>
+<td>An array of interviews associated with this job stage.</td>
+</tr>
 </tbody></table>
 
 <h2 id="list-job-stages-for-job">List job stages for job</h2>
@@ -2328,6 +2452,8 @@ X-RateLimit-Remaining: 49
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
+<h3 id="noteworthy-attributes">Noteworthy attributes</h3>
+
 <table><thead>
 <tr>
 <th>Attribute</th>
@@ -2337,6 +2463,18 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>id</td>
 <td>The offer&rsquo;s unique identifier</td>
+</tr>
+<tr>
+<td>version</td>
+<td>The version number of this offer.  When an existing offer is updated, a new one is typically created with an incremented version.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>One of: <code class="prettyprint">unresolved</code>, <code class="prettyprint">accepted</code>, <code class="prettyprint">rejected</code>, <code class="prettyprint">deprecated</code>.</td>
+</tr>
+<tr>
+<td>application_id</td>
+<td>The ID of the associated <a href="#applications">application</a>.</td>
 </tr>
 </tbody></table>
 
@@ -2594,6 +2732,8 @@ X-RateLimit-Remaining: 49
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
+<h3 id="noteworthy-attributes">Noteworthy attributes</h3>
+
 <table><thead>
 <tr>
 <th>Attribute</th>
@@ -2703,6 +2843,8 @@ X-RateLimit-Remaining: 49
           <h1 id="rejection-reasons">Rejection Reasons</h1>
 
 <h2 id="the-rejection-reason-object">The rejection reason object</h2>
+
+<p>Represents rejection reasons configured by an organization under the Custom Options section of Greenhouse.</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">262</span><span class="p">,</span><span class="w">
   </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Missing resume"</span><span class="p">,</span><span class="w">
@@ -2713,6 +2855,8 @@ X-RateLimit-Remaining: 49
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
+<h3 id="noteworthy-attributes">Noteworthy attributes</h3>
+
 <table><thead>
 <tr>
 <th>Attribute</th>
@@ -2722,6 +2866,14 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>id</td>
 <td>The rejection reason&rsquo;s unique identifier</td>
+</tr>
+<tr>
+<td>name</td>
+<td>The rejection reason&rsquo;s name</td>
+</tr>
+<tr>
+<td>type</td>
+<td>One of <code class="prettyprint">{&quot;id&quot;: 1, &quot;name&quot;: &quot;We rejected them&quot;}</code>, <code class="prettyprint">{&quot;id&quot;: 2, &quot;name&quot;: &quot;They rejected us&quot;}</code>, <code class="prettyprint">{&quot;id&quot;: 3, &quot;name&quot;: &quot;None specified&quot;}</code></td>
 </tr>
 </tbody></table>
 
@@ -2868,6 +3020,32 @@ X-RateLimit-Remaining: 49
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+
+<h3 id="noteworthy-attributes">Noteworthy attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>The scorecard&rsquo;s unique identifier</td>
+</tr>
+<tr>
+<td>candidate_id</td>
+<td>The ID of the <a href="#candidates">candidate</a> whom this scorecard was written for.</td>
+</tr>
+<tr>
+<td>submitted_by</td>
+<td>The <a href="#users">user</a> who submitted this scorecard.</td>
+</tr>
+<tr>
+<td>overall_recommendation</td>
+<td>One of: <code class="prettyprint">definitely_not</code>, <code class="prettyprint">no</code>, <code class="prettyprint">yes</code>, <code class="prettyprint">strong_yes</code>, <code class="prettyprint">mixed</code>, <code class="prettyprint">no_decision</code></td>
+</tr>
+</tbody></table>
 
 <h2 id="list-scorecards">List scorecards</h2>
 <pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/scorecards'</span> <span class="se">\</span>
@@ -3213,6 +3391,8 @@ X-RateLimit-Remaining: 49
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
+<h3 id="noteworthy-attributes">Noteworthy attributes</h3>
+
 <table><thead>
 <tr>
 <th>Attribute</th>
@@ -3222,6 +3402,10 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>id</td>
 <td>The source&rsquo;s unique identifier</td>
+</tr>
+<tr>
+<td>type.name</td>
+<td>One of: <code class="prettyprint">attend_events</code>, <code class="prettyprint">referrals</code>, <code class="prettyprint">job_boards</code>, <code class="prettyprint">candidate_search</code>, <code class="prettyprint">other</code>, <code class="prettyprint">social_media</code>, <code class="prettyprint">company_marketing</code>, <code class="prettyprint">agencies</code></td>
 </tr>
 </tbody></table>
 
@@ -3338,6 +3522,10 @@ X-RateLimit-Remaining: 49
 <td>id</td>
 <td>The user&rsquo;s unique identifier</td>
 </tr>
+<tr>
+<td>site_admin</td>
+<td>If <code class="prettyprint">true</code>, this user is a site admin, which means the user has full permissions on all jobs.</td>
+</tr>
 </tbody></table>
 
 <h2 id="list-users">List users</h2>
@@ -3422,32 +3610,6 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>id</td>
 <td>The ID of the user to retrieve</td>
-</tr>
-</tbody></table>
-
-          <h1 id="errors">Errors</h1>
-
-<table><thead>
-<tr>
-<th>Error Code</th>
-<th>Meaning</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>401</td>
-<td>Unauthorized &ndash; Invalid Harvest API key.  Check to make sure you&rsquo;ve passing it in via the <code class="prettyprint">Authorization</code> header (Basic Auth)</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden &ndash; You do not have access to that record.</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not Found &ndash; Resource not found</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Server Error &ndash; We had a problem with our server. Try again later or contact us: support@greenhouse.io</td>
 </tr>
 </tbody></table>
 
