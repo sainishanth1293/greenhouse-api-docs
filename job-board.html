@@ -69,7 +69,7 @@ analytics.page()
 <p>We support JSONP callbacks, and have a POST method which can be used to build your own online job application form.</p>
 
 <h2 id="jsonp">JSONP</h2>
-<pre class="highlight html"><code><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"http://localhost-api.greenhouse.io/v1/example/method/url?callback="</span><span class="nt">&gt;&lt;/script&gt;</span>
+<pre class="highlight html"><code><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"https://api.greenhouse.io/v1/example/method/url?callback="</span><span class="nt">&gt;&lt;/script&gt;</span>
 </code></pre>
 
 <p>To call a method via JSONP (http://en.wikipedia.org/wiki/JSONP), insert the script tag below into your HTML document with an appropriate method URL and provide your own method name in the &ldquo;callback&rdquo; querystring parameter. NOTE: The callback name may only contain numbers, letters, underscore, and period.</p>
