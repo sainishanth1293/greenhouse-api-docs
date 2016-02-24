@@ -145,8 +145,6 @@ X-RateLimit-Remaining: 49
 
 <p>API requests may be throttled. Check the <code class="prettyprint">X-RateLimit-Limit</code> and <code class="prettyprint">X-RateLimit-Remaining</code> headers to see how many requests you are allowed until throttling kicks in. Making too many requests in a short time frame will cause Harvest to return an <code class="prettyprint">HTTP 429</code> response.</p>
 
-<aside class="warning">If you need to pull data at a rate faster than the rate limit will allow, please contact us!</aside>
-
 <h2 id="pagination">Pagination</h2>
 <pre class="highlight plaintext"><code>Link: &lt;https://harvest.greenhouse.io/v1/candidates?page=2&amp;per_page=2&gt;; rel="next",
 &lt;https://harvest.greenhouse.io/v1/candidates?page=474&amp;per_page=2&gt;; rel="last"
