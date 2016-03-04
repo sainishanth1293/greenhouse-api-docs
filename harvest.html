@@ -224,8 +224,6 @@ X-RateLimit-Remaining: 49
 <h2 id="the-activity-feed-object">The activity feed object</h2>
 
 <p>The activity feed is the list of activities on a candidate&rsquo;s profile, including interviews, notes, and emails.</p>
-
-<h3 id="noteworthy-attributes">Noteworthy attributes</h3>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"note"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -269,6 +267,8 @@ X-RateLimit-Remaining: 49
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+
+<h3 id="noteworthy-attributes">Noteworthy attributes</h3>
 
 <table><thead>
 <tr>
@@ -358,21 +358,24 @@ X-RateLimit-Remaining: 49
 </thead><tbody>
 <tr>
 <td>id</td>
-<td>The ID of the candidate whose activity feed you want to retrieve</td>
+<td>The ID of the candidate whose activity feed you want to retrieve.</td>
 </tr>
 </tbody></table>
+
+<p><br>
+<a href="#the-activity-feed-object">See noteworthy response attributes.</a></p>
 
           <h1 id="applications">Applications</h1>
 
 <h2 id="the-application-object">The application object</h2>
 
-<p>Applications associate <a href="#candidates">candidates</a> with <a href="#jobs">jobs</a>.</p>
+<p>Applications associate <a href="#candidates">candidates</a> with <a href="#jobs">jobs</a>. There are 2 kinds of applications: candidates and prospects. Candidate applications always have exactly 1 job. Prospect applications can have 0 or more jobs.</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">985314</span><span class="p">,</span><span class="w">
   </span><span class="nt">"candidate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">978031</span><span class="p">,</span><span class="w">
   </span><span class="nt">"prospect"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"applied_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T20:11:39Z"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"last_activity_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-27T16:13:15Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"applied_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T20:11:39.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"last_activity_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-27T16:13:15.000Z"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1871</span><span class="p">,</span><span class="w">
     </span><span class="nt">"public_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Happy Hour"</span><span class="w">
@@ -427,6 +430,14 @@ X-RateLimit-Remaining: 49
 <td>current_stage</td>
 <td>The current <a href="#job-stages">stage</a> that this application is in.</td>
 </tr>
+<tr>
+<td>credited_to.id</td>
+<td>The ID of the user who will receive credit for this application.</td>
+</tr>
+<tr>
+<td>answers</td>
+<td>The answers provided to the questions in this application. Array contains the text value of the question and answer. Answers are always plaintext strings; booleans are represented with Yes or No.</td>
+</tr>
 </tbody></table>
 
 <h2 id="list-applications">List applications</h2>
@@ -438,8 +449,8 @@ X-RateLimit-Remaining: 49
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4341</span><span class="p">,</span><span class="w">
     </span><span class="nt">"candidate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23123</span><span class="p">,</span><span class="w">
     </span><span class="nt">"prospect"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"applied_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T18:03:45Z"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"last_activity_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-27T16:12:02Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"applied_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T18:03:45.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"last_activity_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-27T16:12:02.000Z"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"credited_to"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4080</span><span class="p">,</span><span class="w">
@@ -462,7 +473,7 @@ X-RateLimit-Remaining: 49
 
 <p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/applications</code></p>
 
-<h3 id="optional-querystring-parameters">Optional querystring parameters</h3>
+<h3 id="querystring-parameters">Querystring parameters</h3>
 
 <table><thead>
 <tr>
@@ -478,7 +489,19 @@ X-RateLimit-Remaining: 49
 <td>page</td>
 <td>A cursor for use in pagination.  Returns the n-th chunk of <code class="prettyprint">per_page</code> objects.</td>
 </tr>
+<tr>
+<td>last_activity_after</td>
+<td>Return only applications where &lsquo;updated_at&rsquo; is after this date. (Example &#39;2014-01-05T00:00:00.000Z&rsquo;).</td>
+</tr>
+<tr>
+<td>job_id</td>
+<td>If supplied, only return applications that involve this job. Will return both candidates and prospects.</td>
+</tr>
 </tbody></table>
+
+<p><br></p>
+
+<p><a href="#the-application-object">See noteworthy response attributes.</a></p>
 
 <h2 id="retrieve-an-application">Retrieve an application</h2>
 <pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/applications/4341'</span> <span class="se">\</span>
@@ -488,8 +511,8 @@ X-RateLimit-Remaining: 49
   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4341</span><span class="p">,</span><span class="w">
   </span><span class="nt">"candidate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23123</span><span class="p">,</span><span class="w">
   </span><span class="nt">"prospect"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"applied_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T18:03:45Z"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"last_activity_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-27T16:12:02Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"applied_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T18:03:45.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"last_activity_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-27T16:12:02.000Z"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="nt">"credited_to"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4080</span><span class="p">,</span><span class="w">
@@ -510,7 +533,7 @@ X-RateLimit-Remaining: 49
 
 <p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/applications/{id}</code></p>
 
-<h3 id="query-parameters">Query Parameters</h3>
+<h3 id="querystring-parameters">Querystring parameters</h3>
 
 <table><thead>
 <tr>
@@ -522,7 +545,18 @@ X-RateLimit-Remaining: 49
 <td>id</td>
 <td>ID of the application to retrieve</td>
 </tr>
+<tr>
+<td>last_activity_after</td>
+<td>Return only applications where &#39;updated_at&rsquo; is after this date. (Example &#39;2014-01-05T00:00:00.000Z&rsquo;).</td>
+</tr>
+<tr>
+<td>job_id</td>
+<td>If supplied, only return applications that involve this job. Will return both candidates and prospects.</td>
+</tr>
 </tbody></table>
+
+<p><br>
+<a href="#the-application-object">See noteworthy response attributes.</a></p>
 
 <h2 id="advance-an-application">Advance an application</h2>
 <pre class="highlight shell"><code>curl -X POST <span class="s1">'https://harvest.greenhouse.io/v1/applications/{id}/advance'</span>
@@ -533,8 +567,8 @@ X-RateLimit-Remaining: 49
   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">985314</span><span class="p">,</span><span class="w">
   </span><span class="nt">"candidate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">978031</span><span class="p">,</span><span class="w">
   </span><span class="nt">"prospect"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"applied_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T20:11:39Z"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"last_activity_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-27T16:13:15Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"applied_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T20:11:39.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"last_activity_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-27T16:13:15.000Z"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1871</span><span class="p">,</span><span class="w">
     </span><span class="nt">"public_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Happy Hour"</span><span class="w">
@@ -557,7 +591,7 @@ X-RateLimit-Remaining: 49
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Move this application to the next stage. The response is populated with the application&rsquo;s information which will reflect its new state. Note that only applications in the &lsquo;active&rsquo; state can be advanced.</p>
+<p>Move this application to the next stage. The response is populated with the application&rsquo;s information which will reflect its new state. Note that only applications in the &#39;active&rsquo; state can be advanced.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -623,8 +657,8 @@ X-RateLimit-Remaining: 49
   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">985314</span><span class="p">,</span><span class="w">
   </span><span class="nt">"candidate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">978031</span><span class="p">,</span><span class="w">
   </span><span class="nt">"prospect"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"applied_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T20:11:39Z"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"last_activity_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-27T16:13:15Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"applied_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T20:11:39.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"last_activity_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-27T16:13:15.000Z"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1871</span><span class="p">,</span><span class="w">
     </span><span class="nt">"public_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Happy Hour"</span><span class="w">
@@ -697,6 +731,10 @@ X-RateLimit-Remaining: 49
 </tr>
 </tbody></table>
 
+<p><br></p>
+
+<p><a href="#the-application-object">See noteworthy response attributes.</a></p>
+
 <h2 id="reject-an-application">Reject an application</h2>
 <pre class="highlight shell"><code>curl -X POST <span class="s1">'https://harvest.greenhouse.io/v1/applications/{id}/reject'</span>
 -H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span> 
@@ -723,8 +761,8 @@ X-RateLimit-Remaining: 49
   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">985314</span><span class="p">,</span><span class="w">
   </span><span class="nt">"candidate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">978031</span><span class="p">,</span><span class="w">
   </span><span class="nt">"prospect"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"applied_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T20:11:39Z"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"last_activity_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-27T16:13:15Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"applied_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T20:11:39.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"last_activity_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-27T16:13:15.000Z"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1871</span><span class="p">,</span><span class="w">
     </span><span class="nt">"public_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Happy Hour"</span><span class="w">
@@ -817,6 +855,8 @@ X-RateLimit-Remaining: 49
 
           <h1 id="candidates">Candidates</h1>
 
+<p>Your organization&rsquo;s candidates.</p>
+
 <h2 id="the-candidate-object">The candidate object</h2>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6801407</span><span class="p">,</span><span class="w">
@@ -891,7 +931,7 @@ X-RateLimit-Remaining: 49
 </tr>
 <tr>
 <td>company</td>
-<td>The company the candidate is currently employed at</td>
+<td>The company at which the candidate currently works</td>
 </tr>
 <tr>
 <td>title</td>
@@ -902,12 +942,40 @@ X-RateLimit-Remaining: 49
 <td>Array of <a href="#applications">application</a> IDs associated with this candidate. Can contain none, one, or several application IDs.</td>
 </tr>
 <tr>
+<td>phone_numbers[].type</td>
+<td>One of: [&ldquo;home&rdquo;, &ldquo;work&rdquo;, &ldquo;mobile&rdquo;, &ldquo;skype&rdquo;, &ldquo;other&rdquo;]</td>
+</tr>
+<tr>
+<td>addresses[].type</td>
+<td>One of: [&ldquo;home&rdquo;, &ldquo;work&rdquo;, &ldquo;other&rdquo;]</td>
+</tr>
+<tr>
+<td>email_addresses[].type</td>
+<td>One of: [&ldquo;personal&rdquo;, &ldquo;work&rdquo;, &ldquo;other&rdquo;]</td>
+</tr>
+<tr>
+<td>website_addresses[].type</td>
+<td>One of: [&ldquo;personal&rdquo;, &ldquo;company&rdquo;, &ldquo;portfolio&rdquo;, &ldquo;blog&rdquo;, &ldquo;other&rdquo;]</td>
+</tr>
+<tr>
 <td>recruiter</td>
 <td>The recruiter <a href="#users">user</a> who is responsible for this candidate.</td>
 </tr>
 <tr>
 <td>coordinator</td>
 <td>The coordinator <a href="#users">user</a> who is responsible for this candidate.</td>
+</tr>
+<tr>
+<td>attachments[].type</td>
+<td>One of: [&ldquo;admin_only&rdquo;, &ldquo;public&rdquo;, &ldquo;cover_letter&rdquo;, &ldquo;offer_packet&rdquo;, &ldquo;resume&rdquo;, &ldquo;take_home_test&rdquo;]</td>
+</tr>
+<tr>
+<td>attachments[].url</td>
+<td>URLs expire in 30 days.</td>
+</tr>
+<tr>
+<td>custom_fields</td>
+<td>Contains a hash of the custom fields configured for this resource. The properties in this hash reflect the active custom fields as of the time this method is called.</td>
 </tr>
 </tbody></table>
 
@@ -986,7 +1054,7 @@ X-RateLimit-Remaining: 49
 
 <p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/candidates</code></p>
 
-<h3 id="optional-querystring-parameters">Optional querystring parameters</h3>
+<h3 id="qerystring-parameters">Qerystring parameters</h3>
 
 <table><thead>
 <tr>
@@ -1003,6 +1071,10 @@ X-RateLimit-Remaining: 49
 <td>A cursor for use in pagination.  Returns the n-th chunk of <code class="prettyprint">per_page</code> objects.</td>
 </tr>
 </tbody></table>
+
+<p><br></p>
+
+<p><a href="#the-candidate-object">See noteworthy response attributes.</a></p>
 
 <h2 id="retrieve-a-candidate">Retrieve a candidate</h2>
 <pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/candidates/{id}'</span> <span class="se">\</span>
@@ -1090,6 +1162,10 @@ X-RateLimit-Remaining: 49
 <td>The ID of the candidate to retrieve</td>
 </tr>
 </tbody></table>
+
+<p><br></p>
+
+<p><a href="#the-candidate-object">See noteworthy response attributes.</a></p>
 
 <h2 id="edit-a-candidate">Edit a candidate</h2>
 <pre class="highlight shell"><code>curl -X PATCH <span class="s1">'https://harvest.greenhouse.io/v1/candidates/{id}'</span>
@@ -1334,6 +1410,10 @@ X-RateLimit-Remaining: 49
 <td>Array of tags as strings. Passing an empty array will clear all.</td>
 </tr>
 </tbody></table>
+
+<p><br></p>
+
+<p><a href="#the-candidate-object">See noteworthy response attributes.</a></p>
 
 <h2 id="create-an-attachment-for-a-candidate">Create an attachment for a candidate</h2>
 <pre class="highlight shell"><code>curl -X POST <span class="s1">'https://harvest.greenhouse.io/v1/candidates/{id}'</span>
@@ -1644,11 +1724,15 @@ X-RateLimit-Remaining: 49
           <h1 id="departments">Departments</h1>
 
 <h2 id="the-department-object">The department object</h2>
+
+<p>Your organization&rsquo;s departments.</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Technology"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+
+<h3 id="noteworthy-attributes">Noteworthy attributes</h3>
 
 <table><thead>
 <tr>
@@ -1667,6 +1751,8 @@ X-RateLimit-Remaining: 49
 </tbody></table>
 
 <h2 id="list-departments">List departments</h2>
+
+<p>List all of your organization&rsquo;s departments.</p>
 <pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/departments'</span> <span class="se">\</span>
 -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
 </code></pre>
@@ -1708,6 +1794,9 @@ X-RateLimit-Remaining: 49
 </tr>
 </tbody></table>
 
+<p><br>
+<a href="#the-department-object">See noteworthy response attributes.</a></p>
+
 <h2 id="retrieve-a-department">Retrieve a department</h2>
 <pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/departments/{id}'</span> <span class="se">\</span>
 -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
@@ -1742,7 +1831,12 @@ X-RateLimit-Remaining: 49
 </tr>
 </tbody></table>
 
+<p><br>
+<a href="#the-department-object">See noteworthy response attributes.</a></p>
+
           <h1 id="email-templates">Email Templates</h1>
+
+<p>Your organization&rsquo;s email templates.</p>
 
 <h2 id="the-email-template-object">The email template object</h2>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -1774,6 +1868,18 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>type</td>
 <td>One of: <code class="prettyprint">new_candidate</code>, <code class="prettyprint">weekly_status</code>, <code class="prettyprint">daily_recruiting</code>, <code class="prettyprint">stage_transition</code>, <code class="prettyprint">new_scorecard</code>, <code class="prettyprint">new_referral</code>, <code class="prettyprint">agency_candidate_status</code>, <code class="prettyprint">agency_candidate_stage</code>, <code class="prettyprint">take_home_test_email</code>, <code class="prettyprint">candidate_auto_reply</code>, <code class="prettyprint">candidate_rejection</code>, <code class="prettyprint">scorecard_reminder</code>, <code class="prettyprint">interviewer_invite</code>, <code class="prettyprint">candidate_email</code>, <code class="prettyprint">team_email</code>, <code class="prettyprint">none</code>, <code class="prettyprint">extending_offer</code>, <code class="prettyprint">new_agency_submission</code>, <code class="prettyprint">non_admin_welcome</code>, <code class="prettyprint">job_admin_welcome</code>, <code class="prettyprint">site_admin_welcome</code>, <code class="prettyprint">prospect_referral_receipt</code>, <code class="prettyprint">candidate_referral_receipt</code>, <code class="prettyprint">candidate_availability_request</code>, <code class="prettyprint">candidate_availability_confirmation</code></td>
+</tr>
+<tr>
+<td>user</td>
+<td>The user this template belongs to. If null, this is an &lsquo;organization wide&rsquo; template available to everyone.</td>
+</tr>
+<tr>
+<td>body</td>
+<td>The plain text body of the e-mail (may be null).</td>
+</tr>
+<tr>
+<td>html_body</td>
+<td>The body of the e-mail with html styling code (may be null).</td>
 </tr>
 </tbody></table>
 
@@ -1838,6 +1944,10 @@ X-RateLimit-Remaining: 49
 </tr>
 </tbody></table>
 
+<p><br></p>
+
+<p><a href="#the-email-template-object">See noteworthy response attributes.</a></p>
+
 <h2 id="retrieve-an-email-template">Retrieve an email template</h2>
 <pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/email_templates/{id}'</span> <span class="se">\</span>
 -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
@@ -1880,523 +1990,13 @@ X-RateLimit-Remaining: 49
 </tr>
 </tbody></table>
 
-          <h1 id="scheduled-interviews">Scheduled Interviews</h1>
+<p><br></p>
 
-<h2 id="the-scheduled-interview-object">The scheduled interview object</h2>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9128481</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"date_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T22:15:00Z"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"end"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"date_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T22:30:00Z"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Big Conference Room"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"awaiting_feedback"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"interview"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7001</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Culture Fit"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"organizer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jack Shepard"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"interviewers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4080</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kate Austen"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kate.austen@example.com"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"scorecard_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11274</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<h3 id="noteworthy-attributes">Noteworthy attributes</h3>
-
-<table><thead>
-<tr>
-<th>Attribute</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>id</td>
-<td>The scheduled interview&rsquo;s unique identifier</td>
-</tr>
-<tr>
-<td>status</td>
-<td>One of: <code class="prettyprint">to_be_scheduled</code>, <code class="prettyprint">scheduled</code>, <code class="prettyprint">awaiting_feedback</code>, <code class="prettyprint">complete</code>, <code class="prettyprint">skipped</code>, <code class="prettyprint">collect_feedback</code>, <code class="prettyprint">to_be_sent</code>, <code class="prettyprint">sent</code>, <code class="prettyprint">received</code></td>
-</tr>
-<tr>
-<td>organizer</td>
-<td>The <a href="#users">user</a> who is the organizer for this interview</td>
-</tr>
-<tr>
-<td>interviewers</td>
-<td>An array containing the <a href="#users">users</a> who have interviews with this candidate, including, if applicable, the ID of the scorecard they completed</td>
-</tr>
-</tbody></table>
-
-<h2 id="list-scheduled-interviews">List scheduled interviews</h2>
-<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/applications/{id}/scheduled_interviews'</span> <span class="se">\</span>
--H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
-</code></pre>
-<pre class="highlight json"><code><span class="w">
-</span><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9128481</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"date_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T22:15:00Z"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"end"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"date_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T22:30:00Z"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Big Conference Room"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"awaiting_feedback"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"interview"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7001</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Culture Fit"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"organizer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jack Shepard"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"interviewers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4080</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kate Austen"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kate.austen@example.com"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"scorecard_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11274</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9128482</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-07-08"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"end"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-07-09"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Small Conference Room"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"interview"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7002</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Whiteboarding Challenge"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"organizer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jack Shepard"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"complete"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"interviewers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3412</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Charlie Pace"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"youalleverybody@example.com"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"scorecard_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-
-<p>Interviews that have been scheduled for this application.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/applications/{id}/scheduled_interviews</code></p>
-
-<h3 id="query-parameters">Query Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>id</td>
-<td>ID of the application to retrieve</td>
-</tr>
-</tbody></table>
-
-          <h1 id="jobs">Jobs</h1>
-
-<h2 id="the-job-object">The job object</h2>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6404</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Archaeologist"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"requisition_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc123"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;Resistance to electro-magnetic radiation a plus!&lt;/p&gt;"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"closed"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-12-10T14:42:58Z"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-12-11T14:42:58Z"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"closed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-12-12T14:42:58Z"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"departments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">562</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Exploration"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nt">"offices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">175</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"San Francisco"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"San Francisco, CA"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"employment_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Full-Time"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"maximum_budget"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$81.5k"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"salary_range"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"min_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">70000</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"max_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">90000</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"hiring_team"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"hiring_managers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">84275</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kaylee Prime"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">169779</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hank Hollandaise"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nt">"recruiters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">81111</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Samuel Skateboard"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"responsible"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">153448</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Stegosaurus Heels"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"responsible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nt">"coordinators"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">122635</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Teddy Pizzazz"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"responsible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">177046</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mirandella Lager"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"responsible"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nt">"sourcers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">122635</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Teddy Pizzazz"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"openings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3-1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-20T23:14:14.736Z"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"closed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3-2"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-20T23:14:14.739Z"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"closed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-02-03T20:00:00.000Z"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"closed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2-4"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"closed"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-02-03T16:38:46.985Z"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"closed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-02-03T16:39:09.811Z"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1232</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<h3 id="noteworthy-attributes">Noteworthy attributes</h3>
-
-<table><thead>
-<tr>
-<th>Attribute</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>id</td>
-<td>The job&rsquo;s unique identifier</td>
-</tr>
-<tr>
-<td>status</td>
-<td>One of <code class="prettyprint">open</code>, <code class="prettyprint">closed</code>, <code class="prettyprint">draft</code>.</td>
-</tr>
-<tr>
-<td>departments</td>
-<td>An array containing the <a href="#departments">department</a> which this job belongs to.</td>
-</tr>
-<tr>
-<td>offices</td>
-<td>An array containing the <a href="#offices">offices</a> this job is associated with.</td>
-</tr>
-<tr>
-<td>custom_fields</td>
-<td>Contains any custom job fields which have been defined by your organization.</td>
-</tr>
-<tr>
-<td>hiring_team</td>
-<td>Lists the names and User IDs of the hiring managers, recruiters, coordinators and sourcers associated with this job. For recruiters and coordinators, there is a <code class="prettyprint">responsible</code> boolean flag which indicates that the user is the responsible recruiter or coordinator for this job.</td>
-</tr>
-<tr>
-<td>openings</td>
-<td>Lists the openings associated with this job.</td>
-</tr>
-<tr>
-<td>openings[].id</td>
-<td>Custom identifier set by an organization. Can be <code class="prettyprint">null</code>.</td>
-</tr>
-<tr>
-<td>openings[].status</td>
-<td>One of: <code class="prettyprint">[&quot;open&quot;, &quot;closed&quot;]</code></td>
-</tr>
-<tr>
-<td>openings[].opened_at</td>
-<td>Timestamp when the opening was created.</td>
-</tr>
-<tr>
-<td>openings[].closed_at</td>
-<td>Timestamp when the opening was closed. An opening is closed when it is filled or removed.</td>
-</tr>
-<tr>
-<td>openings[].application_id</td>
-<td>If the opening is closed and a candidate was hired to fill the opening, this is the ID of the candidate&rsquo;s application. Otherwise, null.</td>
-</tr>
-</tbody></table>
-
-<h2 id="list-jobs">List jobs</h2>
-<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/jobs'</span> <span class="se">\</span>
--H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
-</code></pre>
-<pre class="highlight json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">144371</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Good Cop"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"requisition_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-19T19:53:32.662Z"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-19T19:53:32.662Z"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"closed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"departments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">13585</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rule Enforcement"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nt">"offices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8787</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New York City"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New York, NY, United States"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nt">"hiring_team"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"hiring_managers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">158108</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sam McsSamson"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="nt">"recruiters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">158101</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Major Tom"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"responsible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="nt">"coordinators"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">158109</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Roger Cord"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"responsible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="nt">"sourcers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">158102</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lara Sourcerer"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-      </span><span class="p">]</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"bonus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"employment_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Full-time"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"salary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"54111"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"openings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1-1"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"closed"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-19T19:53:32.564Z"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"closed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-26T23:59:07.592Z"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24709881</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1-2"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-19T19:53:32.565Z"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"closed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-
-<p>List all of your organization&rsquo;s jobs.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/jobs</code></p>
-
-<h3 id="optional-querystring-parameters">Optional querystring parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>per_page</td>
-<td>Return up to this number of objects per response.  Must be an integer between 1 and 100.  Defaults to 100.</td>
-</tr>
-<tr>
-<td>page</td>
-<td>A cursor for use in pagination.  Returns the n-th chunk of <code class="prettyprint">per_page</code> objects.</td>
-</tr>
-</tbody></table>
-
-<h2 id="retrieve-a-job">Retrieve a job</h2>
-<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/jobs/{id}'</span> <span class="se">\</span>
--H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
-</code></pre>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">144371</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Good Cop"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"requisition_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-19T19:53:32.662Z"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-19T19:53:32.662Z"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"closed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"departments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">13585</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rule Enforcement"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nt">"offices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8787</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New York City"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New York, NY, United States"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nt">"hiring_team"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"hiring_managers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">158108</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sam McsSamson"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nt">"recruiters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">158101</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Major Tom"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"responsible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nt">"coordinators"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">158109</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Roger Cord"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"responsible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nt">"sourcers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">158102</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lara Sourcerer"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"bonus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"employment_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Full-time"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"salary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"54111"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"openings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1-1"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"closed"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-19T19:53:32.564Z"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"closed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-26T23:59:07.592Z"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24709881</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1-2"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-19T19:53:32.565Z"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"closed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/jobs/{id}</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>id</td>
-<td>The ID of the job to retrieve</td>
-</tr>
-</tbody></table>
+<p><a href="#the-email-template-object">See noteworthy response attributes.</a></p>
 
           <h1 id="job-posts">Job Posts</h1>
+
+<p>Describes the online job posts for your jobs (as seen on your Job Board).</p>
 
 <h2 id="the-job-post-object">The job post object</h2>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -2535,6 +2135,14 @@ X-RateLimit-Remaining: 49
 <td>The ID of the <a href="#jobs">job</a> that this job post is for.</td>
 </tr>
 <tr>
+<td>content</td>
+<td>The text of the job post as posted to the external job board.</td>
+</tr>
+<tr>
+<td>internal_content</td>
+<td>The text of the job post if posted to the internal job board, if different than the external job board.</td>
+</tr>
+<tr>
 <td>questions</td>
 <td>An array of questions associated with this job post.</td>
 </tr>
@@ -2580,7 +2188,7 @@ X-RateLimit-Remaining: 49
 
 <p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/job_posts</code></p>
 
-<h3 id="optional-querystring-parameters">Optional querystring parameters</h3>
+<h3 id="querystring-parameters">Querystring parameters</h3>
 
 <table><thead>
 <tr>
@@ -2596,7 +2204,18 @@ X-RateLimit-Remaining: 49
 <td>page</td>
 <td>A cursor for use in pagination.  Returns the n-th chunk of <code class="prettyprint">per_page</code> objects.</td>
 </tr>
+<tr>
+<td>content</td>
+<td>If present, will return the text of the job post as posted to the external job board.</td>
+</tr>
+<tr>
+<td>questions</td>
+<td>If present, will return an array of questions associated with this job post.</td>
+</tr>
 </tbody></table>
+
+<p><br>
+<a href="#the-job-post-object">See noteworthy response attributes.</a></p>
 
 <h2 id="retrieve-job-post-for-job">Retrieve job post for job</h2>
 <pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/jobs/{id}/job_post'</span> <span class="se">\</span>
@@ -2636,7 +2255,7 @@ X-RateLimit-Remaining: 49
 
 <p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/jobs/{id}/job_post</code></p>
 
-<h3 id="url-parameters">URL Parameters</h3>
+<h3 id="querystring-parameters">Querystring parameters</h3>
 
 <table><thead>
 <tr>
@@ -2648,9 +2267,22 @@ X-RateLimit-Remaining: 49
 <td>id</td>
 <td>The ID of the job whose job post you want to retrieve</td>
 </tr>
+<tr>
+<td>content</td>
+<td>If present, will return the text of the job post as posted to the external job board.</td>
+</tr>
+<tr>
+<td>questions</td>
+<td>If present, will return an array of questions associated with this job post.</td>
+</tr>
 </tbody></table>
 
+<p><br>
+<a href="#the-job-post-object">See noteworthy response attributes.</a></p>
+
           <h1 id="job-stages">Job Stages</h1>
+
+<p>Stages for the job specified by the supplied id.</p>
 
 <h2 id="the-job-stage-object">The job stage object</h2>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -2690,6 +2322,8 @@ X-RateLimit-Remaining: 49
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+
+<h3 id="noteworthy-attributes">Noteworthy attributes</h3>
 
 <table><thead>
 <tr>
@@ -2790,13 +2424,405 @@ X-RateLimit-Remaining: 49
 </thead><tbody>
 <tr>
 <td>id</td>
-<td>The ID of the job whose job stages you want to retrieve</td>
+<td>The ID of the job whose job stages you want to retrieve.</td>
 </tr>
 </tbody></table>
+
+<p><br>
+<a href="#the-job-stage-object">See noteworthy response attributes.</a></p>
+
+          <h1 id="jobs">Jobs</h1>
+
+<h2 id="the-job-object">The job object</h2>
+
+<p>Your organization&rsquo;s jobs.</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6404</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Archaeologist"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"requisition_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc123"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;Resistance to electro-magnetic radiation a plus!&lt;/p&gt;"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"closed"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-12-10T14:42:58Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-12-11T14:42:58Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"closed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-12-12T14:42:58Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"departments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">562</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Exploration"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"offices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">175</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"San Francisco"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"San Francisco, CA"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"employment_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Full-Time"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"maximum_budget"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$81.5k"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"salary_range"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"min_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">70000</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"max_value"</span><span class="p">:</span><span class="w"> </span><span class="mi">90000</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"unit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"hiring_team"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"hiring_managers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">84275</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kaylee Prime"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">169779</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hank Hollandaise"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"recruiters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">81111</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Samuel Skateboard"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"responsible"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">153448</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Stegosaurus Heels"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"responsible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"coordinators"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">122635</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Teddy Pizzazz"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"responsible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">177046</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mirandella Lager"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"responsible"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"sourcers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">122635</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Teddy Pizzazz"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"openings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3-1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-20T23:14:14.736Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"closed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3-2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-20T23:14:14.739Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"closed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-02-03T20:00:00.000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"closed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2-4"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"closed"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-02-03T16:38:46.985Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"closed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-02-03T16:39:09.811Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1232</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="noteworthy-attributes">Noteworthy attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>The job&rsquo;s unique identifier</td>
+</tr>
+<tr>
+<td>requisition_id</td>
+<td>An arbitrary ID provided by an external source; does not map to another entity within Greenhouse.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>One of <code class="prettyprint">open</code>, <code class="prettyprint">closed</code>, <code class="prettyprint">draft</code>.</td>
+</tr>
+<tr>
+<td>departments</td>
+<td>An array containing the <a href="#departments">department</a> which this job belongs to.</td>
+</tr>
+<tr>
+<td>offices</td>
+<td>An array containing the <a href="#offices">offices</a> this job is associated with.</td>
+</tr>
+<tr>
+<td>hiring_team</td>
+<td>Lists the names and User IDs of the hiring managers, recruiters, coordinators and sourcers associated with this job. For recruiters and coordinators, there is a <code class="prettyprint">responsible</code> boolean flag which indicates that the user is the responsible recruiter or coordinator for this job.</td>
+</tr>
+<tr>
+<td>custom_fields</td>
+<td>Contains any custom job fields which have been defined by your organization.</td>
+</tr>
+<tr>
+<td>openings</td>
+<td>Lists the openings associated with this job.</td>
+</tr>
+<tr>
+<td>openings[].id</td>
+<td>Custom identifier set by an organization. Can be <code class="prettyprint">null</code>.</td>
+</tr>
+<tr>
+<td>openings[].status</td>
+<td>One of: <code class="prettyprint">[&quot;open&quot;, &quot;closed&quot;]</code></td>
+</tr>
+<tr>
+<td>openings[].opened_at</td>
+<td>Timestamp when the opening was created.</td>
+</tr>
+<tr>
+<td>openings[].closed_at</td>
+<td>Timestamp when the opening was closed. An opening is closed when it is filled or removed.</td>
+</tr>
+<tr>
+<td>openings[].application_id</td>
+<td>If the opening is closed and a candidate was hired to fill the opening, this is the ID of the candidate&rsquo;s application. Otherwise, null.</td>
+</tr>
+</tbody></table>
+
+<h2 id="list-jobs">List jobs</h2>
+<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/jobs'</span> <span class="se">\</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">144371</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Good Cop"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"requisition_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-19T19:53:32.662Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-19T19:53:32.662Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"closed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"departments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">13585</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rule Enforcement"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"offices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8787</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New York City"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New York, NY, United States"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"hiring_team"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"hiring_managers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">158108</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sam McsSamson"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"recruiters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">158101</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Major Tom"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"responsible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"coordinators"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">158109</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Roger Cord"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"responsible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"sourcers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">158102</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lara Sourcerer"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"bonus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"employment_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Full-time"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"salary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"54111"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"openings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1-1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"closed"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-19T19:53:32.564Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"closed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-26T23:59:07.592Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24709881</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1-2"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-19T19:53:32.565Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"closed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>List all of your organization&rsquo;s jobs.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/jobs</code></p>
+
+<h3 id="querystring-parameters">Querystring parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>per_page</td>
+<td>Return up to this number of objects per response.  Must be an integer between 1 and 100.  Defaults to 100.</td>
+</tr>
+<tr>
+<td>page</td>
+<td>A cursor for use in pagination.  Returns the n-th chunk of <code class="prettyprint">per_page</code> objects.</td>
+</tr>
+</tbody></table>
+
+<p><br>
+<a href="#the-job-object">See noteworthy response attributes.</a></p>
+
+<h2 id="retrieve-a-job">Retrieve a job</h2>
+<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/jobs/{id}'</span> <span class="se">\</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">144371</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Good Cop"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"requisition_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-19T19:53:32.662Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-19T19:53:32.662Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"closed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"departments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">13585</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rule Enforcement"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"offices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8787</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New York City"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New York, NY, United States"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"hiring_team"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"hiring_managers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">158108</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sam McsSamson"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"recruiters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">158101</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Major Tom"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"responsible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"coordinators"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">158109</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Roger Cord"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"responsible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"sourcers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">158102</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lara Sourcerer"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"bonus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"employment_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Full-time"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"salary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"54111"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"openings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1-1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"closed"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-19T19:53:32.564Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"closed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-26T23:59:07.592Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24709881</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1-2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-19T19:53:32.565Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"closed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/jobs/{id}</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>The ID of the job to retrieve</td>
+</tr>
+</tbody></table>
+
+<p><br>
+<a href="#the-job-object">See noteworthy response attributes.</a></p>
 
           <h1 id="offers">Offers</h1>
 
 <h2 id="the-offer-object">The offer object</h2>
+
+<p>Your organization&rsquo;s offers.</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4949</span><span class="p">,</span><span class="w">
   </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
@@ -2834,16 +2860,34 @@ X-RateLimit-Remaining: 49
 <td>The version number of this offer.  When an existing offer is updated, a new one is typically created with an incremented version.</td>
 </tr>
 <tr>
+<td>application_id</td>
+<td>The ID of the associated <a href="#applications">application</a>.</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>Date whe this offer was created.</td>
+</tr>
+<tr>
+<td>resolved_at</td>
+<td>Date when this offer was resolved (e.g. when it was accepted, rejected).</td>
+</tr>
+<tr>
+<td>sent_at</td>
+<td>Date when this offer was sent to the candidate.</td>
+</tr>
+<tr>
 <td>status</td>
 <td>One of: <code class="prettyprint">unresolved</code>, <code class="prettyprint">accepted</code>, <code class="prettyprint">rejected</code>, <code class="prettyprint">deprecated</code>.</td>
 </tr>
 <tr>
-<td>application_id</td>
-<td>The ID of the associated <a href="#applications">application</a>.</td>
+<td>custom_fields</td>
+<td>Contains a hash of the custom fields configured for this resource. The properties in this hash reflect the active custom fields as of the time this method is called.</td>
 </tr>
 </tbody></table>
 
-<h2 id="list-offers">List offers</h2>
+<h2 id="list-all-offers">List all offers</h2>
+
+<p>All offers made by your organization ordered by application_id.</p>
 <pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/offers'</span> <span class="se">\</span>
 -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
 </code></pre>
@@ -2912,49 +2956,8 @@ X-RateLimit-Remaining: 49
 </tr>
 </tbody></table>
 
-<h2 id="retrieve-an-offer">Retrieve an offer</h2>
-<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/offers/{id}'</span> <span class="se">\</span>
--H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
-</code></pre>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4949</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-02-13T22:30:58Z"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"resolved_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"sent_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sent_on"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"deprecated"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"employment_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Contractor"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"favorite_station"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Swan"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"best_seasons"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"willing_to_negotiate"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"salary"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>Retrieve an offer by its ID.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/offers/{id}</code></p>
-
-<h3 id="query-parameters">Query Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>id</td>
-<td>ID of the offer to retrieve</td>
-</tr>
-</tbody></table>
+<p><br>
+<a href="#the-offer-object">See noteworthy response attributes.</a></p>
 
 <h2 id="list-offers-for-application">List offers for application</h2>
 <pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/applications/{application_id}/offers'</span> <span class="se">\</span>
@@ -3003,7 +3006,7 @@ X-RateLimit-Remaining: 49
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 
-<p>List the offers associated with an application. Greenhouse keeps offer history has updates are made over time. To fetch only the most recent offer, append <code class="prettyprint">/current_offer</code> to the url.</p>
+<p>List the offers associated with an application. Greenhouse keeps offer history as updates are made over time. </p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -3023,7 +3026,7 @@ X-RateLimit-Remaining: 49
 </tr>
 </tbody></table>
 
-<h3 id="optional-querystring-parameters">Optional querystring parameters</h3>
+<h3 id="querystring-parameters">Querystring parameters</h3>
 
 <table><thead>
 <tr>
@@ -3040,6 +3043,56 @@ X-RateLimit-Remaining: 49
 <td>A cursor for use in pagination.  Returns the n-th chunk of <code class="prettyprint">per_page</code> objects.</td>
 </tr>
 </tbody></table>
+
+<p><br>
+<a href="#the-offer-object">See noteworthy response attributes.</a></p>
+
+<h2 id="retrieve-an-offer">Retrieve an offer</h2>
+<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/offers/{id}'</span> <span class="se">\</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4949</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-02-13T22:30:58Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"resolved_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"sent_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sent_on"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"deprecated"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"employment_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Contractor"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"favorite_station"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Swan"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"best_seasons"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"willing_to_negotiate"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"salary"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Retrieve an offer by its ID.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/offers/{id}</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>ID of the offer to retrieve</td>
+</tr>
+</tbody></table>
+
+<p><br>
+<a href="#the-offer-object">See noteworthy response attributes.</a></p>
 
 <h2 id="retrieve-current-offer-for-application">Retrieve current offer for application</h2>
 <pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/applications/{application_id}/offers/current_offer'</span> <span class="se">\</span>
@@ -3085,9 +3138,14 @@ X-RateLimit-Remaining: 49
 </tr>
 </tbody></table>
 
+<p><br>
+<a href="#the-offer-object">See noteworthy response attributes.</a></p>
+
           <h1 id="offices">Offices</h1>
 
 <h2 id="the-office-object">The office object</h2>
+
+<p>Your organization’s offices.</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">175</span><span class="p">,</span><span class="w">
   </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"San Francisco"</span><span class="p">,</span><span class="w">
@@ -3108,6 +3166,10 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>id</td>
 <td>The office&rsquo;s unique identifier</td>
+</tr>
+<tr>
+<td>name</td>
+<td>The office&rsquo;s name</td>
 </tr>
 </tbody></table>
 
@@ -3144,7 +3206,7 @@ X-RateLimit-Remaining: 49
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 
-<p>List all of an organization&rsquo;s offices.</p>
+<p>List all of your organization&rsquo;s offices.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -3167,6 +3229,9 @@ X-RateLimit-Remaining: 49
 <td>A cursor for use in pagination.  Returns the n-th chunk of <code class="prettyprint">per_page</code> objects.</td>
 </tr>
 </tbody></table>
+
+<p><br>
+<a href="#the-office-object">See noteworthy response attributes.</a></p>
 
 <h2 id="retrieve-an-office">Retrieve an office</h2>
 <pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/offices/{id}'</span> <span class="se">\</span>
@@ -3204,6 +3269,9 @@ X-RateLimit-Remaining: 49
 <td>The ID of the office to retrieve</td>
 </tr>
 </tbody></table>
+
+<p><br>
+<a href="#the-office-object">See noteworthy response attributes.</a></p>
 
           <h1 id="rejection-reasons">Rejection Reasons</h1>
 
@@ -3302,7 +3370,170 @@ X-RateLimit-Remaining: 49
 </tr>
 </tbody></table>
 
+<p><br>
+<a href="#the-rejection-reason-object">See noteworthy response attributes.</a></p>
+
+          <h1 id="scheduled-interviews">Scheduled Interviews</h1>
+
+<h2 id="the-scheduled-interview-object">The scheduled interview object</h2>
+
+<p>Interviews that have been scheduled for the specified application.</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9128481</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"date_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T22:15:00.000Z"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"end"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"date_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T22:30:00.000Z"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Big Conference Room"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"awaiting_feedback"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"interview"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7001</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Culture Fit"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"organizer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jack Shepard"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"interviewers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4080</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kate Austen"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kate.austen@example.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"scorecard_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11274</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="noteworthy-attributes">Noteworthy attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>The scheduled interview&rsquo;s unique identifier</td>
+</tr>
+<tr>
+<td>start</td>
+<td>A date_time value if this interview has a precise start time, or a date value if this is an all-day event.</td>
+</tr>
+<tr>
+<td>end</td>
+<td>A date_time value if this interview has a precise start time, or a date value if this is an all-day event.</td>
+</tr>
+<tr>
+<td>location</td>
+<td>The location of the interview.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>One of: <code class="prettyprint">to_be_scheduled</code>, <code class="prettyprint">scheduled</code>, <code class="prettyprint">awaiting_feedback</code>, <code class="prettyprint">complete</code>, <code class="prettyprint">skipped</code>, <code class="prettyprint">collect_feedback</code>, <code class="prettyprint">to_be_sent</code>, <code class="prettyprint">sent</code>, <code class="prettyprint">received</code>.</td>
+</tr>
+<tr>
+<td>organizer</td>
+<td>The <a href="#users">user</a> who is the organizer for this interview</td>
+</tr>
+<tr>
+<td>interviewers</td>
+<td>An array containing the <a href="#users">users</a> who have interviews with this candidate, including, if applicable, the ID of the scorecard they completed.</td>
+</tr>
+</tbody></table>
+
+<h2 id="list-scheduled-interviews">List scheduled interviews</h2>
+<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/applications/{id}/scheduled_interviews'</span> <span class="se">\</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9128481</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"date_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T22:15:00.000Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"end"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"date_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T22:30:00.000Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Big Conference Room"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"awaiting_feedback"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"interview"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7001</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Culture Fit"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"organizer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jack Shepard"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"interviewers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4080</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kate Austen"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kate.austen@example.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"scorecard_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11274</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9128482</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-07-08"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"end"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-07-09"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Small Conference Room"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"interview"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7002</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Whiteboarding Challenge"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"organizer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jack Shepard"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"complete"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"interviewers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3412</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Charlie Pace"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"youalleverybody@example.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"scorecard_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>Interviews that have been scheduled for this application.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/applications/{id}/scheduled_interviews</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>ID of the application to retrieve</td>
+</tr>
+</tbody></table>
+
+<p><br>
+<a href="#the-scheduled-interview-object">See noteworthy response attributes.</a></p>
+
           <h1 id="scorecards">Scorecards</h1>
+
+<p>All submitted scorecards ordered by candidate.</p>
 
 <h2 id="the-scorecard-object">The scorecard object</h2>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -3409,6 +3640,10 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>overall_recommendation</td>
 <td>One of: <code class="prettyprint">definitely_not</code>, <code class="prettyprint">no</code>, <code class="prettyprint">yes</code>, <code class="prettyprint">strong_yes</code>, <code class="prettyprint">mixed</code>, <code class="prettyprint">no_decision</code></td>
+</tr>
+<tr>
+<td>attributes</td>
+<td>Array containing the attributes of the Scorecard. Describes each attribute&rsquo;s name, type, rating (can be &ldquo;no_decision&rdquo;), and an optional note.</td>
 </tr>
 </tbody></table>
 
@@ -3528,6 +3763,9 @@ X-RateLimit-Remaining: 49
 </tr>
 </tbody></table>
 
+<p><br>
+<a href="#the-scorecard-object">See noteworthy response attributes.</a></p>
+
 <h2 id="retrieve-a-scorecard">Retrieve a scorecard</h2>
 <pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/scorecards/{id}'</span> <span class="se">\</span>
 -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
@@ -3634,6 +3872,9 @@ X-RateLimit-Remaining: 49
 <td>The ID of the scorecard to retrieve</td>
 </tr>
 </tbody></table>
+
+<p><br>
+<a href="#the-scorecard-object">See noteworthy response attributes.</a></p>
 
 <h2 id="list-scorecards-for-application">List scorecards for application</h2>
 <pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/applications/{id}/scorecards'</span> <span class="se">\</span>
@@ -3743,9 +3984,14 @@ X-RateLimit-Remaining: 49
 </tr>
 </tbody></table>
 
+<p><br>
+<a href="#the-scorecard-object">See noteworthy response attributes.</a></p>
+
           <h1 id="sources">Sources</h1>
 
 <h2 id="the-source-object">The source object</h2>
+
+<p>Your organization&rsquo;s sources.</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">632</span><span class="p">,</span><span class="w">
   </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Other"</span><span class="p">,</span><span class="w">
@@ -3826,6 +4072,9 @@ X-RateLimit-Remaining: 49
 </tr>
 </tbody></table>
 
+<p><br>
+<a href="#the-source-object">See noteworthy response attributes.</a></p>
+
 <h2 id="retrieve-a-source">Retrieve a source</h2>
 <pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/sources/{id}'</span> <span class="se">\</span>
 -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
@@ -3862,9 +4111,14 @@ X-RateLimit-Remaining: 49
 </tr>
 </tbody></table>
 
+<p><br>
+<a href="#the-source-object">See noteworthy response attributes.</a></p>
+
           <h1 id="users">Users</h1>
 
 <h2 id="the-user-object">The user object</h2>
+
+<p>Your organization&rsquo;s Greenhouse users.</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">112</span><span class="p">,</span><span class="w">
   </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Juliet Burke"</span><span class="p">,</span><span class="w">
@@ -3876,6 +4130,8 @@ X-RateLimit-Remaining: 49
   </span><span class="nt">"site_admin"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+
+<h3 id="noteworthy-attributes">Noteworthy Attributes</h3>
 
 <table><thead>
 <tr>
@@ -3889,7 +4145,7 @@ X-RateLimit-Remaining: 49
 </tr>
 <tr>
 <td>site_admin</td>
-<td>If <code class="prettyprint">true</code>, this user is a site admin, which means the user has full permissions on all jobs.</td>
+<td>If <code class="prettyprint">true</code>, this user is a site admin, which means the user has full permissions on all non-private jobs.</td>
 </tr>
 </tbody></table>
 
@@ -3944,6 +4200,9 @@ X-RateLimit-Remaining: 49
 </tr>
 </tbody></table>
 
+<p><br>
+<a href="#the-user-object">See noteworthy response attributes.</a></p>
+
 <h2 id="retrieve-a-user">Retrieve a user</h2>
 <pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/users/{id}'</span> <span class="se">\</span>
 -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
@@ -3977,6 +4236,9 @@ X-RateLimit-Remaining: 49
 <td>The ID of the user to retrieve</td>
 </tr>
 </tbody></table>
+
+<p><br>
+<a href="#the-user-object">See noteworthy response attributes.</a></p>
 
       </div>
       <div class="dark-box">
