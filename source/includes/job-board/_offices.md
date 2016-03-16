@@ -30,19 +30,12 @@
               },
               "updated_at":"2013-07-02T19:39:23Z",
               "absolute_url":"http://your.co/careers?gh_jid=55555"
-            }
-        },
+            },
         {
           "id":22222,
           "name":"Account Management",
-          "jobs":[
-
-          ]
-        },
-        // { ... } Each dept is listed for each office
-      ]
-    },
-    // { ... } More offices here
+          "jobs":[ ]
+        }
   ]
 }
 ```

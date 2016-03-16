@@ -12,30 +12,21 @@
         {
           "id":44444,
           "title":"Product Engineer",
+          "updated_at":"2013-07-02T19:39:23Z",
           "location":{
             "name":"San Francisco, CA"
           },
-          "updated_at":"2013-07-02T19:39:23Z",
           "absolute_url":"http://your.co/careers?gh_jid=444444"
         },
         {
           "id":55555,
           "title":"Mobile Engineer - iOS",
+          "updated_at":"2013-07-02T19:39:23Z",
           "location":{
             "name":"San Francisco, CA"
           },
-          "updated_at":"2013-07-02T19:39:23Z",
           "absolute_url":"http://your.co/careers?gh_jid=55555"
         }
-    },
-    {
-      "id":22222,
-      "name":"Account Management",
-      "jobs":[
-
-      ]
-    },
-    // { ... } All departments are listed
   ]
 }
 ```
@@ -63,19 +54,19 @@ board_token | Job Board URL token
     {
       "id":44444,
       "title":"Product Engineer",
+      "updated_at":"2013-07-02T19:39:23Z",
       "location":{
         "name":"San Francisco, CA"
       },
-      "updated_at":"2013-07-02T19:39:23Z",
       "absolute_url":"http://your.co/careers?gh_jid=444444"
     },
     {
       "id":55555,
       "title":"Mobile Engineer - iOS",
+      "updated_at":"2013-07-02T19:39:23Z",
       "location":{
         "name":"San Francisco, CA"
       },
-      "updated_at":"2013-07-02T19:39:23Z",
       "absolute_url":"http://your.co/careers?gh_jid=55555"
     }
   ]

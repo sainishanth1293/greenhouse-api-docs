@@ -52,14 +52,13 @@ content | If set to `true`, include the description of each job post.
   "content":"This is the job description. &amp;lt;p&amp;gt;Any HTML included through the hosted job application editor will be automatically converted into corresponding HTML entitites.&amp;lt;/p&amp;gt;",
   "absolute_url":"http://your.co/careers?gh_jid=444444",
   "internal_job_id": 55555,
-  // NOTE: questions will only appear if "questions" parameter is set to true
   "questions":[
     {
       "required":true,
       "label":"First Name",
       "fields":[
         {
-          "name":"first_name", // denotes the "name" attribute of the field
+          "name":"first_name",
           "type":"input_text"
         }
       ]
