@@ -71,6 +71,8 @@ analytics.page()
         <ul class="toc-footer">
             <li><a href="/harvest.html" title="Harvest API">Harvest API</a></li>
             <li><a href='/webhooks.html' title="Web Hooks">Web Hooks</a></li>
+            <li><a href='/candidate-ingestion.html' title="Ingestion API">Ingestion API</a></li>
+            <li><a href='/take-home-test.html' title="Take Home Test API">Take Home Test API</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -157,28 +159,20 @@ When submitting a job application, you will use the <code>id</code> field to spe
 
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
+<td>Parameter</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>board_token</td>
-<td>Job Board URL token</td>
-</tr>
+<td>board_token</td><td>Job Board URL token</td></tr>
 </tbody></table>
 
 <h3 id="optional-querystring-parameters">Optional Querystring Parameters</h3>
 
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
+<td>Parameter</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>content</td>
-<td>If set to <code class="prettyprint">true</code>, include the description, department and office of each job post.</td>
-</tr>
+<td>content</td><td>If set to <code class="prettyprint">true</code>, include the description, department and office of each job post.</td></tr>
 </tbody></table>
 
 <h2 id="retrieve-a-job">Retrieve a job</h2>
@@ -262,32 +256,22 @@ When submitting a job application, you will use the <code>id</code> field to spe
 
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
+<td>Parameter</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>board_token</td>
-<td>Job Board URL token</td>
-</tr>
+<td>board_token</td><td>Job Board URL token</td></tr>
 </tbody></table>
 
 <h3 id="querystring-parameters">Querystring Parameters</h3>
 
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
+<td>Parameter</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>job_id</td>
-<td>ID of the office to retrieve</td>
-</tr>
+<td>job_id</td><td>ID of the office to retrieve</td></tr>
 <tr>
-<td>questions</td>
-<td><em>(optional)</em> If set to <code class="prettyprint">true</code>, include the list of job application fields.</td>
-</tr>
+<td>questions</td><td><em>(optional)</em> If set to <code class="prettyprint">true</code>, include the list of job application fields.</td></tr>
 </tbody></table>
 
 <h3 id="questions">Questions</h3>
@@ -296,30 +280,18 @@ When submitting a job application, you will use the <code>id</code> field to spe
 
 <table><thead>
 <tr>
-<th>Type</th>
-<th>How to represent</th>
-</tr>
+<td>Type</td><td>How to represent</td></tr>
 </thead><tbody>
 <tr>
-<td>input_file</td>
-<td>Represent with an input of type file</td>
-</tr>
+<td>input_file</td><td>Represent with an input of type file</td></tr>
 <tr>
-<td>input_text</td>
-<td>Represent with an input of type text</td>
-</tr>
+<td>input_text</td><td>Represent with an input of type text</td></tr>
 <tr>
-<td>textarea</td>
-<td>Represent with a textarea</td>
-</tr>
+<td>textarea</td><td>Represent with a textarea</td></tr>
 <tr>
-<td>multi_value_single_select</td>
-<td>Can be represented as either a set of radio buttons or a select</td>
-</tr>
+<td>multi_value_single_select</td><td>Can be represented as either a set of radio buttons or a select</td></tr>
 <tr>
-<td>multi_value_multi_select</td>
-<td>Can be represented as either a set of checkboxes or a multi-select</td>
-</tr>
+<td>multi_value_multi_select</td><td>Can be represented as either a set of checkboxes or a multi-select</td></tr>
 </tbody></table>
 
 <p>Please note that it is possible for multiple fields to be aggregated beneath a single question. The &ldquo;Resume&rdquo; field is a prime example, with both an input_file and textarea type accepted. If marked as required, then we expect at least one of these fields to contain a valid value when your form is submitted to the <a href="#applications">application submission</a> endpoint.</p>
@@ -381,14 +353,10 @@ When submitting a job application, you will use the <code>id</code> field to spe
 
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
+<td>Parameter</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>board_token</td>
-<td>Job Board URL token</td>
-</tr>
+<td>board_token</td><td>Job Board URL token</td></tr>
 </tbody></table>
 
 <h2 id="retrieve-an-office">Retrieve an office</h2>
@@ -439,14 +407,10 @@ When submitting a job application, you will use the <code>id</code> field to spe
 
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
+<td>Parameter</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>board_token</td>
-<td>Job Board URL token</td>
-</tr>
+<td>board_token</td><td>Job Board URL token</td></tr>
 </tbody></table>
 
 <h3 id="querystring-parameters">Querystring Parameters</h3>
@@ -503,14 +467,10 @@ When submitting a job application, you will use the <code>id</code> field to spe
 
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
+<td>Parameter</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>board_token</td>
-<td>Job Board URL token</td>
-</tr>
+<td>board_token</td><td>Job Board URL token</td></tr>
 </tbody></table>
 
 <h2 id="retrieve-a-department">Retrieve a department</h2>
@@ -550,14 +510,10 @@ When submitting a job application, you will use the <code>id</code> field to spe
 
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
+<td>Parameter</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>board_token</td>
-<td>Job Board URL token</td>
-</tr>
+<td>board_token</td><td>Job Board URL token</td></tr>
 </tbody></table>
 
 <h3 id="querystring-parameters">Querystring Parameters</h3>
@@ -583,14 +539,10 @@ When submitting a job application, you will use the <code>id</code> field to spe
 
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
+<td>Parameter</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>board_token</td>
-<td>Job Board URL token</td>
-</tr>
+<td>board_token</td><td>Job Board URL token</td></tr>
 </tbody></table>
 
           <h1 id="applications">Applications</h1>
@@ -653,46 +605,26 @@ Please keep in mind that the HTTP Basic Auth API token is a secret key.  Any for
 
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
+<td>Parameter</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>id</td>
-<td>Job post ID</td>
-</tr>
+<td>id</td><td>Job post ID</td></tr>
 <tr>
-<td>mapped_url_token</td>
-<td><em>(optional)</em> If present, the <code class="prettyprint">gh_src</code> URL parameter, which is used to indicate the referral source of this application.</td>
-</tr>
+<td>mapped_url_token</td><td><em>(optional)</em> If present, the <code class="prettyprint">gh_src</code> URL parameter, which is used to indicate the referral source of this application.</td></tr>
 <tr>
-<td>first_name</td>
-<td>Applicant&rsquo;s first name</td>
-</tr>
+<td>first_name</td><td>Applicant&rsquo;s first name</td></tr>
 <tr>
-<td>last_name</td>
-<td>Applicant&rsquo;s last name</td>
-</tr>
+<td>last_name</td><td>Applicant&rsquo;s last name</td></tr>
 <tr>
-<td>email</td>
-<td>Applicant&rsquo;s email adress</td>
-</tr>
+<td>email</td><td>Applicant&rsquo;s email adress</td></tr>
 <tr>
-<td>phone</td>
-<td>Applicant&rsquo;s phone number</td>
-</tr>
+<td>phone</td><td>Applicant&rsquo;s phone number</td></tr>
 <tr>
-<td>location</td>
-<td>Applicant&rsquo;s location.  Accepts any geocode-able string.</td>
-</tr>
+<td>location</td><td>Applicant&rsquo;s location.  Accepts any geocode-able string.</td></tr>
 <tr>
-<td>longitude</td>
-<td>If using a geocoding service, include longitude</td>
-</tr>
+<td>longitude</td><td>If using a geocoding service, include longitude</td></tr>
 <tr>
-<td>latitude</td>
-<td>If using a geocoding service, include latitude</td>
-</tr>
+<td>latitude</td><td>If using a geocoding service, include latitude</td></tr>
 </tbody></table>
 
       </div>

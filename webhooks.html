@@ -70,6 +70,8 @@ analytics.page()
         <ul class="toc-footer">
             <li><a href="/job-board.html" title="Job Board API">Job Board API</a></li>
             <li><a href='/harvest.html' title="Harvest API">Harvest API</a></li>
+            <li><a href='/candidate-ingestion.html' title="Ingestion API">Ingestion API</a></li>
+            <li><a href='/take-home-test.html' title="Take Home Test API">Take Home Test API</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -143,70 +145,38 @@ analytics.page()
 
 <table><thead>
 <tr>
-<th>Attribute</th>
-<th>Note</th>
-</tr>
+<td>Attribute</td><td>Note</td></tr>
 </thead><tbody>
 <tr>
-<td><code class="prettyprint">application.id</code></td>
-<td>Unique Greenhouse identifier of the application. Information not included in the web hook can be retrieved via <a href="harvest.html#applications">Harvest API - GET Applications</a></td>
-</tr>
+<td><code class="prettyprint">application.id</code></td><td>Unique Greenhouse identifier of the application. Information not included in the web hook can be retrieved via <a href="harvest.html#applications">Harvest API - GET Applications</a></td></tr>
 <tr>
-<td><code class="prettyprint">application.credited_to</code></td>
-<td>If populated and a Greenhouse user, the user&rsquo;s Greenhouse ID and e-mail address will be provided. If populated and not a Greenhouse user, just the name will be provided.</td>
-</tr>
+<td><code class="prettyprint">application.credited_to</code></td><td>If populated and a Greenhouse user, the user&rsquo;s Greenhouse ID and e-mail address will be provided. If populated and not a Greenhouse user, just the name will be provided.</td></tr>
 <tr>
-<td><code class="prettyprint">application.status</code></td>
-<td>One of: <code class="prettyprint">rejected</code>, <code class="prettyprint">hired</code>, <code class="prettyprint">active</code></td>
-</tr>
+<td><code class="prettyprint">application.status</code></td><td>One of: <code class="prettyprint">rejected</code>, <code class="prettyprint">hired</code>, <code class="prettyprint">active</code></td></tr>
 <tr>
-<td><code class="prettyprint">application.candidate.id</code></td>
-<td>Unique Greenhouse identifier of the candidate. Information not included in the web hook can be retrieved via <a href="harvest.html#candidates">Harvest API - GET Candidates</a></td>
-</tr>
+<td><code class="prettyprint">application.candidate.id</code></td><td>Unique Greenhouse identifier of the candidate. Information not included in the web hook can be retrieved via <a href="harvest.html#candidates">Harvest API - GET Candidates</a></td></tr>
 <tr>
-<td><code class="prettyprint">application.candidate.phone_numbers[].type</code></td>
-<td>One of: <code class="prettyprint">home</code>, <code class="prettyprint">work</code>, <code class="prettyprint">mobile</code>, <code class="prettyprint">skype</code>, <code class="prettyprint">other</code></td>
-</tr>
+<td><code class="prettyprint">application.candidate.phone_numbers[].type</code></td><td>One of: <code class="prettyprint">home</code>, <code class="prettyprint">work</code>, <code class="prettyprint">mobile</code>, <code class="prettyprint">skype</code>, <code class="prettyprint">other</code></td></tr>
 <tr>
-<td><code class="prettyprint">application.candidate.addresses[].type</code></td>
-<td>Application Candidate Addresses Type</td>
-</tr>
+<td><code class="prettyprint">application.candidate.addresses[].type</code></td><td>Application Candidate Addresses Type</td></tr>
 <tr>
-<td><code class="prettyprint">application.candidate.email_addresses[].type</code></td>
-<td>One of: <code class="prettyprint">personal</code>, <code class="prettyprint">work</code>, <code class="prettyprint">other</code></td>
-</tr>
+<td><code class="prettyprint">application.candidate.email_addresses[].type</code></td><td>One of: <code class="prettyprint">personal</code>, <code class="prettyprint">work</code>, <code class="prettyprint">other</code></td></tr>
 <tr>
-<td><code class="prettyprint">application.candidate.attachments[].type</code></td>
-<td>One of: <code class="prettyprint">admin_only</code>, <code class="prettyprint">public</code>, <code class="prettyprint">cover_letter</code>, <code class="prettyprint">offer_packet</code>, <code class="prettyprint">resume</code>, <code class="prettyprint">take_home_test</code>, <code class="prettyprint">offer_letter</code>, <code class="prettyprint">signed_offer_letter</code></td>
-</tr>
+<td><code class="prettyprint">application.candidate.attachments[].type</code></td><td>One of: <code class="prettyprint">admin_only</code>, <code class="prettyprint">public</code>, <code class="prettyprint">cover_letter</code>, <code class="prettyprint">offer_packet</code>, <code class="prettyprint">resume</code>, <code class="prettyprint">take_home_test</code>, <code class="prettyprint">offer_letter</code>, <code class="prettyprint">signed_offer_letter</code></td></tr>
 <tr>
-<td><code class="prettyprint">application.candidate.external_id</code></td>
-<td>An arbitrary ID provided by an external source; does not map to another entity in Greenhouse.</td>
-</tr>
+<td><code class="prettyprint">application.candidate.external_id</code></td><td>An arbitrary ID provided by an external source; does not map to another entity in Greenhouse.</td></tr>
 <tr>
-<td><code class="prettyprint">application.jobs[]</code></td>
-<td>Candidates will have one job. Prospects will have 0 or more jobs.</td>
-</tr>
+<td><code class="prettyprint">application.jobs[]</code></td><td>Candidates will have one job. Prospects will have 0 or more jobs.</td></tr>
 <tr>
-<td><code class="prettyprint">application.jobs[].id</code></td>
-<td>Unique Greenhouse identifier of the job. Information not included in the web hook can be retrieved via <a href="harvest.html#jobs">Harvest API - GET Jobs</a></td>
-</tr>
+<td><code class="prettyprint">application.jobs[].id</code></td><td>Unique Greenhouse identifier of the job. Information not included in the web hook can be retrieved via <a href="harvest.html#jobs">Harvest API - GET Jobs</a></td></tr>
 <tr>
-<td><code class="prettyprint">application.jobs[].requisition_id</code></td>
-<td>An arbitrary ID provided by an external source; does not map to another entity in Greenhouse.</td>
-</tr>
+<td><code class="prettyprint">application.jobs[].requisition_id</code></td><td>An arbitrary ID provided by an external source; does not map to another entity in Greenhouse.</td></tr>
 <tr>
-<td><code class="prettyprint">application.opening.opening_id</code></td>
-<td>This is an external opening id that may be defined for an HRIS system. This does not reference anything else in Greenhouse and may be blank.</td>
-</tr>
+<td><code class="prettyprint">application.opening.opening_id</code></td><td>This is an external opening id that may be defined for an HRIS system. This does not reference anything else in Greenhouse and may be blank.</td></tr>
 <tr>
-<td><code class="prettyprint">custom_fields</code></td>
-<td>Contains a hash map/associative array. The key of the hash map is an immutable key; which is an underscore-slugged version of the custom field&rsquo;s name at creation time. The exported properties reflect the active values of the custom field at the time of the export. All custom fields, public and private, will be exported. If a field exists but does not have a value, it will be exported with a value of null for singular values and empty arrays for multiple values. <em>Important Note</em>: If a custom field is created with the name <code class="prettyprint">Salary</code> the key will be <code class="prettyprint">salary</code>. If later the name of this custom field is changed to <code class="prettyprint">Wage</code> or <code class="prettyprint">Bonus</code>, the key will remain <code class="prettyprint">salary</code>.</td>
-</tr>
+<td><code class="prettyprint">custom_fields</code></td><td>Contains a hash map/associative array. The key of the hash map is an immutable key; which is an underscore-slugged version of the custom field&rsquo;s name at creation time. The exported properties reflect the active values of the custom field at the time of the export. All custom fields, public and private, will be exported. If a field exists but does not have a value, it will be exported with a value of null for singular values and empty arrays for multiple values. <em>Important Note</em>: If a custom field is created with the name <code class="prettyprint">Salary</code> the key will be <code class="prettyprint">salary</code>. If later the name of this custom field is changed to <code class="prettyprint">Wage</code> or <code class="prettyprint">Bonus</code>, the key will remain <code class="prettyprint">salary</code>.</td></tr>
 <tr>
-<td><code class="prettyprint">custom_fields[].type</code></td>
-<td>One of: <code class="prettyprint">short_text</code>, <code class="prettyprint">long_text</code>, <code class="prettyprint">boolean</code>, <code class="prettyprint">single_select</code>, <code class="prettyprint">multi_select</code>, <code class="prettyprint">currency</code>, <code class="prettyprint">currency_range</code>, <code class="prettyprint">number</code>, <code class="prettyprint">number_range</code>, <code class="prettyprint">date</code>, or <code class="prettyprint">url</code>.</td>
-</tr>
+<td><code class="prettyprint">custom_fields[].type</code></td><td>One of: <code class="prettyprint">short_text</code>, <code class="prettyprint">long_text</code>, <code class="prettyprint">boolean</code>, <code class="prettyprint">single_select</code>, <code class="prettyprint">multi_select</code>, <code class="prettyprint">currency</code>, <code class="prettyprint">currency_range</code>, <code class="prettyprint">number</code>, <code class="prettyprint">number_range</code>, <code class="prettyprint">date</code>, or <code class="prettyprint">url</code>.</td></tr>
 </tbody></table>
 
           <h2 id="candidate-created">Candidate created</h2>
@@ -599,18 +569,12 @@ analytics.page()
 
 <table><thead>
 <tr>
-<th>Attribute</th>
-<th>Note</th>
-</tr>
+<td>Attribute</td><td>Note</td></tr>
 </thead><tbody>
 <tr>
-<td><code class="prettyprint">application.current_stage.interviews[].interviewers.status</code></td>
-<td>One of: <code class="prettyprint">needs_action</code>, <code class="prettyprint">declined</code>, <code class="prettyprint">tentative</code>, <code class="prettyprint">accepted</code></td>
-</tr>
+<td><code class="prettyprint">application.current_stage.interviews[].interviewers.status</code></td><td>One of: <code class="prettyprint">needs_action</code>, <code class="prettyprint">declined</code>, <code class="prettyprint">tentative</code>, <code class="prettyprint">accepted</code></td></tr>
 <tr>
-<td><code class="prettyprint">application.current_stage.interviews[].status</code></td>
-<td>One of: <code class="prettyprint">to_be_scheduled</code>, <code class="prettyprint">scheduled</code>, <code class="prettyprint">awaiting_feedback</code>, <code class="prettyprint">complete</code>, <code class="prettyprint">skipped</code>, <code class="prettyprint">collect_feedback</code>, <code class="prettyprint">to_be_sent</code>, <code class="prettyprint">sent</code>, <code class="prettyprint">received</code></td>
-</tr>
+<td><code class="prettyprint">application.current_stage.interviews[].status</code></td><td>One of: <code class="prettyprint">to_be_scheduled</code>, <code class="prettyprint">scheduled</code>, <code class="prettyprint">awaiting_feedback</code>, <code class="prettyprint">complete</code>, <code class="prettyprint">skipped</code>, <code class="prettyprint">collect_feedback</code>, <code class="prettyprint">to_be_sent</code>, <code class="prettyprint">sent</code>, <code class="prettyprint">received</code></td></tr>
 </tbody></table>
 
           <h2 id="candidate-hired">Candidate hired</h2>
@@ -829,42 +793,24 @@ analytics.page()
 
 <table><thead>
 <tr>
-<th>Attribute</th>
-<th>Note</th>
-</tr>
+<td>Attribute</td><td>Note</td></tr>
 </thead><tbody>
 <tr>
-<td><code class="prettyprint">application.offer.id</code></td>
-<td>Unique Greenhouse identifier of the offer. Information not included in the web hook can be retrieved via <a href="harvest.html#offers">Harvest API - GET Offers</a></td>
-</tr>
+<td><code class="prettyprint">application.offer.id</code></td><td>Unique Greenhouse identifier of the offer. Information not included in the web hook can be retrieved via <a href="harvest.html#offers">Harvest API - GET Offers</a></td></tr>
 <tr>
-<td><code class="prettyprint">application.offer.created_at</code></td>
-<td>Date when this offer was drafted.</td>
-</tr>
+<td><code class="prettyprint">application.offer.created_at</code></td><td>Date when this offer was drafted.</td></tr>
 <tr>
-<td><code class="prettyprint">application.offer.sent_on</code></td>
-<td>Date when this offer was sent to the candidate.</td>
-</tr>
+<td><code class="prettyprint">application.offer.sent_on</code></td><td>Date when this offer was sent to the candidate.</td></tr>
 <tr>
-<td><code class="prettyprint">application.offer.resolved_at</code></td>
-<td>Date the offer was accepted.</td>
-</tr>
+<td><code class="prettyprint">application.offer.resolved_at</code></td><td>Date the offer was accepted.</td></tr>
 <tr>
-<td><code class="prettyprint">application.offer.starts_at</code></td>
-<td>The candidate&rsquo;s start date. Expected format is YYYY-MM-DD</td>
-</tr>
+<td><code class="prettyprint">application.offer.starts_at</code></td><td>The candidate&rsquo;s start date. Expected format is YYYY-MM-DD</td></tr>
 <tr>
-<td><code class="prettyprint">application.job</code></td>
-<td>Deprecated. Use <code class="prettyprint">application.jobs[]</code> instead</td>
-</tr>
+<td><code class="prettyprint">application.job</code></td><td>Deprecated. Use <code class="prettyprint">application.jobs[]</code> instead</td></tr>
 <tr>
-<td><code class="prettyprint">application.job.close_date</code></td>
-<td>Deprecated. Use <code class="prettyprint">application.jobs[].closed_at</code> instead.</td>
-</tr>
+<td><code class="prettyprint">application.job.close_date</code></td><td>Deprecated. Use <code class="prettyprint">application.jobs[].closed_at</code> instead.</td></tr>
 <tr>
-<td><code class="prettyprint">application.job.open_date</code></td>
-<td>Deprecated. Use <code class="prettyprint">application.jobs[].opened_at</code> instead.</td>
-</tr>
+<td><code class="prettyprint">application.job.open_date</code></td><td>Deprecated. Use <code class="prettyprint">application.jobs[].opened_at</code> instead.</td></tr>
 </tbody></table>
 
           <h2 id="candidate-prospect-rejected">Candidate/Prospect rejected</h2>
