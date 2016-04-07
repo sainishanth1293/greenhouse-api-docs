@@ -139,6 +139,48 @@ analytics.page()
 <em>Authorization: Basic &lt; base-64-encoded-credentials &gt;</em></p></li>
 </ul>
 
+          <h1 id="list-tests">List Tests</h1>
+
+<p>Greenhouse will first need to retreive the list of tests from the Testing Partner using the <code class="prettyprint">list_tests</code> API endpoint. We will show the list of available tests to the user, who will to select the appropriate test for a given candidate. </p>
+
+<p><code class="prettyprint">GET https://www.testing-partner.com/api/list_tests</code></p>
+<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://www.testing-partner.com/api/list_tests'</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<h3 id="request">Request</h3>
+
+<p>Greenhouse will make a GET request to the <code class="prettyprint">list_tests</code> endpoint specified by the Testing Partner.</p>
+
+<h3 id="response">Response</h3>
+
+<blockquote>
+<p>API Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"partner_test_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"partner_test_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My First Test"</span><span class="w"> 
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"partner_test_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"54321"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"partner_test_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My Second Test"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>The Testing Partner’s response should include a JSON payload containing a list of test objects for the organization. Each test object should contain the keys <code class="prettyprint">partner_test_id</code> and <code class="prettyprint">partner_test_name.</code></p>
+
+<table><thead>
+<tr>
+<td>Property Name</td><td>Type</td><td>Required</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>partner_test_id</td><td>String</td><td>Yes</td><td>Identifies a test available to an organization.</td></tr>
+<tr>
+<td>partner_test_name</td><td>String</td><td>Yes</td><td>A descriptive title for the test. We will use this value our UI as the test’s label.</td></tr>
+</tbody></table>
+
           <h1 id="send-test">Send Test</h1>
 
 <p>When a Greenhouse user sends a test to a candidate, Greenhouse will send a request to the Testing Partner&rsquo;s <code class="prettyprint">send_test</code> API endpoint. The Testing Partner will then email the specified candidate the specified test.</p>
@@ -206,48 +248,6 @@ analytics.page()
 <aside class="notice">
 The partner_interview_id should not be confused with partner_test_id. While partner_test_id identifies the test, partner_interview_id identifies an instance of the test that was sent to a candidate.
 </aside>
-
-          <h1 id="list-tests">List Tests</h1>
-
-<p>Greenhouse will first need to retreive the list of tests from the Testing Partner using the <code class="prettyprint">list_tests</code> API endpoint. We will show the list of available tests to the user, who will to select the appropriate test for a given candidate. </p>
-
-<p><code class="prettyprint">GET https://www.testing-partner.com/api/list_tests</code></p>
-<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://www.testing-partner.com/api/list_tests'</span>
--H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
-</code></pre>
-
-<h3 id="request">Request</h3>
-
-<p>Greenhouse will make a GET request to the <code class="prettyprint">list_tests</code> endpoint specified by the Testing Partner.</p>
-
-<h3 id="response">Response</h3>
-
-<blockquote>
-<p>API Response</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"partner_test_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"partner_test_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My First Test"</span><span class="w"> 
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"partner_test_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"54321"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"partner_test_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My Second Test"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-
-<p>The Testing Partner’s response should include a JSON payload containing a list of test objects for the organization. Each test object should contain the keys <code class="prettyprint">partner_test_id</code> and <code class="prettyprint">partner_test_name.</code></p>
-
-<table><thead>
-<tr>
-<td>Property Name</td><td>Type</td><td>Required</td><td>Description</td></tr>
-</thead><tbody>
-<tr>
-<td>partner_test_id</td><td>String</td><td>Yes</td><td>Identifies a test available to an organization.</td></tr>
-<tr>
-<td>partner_test_name</td><td>String</td><td>Yes</td><td>A descriptive title for the test. We will use this value our UI as the test’s label.</td></tr>
-</tbody></table>
 
           <h1 id="test-status">Test Status</h1>
 

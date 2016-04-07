@@ -144,7 +144,7 @@ Your Consumer Secret is confidential, and is best kept private. Greenhouse will 
 
 <p><code class="prettyprint">On-Behalf-Of: john.smith@example.com</code></p>
 
-<p>Normally, this will be a service user created specifically for this purpose. If this header is missing, or Greenhouse doesn’t recognize the address, the API will issue a <em>401 Unauthorized</em> response. The application must also supply the API key. Via basic auth, you will include the API key as the basic auth username and nothing as the password. This may be included via URL:</p>
+<p>Normally, this will be a service user created specifically for this purpose. If this header is missing, or Greenhouse doesn’t recognize the address, the API will issue a <em>401 Unauthorized</em> response. The application must also supply the API key. Via basic auth, you will include the API key as the basic auth username and nothing as the password. Since only a username needs to be provided in our case, you’ll need to append a : (colon) to the API token and then Base64 encode the resulting string. This may be included via URL:</p>
 
 <p><code class="prettyprint">https://&lt;base64_encoded_api_key&gt;:@api.greenhouse.io/v1/partners/candidates</code></p>
 
