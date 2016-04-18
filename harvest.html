@@ -1382,7 +1382,7 @@ X-RateLimit-Remaining: 49
 
 <h2 id="create-a-candidate-39-s-note">Create a candidate&rsquo;s note</h2>
 <pre class="highlight shell"><code>curl -X POST <span class="s1">'https://harvest.greenhouse.io/v1/candidates/{id}/activity_feed/notes'</span>
--H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span> 
+-H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
 -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
 </code></pre>
 
@@ -1411,7 +1411,7 @@ X-RateLimit-Remaining: 49
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Create a candidate note. </p>
+<p>Create a candidate note.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -1427,7 +1427,7 @@ X-RateLimit-Remaining: 49
 <td>On-Behalf-Of</td><td>ID of the user issuing this request. Required for auditing purposes.</td></tr>
 </tbody></table>
 
-<h3 id="url-parameters">URL Parameters</h3>
+<h3 id="json-body-parameters">JSON Body Parameters</h3>
 
 <table><thead>
 <tr>
@@ -1438,7 +1438,7 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>body</td><td>Yes</td><td>string</td><td>Note body</td></tr>
 <tr>
-<td>visibility</td><td>Yes</td><td>string</td><td>One of: [&ldquo;admin_only&rdquo;, &ldquo;private&rdquo;, &ldquo;public&rdquo;]</td></tr>
+<td>visibility</td><td>Yes</td><td>string</td><td>One of: <code class="prettyprint">&quot;admin_only&quot;</code>, <code class="prettyprint">&quot;private&quot;</code>, <code class="prettyprint">&quot;public&quot;</code></td></tr>
 </tbody></table>
 
           <h1 id="departments">Departments</h1>
