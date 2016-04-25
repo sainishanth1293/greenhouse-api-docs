@@ -167,7 +167,9 @@ X-RateLimit-Remaining: 49
 &lt;https://harvest.greenhouse.io/v1/candidates?page=474&amp;per_page=2&gt;; rel="last"
 </code></pre>
 
-<p>API methods that return a collection of results are always paginated. You can specify the current page and number of items per page with the <code class="prettyprint">page</code> and <code class="prettyprint">per_page</code> query parameters. Paginated results include a <code class="prettyprint">Link</code> response header that specifies the location of the next and last pages:</p>
+<p>API methods that return a collection of results are always paginated. You can specify the current page and number of items per page with the <code class="prettyprint">page</code> and <code class="prettyprint">per_page</code> query parameters. Paginated results include a <code class="prettyprint">Link</code> response header that specifies the location of the next and last pages.</p>
+
+<p>Note that when this parameter is not set, results will be limited to the first page.</p>
 
 <h2 id="validation">Validation</h2>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
