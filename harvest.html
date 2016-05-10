@@ -160,7 +160,7 @@ X-RateLimit-Limit: 50
 X-RateLimit-Remaining: 49
 </code></pre>
 
-<p>API requests may be throttled. Check the <code class="prettyprint">X-RateLimit-Limit</code> and <code class="prettyprint">X-RateLimit-Remaining</code> headers to see how many requests you are allowed until throttling kicks in. Making too many requests in a short time frame will cause Harvest to return an <code class="prettyprint">HTTP 429</code> response.</p>
+<p>API requests are limited to 50 calls per 10 seconds, though that limit is subject to change. Exceeding that limit will cause Harvest to return an <code class="prettyprint">HTTP 429</code> response. Check the <code class="prettyprint">X-RateLimit-Limit</code> and <code class="prettyprint">X-RateLimit-Remaining</code> headers to see how many more requests you are allowed until throttling kicks in.</p>
 
 <h2 id="pagination">Pagination</h2>
 <pre class="highlight plaintext"><code>Link: &lt;https://harvest.greenhouse.io/v1/candidates?page=2&amp;per_page=2&gt;; rel="next",
@@ -192,7 +192,7 @@ X-RateLimit-Remaining: 49
 <ul>
 <li>Properties without a value will use <code class="prettyprint">null</code> instead of being undefined</li>
 <li>&ldquo;Snake Case&rdquo; is used for attribute names (e.g. <code class="prettyprint">first_name</code>)</li>
-<li>Timestamps are rendered in ISO-8601 format (e.g. <code class="prettyprint">2013-11-21T18:35:22Z</code>)</li>
+<li>Timestamps are rendered in ISO-8601 format (e.g. `2016-02-03T16:38:46.985Z)</li>
 <li>URLs to external resources are valid for 30 days</li>
 <li>We reserve the right to add more properties to objects, but will never change or remove them</li>
 </ul>
@@ -443,11 +443,15 @@ X-RateLimit-Remaining: 49
 <td>Parameter</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td class="optional">per_page</td><td>Return up to this number of objects per response.  Must be an integer between 1 and 100.  Defaults to 100.</td></tr>
+<td class="optional">per_page</td><td>Return up to this number of objects per response. Must be an integer between 1 and 500. Defaults to 100.</td></tr>
 <tr>
 <td class="optional">page</td><td>A cursor for use in pagination.  Returns the n-th chunk of <code class="prettyprint">per_page</code> objects.</td></tr>
 <tr>
-<td>last_activity_after</td><td>Return only applications where &lsquo;updated_at&rsquo; is after this date. (Example &#39;2014-01-05T00:00:00.000Z&rsquo;).</td></tr>
+<td>created_before</td><td>Return only applications that were created before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td>created_after</td><td>Return only applications that were created after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td>last_activity_after</td><td>Return only applications where &lsquo;updated_at&rsquo; is after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
 <td>job_id</td><td>If supplied, only return applications that involve this job. Will return both candidates and prospects.</td></tr>
 </tbody></table>
@@ -493,10 +497,6 @@ X-RateLimit-Remaining: 49
 </thead><tbody>
 <tr>
 <td>id</td><td>ID of the application to retrieve</td></tr>
-<tr>
-<td>last_activity_after</td><td>Return only applications where &#39;updated_at&rsquo; is after this date. (Example &#39;2014-01-05T00:00:00.000Z&rsquo;).</td></tr>
-<tr>
-<td>job_id</td><td>If supplied, only return applications that involve this job. Will return both candidates and prospects.</td></tr>
 </tbody></table>
 
 <p><br>
@@ -909,9 +909,17 @@ X-RateLimit-Remaining: 49
 <td>Parameter</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>per_page</td><td>Return up to this number of objects per response.  Must be an integer between 1 and 100.  Defaults to 100.</td></tr>
+<td>per_page</td><td>Return up to this number of objects per response. Must be an integer between 1 and 500. Defaults to 100.</td></tr>
 <tr>
 <td>page</td><td>A cursor for use in pagination.  Returns the n-th chunk of <code class="prettyprint">per_page</code> objects.</td></tr>
+<tr>
+<td>created_before</td><td>Return only candidates that were created before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td>created_after</td><td>Return only candidates that were created after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td>updated_before</td><td>Return only candidates that were updated before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td>updated_after</td><td>Return only candidates that were updated after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 </tbody></table>
 
 <p><br></p>
@@ -1499,7 +1507,7 @@ X-RateLimit-Remaining: 49
 <td>Parameter</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>per_page</td><td>Return up to this number of objects per response.  Must be an integer between 1 and 100.  Defaults to 100.</td></tr>
+<td>per_page</td><td>Return up to this number of objects per response. Must be an integer between 1 and 500. Defaults to 100.</td></tr>
 <tr>
 <td>page</td><td>A cursor for use in pagination.  Returns the n-th chunk of <code class="prettyprint">per_page</code> objects.</td></tr>
 </tbody></table>
@@ -1627,9 +1635,17 @@ X-RateLimit-Remaining: 49
 <td>Parameter</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>per_page</td><td>Return up to this number of objects per response.  Must be an integer between 1 and 100.  Defaults to 100.</td></tr>
+<td>per_page</td><td>Return up to this number of objects per response. Must be an integer between 1 and 500. Defaults to 100.</td></tr>
 <tr>
 <td>page</td><td>A cursor for use in pagination.  Returns the n-th chunk of <code class="prettyprint">per_page</code> objects.</td></tr>
+<tr>
+<td>created_before</td><td>Return only email templates that were created before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td>created_after</td><td>Return only email templates that were created after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td>updated_before</td><td>Return only email templates that were updated before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td>updated_after</td><td>Return only email templates that were updated after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 </tbody></table>
 
 <p><br></p>
@@ -1865,13 +1881,21 @@ X-RateLimit-Remaining: 49
 <td>Parameter</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>per_page</td><td>Return up to this number of objects per response.  Must be an integer between 1 and 100.  Defaults to 100.</td></tr>
+<td>per_page</td><td>Return up to this number of objects per response. Must be an integer between 1 and 500. Defaults to 100.</td></tr>
 <tr>
 <td>page</td><td>A cursor for use in pagination.  Returns the n-th chunk of <code class="prettyprint">per_page</code> objects.</td></tr>
 <tr>
 <td>content</td><td>If present, will return the text of the job post as posted to the external job board.</td></tr>
 <tr>
 <td>questions</td><td>If present, will return an array of questions associated with this job post.</td></tr>
+<tr>
+<td>created_before</td><td>Return only job posts that were created before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td>created_after</td><td>Return only job posts that were created after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td>updated_before</td><td>Return only job posts that were updated before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td>updated_after</td><td>Return only job posts that were updated after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 </tbody></table>
 
 <p><br>
@@ -2068,6 +2092,14 @@ X-RateLimit-Remaining: 49
 </thead><tbody>
 <tr>
 <td>id</td><td>The ID of the job whose job stages you want to retrieve.</td></tr>
+<tr>
+<td>created_before</td><td>Return only job stages that were created before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td>created_after</td><td>Return only job stages that were created after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td>updated_before</td><td>Return only job stages that were updated before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td>updated_after</td><td>Return only job stages that were updated after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 </tbody></table>
 
 <p><br>
@@ -2316,7 +2348,7 @@ X-RateLimit-Remaining: 49
 <td>Parameter</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>per_page</td><td>Return up to this number of objects per response.  Must be an integer between 1 and 100.  Defaults to 100.</td></tr>
+<td>per_page</td><td>Return up to this number of objects per response. Must be an integer between 1 and 500. Defaults to 100.</td></tr>
 <tr>
 <td>page</td><td>A cursor for use in pagination.  Returns the n-th chunk of <code class="prettyprint">per_page</code> objects.</td></tr>
 </tbody></table>
@@ -2531,9 +2563,17 @@ X-RateLimit-Remaining: 49
 <td>Parameter</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>per_page</td><td>Return up to this number of objects per response.  Must be an integer between 1 and 100.  Defaults to 100.</td></tr>
+<td>per_page</td><td>Return up to this number of objects per response. Must be an integer between 1 and 500. Defaults to 100.</td></tr>
 <tr>
 <td>page</td><td>A cursor for use in pagination.  Returns the n-th chunk of <code class="prettyprint">per_page</code> objects.</td></tr>
+<tr>
+<td>created_before</td><td>Return only offers that were created before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td>created_after</td><td>Return only offers that were created after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td>updated_before</td><td>Return only offers that were updated before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td>updated_after</td><td>Return only offers that were updated after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 </tbody></table>
 
 <p><br>
@@ -2609,7 +2649,7 @@ X-RateLimit-Remaining: 49
 <td>Parameter</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>per_page</td><td>Return up to this number of objects per response.  Must be an integer between 1 and 100.  Defaults to 100.</td></tr>
+<td>per_page</td><td>Return up to this number of objects per response. Must be an integer between 1 and 500. Defaults to 100.</td></tr>
 <tr>
 <td>page</td><td>A cursor for use in pagination.  Returns the n-th chunk of <code class="prettyprint">per_page</code> objects.</td></tr>
 </tbody></table>
@@ -2775,7 +2815,7 @@ X-RateLimit-Remaining: 49
 <td>Parameter</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>per_page</td><td>Return up to this number of objects per response.  Must be an integer between 1 and 100.  Defaults to 100.</td></tr>
+<td>per_page</td><td>Return up to this number of objects per response. Must be an integer between 1 and 500. Defaults to 100.</td></tr>
 <tr>
 <td>page</td><td>A cursor for use in pagination.  Returns the n-th chunk of <code class="prettyprint">per_page</code> objects.</td></tr>
 </tbody></table>
@@ -2897,7 +2937,7 @@ X-RateLimit-Remaining: 49
 <td>Parameter</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>per_page</td><td>Return up to this number of objects per response.  Must be an integer between 1 and 100.  Defaults to 100.</td></tr>
+<td>per_page</td><td>Return up to this number of objects per response. Must be an integer between 1 and 500. Defaults to 100.</td></tr>
 <tr>
 <td>page</td><td>A cursor for use in pagination.  Returns the n-th chunk of <code class="prettyprint">per_page</code> objects.</td></tr>
 </tbody></table>
@@ -3252,9 +3292,17 @@ X-RateLimit-Remaining: 49
 <td>Parameter</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>per_page</td><td>Return up to this number of objects per response.  Must be an integer between 1 and 100.  Defaults to 100.</td></tr>
+<td>per_page</td><td>Return up to this number of objects per response. Must be an integer between 1 and 500. Defaults to 100.</td></tr>
 <tr>
 <td>page</td><td>A cursor for use in pagination.  Returns the n-th chunk of <code class="prettyprint">per_page</code> objects.</td></tr>
+<tr>
+<td>created_before</td><td>Return only scorecards that were created before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td>created_after</td><td>Return only scorecards that were created after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td>updated_before</td><td>Return only scorecards that were updated before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td>updated_after</td><td>Return only scorecards that were updated after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 </tbody></table>
 
 <p><br>
@@ -3541,7 +3589,7 @@ X-RateLimit-Remaining: 49
 <td>Parameter</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>per_page</td><td>Return up to this number of objects per response.  Must be an integer between 1 and 100.  Defaults to 100.</td></tr>
+<td>per_page</td><td>Return up to this number of objects per response. Must be an integer between 1 and 500. Defaults to 100.</td></tr>
 <tr>
 <td>page</td><td>A cursor for use in pagination.  Returns the n-th chunk of <code class="prettyprint">per_page</code> objects.</td></tr>
 </tbody></table>
@@ -3653,9 +3701,17 @@ X-RateLimit-Remaining: 49
 <td>Parameter</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>per_page</td><td>Return up to this number of objects per response.  Must be an integer between 1 and 100.  Defaults to 100.</td></tr>
+<td>per_page</td><td>Return up to this number of objects per response. Must be an integer between 1 and 500. Defaults to 100.</td></tr>
 <tr>
 <td>page</td><td>A cursor for use in pagination.  Returns the n-th chunk of <code class="prettyprint">per_page</code> objects.</td></tr>
+<tr>
+<td>created_before</td><td>Return only users that were created before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td>created_after</td><td>Return only users that were created after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td>updated_before</td><td>Return only users that were updated before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td>updated_after</td><td>Return only users that were updated after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 </tbody></table>
 
 <p><br>
