@@ -97,7 +97,9 @@ analytics.page()
 Job Board data is publically available, so authentication is not required for any GET endpoints.
 </aside>
 
-<p>Only the application submission endpoint (<code class="prettyprint">POST /v1/applications</code>) requires Basic Auth.  <a href="#submit-an-application">Read more</a>.</p>
+<p>Only the application submission endpoint
+(<code class="prettyprint">POST https://api.greenhouse.io/v1/boards/{board_token}/jobs/{id}</code>) requires Basic Auth.
+<a href="#submit-an-application">Read more</a>.</p>
 
           <h1 id="jobs">Jobs</h1>
 
@@ -153,7 +155,7 @@ When submitting a job application, you will use the <code>id</code> field to spe
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://api.greenhouse.io/v1/boards/{board_token}/embed/jobs</code></p>
+<p><code class="prettyprint">GET https://api.greenhouse.io/v1/boards/{board_token}/jobs</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -250,7 +252,7 @@ When submitting a job application, you will use the <code>id</code> field to spe
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://api.greenhouse.io/v1/boards/{board_token}/embed/job?id={job_id}</code></p>
+<p><code class="prettyprint">GET https://api.greenhouse.io/v1/boards/{board_token}/jobs/{job_id}</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -260,6 +262,8 @@ When submitting a job application, you will use the <code>id</code> field to spe
 </thead><tbody>
 <tr>
 <td>board_token</td><td>Job Board URL token</td></tr>
+<tr>
+<td>job_id</td><td>ID of the office to retrieve</td></tr>
 </tbody></table>
 
 <h3 id="querystring-parameters">Querystring Parameters</h3>
@@ -268,8 +272,6 @@ When submitting a job application, you will use the <code>id</code> field to spe
 <tr>
 <td>Parameter</td><td>Description</td></tr>
 </thead><tbody>
-<tr>
-<td>job_id</td><td>ID of the office to retrieve</td></tr>
 <tr>
 <td>questions</td><td><em>(optional)</em> If set to <code class="prettyprint">true</code>, include the list of job application fields.</td></tr>
 </tbody></table>
@@ -347,7 +349,7 @@ When submitting a job application, you will use the <code>id</code> field to spe
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://api.greenhouse.io/v1/boards/{board_token}/embed/offices</code></p>
+<p><code class="prettyprint">GET https://api.greenhouse.io/v1/boards/{board_token}/offices</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -401,7 +403,7 @@ When submitting a job application, you will use the <code>id</code> field to spe
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://api.greenhouse.io/v1/boards/{board_token}/embed/office?id={office_id}</code></p>
+<p><code class="prettyprint">GET https://api.greenhouse.io/v1/boards/{board_token}/offices/{office_id}</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -411,11 +413,9 @@ When submitting a job application, you will use the <code>id</code> field to spe
 </thead><tbody>
 <tr>
 <td>board_token</td><td>Job Board URL token</td></tr>
+<tr>
+<td>office_id</td><td>ID of the office to retrieve</td></tr>
 </tbody></table>
-
-<h3 id="querystring-parameters">Querystring Parameters</h3>
-
-<p>office_id | ID of the office to retrieve</p>
 
           <h1 id="departments">Departments</h1>
 
@@ -461,7 +461,7 @@ When submitting a job application, you will use the <code>id</code> field to spe
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://api.greenhouse.io/v1/boards/{board_token}/embed/departments</code></p>
+<p><code class="prettyprint">GET https://api.greenhouse.io/v1/boards/{board_token}/departments</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -504,7 +504,7 @@ When submitting a job application, you will use the <code>id</code> field to spe
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://api.greenhouse.io/v1/boards/{board_token}/embed/department?id={department_id}</code></p>
+<p><code class="prettyprint">GET https://api.greenhouse.io/v1/boards/{board_token}/departments/{department_id}</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -514,11 +514,9 @@ When submitting a job application, you will use the <code>id</code> field to spe
 </thead><tbody>
 <tr>
 <td>board_token</td><td>Job Board URL token</td></tr>
+<tr>
+<td>department_id</td><td>ID of the department to retrieve</td></tr>
 </tbody></table>
-
-<h3 id="querystring-parameters">Querystring Parameters</h3>
-
-<p>department_id | ID of the department to retrieve</p>
 
           <h1 id="job-boards">Job Boards</h1>
 
@@ -533,7 +531,7 @@ When submitting a job application, you will use the <code>id</code> field to spe
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://api.greenhouse.io/v1/boards/{board_token}/embed</code></p>
+<p><code class="prettyprint">GET https://api.greenhouse.io/v1/boards/{board_token}</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -594,7 +592,19 @@ Please keep in mind that the HTTP Basic Auth API token is a secret key.  Any for
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">POST https://api.greenhouse.io/v1/applications/</code></p>
+<p><code class="prettyprint">POST https://api.greenhouse.io/v1/boards/{board_token}/jobs/{id}</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>board_token</td><td>Job Board URL token</td></tr>
+<tr>
+<td>id</td><td>Job post ID</td></tr>
+</tbody></table>
 
 <h3 id="form-parameters">Form Parameters</h3>
 
@@ -602,8 +612,6 @@ Please keep in mind that the HTTP Basic Auth API token is a secret key.  Any for
 <tr>
 <td>Parameter</td><td>Description</td></tr>
 </thead><tbody>
-<tr>
-<td>id</td><td>Job post ID</td></tr>
 <tr>
 <td class="optional">mapped_url_token</td><td>If present, the <code class="prettyprint">gh_src</code> URL parameter, which is used to indicate the referral source of this application.</td></tr>
 <tr>
@@ -614,11 +622,13 @@ Please keep in mind that the HTTP Basic Auth API token is a secret key.  Any for
 <td>email</td><td>Applicant&rsquo;s email adress</td></tr>
 <tr>
 <td>phone</td><td>Applicant&rsquo;s phone number</td></tr>
+<tr>
+<td>location</td><td>Applicant&rsquo;s street address</td></tr>
+<tr>
+<td>latitude</td><td>Applicant&rsquo;s home latitude</td></tr>
+<tr>
+<td>longitude</td><td>Applicant&rsquo;s home longitude</td></tr>
 </tbody></table>
-
-<aside class="notice">
-Greenhouse is currently unable to accept or return geocode location through the Job Board API. To collect location information, we recommend adding your own custom question or using an Embedded Job Application.
-</aside>
 
       </div>
       <div class="dark-box">
