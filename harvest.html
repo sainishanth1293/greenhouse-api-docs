@@ -489,7 +489,7 @@ X-RateLimit-Remaining: 49
 
 <p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/applications/{id}</code></p>
 
-<h3 id="querystring-parameters">Querystring parameters</h3>
+<h3 id="url-parameters">URL parameters</h3>
 
 <table><thead>
 <tr>
@@ -1504,7 +1504,7 @@ X-RateLimit-Remaining: 49
 
 <p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/departments</code></p>
 
-<h3 id="optional-querystring-parameters">Optional querystring parameters</h3>
+<h3 id="querystring-parameters">Querystring parameters</h3>
 
 <table><thead>
 <tr>
@@ -1632,7 +1632,7 @@ X-RateLimit-Remaining: 49
 
 <p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/email_templates</code></p>
 
-<h3 id="optional-querystring-parameters">Optional querystring parameters</h3>
+<h3 id="querystring-parameters">Querystring parameters</h3>
 
 <table><thead>
 <tr>
@@ -2096,6 +2096,14 @@ X-RateLimit-Remaining: 49
 </thead><tbody>
 <tr>
 <td>id</td><td>The ID of the job whose job stages you want to retrieve.</td></tr>
+</tbody></table>
+
+<h3 id="querystring-parameters">Querystring parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
 <tr>
 <td>created_before</td><td>Return only job stages that were created before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
@@ -2355,6 +2363,14 @@ X-RateLimit-Remaining: 49
 <td>per_page</td><td>Return up to this number of objects per response. Must be an integer between 1 and 500. Defaults to 100.</td></tr>
 <tr>
 <td>page</td><td>A cursor for use in pagination.  Returns the n-th chunk of <code class="prettyprint">per_page</code> objects.</td></tr>
+<tr>
+<td>created_before</td><td>Return only jobs that were created before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td>created_after</td><td>Return only jobs that were created after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td>updated_before</td><td>Return only jobs that were updated before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td>updated_after</td><td>Return only jobs that were updated after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 </tbody></table>
 
 <p><br>
@@ -2560,7 +2576,7 @@ X-RateLimit-Remaining: 49
 
 <p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/offers</code></p>
 
-<h3 id="optional-querystring-parameters">Optional querystring parameters</h3>
+<h3 id="querystring-parameters">Querystring parameters</h3>
 
 <table><thead>
 <tr>
@@ -2691,7 +2707,7 @@ X-RateLimit-Remaining: 49
 
 <p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/offers/{id}</code></p>
 
-<h3 id="query-parameters">Query Parameters</h3>
+<h3 id="url-parameters">URL Parameters</h3>
 
 <table><thead>
 <tr>
@@ -2812,7 +2828,7 @@ X-RateLimit-Remaining: 49
 
 <p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/offices</code></p>
 
-<h3 id="optional-querystring-parameters">Optional querystring parameters</h3>
+<h3 id="querystring-parameters">Querystring parameters</h3>
 
 <table><thead>
 <tr>
@@ -2934,7 +2950,7 @@ X-RateLimit-Remaining: 49
 
 <p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/rejection_reasons</code></p>
 
-<h3 id="optional-querystring-parameters">Optional querystring parameters</h3>
+<h3 id="querystring-parameters">Querystring parameters</h3>
 
 <table><thead>
 <tr>
@@ -3074,7 +3090,7 @@ X-RateLimit-Remaining: 49
 
 <p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/applications/{id}/scheduled_interviews</code></p>
 
-<h3 id="query-parameters">Query Parameters</h3>
+<h3 id="querystring-parameters">Querystring Parameters</h3>
 
 <table><thead>
 <tr>
@@ -3082,6 +3098,14 @@ X-RateLimit-Remaining: 49
 </thead><tbody>
 <tr>
 <td>id</td><td>ID of the application to retrieve</td></tr>
+<tr>
+<td>created_before</td><td>Return only scheduled interviews that were created before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td>created_after</td><td>Return only scheduled interviews that were created after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td>updated_before</td><td>Return only scheduled interviews that were updated before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td>updated_after</td><td>Return only scheduled interviews that were updated after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 </tbody></table>
 
 <p><br>
@@ -3289,7 +3313,7 @@ X-RateLimit-Remaining: 49
 
 <p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/scorecards</code></p>
 
-<h3 id="optional-querystring-parameters">Optional querystring parameters</h3>
+<h3 id="querystring-parameters">Querystring parameters</h3>
 
 <table><thead>
 <tr>
@@ -3512,7 +3536,7 @@ X-RateLimit-Remaining: 49
 
 <p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/applications/{id}/scorecards</code></p>
 
-<h3 id="query-parameters">Query Parameters</h3>
+<h3 id="url-parameters">URL Parameters</h3>
 
 <table><thead>
 <tr>
@@ -3586,7 +3610,7 @@ X-RateLimit-Remaining: 49
 
 <p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/sources</code></p>
 
-<h3 id="optional-querystring-parameters">Optional querystring parameters</h3>
+<h3 id="querystring-parameters">Querystring parameters</h3>
 
 <table><thead>
 <tr>
@@ -3698,7 +3722,7 @@ X-RateLimit-Remaining: 49
 
 <p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/users</code></p>
 
-<h3 id="optional-querystring-parameters">Optional querystring parameters</h3>
+<h3 id="querystring-parameters">Querystring parameters</h3>
 
 <table><thead>
 <tr>
