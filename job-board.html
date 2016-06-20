@@ -546,6 +546,10 @@ When submitting a job application, you will use the <code>id</code> field to spe
           <h1 id="applications">Applications</h1>
 
 <h2 id="submit-an-application">Submit an application</h2>
+
+<blockquote>
+<p>This endpoint can take a multipart form-data POST. You should use this if you need to upload a resume or cover letter.</p>
+</blockquote>
 <pre class="highlight html"><code><span class="c">&lt;!--
 EXAMPLE FORM BELOW (simplified):
 
@@ -578,6 +582,22 @@ Please keep in mind that the HTTP Basic Auth API token is a secret key.  Any for
 <span class="nt">&lt;/form&gt;</span>
 </code></pre>
 
+<blockquote>
+<p>or, you can POST a JSON encoded body (with <code class="prettyprint">Content-Type: application/json</code>):</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sammy"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"McSamson"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sammy@example.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3337778888"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New York, NY"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51.5034070"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.1275920"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"resume_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sammy has many years of experience as an expert basket weaving..."</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"cover_letter_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"I have are a very particular set of skills, skills I have acquired over a very long career. Skills that make me..."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
 <p>Use this endpoint to submit a new application. This endpoint accepts a multipart form POST representing a job application. Application forms are job-specific and will be constrcuted via the &ldquo;questions&rdquo; array available via the <a href="#retrieve-a-job">Job method</a>. </p>
 
 <p>Please note that when submitting an application through this method, Greenhouse will not confirm the inclusion of required fields. Validation for required fields must be done on the client side, as Greenhouse will not reject applications that are missing required fields.</p>
@@ -601,12 +621,12 @@ Please keep in mind that the HTTP Basic Auth API token is a secret key.  Any for
 <td>Parameter</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>board_token</td><td>Job Board URL token</td></tr>
+<td>board_token</td><td>Job Board URL token.  If you&rsquo;re submitting an application for a job post on an internal job board, use <code class="prettyprint">&quot;internal&quot;</code>.</td></tr>
 <tr>
-<td>id</td><td>Job post ID</td></tr>
+<td>id</td><td>Job post ID. Both internal and external job posts are allowed.</td></tr>
 </tbody></table>
 
-<h3 id="form-parameters">Form Parameters</h3>
+<h3 id="request-parameters">Request Parameters</h3>
 
 <table><thead>
 <tr>
@@ -621,13 +641,21 @@ Please keep in mind that the HTTP Basic Auth API token is a secret key.  Any for
 <tr>
 <td>email</td><td>Applicant&rsquo;s email adress</td></tr>
 <tr>
-<td>phone</td><td>Applicant&rsquo;s phone number</td></tr>
+<td class="optional">phone</td><td>Applicant&rsquo;s phone number</td></tr>
 <tr>
-<td>location</td><td>Applicant&rsquo;s street address</td></tr>
+<td class="optional">location</td><td>Applicant&rsquo;s street address</td></tr>
 <tr>
-<td>latitude</td><td>Applicant&rsquo;s home latitude</td></tr>
+<td class="optional">latitude</td><td>Applicant&rsquo;s home latitude</td></tr>
 <tr>
-<td>longitude</td><td>Applicant&rsquo;s home longitude</td></tr>
+<td class="optional">longitude</td><td>Applicant&rsquo;s home longitude</td></tr>
+<tr>
+<td class="optional">resume_text</td><td>Plaintext resume body</td></tr>
+<tr>
+<td class="optional">cover_letter_text</td><td>Plaintext cover letter body</td></tr>
+<tr>
+<td class="optional">resume</td><td>Resume file contents.  <em>Only allowed in <code class="prettyprint">multipart/form-data</code> requests</em></td></tr>
+<tr>
+<td class="optional">cover_letter</td><td>Cover letter file contents.  <em>Only allowed in <code class="prettyprint">multipart/form-data</code> requests</em></td></tr>
 </tbody></table>
 
       </div>

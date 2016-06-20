@@ -1704,12 +1704,14 @@ X-RateLimit-Remaining: 49
 
 <h2 id="the-job-post-object">The job post object</h2>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
   </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Button Pusher"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Island"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="nt">"internal"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="nt">"external"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"live"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
   </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;Do you want to save the world? &amp;nbsp;If so, apply today!&lt;/p&gt;"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"internal_content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;Do you want to save the world? &amp;nbsp;If so, apply today!&lt;/p&gt;"</span><span class="p">,</span><span class="w">
@@ -1825,6 +1827,8 @@ X-RateLimit-Remaining: 49
 <td>Attribute</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
+<td>id</td><td>Job post ID</td></tr>
+<tr>
 <td>internal</td><td>If <code class="prettyprint">true</code>, this job post has been posted (or is <em>to be posted</em>) on an internal job board.</td></tr>
 <tr>
 <td>external</td><td>If <code class="prettyprint">true</code>, this job post has been posted (or is <em>to be posted</em>) on an external job board.</td></tr>
@@ -1847,28 +1851,30 @@ X-RateLimit-Remaining: 49
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Button Pusher"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Island"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"internal"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"external"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;Do you want to save the world? &amp;nbsp;If so, apply today!&lt;/p&gt;"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"internal_content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;Do you want to save the world? &amp;nbsp;If so, apply today!&lt;/p&gt;"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-04-01T17:56:19Z"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"First Name"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"short_text"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">  </span><span class="p">}</span><span class="w">
-      </span><span class="p">]</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Button Pusher"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Island"</span><span class="w">
     </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"internal"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"external"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"live"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;Do you want to save the world? &amp;nbsp;If so, apply today!&lt;/p&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"internal_content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;Do you want to save the world? &amp;nbsp;If so, apply today!&lt;/p&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-04-01T17:56:19Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"First Name"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"short_text"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">  </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 
@@ -1889,10 +1895,6 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>page</td><td>A cursor for use in pagination.  Returns the n-th chunk of <code class="prettyprint">per_page</code> objects.</td></tr>
 <tr>
-<td>content</td><td>If present, will return the text of the job post as posted to the external job board.</td></tr>
-<tr>
-<td>questions</td><td>If present, will return an array of questions associated with this job post.</td></tr>
-<tr>
 <td>created_before</td><td>Return only job posts that were created before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
 <td>created_after</td><td>Return only job posts that were created after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
@@ -1900,6 +1902,8 @@ X-RateLimit-Remaining: 49
 <td>updated_before</td><td>Return only job posts that were updated before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
 <td>updated_after</td><td>Return only job posts that were updated after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td>live</td><td>If <code class="prettyprint">true</code>, return only live job posts.</td></tr>
 </tbody></table>
 
 <p><br>
@@ -1914,12 +1918,14 @@ X-RateLimit-Remaining: 49
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
   </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Button Pusher"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Island"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="nt">"internal"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="nt">"external"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"live"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
   </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;Do you want to save the world? &amp;nbsp;If so, apply today!&lt;/p&gt;"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"internal_content"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -1943,7 +1949,7 @@ X-RateLimit-Remaining: 49
 
 <p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/jobs/{id}/job_post</code></p>
 
-<h3 id="querystring-parameters">Querystring parameters</h3>
+<h3 id="url-parameters">URL parameters</h3>
 
 <table><thead>
 <tr>
@@ -1951,6 +1957,14 @@ X-RateLimit-Remaining: 49
 </thead><tbody>
 <tr>
 <td>id</td><td>The ID of the job whose job post you want to retrieve</td></tr>
+</tbody></table>
+
+<h3 id="querystring-parameters">Querystring parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
 <tr>
 <td>content</td><td>If present, will return the text of the job post as posted to the external job board.</td></tr>
 <tr>
