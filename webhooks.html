@@ -105,6 +105,32 @@ analytics.page()
 <li>Additional Headers: This textarea should contain any additional HTTP headers that will allow the POST request access to your environment. These headers will be included exactly as pasted, but may not include the following headers already reserved by Greenhouse: Content-Type, Content-Length, Greenhouse-Event-ID, Authorization, User-Agent, and Signature. Please consult with your technology department before including anything in this field.</li>
 </ul>
 
+<h2 id="retry-policy">Retry policy</h2>
+
+<p>In the event of a failed web hook request (due to timeout, a non HTTP 200 response, or network issues), Greenhouse will attempt a maximum of 24 retries with exponential backoff according to this formula:</p>
+
+<p><code class="prettyprint">5 + (retry number) ^ 4</code> seconds relative to the last attempt</p>
+
+<table><thead>
+<tr>
+<td>Retry number</td><td>Time since last retry</td><td>Time since original attempt</td></tr>
+</thead><tbody>
+<tr>
+<td>1</td><td>6 seconds</td><td>6 seconds</td></tr>
+<tr>
+<td>2</td><td>21 seconds</td><td>27 seconds</td></tr>
+<tr>
+<td>3</td><td>86 seconds</td><td>113 seconds</td></tr>
+<tr>
+<td>8</td><td>68.4 minutes</td><td>2.4 hours</td></tr>
+<tr>
+<td>12</td><td>5.8 hours</td><td>16.9 hours</td></tr>
+<tr>
+<td>20</td><td>44.4 hours</td><td>8.3 days</td></tr>
+<tr>
+<td>24</td><td>92.1 hours</td><td>20.4 days</td></tr>
+</tbody></table>
+
 <h2 id="disabled-web-hooks">Disabled web hooks</h2>
 
 <p>If a web hook is disabled, it will not trigger when the event occurs. Web hooks become disabled automatically if a ping event fails on create or update. They need to be manually re-enabled if this occurs.</p>
@@ -788,7 +814,7 @@ analytics.page()
 
 <p>The Hire Candidate event occurs when an offer is accepted. This is triggered by clicking the &ldquo;Accept Offer&rdquo; button on the candidate&rsquo;s Private tab.</p>
 
-<h3 id="noteworthy-response-attributes">Noteworthy response attributes</h3>
+<h3 id="noteworthy-attributes">Noteworthy attributes</h3>
 
 <p>See web hook <a href="#common-attributes">common attributes</a>.</p>
 
