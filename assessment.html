@@ -19,10 +19,10 @@
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
 <meta name="theme-color" content="#00b2a9">
-    <title>Take Home Test API | Greenhouse</title>
+    <title>Assessment API | Greenhouse</title>
 
     <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
-    <link href="stylesheets/screen_take-home-test.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="stylesheets/screen_assessment.css" rel="stylesheet" type="text/css" media="screen" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
       <script src="javascripts/all.js" type="text/javascript"></script>
@@ -41,7 +41,7 @@ analytics.page()
 </script>
   </head>
 
-  <body class="take-home-test">
+  <body class="assessment">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -65,7 +65,7 @@ analytics.page()
       <div id="toc">
       </div>
       <ul class="toc-appendage">
-        <li id="github_link"><a href="https://github.com/grnhse/greenhouse-api-docs/tree/master/source/includes/take-home-test" title="View on Github" target="_blank">View on GitHub</a></li>
+        <li id="github_link"><a href="https://github.com/grnhse/greenhouse-api-docs/tree/master/source/includes/assessment" title="View on Github" target="_blank">View on GitHub</a></li>
       </ul>
         <ul class="toc-footer">
             <li><a href="/harvest.html" title="Harvest API">Harvest API</a></li>
@@ -80,7 +80,7 @@ analytics.page()
         
           <h1 id="introduction">Introduction</h1>
 
-<p>Greenhouse integrates with many candidate testing platforms, including code testing, video interviewing, personality testing, and more. We&rsquo;ve created the Take Home Test Partner API to allow our customers to seemlessly integrate our Partners&rsquo; Take Home Tests into their Greenhouse interview workflow. This document outlines the end-user experience with the integration and the technical details of how to implement it.</p>
+<p>Greenhouse integrates with many candidate testing platforms, including code testing, video interviewing, personality testing, and more. We&rsquo;ve created the Assessment Partner API to allow our customers to seemlessly integrate our Partners&rsquo; assessments into their Greenhouse interview workflow. This document outlines the end-user experience with the integration and the technical details of how to implement it.</p>
 
 <h3 id="working-with-greenhouse-to-implement-the-integration">Working with Greenhouse to implement the integration</h3>
 
@@ -97,17 +97,17 @@ analytics.page()
 
 <h2 id="workflow">Workflow</h2>
 
-<p>The Testing Partner will provide an org-level API key to the customer. The organization will provide this API key to their Greenhouse Account Manager, who will input it into our system.</p>
+<p>The Assessment Partner will provide an org-level API key to the customer. The organization will provide this API key to their Greenhouse Account Manager, who will input it into our system.</p>
 
 <h3 id="selecting-the-test">Selecting the Test</h3>
 
-<p>Once Greenhouse enters the API key for the organization, a new parnter interview stage will be available for use. The user can add this stage to the Hiring Plan of any job that has access to the new Testing Partner stage. Greenhouse will then make an API call to the <a href="#list-tests">List Tests endpoint</a> to determine what tests the organization has configured. </p>
+<p>Once Greenhouse enters the API key for the organization, a new parnter interview stage will be available for use. The user can add this stage to the Hiring Plan of any job that has access to the new Assessment Partner stage. Greenhouse will then make an API call to the <a href="#list-tests">List Tests endpoint</a> to determine what tests the organization has configured. </p>
 
 <p><img src="/images/add-stage.png" alt="Add Stage Image"></p>
 
 <h3 id="sending-the-test">Sending the Test</h3>
 
-<p>When a candidate reaches this Interview Stage, the user will click the &ldquo;Send Test&rdquo; button to send the test to the candidate via the <a href="#send-test">Send Test endpoint</a>. Greenhouse will send the Test ID and candidate email to the Testing Partner, who will email the test to the candidate. The Testing Partner will then send Greenhouse the ID for this unique test instance. </p>
+<p>When a candidate reaches this Interview Stage, the user will click the &ldquo;Send Test&rdquo; button to send the test to the candidate via the <a href="#send-test">Send Test endpoint</a>. Greenhouse will send the Test ID and candidate email to the Assessment Partner, who will email the test to the candidate. The Assessment Partner will then send Greenhouse the ID for this unique test instance. </p>
 
 <p><img src="/images/send-test.png" alt="Add Stage Image"></p>
 
@@ -117,20 +117,20 @@ analytics.page()
 
 <h2 id="authentication">Authentication</h2>
 
-<p>Every request Greenhouse sends to a Testing Partner’s API will utilize HTTP Basic Authentication over HTTPS. As such, we require each of the API endpoints to use HTTPS.</p>
+<p>Every request Greenhouse sends to a Assessment Partner’s API will utilize HTTP Basic Authentication over HTTPS. As such, we require each of the API endpoints to use HTTPS.</p>
 
-<p>When an organization decides to utilize a Testing Partner’s integration, they will provide their Greenhouse Account Manager with their API key for that Testing Partner.</p>
+<p>When an organization decides to utilize a Assessment Partner’s integration, they will provide their Greenhouse Account Manager with their API key for that Assessment Partner.</p>
 
 <p>Greenhouse will then make all requests for the organization using that API key as the username in Basic Authentication. Greenhouse will append a : (colon) to the API token and then Base64 encode the resulting string.</p>
 
-<p>Upon receiving a request, the Testing Partner should inspect the API key to determine whether the request should be permitted and which data should be returned.</p>
+<p>Upon receiving a request, the Assessment Partner should inspect the API key to determine whether the request should be permitted and which data should be returned.</p>
 
 <h3 id="example-situation">Example Situation</h3>
 
 <ul>
-<li><em>Testing Partner A</em> provided <em>Customer 1</em> with an API key.</li>
+<li><em>Assessment Partner A</em> provided <em>Customer 1</em> with an API key.</li>
 <li><em>Customer 1</em> provided this key to Greenhouse.</li>
-<li><p><em>Testing Partner A</em> provided the following URL for its <code class="prettyprint">list_tests</code> endpoint: </p>
+<li><p><em>Assessment Partner A</em> provided the following URL for its <code class="prettyprint">list_tests</code> endpoint: </p>
 
 <p><em>https://www.testing-partner-a.com/api/list_tests</em></p></li>
 <li><p>Greenhouse would make the following request to retreive the list of available tests: </p>
@@ -141,7 +141,7 @@ analytics.page()
 
           <h1 id="list-tests">List Tests</h1>
 
-<p>Greenhouse will first need to retreive the list of tests from the Testing Partner using the <code class="prettyprint">list_tests</code> API endpoint. We will show the list of available tests to the user, who will to select the appropriate test for a given candidate. </p>
+<p>Greenhouse will first need to retreive the list of tests from the Assessment Partner using the <code class="prettyprint">list_tests</code> API endpoint. We will show the list of available tests to the user, who will to select the appropriate test for a given candidate. </p>
 
 <p><code class="prettyprint">GET https://www.testing-partner.com/api/list_tests</code></p>
 <pre class="highlight shell"><code>curl -X POST <span class="s1">'https://www.testing-partner.com/api/list_tests'</span>
@@ -150,7 +150,7 @@ analytics.page()
 
 <h3 id="request">Request</h3>
 
-<p>Greenhouse will make a GET request to the <code class="prettyprint">list_tests</code> endpoint specified by the Testing Partner.</p>
+<p>Greenhouse will make a GET request to the <code class="prettyprint">list_tests</code> endpoint specified by the Assessment Partner.</p>
 
 <h3 id="response">Response</h3>
 
@@ -169,7 +169,7 @@ analytics.page()
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 
-<p>The Testing Partner’s response should include a JSON payload containing a list of test objects for the organization. Each test object should contain the keys <code class="prettyprint">partner_test_id</code> and <code class="prettyprint">partner_test_name.</code></p>
+<p>The Assessment Partner’s response should include a JSON payload containing a list of test objects for the organization. Each test object should contain the keys <code class="prettyprint">partner_test_id</code> and <code class="prettyprint">partner_test_name.</code></p>
 
 <table><thead>
 <tr>
@@ -183,7 +183,7 @@ analytics.page()
 
           <h1 id="send-test">Send Test</h1>
 
-<p>When a Greenhouse user sends a test to a candidate, Greenhouse will send a request to the Testing Partner&rsquo;s <code class="prettyprint">send_test</code> API endpoint. The Testing Partner will then email the specified candidate the specified test.</p>
+<p>When a Greenhouse user sends a test to a candidate, Greenhouse will send a request to the Assessment Partner&rsquo;s <code class="prettyprint">send_test</code> API endpoint. The Assessment Partner will then email the specified candidate the specified test.</p>
 
 <h3 id="request">Request</h3>
 <pre class="highlight shell"><code>curl -X POST <span class="s1">'https://www.testing-partner.com/api/send_test'</span>
@@ -203,7 +203,7 @@ analytics.page()
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Greenhouse will initiate the process by sending a POST request to the <code class="prettyprint">send_test</code> endpoint specified by the Testing Partner. The body of the POST request will contain a JSON payload. </p>
+<p>Greenhouse will initiate the process by sending a POST request to the <code class="prettyprint">send_test</code> endpoint specified by the Assessment Partner. The body of the POST request will contain a JSON payload. </p>
 
 <table><thead>
 <tr>
@@ -264,7 +264,7 @@ The partner_interview_id should not be confused with partner_test_id. While part
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Greenhouse will send a <code class="prettyprint">GET</code> request to the <code class="prettyprint">test_status</code> endpoint provided by the Testing Partner. The <code class="prettyprint">GET</code> request will contain a single query string parameter: <code class="prettyprint">partner_interview_id</code>.</p>
+<p>Greenhouse will send a <code class="prettyprint">GET</code> request to the <code class="prettyprint">test_status</code> endpoint provided by the Assessment Partner. The <code class="prettyprint">GET</code> request will contain a single query string parameter: <code class="prettyprint">partner_interview_id</code>.</p>
 
 <table><thead>
 <tr>
@@ -320,7 +320,7 @@ When Greenhouse makes a test_status request, we may only receive the numerical s
 
           <h1 id="response-error">Response Error</h1>
 
-<p>When Greenhouse receives a malformed response for any of Testing Partner&rsquo;s API endpoints, we would like to report the errors to the Testing Partner. As such, each Testing Partner should provide an API endpoint to ingest this information.</p>
+<p>When Greenhouse receives a malformed response for any of Assessment Partner&rsquo;s API endpoints, we would like to report the errors to the Assessment Partner. As such, each Assessment Partner should provide an API endpoint to ingest this information.</p>
 
 <p><code class="prettyprint">POST https://www.testing-partner.com/api/request_errors</code></p>
 
@@ -338,11 +338,11 @@ When Greenhouse makes a test_status request, we may only receive the numerical s
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>After receiving a malformed response, Greenhouse will provide the Testing Partner with the details of the failed response. Each time an invalid response arrives, Greenhouse will send a POST request to the <code class="prettyprint">response_error</code> API endpoint.</p>
+<p>After receiving a malformed response, Greenhouse will provide the Assessment Partner with the details of the failed response. Each time an invalid response arrives, Greenhouse will send a POST request to the <code class="prettyprint">response_error</code> API endpoint.</p>
 
 <p>The body of the request will contain as much information as Greenhouse has at the moment of failure. </p>
 
-<p>For example, if a <code class="prettyprint">list_tests</code> request fails, Greenhouse can only provide the api call (in this case, ‘list_tests’) and the assorted errors (missing keys, unexpected data types, etc.). However, if a <code class="prettyprint">test_status</code> request fails, we can provide more information (partner_test_id, partner_interview_id, etc.) that may prove useful for debugging purposes. Testing Partners can always expect to receive <code class="prettyprint">api_call</code> and <code class="prettyprint">errors</code> in the JSON body. </p>
+<p>For example, if a <code class="prettyprint">list_tests</code> request fails, Greenhouse can only provide the api call (in this case, ‘list_tests’) and the assorted errors (missing keys, unexpected data types, etc.). However, if a <code class="prettyprint">test_status</code> request fails, we can provide more information (partner_test_id, partner_interview_id, etc.) that may prove useful for debugging purposes. Assessment Partners can always expect to receive <code class="prettyprint">api_call</code> and <code class="prettyprint">errors</code> in the JSON body. </p>
 
 <table><thead>
 <tr>
