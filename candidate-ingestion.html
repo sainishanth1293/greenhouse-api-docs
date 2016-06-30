@@ -88,7 +88,6 @@ analytics.page()
 <li>Send candidates from the partner application to Greenhouse.</li>
 <li>Retrieve the current stage and status of candidates.</li>
 <li>Retrieve jobs on which the Greenhouse user is allowed to operate.</li>
-<li>Retrieve jobs on which the Greenhouse user is allowed to operate.</li>
 </ol>
 
 <h2 id="authentication">Authentication</h2>
@@ -243,7 +242,7 @@ These scopes do not apply if you are authenticating via Basic Auth.
 </tbody></table>
 
 <h2 id="post-candidates">Post Candidates</h2>
-<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://api.greenhouse.io/v1/partner/partner_candidates'</span>
+<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://api.greenhouse.io/v1/partner/candidates'</span>
 -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
 </code></pre>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -265,7 +264,11 @@ These scopes do not apply if you are authenticating via Basic Auth.
             </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"other"</span><span class="w"> 
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w"> 
-    </span><span class="nt">"social_media"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://twitter.com/hp"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"social_media"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://twitter.com/hp"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
     </span><span class="nt">"websites"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> 
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://harrypotter.com"</span><span class="p">,</span><span class="w">
