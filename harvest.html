@@ -2986,6 +2986,7 @@ X-RateLimit-Remaining: 49
 <p>Interviews that have been scheduled for the specified application.</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9128481</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4684156</span><span class="p">,</span><span class="w">
   </span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"date_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T22:15:00.000Z"</span><span class="w">
   </span><span class="p">},</span><span class="w">
@@ -3035,14 +3036,15 @@ X-RateLimit-Remaining: 49
 <td>interviewers</td><td>An array containing the <a href="#users">users</a> who have interviews with this candidate, including, if applicable, the ID of the scorecard they completed.</td></tr>
 </tbody></table>
 
-<h2 id="list-scheduled-interviews">List scheduled interviews</h2>
-<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/applications/{id}/scheduled_interviews'</span>
+<h2 id="list-interviews">List interviews</h2>
+<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/scheduled_interviews'</span>
 -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
 </code></pre>
 <pre class="highlight json"><code><span class="w">
 </span><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9128481</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">432904</span><span class="p">,</span><span class="w">
     </span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"date_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T22:15:00.000Z"</span><span class="w">
     </span><span class="p">},</span><span class="w">
@@ -3070,6 +3072,157 @@ X-RateLimit-Remaining: 49
   </span><span class="p">},</span><span class="w">
   </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9128482</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">432905</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-07-08"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"end"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-07-09"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Small Conference Room"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"interview"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7002</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Whiteboarding Challenge"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"organizer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jack Shepard"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"complete"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"interviewers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3412</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Charlie Pace"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"youalleverybody@example.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"scorecard_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>List all interviews for the authorized organization.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/scheduled_interviews</code></p>
+
+<h3 id="optional-querystring-parameters">Optional querystring Parameters</h3>
+
+<p>Timestamps must be in in <a href="#general-considerations">ISO-8601</a> format.</p>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>per_page</td><td>Return up to this number of objects per response. Must be an integer between 1 and 500. Defaults to 100.</td></tr>
+<tr>
+<td>page</td><td>A cursor for use in pagination.  Returns the n-th chunk of <code class="prettyprint">per_page</code> objects.</td></tr>
+<tr>
+<td>created_before</td><td>Only return scheduled interviews that were created before this timestamp.</td></tr>
+<tr>
+<td>created_after</td><td>Only return scheduled interviews that were created after this timestamp.</td></tr>
+<tr>
+<td>updated_before</td><td>Only return scheduled interviews that were updated before this timestamp.</td></tr>
+<tr>
+<td>updated_after</td><td>Only return scheduled interviews that were updated after this timestamp.</td></tr>
+<tr>
+<td>starts_before</td><td>Only return scheduled interviews scheduled to start before this timestamp.</td></tr>
+<tr>
+<td>starts_after</td><td>Only return scheduled interviews scheduled to start after this timestamp.</td></tr>
+<tr>
+<td>ends_before</td><td>Only return scheduled interviews scheduled to end before this timestamp.</td></tr>
+<tr>
+<td>ends_after</td><td>Only return scheduled interviews scheduled to end after this timestamp.</td></tr>
+</tbody></table>
+
+<h2 id="retrieve-an-interview">Retrieve an interview</h2>
+<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/scheduled_interviews/123'</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9128481</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4684156</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"date_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T22:15:00.000Z"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"end"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"date_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T22:30:00.000Z"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Big Conference Room"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"awaiting_feedback"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"interview"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7001</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Culture Fit"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"organizer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jack Shepard"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"interviewers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4080</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kate Austen"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kate.austen@example.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"scorecard_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11274</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Retrieve an interview by its ID.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/scheduled_interviews/{id}</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>id</td><td>The ID of the job to interview to retrieve</td></tr>
+</tbody></table>
+
+<h2 id="list-interviews-for-application">List interviews for application</h2>
+<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/applications/{id}/scheduled_interviews'</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9128481</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">432904</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"date_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T22:15:00.000Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"end"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"date_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T22:30:00.000Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Big Conference Room"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"awaiting_feedback"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"interview"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7001</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Culture Fit"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"organizer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jack Shepard"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"interviewers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4080</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kate Austen"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kate.austen@example.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"scorecard_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11274</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9128482</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">432904</span><span class="p">,</span><span class="w">
     </span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-07-08"</span><span class="w">
     </span><span class="p">},</span><span class="w">
@@ -3112,6 +3265,10 @@ X-RateLimit-Remaining: 49
 </thead><tbody>
 <tr>
 <td>id</td><td>ID of the application to retrieve</td></tr>
+<tr>
+<td>per_page</td><td>Return up to this number of objects per response. Must be an integer between 1 and 500. Defaults to 100.</td></tr>
+<tr>
+<td>page</td><td>A cursor for use in pagination.  Returns the n-th chunk of <code class="prettyprint">per_page</code> objects.</td></tr>
 <tr>
 <td>created_before</td><td>Return only scheduled interviews that were created before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
