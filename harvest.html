@@ -430,7 +430,7 @@ X-RateLimit-Remaining: 49
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 
-<p>Retreive all of an organization&rsquo;s applications.</p>
+<p>List all of an organization&rsquo;s applications.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -737,7 +737,7 @@ X-RateLimit-Remaining: 49
 
           <h1 id="candidates">Candidates</h1>
 
-<p>Your organization&rsquo;s candidates.</p>
+<p>An organization&rsquo;s candidates.</p>
 
 <h2 id="the-candidate-object">The candidate object</h2>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -999,7 +999,7 @@ X-RateLimit-Remaining: 49
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Retrieve your organization&rsquo;s candidates.</p>
+<p>Retrieve a candidate by its <code class="prettyprint">id</code>.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -1459,7 +1459,7 @@ X-RateLimit-Remaining: 49
 
 <h2 id="the-department-object">The department object</h2>
 
-<p>Your organization&rsquo;s departments.</p>
+<p>An organization&rsquo;s departments.</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Technology"</span><span class="w">
@@ -1480,7 +1480,7 @@ X-RateLimit-Remaining: 49
 
 <h2 id="list-departments">List departments</h2>
 
-<p>List all of your organization&rsquo;s departments.</p>
+<p>List all of an organization&rsquo;s departments.</p>
 <pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/departments'</span> 
 -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
 </code></pre>
@@ -1533,7 +1533,7 @@ X-RateLimit-Remaining: 49
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Retrieves your organization&rsquo;s departments.</p>
+<p>Retrieve a department by its <code class="prettyprint">id</code>.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -1554,7 +1554,7 @@ X-RateLimit-Remaining: 49
 
           <h1 id="email-templates">Email Templates</h1>
 
-<p>Your organization&rsquo;s email templates.</p>
+<p>An organization&rsquo;s email templates.</p>
 
 <h2 id="the-email-template-object">The email template object</h2>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -1590,6 +1590,8 @@ X-RateLimit-Remaining: 49
 </tbody></table>
 
 <h2 id="list-email-templates">List email templates</h2>
+
+<p>List all of an organization&rsquo;s email templates.</p>
 <pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/email_templates/'</span> 
 -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
 </code></pre>
@@ -1678,7 +1680,7 @@ X-RateLimit-Remaining: 49
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Retrieves your organization&rsquo;s email templates.</p>
+<p>Retrieve an email template by its <code class="prettyprint">id</code>.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -1700,7 +1702,7 @@ X-RateLimit-Remaining: 49
 
           <h1 id="job-posts">Job Posts</h1>
 
-<p>Describes the online job posts for your jobs (as seen on your Job Board).</p>
+<p>Describes the online job posts for an organization&rsquo;s jobs (as seen on the Job Board).</p>
 
 <h2 id="the-job-post-object">The job post object</h2>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -1878,7 +1880,7 @@ X-RateLimit-Remaining: 49
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 
-<p>All of your organization&rsquo;s job posts.</p>
+<p>List all of an organization&rsquo;s job posts.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -1943,7 +1945,7 @@ X-RateLimit-Remaining: 49
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Retrieves the coresponding job post for a given Job ID.</p>
+<p>Retrieve the coresponding job post for a given Job ID.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -1976,7 +1978,7 @@ X-RateLimit-Remaining: 49
 
           <h1 id="job-stages">Job Stages</h1>
 
-<p>Stages for the job specified by the supplied id.</p>
+<p>An organization&rsquo;s job stages.</p>
 
 <h2 id="the-job-stage-object">The job stage object</h2>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -2028,6 +2030,138 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>interviews</td><td>An array of interviews associated with this job stage.</td></tr>
 </tbody></table>
+
+<h2 id="list-job-stages">List job stages</h2>
+<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/job_stages'</span> 
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6001</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cultural Fit Interview"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-22T05:31:37.263Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-22T05:31:37.263Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"interviews"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7890</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cultural Fit Interview"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"interview_kit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;h5&gt;Purpose&lt;/h5&gt;&lt;span&gt;Determine whether or not the candidate would be a strong fit.&lt;/span&gt;"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11052</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Is this person really a good fit?"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">        
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6002</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Executive Interview"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-22T05:31:37.263Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-22T05:31:37.263Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">34567</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"interviews"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7345</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Executive Interview"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"interview_kit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;h5&gt;Purpose&lt;/h5&gt;&lt;span&gt;Determine whether or not the candidate would be a strong fit.&lt;/span&gt;"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11053</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"What's their favorite color?"</span><span class="w">
+              </span><span class="p">},</span><span class="w">
+              </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11054</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Do they really want to work here?"</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">        
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>List all of an organization&rsquo;s job stages.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/job_stages</code></p>
+
+<h3 id="querystring-parameters">Querystring parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>per_page</td><td>Return up to this number of objects per response. Must be an integer between 1 and 500. Defaults to 100.</td></tr>
+<tr>
+<td>page</td><td>A cursor for use in pagination.  Returns the n-th chunk of <code class="prettyprint">per_page</code> objects.</td></tr>
+</tbody></table>
+
+<p><br>
+<a href="#the-job-stages-object">See noteworthy response attributes.</a></p>
+
+<h2 id="retrieve-a-job-stage">Retrieve a job stage</h2>
+<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/job_stages/{id}'</span> 
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6001</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cultural Fit Interview"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-22T05:31:37.263Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-22T05:31:37.263Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"interviews"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7890</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cultural Fit Interview"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"interview_kit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;h5&gt;Purpose&lt;/h5&gt;&lt;span&gt;Determine whether or not the candidate would be a strong fit.&lt;/span&gt;"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11052</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Is this person really a good fit?"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">        
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Retreieve a job stage by its <code class="prettyprint">id</code>.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/job_stages/{id}</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>id</td><td>The ID of the job stage to retrieve</td></tr>
+</tbody></table>
+
+<p><br>
+<a href="#the-job-stages-object">See noteworthy response attributes.</a></p>
 
 <h2 id="list-job-stages-for-job">List job stages for job</h2>
 <pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/jobs/{id}/stages'</span> 
@@ -2096,7 +2230,7 @@ X-RateLimit-Remaining: 49
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 
-<p>Retrieves the stages for the specified job id.</p>
+<p>Retrieve the stages for the specified job id.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -2135,7 +2269,7 @@ X-RateLimit-Remaining: 49
 
 <h2 id="the-job-object">The job object</h2>
 
-<p>Your organization&rsquo;s jobs.</p>
+<p>An organization&rsquo;s jobs.</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6404</span><span class="p">,</span><span class="w">
   </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Archaeologist"</span><span class="p">,</span><span class="w">
@@ -2361,7 +2495,7 @@ X-RateLimit-Remaining: 49
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 
-<p>List all of your organization&rsquo;s jobs.</p>
+<p>List all of an organization&rsquo;s jobs.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -2492,7 +2626,7 @@ X-RateLimit-Remaining: 49
 
 <h2 id="the-offer-object">The offer object</h2>
 
-<p>Your organization&rsquo;s offers.</p>
+<p>An organization&rsquo;s offers.</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4949</span><span class="p">,</span><span class="w">
   </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
@@ -2539,7 +2673,7 @@ X-RateLimit-Remaining: 49
 
 <h2 id="list-all-offers">List all offers</h2>
 
-<p>All offers made by your organization ordered by application_id.</p>
+<p>All offers made by an organization ordered by application_id.</p>
 <pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/offers'</span> 
 -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
 </code></pre>
@@ -2781,7 +2915,7 @@ X-RateLimit-Remaining: 49
 
 <h2 id="the-office-object">The office object</h2>
 
-<p>Your organization’s offices.</p>
+<p>An organization’s offices.</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">175</span><span class="p">,</span><span class="w">
   </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"San Francisco"</span><span class="p">,</span><span class="w">
@@ -2836,7 +2970,7 @@ X-RateLimit-Remaining: 49
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 
-<p>List all of your organization&rsquo;s offices.</p>
+<p>List all of an organization&rsquo;s offices.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -2958,7 +3092,7 @@ X-RateLimit-Remaining: 49
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 
-<p>Retrieves your organization&rsquo;s rejection reasons.</p>
+<p>List all of an organization&rsquo;s rejection reasons.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -3101,7 +3235,7 @@ X-RateLimit-Remaining: 49
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 
-<p>List all interviews for the authorized organization.</p>
+<p>List all of an organization&rsquo;s scheduled interviews.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -3478,7 +3612,7 @@ X-RateLimit-Remaining: 49
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 
-<p>List all scorecards.</p>
+<p>List all of an organization&rsquo;s scorecards.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -3724,7 +3858,7 @@ X-RateLimit-Remaining: 49
 
 <h2 id="the-source-object">The source object</h2>
 
-<p>Your organization&rsquo;s sources.</p>
+<p>An organization&rsquo;s sources.</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">632</span><span class="p">,</span><span class="w">
   </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Other"</span><span class="p">,</span><span class="w">
@@ -3835,7 +3969,7 @@ X-RateLimit-Remaining: 49
 
 <h2 id="the-user-object">The user object</h2>
 
-<p>Your organization&rsquo;s Greenhouse users.</p>
+<p>An organization&rsquo;s Greenhouse users.</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">112</span><span class="p">,</span><span class="w">
   </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Juliet Burke"</span><span class="p">,</span><span class="w">
