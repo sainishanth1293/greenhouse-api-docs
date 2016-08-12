@@ -29,7 +29,7 @@
 
       <script>
         $(function() {
-          setupLanguages(["shell","ruby"]);
+          setupLanguages(["json"]);
         });
       </script>
 
@@ -56,8 +56,7 @@ analytics.page()
         </div>
       </a>
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
+              <a href="#" data-language-name="json">json</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -86,7 +85,10 @@ analytics.page()
 <p>We support JSONP callbacks, and have a POST method which can be used to build your own online job application form.</p>
 
 <h2 id="jsonp">JSONP</h2>
-<pre class="highlight html"><code><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"https://api.greenhouse.io/v1/example/method/url?callback="</span><span class="nt">&gt;&lt;/script&gt;</span>
+<pre class="highlight html"><code><span class="nt">&lt;script
+  </span><span class="na">type=</span><span class="s">"text/javascript"</span>
+  <span class="na">src=</span><span class="s">"https://api.greenhouse.io/v1/example/method/url?callback="</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/script&gt;</span>
 </code></pre>
 
 <p>To call a method via JSONP (http://en.wikipedia.org/wiki/JSONP), insert the script tag below into your HTML document with an appropriate method URL and provide your own method name in the &ldquo;callback&rdquo; querystring parameter. NOTE: The callback name may only contain numbers, letters, underscore, and period.</p>
@@ -105,15 +107,15 @@ Job Board data is publically available, so authentication is not required for an
 
 <h2 id="list-jobs">List jobs</h2>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">127817</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"internal_job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">144381</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bad Cop"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-14T10:55:28-05:00"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NYC"</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">127817</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"internal_job_id"</span><span class="p">:</span><span class="mi">144381</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Bad Cop"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2016-01-14T10:55:28-05:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"location"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"NYC"</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"absolute_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://boards.greenhouse.io/vaulttec/jobs/127817"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="nt">"absolute_url"</span><span class="p">:</span><span class="s2">"https://boards.greenhouse.io/vaulttec/jobs/127817"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"metadata"</span><span class="p">:</span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -121,27 +123,50 @@ Job Board data is publically available, so authentication is not required for an
 <p>When <code class="prettyprint">?content=true</code>:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">127817</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"internal_job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">144381</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bad Cop"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-01-14T10:55:28-05:00"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NYC"</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">127817</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"internal_job_id"</span><span class="p">:</span><span class="mi">144381</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Bad Cop"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2016-01-14T10:55:28-05:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"location"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"NYC"</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"absolute_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://boards.greenhouse.io/vaulttec/jobs/127817"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&amp;lt;p&amp;gt;The Rule Enforcement team is dedicated to keeping all employees in line. &amp;amp;nbsp;Rule enforcers use&amp;amp;nbsp;various tactics such as physical intimidation, awkward pauses, and dramatic coffee sips in order to make sure everyone does what they&amp;#39;re told."</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"departments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="nt">"absolute_url"</span><span class="p">:</span><span class="s2">"https://boards.greenhouse.io/vaulttec/jobs/127817"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"metadata"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"content"</span><span class="p">:</span><span class="s2">"&amp;lt;p&amp;gt;The Rule Enforcement team is dedicated to keeping all employees in line. &amp;amp;nbsp;Rule enforcers use&amp;amp;nbsp;various tactics such as physical intimidation, awkward pauses, and dramatic coffee sips in order to make sure everyone does what they&amp;#39;re told."</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"departments"</span><span class="p">:[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">13585</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rule Enforcement"</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">13583</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Department of Departments"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"child_ids"</span><span class="p">:[</span><span class="w">
+        </span><span class="mi">13585</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">13585</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Rule Enforcement"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="mi">13583</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"child_ids"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
-  </span><span class="nt">"offices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="nt">"offices"</span><span class="p">:[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8787</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New York City"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New York, NY, United States"</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">8304</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"East Coast"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"location"</span><span class="p">:</span><span class="s2">"United States"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"child_ids"</span><span class="p">:[</span><span class="w">
+        </span><span class="mi">8787</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">8787</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"New York City"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"location"</span><span class="p">:</span><span class="s2">"New York, NY, United States"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="mi">8304</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"child_ids"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -187,9 +212,8 @@ When submitting a job application, you will use the <code>id</code> field to spe
   </span><span class="p">},</span><span class="w">
   </span><span class="nt">"content"</span><span class="p">:</span><span class="s2">"This is the job description. &amp;amp;lt;p&amp;amp;gt;Any HTML included through the hosted job application editor will be automatically converted into corresponding HTML entitites.&amp;amp;lt;/p&amp;amp;gt;"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"absolute_url"</span><span class="p">:</span><span class="s2">"http://your.co/careers?gh_jid=444444"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"internal_job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">55555</span><span class="p">,</span><span class="w">
-  </span><span class="err">//</span><span class="w"> </span><span class="err">NOTE</span><span class="p">:</span><span class="w"> </span><span class="err">questions</span><span class="w"> </span><span class="err">will</span><span class="w"> </span><span class="err">only</span><span class="w"> </span><span class="err">appear</span><span class="w"> </span><span class="err">if</span><span class="w"> </span><span class="s2">"questions"</span><span class="w"> </span><span class="err">parameter</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">set</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="kc">true</span><span class="w">
-  </span><span class="s2">"questions"</span><span class="err">:</span><span class="p">[</span><span class="w">
+  </span><span class="nt">"internal_job_id"</span><span class="p">:</span><span class="mi">55555</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"questions"</span><span class="p">:[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"required"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">"First Name"</span><span class="p">,</span><span class="w">
@@ -246,7 +270,9 @@ When submitting a job application, you will use the <code>id</code> field to spe
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Returns a job post. Setting the questions querystring parameter to <code class="prettyprint">&quot;true&quot;</code> will include the list of job application fields; these fields can be used to dynamically construct your own job application form. </p>
+<p>Returns a job post. Setting the questions querystring parameter to
+<code class="prettyprint">&quot;true&quot;</code> will include the list of job application fields; these fields
+can be used to dynamically construct your own job application form. </p>
 
 <p>Any job custom fields you have selected to be exposed in the job board API will be shown in the <code class="prettyprint">metadata</code> attribute.</p>
 
@@ -301,8 +327,21 @@ When submitting a job application, you will use the <code>id</code> field to spe
           <h1 id="offices">Offices</h1>
 
 <h2 id="list-offices">List offices</h2>
+
+<blockquote>
+<p>With <code class="prettyprint">render_as=list</code> (default)</p>
+</blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"offices"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">10201</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"West Coast"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"departments"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"child_ids"</span><span class="p">:[</span><span class="w">
+        </span><span class="mi">11111</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">11111</span><span class="p">,</span><span class="w">
       </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"San Francisco"</span><span class="p">,</span><span class="w">
@@ -329,15 +368,87 @@ When submitting a job application, you will use the <code>id</code> field to spe
               </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2013-07-02T19:39:23Z"</span><span class="p">,</span><span class="w">
               </span><span class="nt">"absolute_url"</span><span class="p">:</span><span class="s2">"http://your.co/careers?gh_jid=55555"</span><span class="w">
             </span><span class="p">}</span><span class="w">
-        </span><span class="err">}</span><span class="p">,</span><span class="w">
+          </span><span class="p">],</span><span class="w">
+          </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"child_ids"</span><span class="p">:[</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
           </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">22222</span><span class="p">,</span><span class="w">
           </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Account Management"</span><span class="p">,</span><span class="w">
           </span><span class="nt">"jobs"</span><span class="p">:[</span><span class="w">
 
+          </span><span class="p">],</span><span class="w">
+          </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"child_ids"</span><span class="p">:[</span><span class="w">
           </span><span class="p">]</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="err">//</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="err">Each</span><span class="w"> </span><span class="err">dept</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">listed</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">each</span><span class="w"> </span><span class="err">office</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="mi">10201</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"child_ids"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="err">More</span><span class="w"> </span><span class="err">offices</span><span class="w"> </span><span class="err">here</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>With <code class="prettyprint">render_as=tree</code></p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"offices"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">10201</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"West Coast"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"departments"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"children"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">11111</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"San Francisco"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"departments"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">33333</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Engineering"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"jobs"</span><span class="p">:[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">44444</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Product Engineer"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"location"</span><span class="p">:{</span><span class="w">
+                    </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"San Francisco, CA"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2013-07-02T19:39:23Z"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"absolute_url"</span><span class="p">:</span><span class="s2">"http://your.co/careers?gh_jid=444444"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">55555</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Mobile Engineer - iOS"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"location"</span><span class="p">:{</span><span class="w">
+                    </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"San Francisco, CA"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2013-07-02T19:39:23Z"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"absolute_url"</span><span class="p">:</span><span class="s2">"http://your.co/careers?gh_jid=55555"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+              </span><span class="p">],</span><span class="w">
+              </span><span class="nt">"children"</span><span class="p">:[</span><span class="w">
+              </span><span class="p">]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">22222</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Account Management"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"jobs"</span><span class="p">:[</span><span class="w">
+
+              </span><span class="p">],</span><span class="w">
+              </span><span class="nt">"children"</span><span class="p">:[</span><span class="w">
+              </span><span class="p">]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="err">//</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="err">Each</span><span class="w"> </span><span class="err">dept</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">listed</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">each</span><span class="w"> </span><span class="err">office</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+          </span><span class="s2">"children"</span><span class="err">:</span><span class="p">[</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
       </span><span class="p">]</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="err">//</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="err">More</span><span class="w"> </span><span class="err">offices</span><span class="w"> </span><span class="err">here</span><span class="w">
@@ -361,7 +472,33 @@ When submitting a job application, you will use the <code>id</code> field to spe
 <td>board_token</td><td>Job Board URL token</td></tr>
 </tbody></table>
 
+<h3 id="querystring-parameters">Querystring Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Required</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>render_as</td><td>No</td><td>string</td><td>This parameter defines how to represent the list of offices. The default value is &lsquo;list&rsquo;.</td></tr>
+</tbody></table>
+
+<p>Allowed <code class="prettyprint">render_as</code> values:</p>
+
+<table><thead>
+<tr>
+<td>Value</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>list</td><td>(Default). The offices are returned as a list of objects and they include <code class="prettyprint">parent_id</code> and <code class="prettyprint">child_ids</code>.</td></tr>
+<tr>
+<td>tree</td><td>The offices are returned as a list of trees with <code class="prettyprint">children</code>.</td></tr>
+</tbody></table>
+
 <h2 id="retrieve-an-office">Retrieve an office</h2>
+
+<blockquote>
+<p>With <code class="prettyprint">render_as=list</code> (default)</p>
+</blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">11111</span><span class="p">,</span><span class="w">
   </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"San Francisco"</span><span class="p">,</span><span class="w">
@@ -395,32 +532,19 @@ When submitting a job application, you will use the <code>id</code> field to spe
       </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Account Management"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"jobs"</span><span class="p">:[]</span><span class="w">
     </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="mi">10201</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"child_ids"</span><span class="p">:[</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Returns a list of your organization&rsquo;s departments and jobs for the given <code class="prettyprint">office_id</code>.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET https://api.greenhouse.io/v1/boards/{board_token}/offices/{office_id}</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
-
-<table><thead>
-<tr>
-<td>Parameter</td><td>Description</td></tr>
-</thead><tbody>
-<tr>
-<td>board_token</td><td>Job Board URL token</td></tr>
-<tr>
-<td>office_id</td><td>ID of the office to retrieve</td></tr>
-</tbody></table>
-
-          <h1 id="departments">Departments</h1>
-
-<h2 id="list-departments">List departments</h2>
+<blockquote>
+<p>With <code class="prettyprint">render_as=tree</code></p>
+</blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">11111</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"San Francisco"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"departments"</span><span class="p">:[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">33333</span><span class="p">,</span><span class="w">
@@ -444,12 +568,164 @@ When submitting a job application, you will use the <code>id</code> field to spe
           </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2013-07-02T19:39:23Z"</span><span class="p">,</span><span class="w">
           </span><span class="nt">"absolute_url"</span><span class="p">:</span><span class="s2">"http://your.co/careers?gh_jid=55555"</span><span class="w">
         </span><span class="p">}</span><span class="w">
-    </span><span class="err">}</span><span class="p">,</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">22222</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Account Management"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"jobs"</span><span class="p">:[]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"children"</span><span class="p">:[</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Returns a list of your organization&rsquo;s departments and jobs for the given <code class="prettyprint">office_id</code>.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.greenhouse.io/v1/boards/{board_token}/offices/{office_id}</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>board_token</td><td>Job Board URL token</td></tr>
+<tr>
+<td>office_id</td><td>ID of the office to retrieve</td></tr>
+</tbody></table>
+
+<h3 id="querystring-parameters">Querystring Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Required</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>render_as</td><td>No</td><td>string</td><td>This parameter defines how to represent the list of offices. The default value is &#39;list&rsquo;.</td></tr>
+</tbody></table>
+
+<p>Allowed <code class="prettyprint">render_as</code> values:</p>
+
+<table><thead>
+<tr>
+<td>Value</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>list</td><td>(Default).</td></tr>
+<tr>
+<td>tree</td><td>The children offices are returned as a tree.</td></tr>
+</tbody></table>
+
+          <h1 id="departments">Departments</h1>
+
+<h2 id="list-departments">List departments</h2>
+
+<blockquote>
+<p>With <code class="prettyprint">render_as=list</code> (default)</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"departments"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">77777</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"R &amp; D"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"jobs"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"child_ids"</span><span class="p">:[</span><span class="w">
+        </span><span class="mi">33333</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">33333</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Engineering"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"jobs"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">44444</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Product Engineer"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"location"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"San Francisco, CA"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2013-07-02T19:39:23Z"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"absolute_url"</span><span class="p">:</span><span class="s2">"http://your.co/careers?gh_jid=444444"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">55555</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Mobile Engineer - iOS"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"location"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"San Francisco, CA"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2013-07-02T19:39:23Z"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"absolute_url"</span><span class="p">:</span><span class="s2">"http://your.co/careers?gh_jid=55555"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="mi">77777</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"child_ids"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">22222</span><span class="p">,</span><span class="w">
       </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Account Management"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"jobs"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"child_ids"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="err">All</span><span class="w"> </span><span class="err">departments</span><span class="w"> </span><span class="err">are</span><span class="w"> </span><span class="err">listed</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
+<blockquote>
+<p>With <code class="prettyprint">render_as=tree</code></p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"departments"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">77777</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"R &amp; D"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"jobs"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"children"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">33333</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Engineering"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"jobs"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">44444</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Product Engineer"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"location"</span><span class="p">:{</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"San Francisco, CA"</span><span class="w">
+              </span><span class="p">},</span><span class="w">
+              </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2013-07-02T19:39:23Z"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"absolute_url"</span><span class="p">:</span><span class="s2">"http://your.co/careers?gh_jid=444444"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">55555</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Mobile Engineer - iOS"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"location"</span><span class="p">:{</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"San Francisco, CA"</span><span class="w">
+              </span><span class="p">},</span><span class="w">
+              </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2013-07-02T19:39:23Z"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"absolute_url"</span><span class="p">:</span><span class="s2">"http://your.co/careers?gh_jid=55555"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">],</span><span class="w">
+          </span><span class="nt">"children"</span><span class="p">:[</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">22222</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Account Management"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"jobs"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"children"</span><span class="p">:[</span><span class="w">
       </span><span class="p">]</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="err">//</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="err">All</span><span class="w"> </span><span class="err">departments</span><span class="w"> </span><span class="err">are</span><span class="w"> </span><span class="err">listed</span><span class="w">
@@ -473,7 +749,33 @@ When submitting a job application, you will use the <code>id</code> field to spe
 <td>board_token</td><td>Job Board URL token</td></tr>
 </tbody></table>
 
+<h3 id="querystring-parameters">Querystring Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Required</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>render_as</td><td>No</td><td>string</td><td>This parameter defines how to represent the list of departments. The default value is &lsquo;list&rsquo;.</td></tr>
+</tbody></table>
+
+<p>Allowed <code class="prettyprint">render_as</code> values:</p>
+
+<table><thead>
+<tr>
+<td>Value</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>list</td><td>(Default). The departments are returned as a list of objects and they include <code class="prettyprint">parent_id</code> and <code class="prettyprint">child_ids</code>.</td></tr>
+<tr>
+<td>tree</td><td>The departments are returned as a list of trees with <code class="prettyprint">children</code>.</td></tr>
+</tbody></table>
+
 <h2 id="retrieve-a-department">Retrieve a department</h2>
+
+<blockquote>
+<p>With <code class="prettyprint">render_as=list</code> (default)</p>
+</blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">33333</span><span class="p">,</span><span class="w">
   </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Engineering"</span><span class="p">,</span><span class="w">
@@ -496,6 +798,49 @@ When submitting a job application, you will use the <code>id</code> field to spe
       </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2013-07-02T19:39:23Z"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"absolute_url"</span><span class="p">:</span><span class="s2">"http://your.co/careers?gh_jid=55555"</span><span class="w">
     </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"child_ids"</span><span class="p">:[</span><span class="w">
+    </span><span class="mi">77777</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>With <code class="prettyprint">render_as=tree</code></p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">33333</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Engineering"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"jobs"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">44444</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Product Engineer"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"location"</span><span class="p">:{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"San Francisco, CA"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2013-07-02T19:39:23Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"absolute_url"</span><span class="p">:</span><span class="s2">"http://your.co/careers?gh_jid=444444"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">55555</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Mobile Engineer - iOS"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"location"</span><span class="p">:{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"San Francisco, CA"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="s2">"2013-07-02T19:39:23Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"absolute_url"</span><span class="p">:</span><span class="s2">"http://your.co/careers?gh_jid=55555"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"children"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">77777</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Mobile Development"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"jobs"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"children"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -516,6 +861,28 @@ When submitting a job application, you will use the <code>id</code> field to spe
 <td>board_token</td><td>Job Board URL token</td></tr>
 <tr>
 <td>department_id</td><td>ID of the department to retrieve</td></tr>
+</tbody></table>
+
+<h3 id="querystring-parameters">Querystring Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Required</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>render_as</td><td>No</td><td>string</td><td>This parameter defines how to represent the list of departments. The default value is &#39;list&rsquo;.</td></tr>
+</tbody></table>
+
+<p>Allowed <code class="prettyprint">render_as</code> values:</p>
+
+<table><thead>
+<tr>
+<td>Value</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>list</td><td>(Default).</td></tr>
+<tr>
+<td>tree</td><td>The children departments are returned as a tree.</td></tr>
 </tbody></table>
 
           <h1 id="job-boards">Job Boards</h1>
@@ -593,8 +960,8 @@ Please keep in mind that the HTTP Basic Auth API token is a secret key.  Any for
   </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New York, NY"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51.5034070"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.1275920"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"resume_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sammy has many years of experience as an expert basket weaving..."</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"cover_letter_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"I have are a very particular set of skills, skills I have acquired over a very long career. Skills that make me..."</span><span class="w">
+  </span><span class="nt">"resume_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"I have many years of experience as an expert basket weaver..."</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"cover_letter_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"I have a very particular set of skills, skills I have acquired over a very long career. Skills that make me..."</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -661,8 +1028,7 @@ Please keep in mind that the HTTP Basic Auth API token is a secret key.  Any for
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
+                <a href="#" data-language-name="json">json</a>
           </div>
       </div>
     </div>
