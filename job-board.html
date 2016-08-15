@@ -175,7 +175,7 @@ Job Board data is publically available, so authentication is not required for an
 <p>Returns the list of all job posts. The <code class="prettyprint">id</code> field contains the unique identifier for the job post, while <code class="prettyprint">internal_job_id</code> contains the unique identifier for the job itself. Any job custom fields you have selected to be exposed in the job board API will be shown in the <code class="prettyprint">metadata</code> attribute.</p>
 
 <aside class="warning">
-When submitting a job application, you will use the <code>id</code> field to specify the application&rsquo;s target job post. 
+When submitting a job application, you will use the <code>id</code> field to specify the application&rsquo;s target job post.
 </aside>
 
 <h3 id="http-request">HTTP Request</h3>
@@ -272,7 +272,7 @@ When submitting a job application, you will use the <code>id</code> field to spe
 
 <p>Returns a job post. Setting the questions querystring parameter to
 <code class="prettyprint">&quot;true&quot;</code> will include the list of job application fields; these fields
-can be used to dynamically construct your own job application form. </p>
+can be used to dynamically construct your own job application form.</p>
 
 <p>Any job custom fields you have selected to be exposed in the job board API will be shown in the <code class="prettyprint">metadata</code> attribute.</p>
 
@@ -314,6 +314,8 @@ can be used to dynamically construct your own job application form. </p>
 <td>input_file</td><td>Represent with an input of type file</td></tr>
 <tr>
 <td>input_text</td><td>Represent with an input of type text</td></tr>
+<tr>
+<td>input_hidden</td><td>Represent with an input of type hidden</td></tr>
 <tr>
 <td>textarea</td><td>Represent with a textarea</td></tr>
 <tr>
