@@ -213,13 +213,48 @@ When submitting a job application, you will use the <code>id</code> field to spe
   </span><span class="nt">"content"</span><span class="p">:</span><span class="s2">"This is the job description. &amp;amp;lt;p&amp;amp;gt;Any HTML included through the hosted job application editor will be automatically converted into corresponding HTML entitites.&amp;amp;lt;/p&amp;amp;gt;"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"absolute_url"</span><span class="p">:</span><span class="s2">"http://your.co/careers?gh_jid=444444"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"internal_job_id"</span><span class="p">:</span><span class="mi">55555</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"location_questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Location"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"location"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input_text"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Latitude"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"latitude"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input_hidden"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Longitude"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"longitude"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input_hidden"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+  </span><span class="p">],</span><span class="w">
   </span><span class="nt">"questions"</span><span class="p">:[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"required"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">"First Name"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"fields"</span><span class="p">:[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"first_name"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">denotes</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="nt">"name"</span><span class="w"> </span><span class="err">attribute</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">field</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"first_name"</span><span class="p">,</span><span class="w"> 
           </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"input_text"</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">]</span><span class="w">
@@ -326,6 +361,37 @@ can be used to dynamically construct your own job application form.</p>
 
 <p>Please note that it is possible for multiple fields to be aggregated beneath a single question. The &ldquo;Resume&rdquo; field is a prime example, with both an input_file and textarea type accepted. If marked as required, then we expect at least one of these fields to contain a valid value when your form is submitted to the <a href="#applications">application submission</a> endpoint.</p>
 
+<h3 id="location-questions">Location Questions</h3>
+
+<p>When questions=true is passed, we&rsquo;ll add a <code class="prettyprint">location_questions</code> list in the API Response in addition to the <code class="prettyprint">questions</code> list detailed above.</p>
+
+<p>If a job post has &ldquo;Location&rdquo; set to &ldquo;Hidden&rdquo;, the <code class="prettyprint">location_questions</code> list will be empty.  If
+&ldquo;Location&rdquo; has been set to &ldquo;Optional&rdquo; or &ldquo;Required&rdquo;, the list will be populated
+with three question objects, including &ldquo;location&rdquo;, &ldquo;latitude&rdquo;, and &ldquo;longitude&rdquo;. These objects will be in the same format as the questions found in the normal &ldquo;questions&rdquo; section of the API Response.</p>
+
+<p>&ldquo;Location&rdquo; will be type <code class="prettyprint">input_text</code>. This field should be exposed to the applicant. </br>
+&ldquo;Latitude&rdquo; and &ldquo;Longitude&rdquo;  will be type <code class="prettyprint">input_hidden</code> and should not be exposed to the
+applicant. These fields should take Numbers that indicate the given location&rsquo;s coordinates.</p>
+
+<p>Here is the suggested workflow for populating &ldquo;latitude&rdquo; and &ldquo;longitude&rdquo;:</p>
+
+<ol>
+<li>The applicant begins typing a location in your &ldquo;Location&rdquo; text box.</li>
+<li>As the applicant types, your app makes a call to the <a href="https://developers.google.com/maps/documentation/javascript/places-autocomplete">Google Places Autocomplete API</a>
+to retrieve suggested location names (e.g. New York, NY, United States)
+and the <code class="prettyprint">place_id</code> associated with each location (e.g. ChIJOwg_06VPwokRYv534QaPC8g).</li>
+<li>Your app displays the suggested location names to the applicant.</li>
+<li>The applicant selects a suggested location.</li>
+<li>Your app uses the <code class="prettyprint">place_id</code> from the previous API call to retrieve the latitude and
+longitude for the selected location using the <a href="https://developers.google.com/maps/documentation/javascript/places#place_details">Google Place Details API</a>.</li>
+<li>Your app populates the hidden &ldquo;latitude&rdquo; and &ldquo;longitude&rdquo; fields with the result of
+this API call.</li>
+</ol>
+
+<p>When submitting location through the API, all 3 fields must be included.
+If only &ldquo;location&rdquo; is sent and &ldquo;latitude&rdquo; and &ldquo;longitude&rdquo; are omitted, we will
+ignore &ldquo;location&rdquo; entirely.</p>
+
           <h1 id="offices">Offices</h1>
 
 <h2 id="list-offices">List offices</h2>
@@ -385,13 +451,11 @@ can be used to dynamically construct your own job application form.</p>
           </span><span class="nt">"child_ids"</span><span class="p">:[</span><span class="w">
           </span><span class="p">]</span><span class="w">
         </span><span class="p">},</span><span class="w">
-        </span><span class="err">//</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="err">Each</span><span class="w"> </span><span class="err">dept</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">listed</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">each</span><span class="w"> </span><span class="err">office</span><span class="w">
       </span><span class="p">],</span><span class="w">
       </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="mi">10201</span><span class="p">,</span><span class="w">
       </span><span class="nt">"child_ids"</span><span class="p">:[</span><span class="w">
       </span><span class="p">]</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="err">//</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="err">More</span><span class="w"> </span><span class="err">offices</span><span class="w"> </span><span class="err">here</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -446,14 +510,12 @@ can be used to dynamically construct your own job application form.</p>
               </span><span class="nt">"children"</span><span class="p">:[</span><span class="w">
               </span><span class="p">]</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="err">//</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="err">Each</span><span class="w"> </span><span class="err">dept</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">listed</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">each</span><span class="w"> </span><span class="err">office</span><span class="w">
           </span><span class="p">]</span><span class="w">
           </span><span class="s2">"children"</span><span class="err">:</span><span class="p">[</span><span class="w">
           </span><span class="p">]</span><span class="w">
         </span><span class="p">},</span><span class="w">
       </span><span class="p">]</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="err">//</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="err">More</span><span class="w"> </span><span class="err">offices</span><span class="w"> </span><span class="err">here</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -678,7 +740,6 @@ can be used to dynamically construct your own job application form.</p>
       </span><span class="nt">"child_ids"</span><span class="p">:[</span><span class="w">
       </span><span class="p">]</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="err">//</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="err">All</span><span class="w"> </span><span class="err">departments</span><span class="w"> </span><span class="err">are</span><span class="w"> </span><span class="err">listed</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -730,7 +791,6 @@ can be used to dynamically construct your own job application form.</p>
       </span><span class="nt">"children"</span><span class="p">:[</span><span class="w">
       </span><span class="p">]</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="err">//</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="err">All</span><span class="w"> </span><span class="err">departments</span><span class="w"> </span><span class="err">are</span><span class="w"> </span><span class="err">listed</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -967,9 +1027,9 @@ Please keep in mind that the HTTP Basic Auth API token is a secret key.  Any for
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Use this endpoint to submit a new application. This endpoint accepts a multipart form POST representing a job application. Application forms are job-specific and will be constrcuted via the &ldquo;questions&rdquo; array available via the <a href="#retrieve-a-job">Job method</a>. </p>
+<p>Use this endpoint to submit a new application. This endpoint accepts a multipart form POST representing a job application. Application forms are job-specific and will be constrcuted via the &ldquo;questions&rdquo; array available via the <a href="#retrieve-a-job">Job method</a>. Please see the <a href="#retrieve-a-job">Job method</a> documentation for instructions on submitting location information through the API.</p>
 
-<p>Please note that when submitting an application through this method, Greenhouse will not confirm the inclusion of required fields. Validation for required fields must be done on the client side, as Greenhouse will not reject applications that are missing required fields.</p>
+<p>Note that when submitting an application through this method, Greenhouse will not confirm the inclusion of required fields. Validation for required fields must be done on the client side, as Greenhouse will not reject applications that are missing required fields.</p>
 
 <aside class="warning">
   This method requires HTTP Basic Auth over SSL/TLS: the Basic Auth username is your API key (found on the API Credentials page). No password is required. 
