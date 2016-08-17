@@ -334,7 +334,7 @@ can be used to dynamically construct your own job application form.</p>
 <td>Parameter</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>questions</td><td><em>(optional)</em> If set to <code class="prettyprint">true</code>, include the list of job application fields.</td></tr>
+<td class="optional">questions</td><td>If set to <code class="prettyprint">true</code>, include an array of job application fields <code class="prettyprint">questions</code>. If the job post has <code class="prettyprint">location</code> set to <code class="prettyprint">optional</code> or <code class="prettyprint">required</code>, an array of questions used to capture the applicant&rsquo;s location, <code class="prettyprint">location_questions</code>, is also included.</td></tr>
 </tbody></table>
 
 <h3 id="questions">Questions</h3>
@@ -360,37 +360,6 @@ can be used to dynamically construct your own job application form.</p>
 </tbody></table>
 
 <p>Please note that it is possible for multiple fields to be aggregated beneath a single question. The &ldquo;Resume&rdquo; field is a prime example, with both an input_file and textarea type accepted. If marked as required, then we expect at least one of these fields to contain a valid value when your form is submitted to the <a href="#applications">application submission</a> endpoint.</p>
-
-<h3 id="location-questions">Location Questions</h3>
-
-<p>When questions=true is passed, we&rsquo;ll add a <code class="prettyprint">location_questions</code> list in the API Response in addition to the <code class="prettyprint">questions</code> list detailed above.</p>
-
-<p>If a job post has &ldquo;Location&rdquo; set to &ldquo;Hidden&rdquo;, the <code class="prettyprint">location_questions</code> list will be empty.  If
-&ldquo;Location&rdquo; has been set to &ldquo;Optional&rdquo; or &ldquo;Required&rdquo;, the list will be populated
-with three question objects, including &ldquo;location&rdquo;, &ldquo;latitude&rdquo;, and &ldquo;longitude&rdquo;. These objects will be in the same format as the questions found in the normal &ldquo;questions&rdquo; section of the API Response.</p>
-
-<p>&ldquo;Location&rdquo; will be type <code class="prettyprint">input_text</code>. This field should be exposed to the applicant. </br>
-&ldquo;Latitude&rdquo; and &ldquo;Longitude&rdquo;  will be type <code class="prettyprint">input_hidden</code> and should not be exposed to the
-applicant. These fields should take Numbers that indicate the given location&rsquo;s coordinates.</p>
-
-<p>Here is the suggested workflow for populating &ldquo;latitude&rdquo; and &ldquo;longitude&rdquo;:</p>
-
-<ol>
-<li>The applicant begins typing a location in your &ldquo;Location&rdquo; text box.</li>
-<li>As the applicant types, your app makes a call to the <a href="https://developers.google.com/maps/documentation/javascript/places-autocomplete">Google Places Autocomplete API</a>
-to retrieve suggested location names (e.g. New York, NY, United States)
-and the <code class="prettyprint">place_id</code> associated with each location (e.g. ChIJOwg_06VPwokRYv534QaPC8g).</li>
-<li>Your app displays the suggested location names to the applicant.</li>
-<li>The applicant selects a suggested location.</li>
-<li>Your app uses the <code class="prettyprint">place_id</code> from the previous API call to retrieve the latitude and
-longitude for the selected location using the <a href="https://developers.google.com/maps/documentation/javascript/places#place_details">Google Place Details API</a>.</li>
-<li>Your app populates the hidden &ldquo;latitude&rdquo; and &ldquo;longitude&rdquo; fields with the result of
-this API call.</li>
-</ol>
-
-<p>When submitting location through the API, all 3 fields must be included.
-If only &ldquo;location&rdquo; is sent and &ldquo;latitude&rdquo; and &ldquo;longitude&rdquo; are omitted, we will
-ignore &ldquo;location&rdquo; entirely.</p>
 
           <h1 id="offices">Offices</h1>
 
@@ -1012,20 +981,42 @@ Please keep in mind that the HTTP Basic Auth API token is a secret key.  Any for
 </code></pre>
 
 <blockquote>
+<p>cURL equivalent:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>curl -X POST \
+  -H "Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6" \
+  -H "Content-Type: multipart/form-data" \
+  -F "first_name=Sammy" \
+  -F "last_name=McSamson" \
+  -F "email=sammy@example.com" \
+  -F "phone=3337778888" \
+  -F "location=110 5th Ave New York, NY, 10011" \
+  -F "latitude=40.7376671" \
+  -F "longitude=-73.9929196" \
+  -F "resume=@/path/to/resume/ADA084551.pdf" \
+  -F "cover_letter=@/path/to/coverletter/blah.pdf" \
+  "https://api.greenhouse.io/v1/boards/very_awesome_inc/jobs/127817"
+</code></pre>
+
+<blockquote>
 <p>or, you can POST a JSON encoded body (with <code class="prettyprint">Content-Type: application/json</code>):</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sammy"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"McSamson"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sammy@example.com"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3337778888"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New York, NY"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"51.5034070"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.1275920"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"resume_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"I have many years of experience as an expert basket weaver..."</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"cover_letter_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"I have a very particular set of skills, skills I have acquired over a very long career. Skills that make me..."</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<pre class="highlight plaintext"><code>curl -X POST \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6" \
+  -d '{
+    "first_name": "Sammy",
+    "last_name": "McSamson",
+    "email": "sammy@example.com",
+    "phone": "3337778888",
+    "location": "110 5th Ave New York, NY, 10011",
+    "latitude": "40.7376671",
+    "longitude": "-73.9929196",
+    "resume_text": "I have many years of experience as an expert basket weaver...",
+    "cover_letter_text": "I have a very particular set of skills, skills I have acquired over a very long career. Skills that make me..."
+  }' \
+  "https://api.greenhouse.io/v1/boards/very_awesome_inc/jobs/127817"
+</code></pre>
 
 <p>Use this endpoint to submit a new application. This endpoint accepts a multipart form POST representing a job application. Application forms are job-specific and will be constrcuted via the &ldquo;questions&rdquo; array available via the <a href="#retrieve-a-job">Job method</a>. Please see the <a href="#retrieve-a-job">Job method</a> documentation for instructions on submitting location information through the API.</p>
 
@@ -1074,9 +1065,9 @@ Please keep in mind that the HTTP Basic Auth API token is a secret key.  Any for
 <tr>
 <td class="optional">location</td><td>Applicant&rsquo;s street address</td></tr>
 <tr>
-<td class="optional">latitude</td><td>Applicant&rsquo;s home latitude</td></tr>
+<td class="optional">latitude</td><td>Applicant&rsquo;s home latitude. This is a <em>hidden</em> field and should not be exposed directly to the applicant.</td></tr>
 <tr>
-<td class="optional">longitude</td><td>Applicant&rsquo;s home longitude</td></tr>
+<td class="optional">longitude</td><td>Applicant&rsquo;s home longitude. This is a <em>hidden</em> field and should not be exposed directly to the applicant.</td></tr>
 <tr>
 <td class="optional">resume_text</td><td>Plaintext resume body</td></tr>
 <tr>
@@ -1086,6 +1077,25 @@ Please keep in mind that the HTTP Basic Auth API token is a secret key.  Any for
 <tr>
 <td class="optional">cover_letter</td><td>Cover letter file contents.  <em>Only allowed in <code class="prettyprint">multipart/form-data</code> requests</em></td></tr>
 </tbody></table>
+
+<h3 id="collecting-applicant-location">Collecting Applicant Location</h3>
+
+<p>Here is the suggested workflow for populating <code class="prettyprint">location</code>, <code class="prettyprint">latitude</code> and <code class="prettyprint">longitude</code>:</p>
+
+<ol>
+<li>The applicant begins typing a location in your <code class="prettyprint">location</code> text box.</li>
+<li>As the applicant types, your app makes a call to the <a href="https://developers.google.com/maps/documentation/javascript/places-autocomplete">Google Places Autocomplete API</a>
+to retrieve suggested location names (e.g. New York, NY, United States)
+and the <code class="prettyprint">place_id</code> associated with each location (e.g. <code class="prettyprint">ChIJOwg_06VPwokRYv534QaPC8g</code>).</li>
+<li>Your app displays the suggested location names to the applicant.</li>
+<li>The applicant selects a suggested location.</li>
+<li>Your app uses the <code class="prettyprint">place_id</code> from the previous API call to retrieve the latitude and
+longitude for the selected location using the <a href="https://developers.google.com/maps/documentation/javascript/places#place_details">Google Place Details API</a>.</li>
+<li>Your app populates the hidden <code class="prettyprint">latitude</code> and <code class="prettyprint">longitude</code> fields with the result of
+this API call.</li>
+</ol>
+
+<p>Note that all 3 fields must be included. If only <code class="prettyprint">location</code> is sent and <code class="prettyprint">latitude</code> and <code class="prettyprint">longitude</code> are omitted, <code class="prettyprint">location</code> will be ignored entirely.</p>
 
       </div>
       <div class="dark-box">
