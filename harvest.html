@@ -547,7 +547,7 @@ X-RateLimit-Remaining: 49
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Move this application to the next stage. The response is populated with the application&rsquo;s information which will reflect its new state. Note that only applications in the &#39;active&rsquo; state can be advanced.</p>
+<p>Move this application to the next stage. The response is populated with the application&rsquo;s information which will reflect its new state. Note that only applications in the <code class="prettyprint">active</code> state can be advanced.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -619,7 +619,7 @@ X-RateLimit-Remaining: 49
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Move this application from one stage to another. The response is populated with the application&rsquo;s information which will reflect its new state. Note that only applications in the &#39;active&rsquo; state can be moved.</p>
+<p>Move this application from one stage to another. The response is populated with the application&rsquo;s information which will reflect its new state. Note that only applications in the <code class="prettyprint">active</code> state can be moved.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -701,7 +701,7 @@ X-RateLimit-Remaining: 49
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Reject this application. The response is populated with the application&rsquo;s information which will reflect its new state. Note that only applications in the &#39;active&rsquo; state can be rejected.</p>
+<p>Reject this application. The response is populated with the application&rsquo;s information which will reflect its new state. Note that only applications in the <code class="prettyprint">active</code> state can be rejected.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -734,6 +734,85 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>rejection_email.email_template_id</td><td>No</td><td>string</td><td>The template the to use for the rejection email.</td></tr>
 </tbody></table>
+
+<h2 id="unreject-an-application">Unreject an application</h2>
+<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://harvest.greenhouse.io/v1/applications/{id}/unreject'</span><span class="se">\</span>
+  -H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span><span class="se">\</span>
+  -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>A successful response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">985314</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"candidate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">978031</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"prospect"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"applied_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T20:11:39.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"last_activity_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-27T16:13:15.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1871</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"public_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Happy Hour"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"credited_to"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4080</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kate Austen"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"jobs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Accounting Manager"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"current_stage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">62828</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Recruiter Phone Screen"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>An unsuccessful response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Application must be 'rejected', is currently 'active'"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Unreject this application. The response is populated with the application in its new state. Note that only applications in the <code class="prettyprint">rejected</code> state can be unrejected.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://harvest.greenhouse.io/v1/applications/{id}/unreject</code></p>
+
+<h3 id="headers">Headers</h3>
+
+<table><thead>
+<tr>
+<td>Header</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>On-Behalf-Of</td><td>ID of the user issuing this request. Required for auditing purposes.</td></tr>
+</tbody></table>
+
+<h3 id="url-parameters">URL parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>id</td><td>ID of the application to unreject</td></tr>
+</tbody></table>
+
+<h3 id="json-body-parameters">JSON Body Parameters</h3>
+
+<p>No JSON body parameters</p>
 
           <h1 id="candidates">Candidates</h1>
 
@@ -2010,7 +2089,9 @@ X-RateLimit-Remaining: 49
 <a href="#the-job-post-object">See noteworthy response attributes.</a></p>
 
 <h2 id="retrieve-job-post-for-job">Retrieve job post for job</h2>
-<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/jobs/{id}/job_post'</span> 
+
+<aside class="warning">As of September 2016, we introduced the ability to add multiple job posts for a single job. To list all job posts for a job, see <a href="#list-multiple-job-posts-for-a-job">here</a>.</aside>
+<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/jobs/{id}/job_post'</span>
 -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
 </code></pre>
 
@@ -2069,6 +2150,99 @@ X-RateLimit-Remaining: 49
 <td>content</td><td>If present, will return the text of the job post as posted to the external job board.</td></tr>
 <tr>
 <td>questions</td><td>If present, will return an array of questions associated with this job post.</td></tr>
+</tbody></table>
+
+<p><br>
+<a href="#the-job-post-object">See noteworthy response attributes.</a></p>
+
+<h2 id="list-job-posts-for-a-job">List job posts for a job</h2>
+<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/jobs/{id}/job_posts'</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">129547</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"live"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test job one"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Material Plane"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"internal"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"external"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">146218</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"job post content"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-09-19T14:04:25.297Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"internal_content"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-22T05:49:35.145Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"First Name"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"short_text"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Last Name"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"short_text"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">129548</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"live"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test job two"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Material Plane"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"internal"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"external"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">146218</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"job post content two"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-09-19T14:04:25.297Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"internal_content"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-22T05:49:35.145Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"First Name"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"short_text"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Last Name"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"short_text"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>List all the coresponding job posts for a given Job ID.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/jobs/{id}/job_posts</code></p>
+
+<h3 id="url-parameters">URL parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>id</td><td>The ID of the job whose job posts you want to retrieve</td></tr>
 </tbody></table>
 
 <p><br>
