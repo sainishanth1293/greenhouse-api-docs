@@ -376,6 +376,10 @@ X-RateLimit-Remaining: 49
   </span><span class="nt">"current_stage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">62828</span><span class="p">,</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Recruiter Phone Screen"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"bio"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"birthday"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -402,6 +406,8 @@ X-RateLimit-Remaining: 49
 <td>credited_to.id</td><td>The ID of the user who will receive credit for this application.</td></tr>
 <tr>
 <td>answers</td><td>The answers provided to the questions in this application. Array contains the text value of the question and answer. Answers are always plaintext strings; booleans are represented with Yes or No.</td></tr>
+<tr>
+<td>custom_fields</td><td>Contains a hash of the custom fields configured for this resource. The properties in this hash reflect the active custom fields as of the time this method is called.</td></tr>
 </tbody></table>
 
 <h2 id="list-applications">List applications</h2>
@@ -460,7 +466,7 @@ X-RateLimit-Remaining: 49
 <a href="#the-application-object">See noteworthy response attributes.</a></p>
 
 <h2 id="retrieve-an-application">Retrieve an application</h2>
-<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/applications/{id}'</span> 
+<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/applications/{id}'</span>
   -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
 </code></pre>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -504,7 +510,7 @@ X-RateLimit-Remaining: 49
 
 <h2 id="advance-an-application">Advance an application</h2>
 <pre class="highlight shell"><code>curl -X POST <span class="s1">'https://harvest.greenhouse.io/v1/applications/{id}/advance'</span>
--H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span> 
+-H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
 -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
 </code></pre>
 
@@ -575,7 +581,7 @@ X-RateLimit-Remaining: 49
 
 <h2 id="move-an-application">Move an application</h2>
 <pre class="highlight shell"><code>curl -X POST <span class="s1">'https://harvest.greenhouse.io/v1/applications/{id}/move'</span>
--H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span> 
+-H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
 -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
 </code></pre>
 
@@ -653,7 +659,7 @@ X-RateLimit-Remaining: 49
 
 <h2 id="reject-an-application">Reject an application</h2>
 <pre class="highlight shell"><code>curl -X POST <span class="s1">'https://harvest.greenhouse.io/v1/applications/{id}/reject'</span>
--H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span> 
+-H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
 -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
 </code></pre>
 
