@@ -4745,6 +4745,178 @@ X-RateLimit-Remaining: 49
 <p><br>
 <a href="#the-source-object">See noteworthy response attributes.</a></p>
 
+          <h1 id="tags">Tags</h1>
+
+<p>Some resource types allow tags to be assigned to them. Tags are useful for grouping resources.  Currently, only candidates can be tagged from the Harvest API.</p>
+
+<h2 id="the-candidate-tag-object">The candidate tag object</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">230</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New York"</span><span class="p">,</span><span class="w">
+</span><span class="err">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="noteworthy-attributes">Noteworthy attributes</h3>
+
+<table><thead>
+<tr>
+<td>Attribute</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>id</td><td>The candidate tag&rsquo;s unique identifier</td></tr>
+<tr>
+<td>name</td><td>The name of the tag</td></tr>
+</tbody></table>
+
+<h2 id="get-list-candidate-tags">GET: List Candidate Tags</h2>
+
+<p>List all of an organization&rsquo;s candidate tags.</p>
+<pre class="highlight shell"><code>curl -X GET <span class="s1">'https://harvest.greenhouse.io/v1/tags/candidate'</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">365</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ruby"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">366</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rails"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">367</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Junior"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/tags/candidate</code></p>
+
+<p><br></p>
+
+<p><a href="#the-candidate-tag-object">See noteworthy response attributes.</a></p>
+
+<h2 id="get-list-tags-applied-to-candidate">GET: List tags applied to candidate</h2>
+<pre class="highlight shell"><code>curl -X GET <span class="s1">'https://harvest.greenhouse.io/v1/candidates/{id}/tags
+-H "Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"
+</span></code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">41892882</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"candidate_tag_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1094</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"candidate_tag_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Accounting Candidate"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>Retrieve the list of tags applied to a given candidate</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/candidates/{id}/tags</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>id</td><td>The ID of the candidate whose tags you want to retrieve</td></tr>
+</tbody></table>
+
+<p><br></p>
+
+<p><a href="#the-candidate-tag-object">See noteworthy response attributes.</a></p>
+
+<h2 id="delete-remove-tag-from-candidate">DELETE: Remove tag from candidate</h2>
+<pre class="highlight shell"><code>curl -X DELETE <span class="s1">'https://harvest.greenhouse.io/v1/candidates/{candidate_id}/tags/{tag_id}'</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Remove a tag from a candidate</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE https://harvest.greenhouse.io/v1/candidates/{candidate_id}/tags/{tag_id}</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>candidate_id</td><td>The ID of the candidate to whom you want to apply the tag</td></tr>
+<tr>
+<td>tag_id</td><td>The ID of the tag you wish to apply</td></tr>
+</tbody></table>
+
+<p><br></p>
+
+<p><a href="#the-candidate-tag-object">See noteworthy response attributes.</a></p>
+
+<h3 id="json-body-parameters">JSON Body Parameters</h3>
+
+<p>No body parameters.</p>
+
+<h2 id="put-add-a-candidate-tag">PUT: Add a candidate tag</h2>
+<pre class="highlight shell"><code>curl -X PUT <span class="s1">'https://harvest.greenhouse.io/v1/candidates/{id}/applied_tags
+-H "Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"
+</span></code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Apply a tag to a given candidate</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT https://harvest.greenhouse.io/v1/candidates/{candidate_id}/tags/{tag_id}</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>candidate_id</td><td>The ID of the candidate to whom you want to apply the tag</td></tr>
+<tr>
+<td>tag_id</td><td>The ID of the tag you wish to apply</td></tr>
+</tbody></table>
+
+<p><br></p>
+
+<p><a href="#the-candidate-tag-object">See noteworthy response attributes.</a></p>
+
+<h3 id="json-body-parameters">JSON Body Parameters</h3>
+
+<p>No body parameters.</p>
+
           <h1 id="users">Users</h1>
 
 <h2 id="the-user-object">The user object</h2>
