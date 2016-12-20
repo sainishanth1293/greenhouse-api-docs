@@ -1020,6 +1020,40 @@ analytics.page()
 
 <p>The Job Created event is triggered when a new job is created from scratch or copied from another job.</p>
 
+          <h2 id="offer-deleted">Offer deleted</h2>
+
+<p>This web hook only fires when offers are deleted from the Greenhouse system.  This only happens when the &ldquo;Delete&rdquo; link is clicked on an individual offer or when the anonymize candidate process is run with the &ldquo;all_offer_versions&rdquo; option selected.  This will not fire individually when an application is deleted.</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"offer_deleted"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2344</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"offer_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Created"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"sent_on"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-03-22T00:00:00Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"resolved_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-03-25T00:00:00Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"These are notes on the offer."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4567</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="noteworthy-response-attributes">Noteworthy response attributes</h3>
+
+<table><thead>
+<tr>
+<td>Attribute</td><td>Note</td></tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">offer_status</code></td><td>One of Created, Accepted, Rejected, or Deprecated.</td></tr>
+<tr>
+<td><code class="prettyprint">version</code></td><td>This is the version of the offer in Greenhouse.  New versions are triggered when certain fields are updated.</td></tr>
+<tr>
+<td><code class="prettyprint">sent_on</code></td><td>When the offer was sent to the candidate</td></tr>
+<tr>
+<td><code class="prettyprint">resolved_at</code></td><td>When this version was either accepted, rejected, or deprecated (a new version was made)</td></tr>
+</tbody></table>
+
           <h2 id="prospect-created">Prospect created</h2>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new_prospect_application"</span><span class="p">,</span><span class="w">
