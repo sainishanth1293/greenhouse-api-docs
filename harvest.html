@@ -508,6 +508,40 @@ X-RateLimit-Remaining: 49
 <p><br>
 <a href="#the-application-object">See noteworthy response attributes.</a></p>
 
+<h2 id="delete-delete-application">DELETE: Delete Application</h2>
+<pre class="highlight shell"><code>curl -X DELETE <span class="s1">'https://harvest.greenhouse.io/v1/applications/{id}'</span>
+-H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above returns a JSON response, structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Application 29622362 has been deleted."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Delete an application by <code class="prettyprint">id</code>.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE https://harvest.greenhouse.io/v1/applications/{id}</code></p>
+
+<h3 id="headers">Headers</h3>
+
+<table><thead>
+<tr>
+<td>Header</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>On-Behalf-Of</td><td>ID of the user issuing this request. Required for auditing purposes.</td></tr>
+</tbody></table>
+
+<p><br></p>
+
+<p><a href="#the-candidate-object">See noteworthy response attributes.</a></p>
+
 <h2 id="patch-update-application">PATCH: Update Application</h2>
 <pre class="highlight shell"><code>curl -X PATCH <span class="s1">'https://harvest.greenhouse.io/v1/applications/{id}/"
 -H "On-Behalf-Of: {greenhouse user ID}"
@@ -1179,6 +1213,40 @@ X-RateLimit-Remaining: 49
 </thead><tbody>
 <tr>
 <td>id</td><td>The ID of the candidate to retrieve</td></tr>
+</tbody></table>
+
+<p><br></p>
+
+<p><a href="#the-candidate-object">See noteworthy response attributes.</a></p>
+
+<h2 id="delete-delete-candidate">DELETE: Delete Candidate</h2>
+<pre class="highlight shell"><code>curl -X DELETE <span class="s1">'https://harvest.greenhouse.io/v1/candidates/{id}'</span>
+-H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above returns a JSON response, structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Person 29622362 has been deleted."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Delete a candidate by <code class="prettyprint">id</code>.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE https://harvest.greenhouse.io/v1/candidates/{id}</code></p>
+
+<h3 id="headers">Headers</h3>
+
+<table><thead>
+<tr>
+<td>Header</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>On-Behalf-Of</td><td>ID of the user issuing this request. Required for auditing purposes.</td></tr>
 </tbody></table>
 
 <p><br></p>
