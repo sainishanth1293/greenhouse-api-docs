@@ -1260,6 +1260,24 @@ analytics.page()
 
 <p>See web hook <a href="#common-attributes">common attributes</a>.</p>
 
+          <h2 id="scorecard-deleted">Scorecard deleted</h2>
+
+<p>This web hook only fires when individual scorecards are destroyed.  This occurs when the Harvest API delete endpoint is used, or when the delete scorecard link is used in the application. This will not fire when a candidate or application is deleted. A candidate being deleted implies all their scorecards have been deleted with them. An application being deleted does not cause scorecards to be deleted.</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scorecard_deleted"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"scorecard"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6036088</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"candidate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">29843272</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"interviewed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-12-28T17:00:00.000Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-12-28T22:58:03.552Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-12-28T22:58:03.552Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"scorecard_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"complete"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
       </div>
       <div class="dark-box">
           <div class="lang-selector">
