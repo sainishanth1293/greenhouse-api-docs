@@ -1534,7 +1534,12 @@ X-RateLimit-Remaining: 49
   </span><span class="nt">"referrer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">770</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"attachments"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+    </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"resume.pdf"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"resume"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6..."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/pdf"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -1609,6 +1614,8 @@ X-RateLimit-Remaining: 49
 <td>referrer[type]</td><td>No</td><td>string</td><td>A string representing the type of referrer: &lsquo;id&rsquo;, &#39;email&rsquo;, or &#39;outside&rsquo;</td></tr>
 <tr>
 <td>referrer[value]</td><td>No</td><td>string</td><td>The id of the user who made the referral (not the referrer id)</td></tr>
+<tr>
+<td>attachments</td><td>No</td><td>array</td><td>An array of attachments to be uploaded to this application. See <a href="#post-add-attachment">Add Attachment</a> for parameters.</td></tr>
 </tbody></table>
 
 <h2 id="post-add-attachment">POST: Add Attachment</h2>
@@ -1623,7 +1630,8 @@ X-RateLimit-Remaining: 49
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"filename"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"resume.pdf"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"resume"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"content"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs"</span><span class="w">
+  </span><span class="nt">"content"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs..."</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"content_type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"application/pdf"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -1633,7 +1641,8 @@ X-RateLimit-Remaining: 49
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"resume.pdf"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://prod-heroku.s3.amazonaws.com/..."</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"resume"</span><span class="w">
+  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"resume"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/pdf"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -1669,7 +1678,11 @@ X-RateLimit-Remaining: 49
 <td>content</td><td>No</td><td>string</td><td>Base64 encoded content of the attachment (if you are providing content, you do not need to provide url)</td></tr>
 <tr>
 <td>url</td><td>No</td><td>string</td><td>Url of the attachment (if you are providing the url, you do not need to provide the content)</td></tr>
+<tr>
+<td>content_type</td><td>No*</td><td>string</td><td>The content-type of the document you are sending.  When using a URL, this generally isn&rsquo;t needed, as the responding server will deliver a content type.  This should be included for encoded content.  Accepted content types are: &ldquo;text/html&rdquo;, &ldquo;text/plain&rdquo;, &ldquo;text/javascript&rdquo;, &ldquo;text/css&rdquo;, &ldquo;text/calendar&rdquo;, &ldquo;text/csv&rdquo;, &ldquo;text/vcard&rdquo;, &ldquo;image/png&rdquo;, &ldquo;image/jpeg&rdquo;, &ldquo;image/gif&rdquo;, &ldquo;image/bmp&rdquo;, &ldquo;image/tiff&rdquo;, &ldquo;video/mpeg&rdquo;, &ldquo;application/xml&rdquo;, &ldquo;application/rss+xml&rdquo;, &ldquo;application/atom+xml&rdquo;, &ldquo;application/x-yaml&rdquo;, &ldquo;multipart/form-data&rdquo;, &ldquo;application/x-www-form-urlencoded&rdquo;, &ldquo;application/json&rdquo;, &ldquo;application/pdf&rdquo;, &ldquo;application/zip&rdquo;, &ldquo;application/vnd.openxmlformats-officedocument.wordprocessingml.document&rdquo;, &ldquo;application/vnd.ms-excel&rdquo;, &ldquo;application/vnd.openxmlformats-officedocument.spreadsheetml.sheet&rdquo;, &ldquo;application/javascript&rdquo;, &ldquo;application/msgpack&rdquo;</td></tr>
 </tbody></table>
+
+<p>* - content_type is not required for purposes of backward compatibility. It is <em>strongly</em> recommended that you always include content type for document uploads.</p>
 
 <h2 id="post-add-candidate">POST: Add Candidate</h2>
 <pre class="highlight shell"><code>curl -X POST <span class="s1">'https://harvest.greenhouse.io/v1/candidates'</span>
