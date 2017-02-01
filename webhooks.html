@@ -1206,6 +1206,53 @@ analytics.page()
 
 <p>See web hook <a href="#common-attributes">common attributes</a>.</p>
 
+          <h2 id="department-deleted">Department deleted</h2>
+
+<p>This web hook fires when departments are deleted from the Greenhouse system from the Configure &raquo; Organization screen. This only happens when the &ldquo;Remove&rdquo; button is clicked after clicking the &ldquo;X&rdquo; next to an office name.</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"department_deleted"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"department"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">106</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Creative"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"child_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="mi">23328</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="noteworthy-response-attributes">Noteworthy response attributes</h3>
+
+<table><thead>
+<tr>
+<td>Attribute</td><td>Note</td></tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">id</code></td><td>The Greenhouse id for the department</td></tr>
+<tr>
+<td><code class="prettyprint">name</code></td><td>The name of the department deleted</td></tr>
+<tr>
+<td><code class="prettyprint">child_ids</code></td><td>Any former child department ids (this includes all descendants); will be [] if empty</td></tr>
+<tr>
+<td><code class="prettyprint">parent_id</code></td><td>The department&rsquo;s parent department id; will be null if empty</td></tr>
+</tbody></table>
+
+          <h2 id="interview-deleted">Interview deleted</h2>
+
+<p>This web hook fires when a scheduled interview is cancelled or the interview is deleted directly. This web hook will not fire if an interview is deleted because a candidate, application, or hiring plan is deleted.</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"interview_deleted"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"interview"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">31087450</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
           <h2 id="job-created">Job created</h2>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"job_created"</span><span class="p">,</span><span class="w">
@@ -1266,6 +1313,32 @@ analytics.page()
 
 <p>The Job Created event is triggered when a new job is created from scratch or copied from another job.</p>
 
+          <h2 id="job-deleted">Job deleted</h2>
+
+<p>This web hook only fires when jobs are deleted from the Greenhouse system. This only happens when a job is closed and then the &ldquo;Delete&rdquo; button is clicked from the Job Dashboard.</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"job_deleted"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"job"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">209256</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Project Manager"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="noteworthy-response-attributes">Noteworthy response attributes</h3>
+
+<table><thead>
+<tr>
+<td>Attribute</td><td>Note</td></tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">id</code></td><td>The internal Greenhouse Job id</td></tr>
+<tr>
+<td><code class="prettyprint">name</code></td><td>The name of the job that was deleted</td></tr>
+</tbody></table>
+
           <h2 id="job-updated">Job updated</h2>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"job_updated"</span><span class="p">,</span><span class="w">
@@ -1322,6 +1395,80 @@ analytics.page()
 
 <p>The Job Updated event is triggered any time a job is changed.</p>
 
+          <h2 id="job-post-deleted">Job Post deleted</h2>
+
+<p>This web hook fires when a job post is deleted.  This occurs when the delete link is clicked on a job post. Only job posts that are not live may be deleted. This will not fire if a job itself is deleted; a job being deleted implies all of its posts have been deleted with them.</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"job_post_deleted"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"job_post"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">258341</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">284999</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Software Engineer"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dallas"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;A pretty interesting job post!&lt;/p&gt;"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-19T20:01:53.146Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"internal_content"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LinkedIn Profile"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input_text"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Website"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input_text"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"How did you hear about this job?"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input_text"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Are you a cool engineer?"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"multi_value_single_select"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"Yes"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"No"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"As a cucumber"</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"external"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"internal"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"live"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+          <h2 id="job-stage-deleted">Job Stage deleted</h2>
+
+<p>This web hook only fires when interview stages on a job are removed.  This occurs when the remove stage link is used in the Job Setup section of the application. This will not fire when a job is deleted. A job being deleted implies all of its stages have been deleted with them.</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"job_interview_stage_deleted"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"job_interview_stage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">430608</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">60453</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-03-11T13:25:25.313Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-16T09:29:33.650Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Phone Screen"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
           <h2 id="offer-deleted">Offer deleted</h2>
 
 <p>This web hook only fires when offers are deleted from the Greenhouse system.  This only happens when the &ldquo;Delete&rdquo; link is clicked on an individual offer or when the anonymize candidate process is run with the &ldquo;all_offer_versions&rdquo; option selected.  This will not fire individually when an application is deleted.</p>
@@ -1356,6 +1503,46 @@ analytics.page()
 <td><code class="prettyprint">sent_on</code></td><td>When the offer was sent to the candidate</td></tr>
 <tr>
 <td><code class="prettyprint">resolved_at</code></td><td>When this version was either accepted, rejected, or deprecated (a new version was made)</td></tr>
+</tbody></table>
+
+          <h2 id="office-deleted">Office deleted</h2>
+
+<p>This web hook fires when offices are deleted from the Greenhouse system from the Configure &raquo; Organization screen. This only happens when the &ldquo;Remove&rdquo; button is clicked after clicking the &ldquo;X&rdquo; next to an office name.</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"office_deleted"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"office"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">16492</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New York"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New York, NY"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"child_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="mi">123</span><span class="p">,</span><span class="w">
+        </span><span class="mi">456</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">789</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="noteworthy-response-attributes">Noteworthy response attributes</h3>
+
+<table><thead>
+<tr>
+<td>Attribute</td><td>Note</td></tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">id</code></td><td>The Greenhouse id for the office</td></tr>
+<tr>
+<td><code class="prettyprint">name</code></td><td>The name of the office deleted</td></tr>
+<tr>
+<td><code class="prettyprint">location</code></td><td>The location for the office</td></tr>
+<tr>
+<td><code class="prettyprint">child_ids</code></td><td>Any former child office ids; will be [] if empty</td></tr>
+<tr>
+<td><code class="prettyprint">parent_id</code></td><td>The office&rsquo;s parent office id; will be null if empty</td></tr>
 </tbody></table>
 
           <h2 id="prospect-created">Prospect created</h2>
@@ -1501,193 +1688,6 @@ analytics.page()
       </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-12-28T22:58:03.552Z"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-12-28T22:58:03.552Z"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"scorecard_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"complete"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-          <h2 id="job-stage-deleted">Job Stage deleted</h2>
-
-<p>This web hook only fires when interview stages on a job are removed.  This occurs when the remove stage link is used in the Job Setup section of the application. This will not fire when a job is deleted. A job being deleted implies all of its stages have been deleted with them.</p>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"job_interview_stage_deleted"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"job_interview_stage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">430608</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">60453</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-03-11T13:25:25.313Z"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-16T09:29:33.650Z"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Phone Screen"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-          <h2 id="job-deleted">Job deleted</h2>
-
-<p>This web hook only fires when jobs are deleted from the Greenhouse system. This only happens when a job is closed and then the &ldquo;Delete&rdquo; button is clicked from the Job Dashboard.</p>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"job_deleted"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"job"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">209256</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Project Manager"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<h3 id="noteworthy-response-attributes">Noteworthy response attributes</h3>
-
-<table><thead>
-<tr>
-<td>Attribute</td><td>Note</td></tr>
-</thead><tbody>
-<tr>
-<td><code class="prettyprint">id</code></td><td>The internal Greenhouse Job id</td></tr>
-<tr>
-<td><code class="prettyprint">name</code></td><td>The name of the job that was deleted</td></tr>
-</tbody></table>
-
-          <h2 id="office-deleted">Office deleted</h2>
-
-<p>This web hook fires when offices are deleted from the Greenhouse system from the Configure &raquo; Organization screen. This only happens when the &ldquo;Remove&rdquo; button is clicked after clicking the &ldquo;X&rdquo; next to an office name.</p>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"office_deleted"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"office"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">16492</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New York"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New York, NY"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"child_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="mi">123</span><span class="p">,</span><span class="w">
-        </span><span class="mi">456</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">789</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<h3 id="noteworthy-response-attributes">Noteworthy response attributes</h3>
-
-<table><thead>
-<tr>
-<td>Attribute</td><td>Note</td></tr>
-</thead><tbody>
-<tr>
-<td><code class="prettyprint">id</code></td><td>The Greenhouse id for the office</td></tr>
-<tr>
-<td><code class="prettyprint">name</code></td><td>The name of the office deleted</td></tr>
-<tr>
-<td><code class="prettyprint">location</code></td><td>The location for the office</td></tr>
-<tr>
-<td><code class="prettyprint">child_ids</code></td><td>Any former child office ids; will be [] if empty</td></tr>
-<tr>
-<td><code class="prettyprint">parent_id</code></td><td>The office&rsquo;s parent office id; will be null if empty</td></tr>
-</tbody></table>
-
-          <h2 id="department-deleted">Department deleted</h2>
-
-<p>This web hook fires when departments are deleted from the Greenhouse system from the Configure &raquo; Organization screen. This only happens when the &ldquo;Remove&rdquo; button is clicked after clicking the &ldquo;X&rdquo; next to an office name.</p>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"department_deleted"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"department"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">106</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Creative"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"child_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="mi">23328</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<h3 id="noteworthy-response-attributes">Noteworthy response attributes</h3>
-
-<table><thead>
-<tr>
-<td>Attribute</td><td>Note</td></tr>
-</thead><tbody>
-<tr>
-<td><code class="prettyprint">id</code></td><td>The Greenhouse id for the department</td></tr>
-<tr>
-<td><code class="prettyprint">name</code></td><td>The name of the department deleted</td></tr>
-<tr>
-<td><code class="prettyprint">child_ids</code></td><td>Any former child department ids (this includes all descendants); will be [] if empty</td></tr>
-<tr>
-<td><code class="prettyprint">parent_id</code></td><td>The department&rsquo;s parent department id; will be null if empty</td></tr>
-</tbody></table>
-
-          <h2 id="job-post-deleted">Job Post deleted</h2>
-
-<p>This web hook fires when a job post is deleted.  This occurs when the delete link is clicked on a job post. Only job posts that are not live may be deleted. This will not fire if a job itself is deleted; a job being deleted implies all of its posts have been deleted with them.</p>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"job_post_deleted"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"job_post"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">258341</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">284999</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Software Engineer"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dallas"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;A pretty interesting job post!&lt;/p&gt;"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-19T20:01:53.146Z"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"internal_content"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LinkedIn Profile"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input_text"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Website"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input_text"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"How did you hear about this job?"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"input_text"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Are you a cool engineer?"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"multi_value_single_select"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-            </span><span class="s2">"Yes"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"No"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"As a cucumber"</span><span class="w">
-          </span><span class="p">]</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="nt">"external"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"internal"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"live"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-          <h2 id="interview-deleted">Interview deleted</h2>
-
-<p>This web hook fires when a scheduled interview is cancelled or the interview is deleted directly. This web hook will not fire if an interview is deleted because a candidate, application, or hiring plan is deleted.</p>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"interview_deleted"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"interview"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">31087450</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
