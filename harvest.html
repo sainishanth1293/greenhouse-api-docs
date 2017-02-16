@@ -169,13 +169,31 @@ X-RateLimit-Remaining: 49
 <p>API requests are limited to 50 calls per 10 seconds, though that limit is subject to change. Exceeding that limit will cause Harvest to return an <code class="prettyprint">HTTP 429</code> response. Check the <code class="prettyprint">X-RateLimit-Limit</code> and <code class="prettyprint">X-RateLimit-Remaining</code> headers to see how many more requests you are allowed until throttling kicks in.</p>
 
 <h2 id="pagination">Pagination</h2>
+
+<blockquote>
+<p>Example paging header</p>
+</blockquote>
 <pre class="highlight plaintext"><code>Link: &lt;https://harvest.greenhouse.io/v1/candidates?page=2&amp;per_page=2&gt;; rel="next",
 &lt;https://harvest.greenhouse.io/v1/candidates?page=474&amp;per_page=2&gt;; rel="last"
 </code></pre>
 
-<p>API methods that return a collection of results are always paginated. You can specify the current page and number of items per page with the <code class="prettyprint">page</code> and <code class="prettyprint">per_page</code> query parameters. Paginated results include a <code class="prettyprint">Link</code> response header that specifies the location of the next and last pages.</p>
+<p>API methods that return a collection of results are always paginated. Paginated results will include a <code class="prettyprint">Link</code> (see <a href="https://tools.ietf.org/html/rfc5988">RFC-5988</a>) response header with the following information.</p>
 
-<p>Note that when this parameter is not set, results will be limited to the first page.</p>
+<ul>
+<li><code class="prettyprint">next</code>. The corresponding URL is the link to the next page.</li>
+<li><code class="prettyprint">prev</code>. The corresponding URL is the link to the previous page.</li>
+<li><code class="prettyprint">last</code>. The corresponding URL is the link to the last page.</li>
+</ul>
+
+<p>Note that when this header is not set, there is only one page, the first page, of results.</p>
+
+<p>As of February 2017,  we are transitioning to a new method for paging while maintaining backwards compatibility.  Currently, the new method <em>only</em> supports providing a <code class="prettyprint">next</code> link and is used by the following endpoints:</p>
+
+<ul>
+<li><a href="#get-list-eeoc">GET: List EEOC</a></li>
+</ul>
+
+<aside class="warning">Since paging mechanisms may differ per paginated endpoint and may change in the future, it is important to use the Link headers and not page manually by changing the paging-related query parameters.</aside>
 
 <h2 id="validation">Validation</h2>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -2788,7 +2806,7 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>disability_status</td><td>See the EEOC Reference below</td></tr>
 <tr>
-<td>submitted_at</td><td>The timestamp at which the EEOC data was submitted.</td></tr>
+<td>submitted_at</td><td>The timestamp in <a href="#general-considerations">ISO-8601</a> at which the EEOC data was submitted.</td></tr>
 </tbody></table>
 
 <h3 id="eeoc-reference">EEOC Reference</h3>
@@ -2858,6 +2876,77 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>3</td><td>I don&rsquo;t wish to answer</td></tr>
 </tbody></table>
+
+<h2 id="get-list-eeoc">GET: List EEOC</h2>
+<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/eeoc'</span>
+  -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[{</span><span class="w">
+  </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">286</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"candidate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">406</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"race"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Two or More Races"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"gender"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Male"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"veteran_status"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"I don't wish to answer"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"disability_status"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yes, I have a disability (or previously had a disability)"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"submitted_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-29T15:09:46.806Z"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">287</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"candidate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">342</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"race"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Two or More Races"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"gender"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Female"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"veteran_status"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"disability_status"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yes, I have a disability (or previously had a disability)"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"submitted_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-30T17:10:32.432Z"</span><span class="w">
+</span><span class="p">}]</span><span class="w">
+</span></code></pre>
+
+<p>List all of an organization&rsquo;s EEOC data.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/eeoc</code></p>
+
+<h3 id="query-string-parameters">Query string parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td class="optional">per_page</td><td>Return up to this number of objects per response. Must be an integer between 1 and 500. Defaults to 100.</td></tr>
+<tr>
+<td class="optional">submitted_before</td><td>Return only EEOC data submitted before this timestamp. Timestamp must be in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td class="optional">submitted_after</td><td>Return only EEOC data submitted after this timestamp. Timestamp must be in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+</tbody></table>
+
+<p>This endpoint supports pagination. See the <a href="#pagination">Pagination</a> section for more detail.</p>
 
 <h2 id="get-retrieve-eeoc-data-for-application">GET: Retrieve EEOC Data for Application</h2>
 <pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/applications/{id}/eeoc'</span>
