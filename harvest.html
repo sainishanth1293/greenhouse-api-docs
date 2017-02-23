@@ -243,46 +243,53 @@ X-RateLimit-Remaining: 49
 
 <p>The activity feed is the list of activities on a candidate&rsquo;s profile, including interviews, notes, and emails.</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"note"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345</span><span class="p">,</span><span class="w">
       </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T20:11:40Z"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Very mysterious."</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
       </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">512</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sayid Jarrah"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sayid Jarrah"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"visiblity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"visibility"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
-  </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="nt">"emails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">234675</span><span class="p">,</span><span class="w">
       </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-04-01T15:55:06Z"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Regarding your application"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hey John,  just wanted to touch base!"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"boone.carlyle@example.com"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john.locke@example.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"boone.carlyle@example.com"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"cc"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">214</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Boone Carlyle"</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Boone Carlyle"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
-  </span><span class="nt">"activity"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="nt">"activities"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6756789</span><span class="p">,</span><span class="w">
       </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-04-01T15:55:29Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"subject"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Reason: Lacking hustle\n\nThis candidate turned out to be problematic for us..."</span><span class="p">,</span><span class="w">
       </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">214</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Boone Carlyle"</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Boone Carlyle"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6757869</span><span class="p">,</span><span class="w">
       </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T20:26:38Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"subject"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Locke was moved into Recruiter Phone Screen for Accounting Manager on 03/27/2014 by Boone Carlyle"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -303,8 +310,12 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>email</td><td>An array of emails sent to and from this candidate.</td></tr>
 <tr>
-<td>activity</td><td>An array of events associated with this candidate</td></tr>
+<td>activity</td><td>An array of events associated with this candidate.</td></tr>
+<tr>
+<td>visibility*</td><td>The visibility setting on the note.  One of <code class="prettyprint">admin_only</code>, <code class="prettyprint">public</code>, or <code class="prettyprint">private</code>.</td></tr>
 </tbody></table>
+
+<p>* - Due to a legacy typo, the response includes the same value as <code class="prettyprint">visiblity</code>. It is safe to ignore this value, but it is maintained for backward compatibility.</p>
 
 <h2 id="get-retrieve-activity-feed">GET: Retrieve Activity Feed</h2>
 <pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/candidates/{id}/activity_feed'</span> 
@@ -315,46 +326,53 @@ X-RateLimit-Remaining: 49
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"note"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345</span><span class="p">,</span><span class="w">
       </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T20:11:40Z"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Very mysterious."</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
       </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">512</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sayid Jarrah"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sayid Jarrah"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"visiblity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"visibility"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
-  </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="nt">"emails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23454</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">234675</span><span class="p">,</span><span class="w">
       </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-04-01T15:55:06Z"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Regarding your application"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hey John,  just wanted to touch base!"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"boone.carlyle@example.com"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john.locke@example.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"boone.carlyle@example.com"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"cc"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">214</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Boone Carlyle"</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Boone Carlyle"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
-  </span><span class="nt">"activity"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="nt">"activities"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6756789</span><span class="p">,</span><span class="w">
       </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-04-01T15:55:29Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"subject"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Reason: Lacking hustle\n\nThis candidate turned out to be problematic for us..."</span><span class="p">,</span><span class="w">
       </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">214</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Boone Carlyle"</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Boone Carlyle"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6757869</span><span class="p">,</span><span class="w">
       </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-03-26T20:26:38Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"subject"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Locke was moved into Recruiter Phone Screen for Accounting Manager on 03/27/2014 by Boone Carlyle"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -2162,13 +2180,16 @@ X-RateLimit-Remaining: 49
 <p>The above command returns a JSON response, structured like this:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">226809052</span><span class="p">,</span><span class="w">
   </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-17T16:29:31Z"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Locke was moved into Recruiter Phone Screen for Accounting Manager on 03/27/2014 by Boone Carlyle"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">214</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Boone Carlyle"</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Boone Carlyle"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="nt">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"visiblity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin_only"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"visibility"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin_only"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -2200,8 +2221,10 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>body</td><td>Yes</td><td>string</td><td>Note body</td></tr>
 <tr>
-<td>visibility</td><td>Yes</td><td>string</td><td>One of: <code class="prettyprint">&quot;admin_only&quot;</code>, <code class="prettyprint">&quot;private&quot;</code>, <code class="prettyprint">&quot;public&quot;</code></td></tr>
+<td>visibility*</td><td>Yes</td><td>string</td><td>One of: <code class="prettyprint">&quot;admin_only&quot;</code>, <code class="prettyprint">&quot;private&quot;</code>, <code class="prettyprint">&quot;public&quot;</code></td></tr>
 </tbody></table>
+
+<p>* - Due to a legacy typo, the response includes the same value as <code class="prettyprint">visiblity</code>. It is safe to ignore this value, but it is maintained for backward compatibility.</p>
 
 <h2 id="post-add-prospect">POST: Add Prospect</h2>
 <pre class="highlight shell"><code>curl -X POST <span class="s1">'https://harvest.greenhouse.io/v1/prospects'</span>
