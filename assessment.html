@@ -144,7 +144,7 @@ analytics.page()
 <p>Greenhouse will first need to retreive the list of tests from the Assessment Partner using the <code class="prettyprint">list_tests</code> API endpoint. We will show the list of available tests to the user, who will to select the appropriate test for a given candidate. </p>
 
 <p><code class="prettyprint">GET https://www.testing-partner.com/api/list_tests</code></p>
-<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://www.testing-partner.com/api/list_tests'</span>
+<pre class="highlight shell"><code>curl <span class="s1">'https://www.testing-partner.com/api/list_tests'</span>
 -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
 </code></pre>
 
@@ -190,7 +190,7 @@ analytics.page()
 -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
 </code></pre>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"partner_test_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"partner_test_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"candidate"</span><span class="p">:</span><span class="w">
     </span><span class="p">{</span><span class="w">
         </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harry"</span><span class="p">,</span><span class="w">
@@ -231,7 +231,7 @@ analytics.page()
 <p>The API Response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"partner_interview_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">98765</span><span class="w">
+    </span><span class="nt">"partner_interview_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"98765"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -260,7 +260,7 @@ The partner_interview_id should not be confused with partner_test_id. While part
 -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
 </code></pre>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"partner_interview_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345</span><span class="w">
+    </span><span class="nt">"partner_interview_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -331,9 +331,9 @@ When Greenhouse makes a test_status request, we may only receive the numerical s
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"api_call"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test_status"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"partner_status is 'complete' but partner_profile url is missing"</span><span class="p">],</span><span class="w">
-    </span><span class="nt">"partner_test_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">12345</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"partner_test_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"partner_test_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Personality Test"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"partner_interview_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">299506</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"partner_interview_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"299506"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"candidate_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hpotter@hogwarts.edu"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
