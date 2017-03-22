@@ -916,6 +916,248 @@ can be used to dynamically construct your own job application form.</p>
 <td>tree</td><td>The children departments are returned as a tree.</td></tr>
 </tbody></table>
 
+          <h1 id="educations">Educations</h1>
+
+<p>This is a list of endpoints which can be used to populate Education data for candidate applications. Instructions for posting applications that include Education information can be found under <a href="#submit-an-application">Applications</a>.</p>
+
+<h2 id="list-degrees">List Degrees</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5494452</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"High School"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5494478</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Associate's Degree"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5494516</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bachelor's Degree"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5494551</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Master's Degree"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5494580</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Master of Business Administration (M.B.A.)"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5494607</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Juris Doctor (J.D.)"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5494638</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doctor of Medicine (M.D.)"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5494662</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doctor of Philosophy (Ph.D.)"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5494689</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Engineer's Degree"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5494710</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Other"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"total_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"per_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
+<p>Returns a list of all of your organization&rsquo;s degrees.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.greenhouse.io/v1/boards/{board_token}/education/degrees</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>board_token</td><td>Job Board URL token</td></tr>
+</tbody></table>
+
+<h3 id="querystring-parameters">Querystring Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Required</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>term</td><td>No</td><td>string</td><td>Returns any degrees containing this string in their name.</td></tr>
+<tr>
+<td>page</td><td>No</td><td>string</td><td>A cursor for use in pagination. Returns the n-th chunk of objects (100 per page).</td></tr>
+</tbody></table>
+
+<h2 id="list-disciplines">List Disciplines</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5494865</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Accounting"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5494892</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"African Studies"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5494917</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Agriculture"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5494940</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Anthropology"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5494964</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Applied Health Services"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5495009</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Architecture"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5495033</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Art"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5495051</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Asian Studies"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5495074</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Biology"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5495101</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Business"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"total_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">71</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"per_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Returns a list of all of your organization&rsquo;s disciplines.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.greenhouse.io/v1/boards/{board_token}/education/disciplines</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>board_token</td><td>Job Board URL token</td></tr>
+</tbody></table>
+
+<h3 id="querystring-parameters">Querystring Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Required</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>term</td><td>No</td><td>string</td><td>Returns any disciplines containing this string in their name.</td></tr>
+<tr>
+<td>page</td><td>No</td><td>string</td><td>A cursor for use in pagination. Returns the n-th chunk of objects (100 per page).</td></tr>
+</tbody></table>
+
+<h2 id="list-schools">List Schools</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5417077</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Abraham Baldwin Agricultural College"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5417117</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Academy of Art University"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5417156</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Acadia University"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5417194</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Adams State University"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5417217</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Adelphi University"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5417245</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Adrian College"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5417295</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Adventist University of Health Sciences"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5417331</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Agnes Scott College"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5417366</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AIB College of Business"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5417384</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Alaska Pacific University"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"total_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2464</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"per_page"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Returns a list of all of your organization&rsquo;s schools.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.greenhouse.io/v1/boards/{board_token}/education/schools</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>board_token</td><td>Job Board URL token</td></tr>
+</tbody></table>
+
+<h3 id="querystring-parameters">Querystring Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Required</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>term</td><td>No</td><td>string</td><td>Returns any schools containing this string in their name.</td></tr>
+<tr>
+<td>page</td><td>No</td><td>string</td><td>A cursor for use in pagination. Returns the n-th chunk of objects (100 per page).</td></tr>
+</tbody></table>
+
           <h1 id="job-boards">Job Boards</h1>
 
 <h2 id="retrieve-job-board">Retrieve job board</h2>
@@ -983,7 +1225,7 @@ Please keep in mind that the HTTP Basic Auth API token is a secret key.  Any for
 <blockquote>
 <p>cURL equivalent:</p>
 </blockquote>
-<pre class="highlight plaintext"><code>curl -X POST \
+<pre class="highlight plaintext"><code>curl -X POST \ 
   -H "Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6" \
   -H "Content-Type: multipart/form-data" \
   -F "first_name=Sammy" \
@@ -995,6 +1237,13 @@ Please keep in mind that the HTTP Basic Auth API token is a secret key.  Any for
   -F "longitude=-73.9929196" \
   -F "resume=@/path/to/resume/ADA084551.pdf" \
   -F "cover_letter=@/path/to/coverletter/blah.pdf" \
+  -F "educations[][school_name_id]=5417077" \
+  -F "educations[][degree_id]=5494452"\
+  -F "educations[][discipline_id]=5494865" \
+  -F "educations[][start_date][month]=8" \
+  -F "educations[][start_date][year]=2012" \
+  -F "educations[][end_date][month]=5" \
+  -F "educations[][end_date][year]=2016"
   "https://api.greenhouse.io/v1/boards/very_awesome_inc/jobs/127817"
 </code></pre>
 
@@ -1013,7 +1262,23 @@ Please keep in mind that the HTTP Basic Auth API token is a secret key.  Any for
     "latitude": "40.7376671",
     "longitude": "-73.9929196",
     "resume_text": "I have many years of experience as an expert basket weaver...",
-    "cover_letter_text": "I have a very particular set of skills, skills I have acquired over a very long career. Skills that make me..."
+    "cover_letter_text": "I have a very particular set of skills, skills I have acquired over a very long career. Skills that make me...",
+    "educations": [
+      {
+        "school_name_id" : "1403524",
+        "degree_id": "1403534",
+        "discipline_id": "1403605",
+        "start_date": { "month": "1", "year": "1989"},
+        "end_date": { "month": "2", "year": "1990"}
+      },
+      {
+        "school_name_id" : "1401063",
+        "degree_id": "1403525",
+        "discipline_id": "1403608",
+        "start_date": { "month": "1", "year": "2011"},
+        "end_date": { "month": "2", "year": "2012"}
+      }
+    ]
   }' \
   "https://api.greenhouse.io/v1/boards/very_awesome_inc/jobs/127817"
 </code></pre>
@@ -1023,7 +1288,7 @@ Please keep in mind that the HTTP Basic Auth API token is a secret key.  Any for
 <p>Note that when submitting an application through this method, Greenhouse will not confirm the inclusion of required fields. Validation for required fields must be done on the client side, as Greenhouse will not reject applications that are missing required fields.</p>
 
 <aside class="warning">
-  This method requires HTTP Basic Auth over SSL/TLS: the Basic Auth username is your API key (found on the API Credentials page). No password is required. 
+  This method requires HTTP Basic Auth over SSL/TLS: the Basic Auth username is your API key (found on the API Credentials page). No password is required.
 </aside>
 
 <aside class="notice">
@@ -1076,6 +1341,8 @@ Please keep in mind that the HTTP Basic Auth API token is a secret key.  Any for
 <td class="optional">resume</td><td>Resume file contents.  <em>Only allowed in <code class="prettyprint">multipart/form-data</code> requests</em></td></tr>
 <tr>
 <td class="optional">cover_letter</td><td>Cover letter file contents.  <em>Only allowed in <code class="prettyprint">multipart/form-data</code> requests</em></td></tr>
+<tr>
+<td class="optional">educations</td><td>An array of education objects. Each education object should have five fields: school_name_id, degree_id, discipline_id, start_date, and end_date. start_date and end_date will use a hash of month and year. You can get the school_name_id, degree_id, discipline_id from our <a href="#list-schools">List Schools</a>, <a href="#list-degrees">List Degrees</a>, and <a href="#list-disciplines">List Disciplines</a> endpoints.</td></tr>
 </tbody></table>
 
 <h3 id="collecting-applicant-location">Collecting Applicant Location</h3>
