@@ -6684,6 +6684,64 @@ X-RateLimit-Remaining: 49
 
 <p>* - A newly created user will not be able to login until they create a password via the invitation link or configured in an SSO system.</p>
 
+<h2 id="patch-disable-user">PATCH: Disable User</h2>
+<pre class="highlight shell"><code>curl -X PATCH <span class="s1">'https://harvest.greenhouse.io/v1/users/{id}/disable'</span>
+-H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">253528</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bob Smith"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-23T18:58:27.796Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-04-28T15:28:16.440Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"disabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"site_admin"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"emails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"bob@email.org"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"221"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Disable a user. It is safe to call this method on a user that is currently disabled. If the user is already disabled, nothing happens.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PATCH https://harvest.greenhouse.io/v1/users/{id}/disable</code></p>
+
+<h2 id="patch-enable-user">PATCH: Enable User</h2>
+<pre class="highlight shell"><code>curl -X PATCH <span class="s1">'https://harvest.greenhouse.io/v1/users/{id}/enable'</span>
+-H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">253528</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bob Smith"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-23T18:58:27.796Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-04-28T15:28:16.440Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"disabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"site_admin"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"emails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"bob@email.org"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"221"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Enable a user. It is safe to call this method on a user that is currently enabled. If the user is already enabled, nothing happens.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PATCH https://harvest.greenhouse.io/v1/users/{id}/enable</code></p>
+
       </div>
       <div class="dark-box">
           <div class="lang-selector">
