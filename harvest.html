@@ -191,6 +191,7 @@ X-RateLimit-Remaining: 49
 
 <ul>
 <li><a href="#get-list-eeoc">GET: List EEOC</a></li>
+<li><a href="#get-list-user-roles">GET: List User Roles</a></li>
 </ul>
 
 <aside class="warning">Since paging mechanisms may differ per paginated endpoint and may change in the future, it is important to use the Link headers and not page manually by changing the paging-related query parameters.</aside>
@@ -6591,6 +6592,80 @@ X-RateLimit-Remaining: 49
 
 <p><br>
 <a href="#the-user-object">See noteworthy response attributes.</a></p>
+
+<h2 id="get-list-job-permissions-for-user">GET: List Job Permissions for User</h2>
+<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/users/{id}/permissions/jobs'</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7879576</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">80722</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"user_role_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4730</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7879577</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">83475</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"user_role_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4730</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7879579</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">146048</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"user_role_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4730</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7879580</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">87904</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"user_role_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4730</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7879582</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">116958</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"user_role_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4730</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7879583</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">82318</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"user_role_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4730</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>List the job permissions for a given user.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/users/{id}/permissions/jobs</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>id</td><td>The ID of the user whose job permissions to retrieve</td></tr>
+</tbody></table>
+
+<h3 id="http-response">HTTP Response</h3>
+
+<p>An array of objects of the following:</p>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>id</td><td>The ID representing the job permission</td></tr>
+<tr>
+<td>job_id</td><td>The ID of the job for the job permission</td></tr>
+<tr>
+<td>user_role_id</td><td>The ID of the user role for the job permission</td></tr>
+</tbody></table>
+
+<p>Note: This endpoint is only intended for use with Job Admin and/or Interviewer users, as these roles are assigned on a per job basis. Users that are Site Admins have permissions on all public jobs and will return an empty array. Basic users cannot be assigned to any jobs and will also return an empty array.</p>
+
+<p>This endpoint supports pagination. See the <a href="#pagination">Pagination</a> section for more detail.</p>
 
 <h2 id="get-retrieve-user">GET: Retrieve User</h2>
 <pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/users/{id}'</span>
