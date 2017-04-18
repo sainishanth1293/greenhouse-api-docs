@@ -6529,69 +6529,67 @@ X-RateLimit-Remaining: 49
 <td>site_admin</td><td>If <code class="prettyprint">true</code>, this user is a site admin, which means the user has full permissions on all non-private jobs.</td></tr>
 </tbody></table>
 
-<h2 id="get-list-users">GET: List Users</h2>
-<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/users'</span>
+<h2 id="get-list-future-job-permissions-for-user">GET: List Future Job Permissions for User</h2>
+<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/users/{id}/permissions/future_jobs'</span>
 -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
 </code></pre>
 <pre class="highlight json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">112</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Juliet Burke"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-17T16:13:48.888Z"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-18T22:26:32.243Z"</span><span class="p">,</span><span class="w">  
-    </span><span class="nt">"disabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"site_admin"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"emails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="s2">"juliet.burke@example.com"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"other.woman@example.com"</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"221"</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">87819</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"office_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"department_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"user_role_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4730</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">712</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mr. Eko"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-03T18:05:47.361Z"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-18T22:27:11.111Z"</span><span class="p">,</span><span class="w"> 
-    </span><span class="nt">"disabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"site_admin"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"emails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="s2">"mr.eko@example.com"</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"700"</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">92834</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"office_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8232</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"department_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"user_role_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4730</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">82129</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"office_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8232</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"department_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">92921</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"user_role_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4730</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 
-<p>List all of an organization&rsquo;s Greenhouse users.</p>
+<p>List the permissions that will be granted to the user when a job is created in a particular Department/Office combination.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/users</code></p>
+<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/users/{id}/permissions/future_jobs</code></p>
 
-<h3 id="querystring-parameters">Querystring parameters</h3>
+<h3 id="url-parameters">URL Parameters</h3>
 
 <table><thead>
 <tr>
 <td>Parameter</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>per_page</td><td>Return up to this number of objects per response. Must be an integer between 1 and 500. Defaults to 100.</td></tr>
-<tr>
-<td>page</td><td>A cursor for use in pagination.  Returns the n-th chunk of <code class="prettyprint">per_page</code> objects.</td></tr>
-<tr>
-<td>employee_id</td><td>Return a single user that matches this employee id.</td></tr>
-<tr>
-<td>created_before</td><td>Return only users that were created before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
-<tr>
-<td>created_after</td><td>Return only users that were created after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
-<tr>
-<td>updated_before</td><td>Return only users that were updated before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
-<tr>
-<td>updated_after</td><td>Return only users that were updated after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<td>id</td><td>The ID of the user whose future job permissions to retrieve</td></tr>
 </tbody></table>
 
-<p><br>
-<a href="#the-user-object">See noteworthy response attributes.</a></p>
+<h3 id="http-response">HTTP Response</h3>
+
+<p>An array of objects of the following:</p>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>id</td><td>The ID representing the future job permissions</td></tr>
+<tr>
+<td>office_id</td><td>The ID of the office. The user role will be granted when a job is created belonging to this office.</td></tr>
+<tr>
+<td>department_id</td><td>The ID of the department. The user role will be granted when a job is created belonging to this department.</td></tr>
+<tr>
+<td>user_role_id</td><td>The ID of the user role that will be granted to the user.</td></tr>
+</tbody></table>
+
+<p>This endpoint supports pagination. See the <a href="#pagination">Pagination</a> section for more detail.</p>
 
 <h2 id="get-list-job-permissions-for-user">GET: List Job Permissions for User</h2>
 <pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/users/{id}/permissions/jobs'</span>
@@ -6666,6 +6664,70 @@ X-RateLimit-Remaining: 49
 <p>Note: This endpoint is only intended for use with Job Admin and/or Interviewer users, as these roles are assigned on a per job basis. Users that are Site Admins have permissions on all public jobs and will return an empty array. Basic users cannot be assigned to any jobs and will also return an empty array.</p>
 
 <p>This endpoint supports pagination. See the <a href="#pagination">Pagination</a> section for more detail.</p>
+
+<h2 id="get-list-users">GET: List Users</h2>
+<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/users'</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">112</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Juliet Burke"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-17T16:13:48.888Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-18T22:26:32.243Z"</span><span class="p">,</span><span class="w">  
+    </span><span class="nt">"disabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"site_admin"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"emails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"juliet.burke@example.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"other.woman@example.com"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"221"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">712</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mr. Eko"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-03T18:05:47.361Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-18T22:27:11.111Z"</span><span class="p">,</span><span class="w"> 
+    </span><span class="nt">"disabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"site_admin"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"emails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"mr.eko@example.com"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"700"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>List all of an organization&rsquo;s Greenhouse users.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/users</code></p>
+
+<h3 id="querystring-parameters">Querystring parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>per_page</td><td>Return up to this number of objects per response. Must be an integer between 1 and 500. Defaults to 100.</td></tr>
+<tr>
+<td>page</td><td>A cursor for use in pagination.  Returns the n-th chunk of <code class="prettyprint">per_page</code> objects.</td></tr>
+<tr>
+<td>employee_id</td><td>Return a single user that matches this employee id.</td></tr>
+<tr>
+<td>created_before</td><td>Return only users that were created before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td>created_after</td><td>Return only users that were created after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td>updated_before</td><td>Return only users that were updated before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td>updated_after</td><td>Return only users that were updated after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+</tbody></table>
+
+<p><br>
+<a href="#the-user-object">See noteworthy response attributes.</a></p>
 
 <h2 id="get-retrieve-user">GET: Retrieve User</h2>
 <pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/users/{id}'</span>
