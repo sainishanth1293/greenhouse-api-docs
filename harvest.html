@@ -6646,6 +6646,121 @@ X-RateLimit-Remaining: 49
 
 <p>No body parameters.</p>
 
+          <h1 id="tracking-links">Tracking Links</h1>
+
+<p>Tracking Links are URLs which allow users to track the source and/or referrer of candidates who applied through the link. Greenhouse generates Tracking Links by appending a token to the end of a job post or job boad URL. These tokens represent a combination of source_id and/or referrer_id, and can link back to a job post, job board, or job.</p>
+
+<h2 id="the-tracking-link-object">The tracking link object</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">162</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tnch4u"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-10-07T15:06:35.975Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-09-27T17:52:56.533Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"related_post_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"related_post_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SocialMediaPost"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">271</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"job_post_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1275</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"job_board"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8578</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"company_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Business Corp"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"url_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"businessco"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"public_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Twitter"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"credited_to"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Some Employee"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ABC12345"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h2 id="json-schema">JSON Schema</h2>
+
+<p>To view the JSON Schema definition for the Tracking Link object, please <a href="schemas/tracking_links.json">click here</a>. This will tell you all of the valid types and definitions, as well as expected fields in the response.</p>
+
+<h3 id="noteworthy-attributes">Noteworthy attributes</h3>
+
+<table><thead>
+<tr>
+<td>Attribute</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>id</td><td>The tracking link&rsquo;s unique identifier</td></tr>
+<tr>
+<td>token</td><td>The token present in the url</td></tr>
+<tr>
+<td>related_post_id</td><td>If there is an associated social media post, the Greenhouse ID for that post</td></tr>
+<tr>
+<td>related_post_type</td><td>Will be &ldquo;SocialMediaPost&rdquo; if the link was posted through the social network sharing feature, otherwise this value will be <code class="prettyprint">null</code></td></tr>
+<tr>
+<td>job_id</td><td>The job associated with this tracking link</td></tr>
+<tr>
+<td>job_post_id</td><td>The job post associated with this tracking link</td></tr>
+<tr>
+<td>job_board</td><td>The job board associated with this tracking link</td></tr>
+<tr>
+<td>source</td><td>The source of the job (recruiter, social media site, etc)</td></tr>
+<tr>
+<td>credited_to</td><td>The employee credited with a referral for this tracking link</td></tr>
+</tbody></table>
+
+<h2 id="get-tracking-link-data-for-token">GET: Tracking Link Data for Token</h2>
+
+<p>Retrieve the specific tracking link data for the supplied token.</p>
+<pre class="highlight shell"><code>curl -X GET <span class="s1">'https://harvest.greenhouse.io/v1/tracking_links/{token}'</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">162</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tnch4u"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-10-07T15:06:35.975Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-09-27T17:52:56.533Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"related_post_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"related_post_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SocialMediaPost"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">271</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"job_post_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1275</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"job_board"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8578</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"company_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Business Corp"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"url_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"businessco"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"public_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Twitter"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"credited_to"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Some Employee"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ABC12345"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/tracking_links/{token}</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>token</td><td>The token you want to retrieve the data for</td></tr>
+</tbody></table>
+
+<p><br></p>
+
+<p><a href="#the-tracking-link-object">See noteworthy response attributes.</a></p>
+
           <h1 id="users">Users</h1>
 
 <h2 id="the-user-object">The user object</h2>
