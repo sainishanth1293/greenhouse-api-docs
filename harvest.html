@@ -1059,9 +1059,9 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>rejection_email</td><td>No</td><td>hash</td><td>An email will be sent to the candidate notifying them of this rejection.</td></tr>
 <tr>
-<td>rejection_email.sent_email_at</td><td>Yes, if sending rejection_email</td><td>string</td><td>The rejection email will be delayed until this time.</td></tr>
+<td>rejection_email.send_email_at</td><td>No</td><td>string</td><td>The rejection email will be delayed until this time.</td></tr>
 <tr>
-<td>rejection_email.email_template_id</td><td>No</td><td>string</td><td>The template the to use for the rejection email.</td></tr>
+<td>rejection_email.email_template_id</td><td>Yes, if sending rejection_email</td><td>string</td><td>The template the to use for the rejection email.</td></tr>
 </tbody></table>
 
 <h2 id="post-unreject-application">POST: Unreject Application</h2>
