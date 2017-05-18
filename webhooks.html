@@ -568,7 +568,7 @@ analytics.page()
 <tr>
 <td><code class="prettyprint">can_email</code></td><td>True or false; if this candidate can be e-mailed.</td></tr>
 <tr>
-<td><code class="prettyprint">application_ids</code></td><td>This is an array containing the Greenhouse application ids that will be deleted as a consequence of this candidate being deleted</td></tr>
+<td><code class="prettyprint">application_ids</code></td><td>This is an array containing the Greenhouse application IDs that will be deleted as a consequence of this candidate being deleted</td></tr>
 </tbody></table>
 
 <h2 id="candidate-hired">Candidate hired</h2>
@@ -833,6 +833,42 @@ analytics.page()
 <td><code class="prettyprint">application.job.open_date</code></td><td>Deprecated. Use <code class="prettyprint">application.jobs[].opened_at</code> instead.</td></tr>
 <tr>
 <td><code class="prettyprint">job.hiring_team</code></td><td>Field contains the Greenhouse users responsible for this job.  Each field contains the user&rsquo;s Greenhouse user id and the user&rsquo;s external employee id from the customer&rsquo;s system.  The employee id will be null if it has not been set in Greenhouse.</td></tr>
+</tbody></table>
+
+<h2 id="candidate-merged">Candidate merged</h2>
+
+<p>This web hook will fire when a candidate or prospect is merged with another candidate.  This process should fire for regular manual merges and auto-merges.  It will also fire per candidate for a bulk merge.  This web hook supersedes the candidate deleted web hook.  If both candidate deleted and candidate merged are configured on your site, only the candidate merged web hook will fire when candidate records are removed via merge.  If a candidate deleted web hook is configured but candidate merged is not, then the candidate deleted web hook will fire when a candidate record is deleted via merge.  The payload for a candidate merged web hook matches the payload for candidate deleted except it contains the ID of the winning candidate record.</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"merge_candidate"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"person"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">37031511</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jack"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sparrow"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pirate Shipping"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Captain"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-03-22T00:00:00Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"headline"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Eager to find a new commission"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"is_private"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"recruiter_user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"coordinator_user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">456</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"can_email"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"new_candidate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">457456</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="noteworthy-response-attributes">Noteworthy response attributes</h3>
+
+<table><thead>
+<tr>
+<td>Attribute</td><td>Note</td></tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">deleted_application_ids</code></td><td>In many merge cases, this section will be blank, as applications will have been merged into the new candidate.</td></tr>
+<tr>
+<td><code class="prettyprint">new_candidate_id</code></td><td>The ID of the candidate to whom this candidate has been merged</td></tr>
 </tbody></table>
 
 <h2 id="candidate-stage-change">Candidate stage change</h2>
