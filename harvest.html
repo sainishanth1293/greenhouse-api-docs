@@ -4506,7 +4506,8 @@ X-RateLimit-Remaining: 49
 <a href="#the-job-object">See noteworthy response attributes.</a></p>
 
 <h2 id="patch-update-job">PATCH: Update Job</h2>
-<pre class="highlight shell"><code>curl --request PATCH <span class="s1">'https://harvest.greenhouse.io/v1/jobs/{id}'</span>
+<pre class="highlight shell"><code>curl -X PATCH <span class="s1">'https://harvest.greenhouse.io/v1/jobs/{id}'</span>
+-H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
 -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
 </code></pre>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -4699,6 +4700,173 @@ X-RateLimit-Remaining: 49
 
 <p><br>
 <a href="#the-job-object">See noteworthy response attributes.</a></p>
+
+<h2 id="post-create-job">POST: Create Job</h2>
+<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://harvest.greenhouse.io/v1/jobs'</span>
+-H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"template_job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"number_of_openings"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"job_post_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"External Name That Appears On Job Boards"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"job_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Internal Name That Appears On Hiring Plans"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"department_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"office_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mi">234</span><span class="p">,</span><span class="w"> 
+      </span><span class="mi">345</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"requisition_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc-123"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"opening_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"abc-123-1"</span><span class="p">,</span><span class="w"> 
+      </span><span class="s2">"abc-123-2"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://harvest.greenhouse.io/v1/jobs</code></p>
+
+<h3 id="json-body-parameters">JSON Body Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Required</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>template_job_id</td><td>Yes</td><td>Number</td><td>This is the job we will use to generate the new job. The new job will receive most of the settings of the template job. The On-Behalf-Of user must have access to this job.</td></tr>
+<tr>
+<td>number_of_openings</td><td>Yes</td><td>Number</td><td>The number of openings that will be created for this job.</td></tr>
+<tr>
+<td>job_post_name</td><td>No</td><td>String</td><td>This will be the name on the new job post. If this is not included, the job post names in the base job will be copied.</td></tr>
+<tr>
+<td>job_name</td><td>No</td><td>String</td><td>This is the internal name of the new job.  If this is not included, the name of the new job will be &ldquo;Copy Of (the template job&rsquo;s name)&rdquo;</td></tr>
+<tr>
+<td>department_id</td><td>No</td><td>Number</td><td>The department of the new job. This should be a department id from the Departments endpoint. If this element is omitted, the new job will receive the department of the template job. If this element is included but blank, it will create the job with no departments. If the organization requires jobs to have a department, this case will return a 422 response.</td></tr>
+<tr>
+<td>office_ids</td><td>No</td><td>Array[Numbers]</td><td>The offices of the new job. These should be office ids from the Offices endpoint. If this element is omitted, the new job will receive the offices of the template job.  If this element is included but blank, it will create the job with no offices. If the organization requires jobs to have an office, this case will return a 422 response.</td></tr>
+<tr>
+<td>requisition_id</td><td>No</td><td>String</td><td>A requisition id for this job.</td></tr>
+<tr>
+<td>opening_ids</td><td>No</td><td>Array[Strings]</td><td>An array of opening ids for the new job. If this is included, the number of opening ids in this array must match the number_of_openings element.</td></tr>
+</tbody></table>
+
+<blockquote>
+<p>The above returns a JSON response, structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">112746</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Internal Name That Appears On Hiring Plans"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"requisition_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc-123"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Looking for the best!"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"confidential"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-09-10T19:01:46.078Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-09-10T19:01:46.078Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"closed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"departments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Guideshops"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"child_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"offices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">234</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"San Diego"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"San Diego, CA, United States"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"child_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">345</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New York"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New York, NY, United States"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"parent_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"child_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"hiring_team"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"hiring_managers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">158108</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sam McsSamson"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"recruiters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">158101</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Major Tom"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"responsible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"coordinators"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">158109</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Roger Cord"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"responsible"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"sourcers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">158102</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lara Sourcerer"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"employment_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Full-time"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"salary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$123,000"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"bonus"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1500"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"keyed_custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"bonus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bonus"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"number"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"time_type"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Employment Type"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"single_select"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Full-time"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"stock_options"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Options"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"short_text"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1500"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"salary"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Salary"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"short_text"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$123,000"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"openings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc-123-1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-09-10T19:01:46.077Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"closed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc-123-2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-09-10T19:01:46.077Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"closed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
           <h1 id="offers">Offers</h1>
 
