@@ -4868,6 +4868,83 @@ X-RateLimit-Remaining: 49
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
+<h2 id="put-replace-hiring-team">PUT: Replace Hiring Team</h2>
+<pre class="highlight shell"><code>curl -X PUT <span class="s1">'https://harvest.greenhouse.io/v1/jobs/{id}'</span>
+-H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"hiring_managers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2345</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"sourcers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3456</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4567</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"recruiters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5678</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"responsible_for_future_candidates"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"responsible_for_active_candidates"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"responsible_for_inactive_candidates"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6789</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"responsible_for_future_candidates"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"responsible_for_active_candidates"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"responsible_for_inactive_candidates"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"coordinators"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7890</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"responsible_for_future_candidates"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"responsible_for_active_candidates"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"responsible_for_inactive_candidates"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8901</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"responsible_for_future_candidates"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"responsible_for_active_candidates"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"responsible_for_inactive_candidates"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT https://harvest.greenhouse.io/v1/jobs/{id}/hiring_team</code></p>
+
+<h3 id="json-body-parameters">JSON Body Parameters</h3>
+
+<p>There are four types of hiring team members, represented by the four hashes sent in the JSON body.  If any of these types are not included, hiring team members of that type will not be changed.  If a blank element <code class="prettyprint">{}</code> is included, that part of the hiring team will be cleared.  </p>
+
+<p>Note that this PUT method REPLACES the existing members of the hiring team.  For each element included in the JSON request body, the existing hiring team members in Greenhouse will be removed and replaced with the current members. Also, this process is transactional: if there is one failure, no elements will be updated.  Finally, if you have a Hiring Team Updated web hook configured, you will receive one web hook notification per element, so you may receive up to four web hook notifications when this endpoint is used.</p>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Required</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>responsible_for_future_candidates</td><td>Yes for coordinator or recruiter</td><td>boolean</td><td>The user becomes the responsible person for all new candidates. Only one user in the group of users may be designated as responsible.</td></tr>
+<tr>
+<td>responsible_for_active_candidates</td><td>Yes for coordinator or recruiter</td><td>boolean</td><td>The user becomes the responsible person for all existing candidates with active applications</td></tr>
+<tr>
+<td>responsible_for_inactive_candidates</td><td>Yes for coordinator or recruiter</td><td>boolean</td><td>The user becomes the responsible person for all hired and rejected candidates</td></tr>
+</tbody></table>
+
+<p>On success, this will return a 200 response code with a success message in the JSON body.</p>
+
           <h1 id="offers">Offers</h1>
 
 <h2 id="the-offer-object">The offer object</h2>
