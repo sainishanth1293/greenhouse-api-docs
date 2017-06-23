@@ -3681,7 +3681,7 @@ X-RateLimit-Remaining: 49
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 
-<p>List all the coresponding job posts for a given Job ID.</p>
+<p>List all the corresponding job posts for a given Job ID.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -3736,7 +3736,7 @@ X-RateLimit-Remaining: 49
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Retrieve the coresponding job post for a given Job ID.</p>
+<p>Retrieve the corresponding job post for a given Job ID.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -3766,6 +3766,54 @@ X-RateLimit-Remaining: 49
 
 <p><br>
 <a href="#the-job-post-object">See noteworthy response attributes.</a></p>
+
+<h2 id="patch-update-job-post-39-s-status">PATCH: Update Job Post&rsquo;s Status</h2>
+<pre class="highlight shell"><code>curl -X PATCH <span class="s1">'https://harvest.greenhouse.io/v1/job_posts/{id}'</span>
+-H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command takes a JSON request, structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"live"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>The above returns a JSON response on success:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Update the live/offline status for a single job post by its <code class="prettyprint">id</code>.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PATCH https://harvest.greenhouse.io/v1/job_posts/{id}</code></p>
+
+<h3 id="headers">Headers</h3>
+
+<table><thead>
+<tr>
+<td>Header</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>On-Behalf-Of</td><td>ID of the user issuing this request. Required for auditing purposes.</td></tr>
+</tbody></table>
+
+<h3 id="json-body-parameters">JSON Body Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Required</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>status</td><td>yes</td><td>string</td><td>One of &lsquo;live&rsquo; or &#39;offline&rsquo;</td></tr>
+</tbody></table>
 
           <h1 id="job-stages">Job Stages</h1>
 
