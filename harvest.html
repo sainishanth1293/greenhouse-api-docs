@@ -3103,6 +3103,58 @@ X-RateLimit-Remaining: 49
 
 <p>This endpoint supports pagination. See the <a href="#pagination">Pagination</a> section for more detail.</p>
 
+<h2 id="post-create-custom-field-options">POST: Create Custom Field Options</h2>
+<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://harvest.greenhouse.io/v1/custom_field/{id}/custom_field_options'</span>
+  -H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
+  -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Option A"</span><span class="p">,</span><span class="w"> </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Option B"</span><span class="p">,</span><span class="w"> </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Option C"</span><span class="p">,</span><span class="w"> </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Add additional options to a single select or multi select custom field.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://harvest.greenhouse.io/v1/custom_field/{id}/custom_field_options</code></p>
+
+<h3 id="headers">Headers</h3>
+
+<table><thead>
+<tr>
+<td>Header</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>On-Behalf-Of</td><td>ID of the user issuing this request. Required for auditing purposes.</td></tr>
+</tbody></table>
+
+<h3 id="json-body-parameters">JSON Body Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Required</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>options</td><td>Yes</td><td>array</td><td>An array of one or many new custom field options.</td></tr>
+<tr>
+<td>name</td><td>Yes</td><td>string</td><td>The name of the new custom field option.  If a new field is added with the same name as an existing custom field option in this custom field, it will be ignored.  No error will be raised in this case.</td></tr>
+<tr>
+<td>priority</td><td>Yes</td><td>integer</td><td>This is used to order the custom fields in Greenhouse.</td></tr>
+</tbody></table>
+
+<p><br></p>
+
+<p>**This returns a 201 on success.  It does not return the objects created.</p>
+
           <h1 id="departments">Departments</h1>
 
 <h2 id="the-department-object">The department object</h2>
@@ -5348,8 +5400,10 @@ X-RateLimit-Remaining: 49
   </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
   </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
   </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-02-13T22:30:58Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-07-31T20:49:05.604Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"sent_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="nt">"resolved_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"sent_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sent_on"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"starts_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"deprecated"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"employment_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Contractor"</span><span class="p">,</span><span class="w">
@@ -5419,6 +5473,8 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>sent_at</td><td>Date when this offer was sent to the candidate.</td></tr>
 <tr>
+<td>starts_at</td><td>Date when the candidate starts. This is the date value entered in the default Start Date field on candidate&rsquo;s Offer Details. This is the first field on their Offer Details, above the custom fields.</td></tr>
+<tr>
 <td>status</td><td>One of: <code class="prettyprint">unresolved</code>, <code class="prettyprint">accepted</code>, <code class="prettyprint">rejected</code>, <code class="prettyprint">deprecated</code>.</td></tr>
 <tr>
 <td>custom_fields</td><td>Contains a hash of the custom fields configured for this resource. The properties in this hash reflect the active custom fields as of the time this method is called.</td></tr>
@@ -5438,8 +5494,10 @@ X-RateLimit-Remaining: 49
     </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
     </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-02-13T22:30:58Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-07-31T20:49:05.604Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"sent_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"resolved_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"sent_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sent_on"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"starts_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"deprecated"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"employment_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Contractor"</span><span class="p">,</span><span class="w">
@@ -5491,11 +5549,13 @@ X-RateLimit-Remaining: 49
   </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5318</span><span class="p">,</span><span class="w">
     </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2345</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-05-12T18:02:34Z"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"resolved_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-05-12T20:52:35Z"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"sent_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sent_on"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accepted"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-02-13T22:30:58Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-07-31T20:49:05.604Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"sent_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"resolved_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"starts_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"deprecated"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"employment_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Part-Time"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"favorite_station"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Looking Glass"</span><span class="p">,</span><span class="w">
@@ -5589,8 +5649,10 @@ X-RateLimit-Remaining: 49
     </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
     </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-02-13T22:30:58Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-07-31T20:49:05.604Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"sent_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"resolved_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"sent_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sent_on"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"starts_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"deprecated"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"employment_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Contractor"</span><span class="p">,</span><span class="w">
@@ -5643,10 +5705,12 @@ X-RateLimit-Remaining: 49
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5318</span><span class="p">,</span><span class="w">
     </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
     </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-05-12T18:02:34Z"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"resolved_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-05-12T20:52:35Z"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"sent_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sent_on"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accepted"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-02-13T22:30:58Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-07-31T20:49:05.604Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"sent_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"resolved_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"starts_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"deprecated"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nt">"employment_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Part-Time"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"favorite_station"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Looking Glass"</span><span class="p">,</span><span class="w">
@@ -5743,8 +5807,10 @@ X-RateLimit-Remaining: 49
   </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
   </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
   </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-02-13T22:30:58Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-07-31T20:49:05.604Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"sent_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="nt">"resolved_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"sent_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sent_on"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"starts_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"deprecated"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"employment_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Contractor"</span><span class="p">,</span><span class="w">
@@ -5823,8 +5889,10 @@ X-RateLimit-Remaining: 49
   </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
   </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
   </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-02-13T22:30:58Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-07-31T20:49:05.604Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"sent_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="nt">"resolved_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"sent_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sent_on"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"starts_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"deprecated"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"employment_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Contractor"</span><span class="p">,</span><span class="w">
