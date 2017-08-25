@@ -564,7 +564,7 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>created_after</td><td>Return only applications that were created after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
-<td>last_activity_after</td><td>Return only applications where &lsquo;updated_at&rsquo; is after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<td>last_activity_after</td><td>Return only applications where &lsquo;last_activity_at&rsquo; is after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
 <td>job_id</td><td>If supplied, only return applications that involve this job. Will return both candidates and prospects.</td></tr>
 </tbody></table>
@@ -2281,7 +2281,7 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>activity_feed_notes</td><td>No</td><td>Array</td><td>An array of activity feed objects. See <a href="#post-add-note">Add Note</a> for parameters.</td></tr>
 <tr>
-<td>applications</td><td>Yes</td><td>Array</td><td>An array of application objects. At least one required. See <a href="#post-add-application">Add Application</a> for parameters.</td></tr>
+<td>applications</td><td>Yes</td><td>Array</td><td>An array of application objects. At least one required. See <a href="#post-add-candidate-application">Add Application</a> for parameters.</td></tr>
 </tbody></table>
 
 <p><br></p>
