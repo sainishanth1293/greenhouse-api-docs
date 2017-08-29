@@ -1678,8 +1678,8 @@ X-RateLimit-Remaining: 49
         </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Some new value"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"name_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"custom_field_name"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Some other new value"</span><span class="w">
+        </span><span class="nt">"name_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"single_select_field_name"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345</span><span class="w">
    </span><span class="p">},</span><span class="w">
    </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5678</span><span class="p">,</span><span class="w">
@@ -1852,7 +1852,7 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>name_key</td><td>all</td><td>The field key for this custom field. This can be found in Greenhouse while editing custom options as &ldquo;Immutable Field Key&rdquo;  This or id is required for all custom field elements.</td></tr>
 <tr>
-<td>value</td><td>all</td><td>The value field contains the new custom field value.  In most cases this will be a string or a number.  In the case of single-select or multi-select custom fields, this will be a custom field option id or an array of custom field option ids, respectively.</td></tr>
+<td>value</td><td>all</td><td>The value field contains the new custom field value.  In most cases this will be a string or a number.  In the case of single-select or multi-select custom fields, this will be a custom field option id or an array of custom field option ids, respectively. In the case of single-select fields, this can also be a string that matches an existing option value name exactly.</td></tr>
 <tr>
 <td>unit</td><td>currency</td><td>This contains the currency unit for a currency custom field. It is only required when updating a currency custom field.  This should accept any 3-character currency code from the ISO-4217 standard.</td></tr>
 <tr>
@@ -7372,6 +7372,16 @@ X-RateLimit-Remaining: 49
 
 <p><code class="prettyprint">DELETE https://harvest.greenhouse.io/v1/candidates/{candidate_id}/tags/{tag_id}</code></p>
 
+<h3 id="headers">Headers</h3>
+
+<table><thead>
+<tr>
+<td>Header</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>On-Behalf-Of</td><td>ID of the user issuing this request. Required for auditing purposes.</td></tr>
+</tbody></table>
+
 <h3 id="url-parameters">URL Parameters</h3>
 
 <table><thead>
@@ -7410,6 +7420,16 @@ X-RateLimit-Remaining: 49
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">PUT https://harvest.greenhouse.io/v1/candidates/{candidate_id}/tags/{tag_id}</code></p>
+
+<h3 id="headers">Headers</h3>
+
+<table><thead>
+<tr>
+<td>Header</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>On-Behalf-Of</td><td>ID of the user issuing this request. Required for auditing purposes.</td></tr>
+</tbody></table>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
