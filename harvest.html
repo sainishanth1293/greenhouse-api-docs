@@ -7826,6 +7826,54 @@ X-RateLimit-Remaining: 49
 
 <p><code class="prettyprint">PATCH https://harvest.greenhouse.io/v1/users/{id}/enable</code></p>
 
+<h2 id="patch-edit-user">PATCH: Edit User</h2>
+<pre class="highlight shell"><code>curl -X PATCH <span class="s1">'https://harvest.greenhouse.io/v1/users/{id}'</span>
+-H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command takes a JSON request, structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bob"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smith"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ABC12345"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Edit a user&rsquo;s basic information.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PATCH https://harvest.greenhouse.io/v1/users/{id}</code></p>
+
+<h3 id="headers">Headers</h3>
+
+<table><thead>
+<tr>
+<td>Header</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>On-Behalf-Of</td><td>ID of the user issuing this request. Required for auditing purposes.</td></tr>
+</tbody></table>
+
+<h3 id="json-body-parameters">JSON Body Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Required</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>first_name</td><td>No</td><td>string</td><td>The user&rsquo;s new first name. If included, this cannot be blank.</td></tr>
+<tr>
+<td>last_name</td><td>No</td><td>string</td><td>The user&rsquo;s new last name. If included, this cannot be blank.</td></tr>
+<tr>
+<td>employee_id*</td><td>No</td><td>string</td><td>The user&rsquo;s external employee id. If included, this cannot be blank, nor can it match any other employee-id for a user in this organization.</td></tr>
+</tbody></table>
+
+<p>* - If the employee id feature is not enabled for your organization, attempting to edit this field will raise an API Error.</p>
+
 <h2 id="post-add-user">POST: Add User</h2>
 <pre class="highlight shell"><code>curl -X POST <span class="s1">'https://harvest.greenhouse.io/v1/users'</span>
 -H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
