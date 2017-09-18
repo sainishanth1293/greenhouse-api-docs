@@ -7928,6 +7928,57 @@ X-RateLimit-Remaining: 49
 
 <p>* - A newly created user will not be able to login until they create a password via the invitation link or configured in an SSO system.</p>
 
+<h2 id="post-add-e-mail-address-to-user">POST: Add E-mail Address To User</h2>
+<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://harvest.greenhouse.io/v1/users/{id}/email_addresses'</span>
+-H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command takes a JSON request, structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bob@email.org"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"send_verification"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+</span><span class="err">}</span><span class="w">
+</span></code></pre>
+
+<p>Creates a new unverified e-mail address on the given user. The address will not be considered verified until the user receives the verification e-mail and clicks on the link to verify the address. There is no method in the API to verify an e-mail address. This endpoint is also used to re-send a verification e-mail. The request body to do this is exactly the same. If an unverified e-mail is received with send_verification set to true, Greenhouse will attempt to re-send the verification e-mail. If you attempt this with a verified e-mail, nothing occurs.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://harvest.greenhouse.io/v1/users/{id}/email_addresses</code></p>
+
+<h3 id="headers">Headers</h3>
+
+<table><thead>
+<tr>
+<td>Header</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>On-Behalf-Of</td><td>ID of the user issuing this request. Required for auditing purposes.</td></tr>
+</tbody></table>
+
+<h3 id="json-body-parameters">JSON Body Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Required</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>email</td><td>Yes</td><td>string</td><td>The user&rsquo;s email address. Must be a valid email address.</td></tr>
+<tr>
+<td>send_verification</td><td>No</td><td>boolean</td><td>If true, an email will be sent to the user to verify this e-mail address. If false, nothing happens. Default is false.</td></tr>
+</tbody></table>
+
+<p>There are 3 successful response states for this endpoint.</p>
+
+<ul>
+<li>201: A new e-mail address was received and created. This will be the response code regardless of the verification setting.</li>
+<li>200: An e-mail was generated for an unverified e-mail address. This is the case if we attempt to re-send a verification e-mail to an unverified e-mail address.</li>
+<li>204: A request was made which caused Greenhouse to do nothing. This will occur if you attempt to re-send a verification e-mail to an address that has already been verified or if you make a follow-up request to an unverified e-mail with send_verification set to false.</li>
+</ul>
+
           <h1 id="user-permissions">User Permissions</h1>
 
 <h2 id="the-job-permission-object">The job permission object</h2>
