@@ -90,6 +90,8 @@ analytics.page()
 <li>Retrieve jobs on which the Greenhouse user is allowed to operate.</li>
 </ol>
 
+<p>Note: The organization must be able to create prospects in order to create prospects using the Candidate Ingestion API.</p>
+
 <h2 id="authentication">Authentication</h2>
 
 <p>This API offers two methods of authentication: OAuth 2.0 and Basic Auth.</p>
@@ -311,7 +313,7 @@ These scopes do not apply if you are authenticating via Basic Auth.
 <td>Property Name</td><td>Type</td><td>Required</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>prospect</td><td>Boolean</td><td>No</td><td>True if this candidate should be a propsect. (Default: true)</td></tr>
+<td>prospect</td><td>Boolean</td><td>No</td><td>True if this candidate should be a prospect. The organization must be able to create prospects to set this field. (Default: true)</td></tr>
 <tr>
 <td>job_id</td><td>Integer</td><td>Mixed</td><td>Required only if prospect is false. The ID of the job to which this candidate or prospect should be added.</td></tr>
 <tr>
