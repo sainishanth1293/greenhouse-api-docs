@@ -160,6 +160,14 @@ analytics.page()
 <tr>
 <td><code class="prettyprint">application.candidate.external_id</code></td><td>An arbitrary ID provided by an external source; does not map to another entity in Greenhouse.</td></tr>
 <tr>
+<td><code class="prettyprint">application.prospect</code></td><td>If true, this is a prospect application which means that the associated person is a prospect and has not yet applied for this job. (Only prospects will have non-null values for <code class="prettyprint">prospect_owner</code>, <code class="prettyprint">prospect_pool</code>, or <code class="prettyprint">prospect_stage</code> under <code class="prettyprint">prospect_detail</code>)</td></tr>
+<tr>
+<td><code class="prettyprint">application.prospect_detail.prospect_owner</code></td><td>The user responsible for keeping track of the prospect. Either null or a user&rsquo;s <code class="prettyprint">id</code> and <code class="prettyprint">name</code></td></tr>
+<tr>
+<td><code class="prettyprint">application.prospect_detail.prospect_pool</code></td><td>The current prospect pool of a prospect. Either null or a pool&rsquo;s <code class="prettyprint">id</code> and <code class="prettyprint">name</code></td></tr>
+<tr>
+<td><code class="prettyprint">application.prospect_detail.prospect_stage</code></td><td>The current prospect stage of a prospect. Either null or a stage&rsquo;s <code class="prettyprint">id</code> and <code class="prettyprint">name</code></td></tr>
+<tr>
 <td><code class="prettyprint">application.jobs[]</code></td><td>Candidates will have one job. Prospects will have 0 or more jobs.</td></tr>
 <tr>
 <td><code class="prettyprint">application.jobs[].id</code></td><td>Unique Greenhouse identifier of the job. Information not included in the web hook can be retrieved via <a href="harvest.html#jobs">Harvest API - GET Jobs</a></td></tr>
@@ -213,6 +221,11 @@ analytics.page()
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">265293</span><span class="p">,</span><span class="w">
       </span><span class="nt">"rejected_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"prospect"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"prospect_detail"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"prospect_owner"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"prospect_pool"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"prospect_stage"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="p">},</span><span class="w">
       </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"applied_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-03-22T00:00:00Z"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"last_activity_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-03-18T20:28:09Z"</span><span class="p">,</span><span class="w">
@@ -385,6 +398,11 @@ analytics.page()
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">22202940</span><span class="p">,</span><span class="w">
       </span><span class="nt">"rejected_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"prospect"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"prospect_detail"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"prospect_owner"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"prospect_pool"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"prospect_stage"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="p">},</span><span class="w">
       </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"applied_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-12-03T06:31:26Z"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"last_activity_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-12-03T06:31:26Z"</span><span class="p">,</span><span class="w">
