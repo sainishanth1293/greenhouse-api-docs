@@ -198,6 +198,7 @@ X-RateLimit-Remaining: 49
 <li><a href="#get-list-user-roles">GET: List User Roles</a></li>
 <li><a href="#get-list-custom-fields">GET: List Custom Fields</a></li>
 <li><a href="#get-list-custom-field-options">GET: List Custom Field Options</a></li>
+<li><a href="#get-list-job-openings">GET: List Job Openings</a></li>
 </ul>
 
 <aside class="warning">Since paging mechanisms may differ per paginated endpoint and may change in the future, it is important to use the Link headers and not page manually by changing the paging-related query parameters.</aside>
@@ -3910,6 +3911,143 @@ X-RateLimit-Remaining: 49
 
 <p><a href="#the-email-template-object">See noteworthy response attributes.</a></p>
 
+          <h1 id="job-openings">Job Openings</h1>
+
+<p>This endpoint is used to managing openings on jobs.</p>
+
+<h2 id="the-job-opening-object">The job opening object</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPENED-1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-19T19:53:32.565Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"closed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="err">,</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CLOSED-1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"closed"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-19T19:53:32.565Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"closed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-12-14T19:53:32.565Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">65565</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="noteworthy-attributes">Noteworthy Attributes</h3>
+
+<table><thead>
+<tr>
+<td>Attribute</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>id</td><td>The opening&rsquo;s unique identifier</td></tr>
+<tr>
+<td>opening_id</td><td>This is a text string used to identify the opening. This is defined by the users and may be null.</td></tr>
+<tr>
+<td>status</td><td>Either &ldquo;open&rdquo; or &ldquo;closed&rdquo;</td></tr>
+<tr>
+<td>opened_at</td><td>This is the date and time this opening was created.</td></tr>
+<tr>
+<td>closed_at</td><td>This is when the opening was closed; usually via the opening being filled. This should be null for opened openings.</td></tr>
+<tr>
+<td>application_id</td><td>The application that was used to fill this opening. This should only be set on a closed opening, null otherwise.</td></tr>
+</tbody></table>
+
+<h2 id="get-list-job-openings">GET: List Job Openings</h2>
+<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/jobs/{job_id}/openings'</span> -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPENED-1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-19T19:53:32.565Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"closed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CLOSED-1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"closed"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-19T19:53:32.565Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"closed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-12-14T19:53:32.565Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">65565</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>List all of a job&rsquo;s openings</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/jobs/{job_id}/openings</code></p>
+
+<h3 id="url-paramters">URL Paramters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>job_id</td><td>The ID of the job for which you want to retrieve openings.</td></tr>
+</tbody></table>
+
+<h3 id="querystring-parameters">Querystring Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>status</td><td>May contain either &ldquo;opened&rdquo; or &ldquo;closed&rdquo;; when set will return only open or closed openings, respectively. Returns all openings if this isn&rsquo;t set or set to an unrecognized value.</td></tr>
+</tbody></table>
+
+<p>This endpoint supports pagination. See the <a href="#pagination">Pagination</a> section for more detail.</p>
+
+<p><a href="#the-job-opening-object">See noteworthy response attributes.</a></p>
+
+<h2 id="get-single-opening-for-job">GET: Single Opening For Job</h2>
+<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/jobs/{job_id}/openings/{id}'</span> -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPENED-1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-19T19:53:32.565Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"closed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Retrieve the information for a single opening.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/jobs/{job_id}/openings/{id}</code></p>
+
+<h3 id="url-paramters">URL Paramters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>job_id</td><td>The ID of the job for which you want to retrieve openings.</td></tr>
+<tr>
+<td>id</td><td>The ID of the opening you want to retrieve. Note: this is NOT the <code class="prettyprint">opening_id</code> which is mutable and defined by Greenhouse users, but the <code class="prettyprint">id</code> of an opening, which is unique to that opening and not mutable.</td></tr>
+</tbody></table>
+
+<p><a href="#the-job-opening-object">See noteworthy response attributes.</a></p>
+
           <h1 id="job-posts">Job Posts</h1>
 
 <p>Describes the online job posts for an organization&rsquo;s jobs (as seen on the Job Board).</p>
@@ -4742,6 +4880,7 @@ X-RateLimit-Remaining: 49
   </span><span class="p">},</span><span class="w">
   </span><span class="nt">"openings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
       </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3-1"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-20T23:14:14.736Z"</span><span class="p">,</span><span class="w">
@@ -4749,6 +4888,7 @@ X-RateLimit-Remaining: 49
       </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">124</span><span class="p">,</span><span class="w">
       </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3-2"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-20T23:14:14.739Z"</span><span class="p">,</span><span class="w">
@@ -4756,6 +4896,7 @@ X-RateLimit-Remaining: 49
       </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">125</span><span class="p">,</span><span class="w">
       </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-02-03T20:00:00.000Z"</span><span class="p">,</span><span class="w">
@@ -4763,6 +4904,7 @@ X-RateLimit-Remaining: 49
       </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">126</span><span class="p">,</span><span class="w">
       </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2-4"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"closed"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-02-03T16:38:46.985Z"</span><span class="p">,</span><span class="w">
@@ -4800,7 +4942,7 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>openings</td><td>Lists the openings associated with this job.</td></tr>
 <tr>
-<td>openings[].id</td><td>Custom identifier set by an organization. Can be <code class="prettyprint">null</code>.</td></tr>
+<td>openings[].opening_id</td><td>Custom identifier set by an organization. Can be <code class="prettyprint">null</code>.</td></tr>
 <tr>
 <td>openings[].status</td><td>One of: <code class="prettyprint">[&quot;open&quot;, &quot;closed&quot;]</code></td></tr>
 <tr>
@@ -4899,6 +5041,7 @@ X-RateLimit-Remaining: 49
     </span><span class="p">},</span><span class="w">
     </span><span class="nt">"openings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
         </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1-1"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"closed"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-19T19:53:32.564Z"</span><span class="p">,</span><span class="w">
@@ -4906,6 +5049,7 @@ X-RateLimit-Remaining: 49
         </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24709881</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">124</span><span class="p">,</span><span class="w">
         </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1-2"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-19T19:53:32.565Z"</span><span class="p">,</span><span class="w">
@@ -5033,6 +5177,7 @@ X-RateLimit-Remaining: 49
   </span><span class="p">},</span><span class="w">
   </span><span class="nt">"openings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
       </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1-1"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"closed"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-19T19:53:32.564Z"</span><span class="p">,</span><span class="w">
@@ -5040,6 +5185,7 @@ X-RateLimit-Remaining: 49
       </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24709881</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">124</span><span class="p">,</span><span class="w">
       </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1-2"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-19T19:53:32.565Z"</span><span class="p">,</span><span class="w">
@@ -5080,6 +5226,7 @@ X-RateLimit-Remaining: 49
    </span><span class="nt">"team_and_responsibilities"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Info"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"how_to_sell_this_job"</span><span class="p">:</span><span class="w"> </span><span class="s2">"the snacks"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"office_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1556</span><span class="p">],</span><span class="w">
+   </span><span class="nt">"department_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">74</span><span class="p">,</span><span class="w">
    </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
@@ -5136,7 +5283,7 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>anywhere</td><td>No</td><td>boolean</td><td>Boolean value indicating where the job can be done anywhere</td></tr>
 <tr>
-<td>requisition_id</td><td>No</td><td>string</td><td>The id of the requisition corresponding to this job posting, if applicable</td></tr>
+<td>requisition_id*</td><td>No</td><td>string</td><td>The id of the requisition corresponding to this job posting, if applicable</td></tr>
 <tr>
 <td>team_and_responsibilities</td><td>No</td><td>string</td><td>A description of the team the candidate would join and their responsibilities</td></tr>
 <tr>
@@ -5145,7 +5292,13 @@ X-RateLimit-Remaining: 49
 <td>custom_fields</td><td>No</td><td>custom_field</td><td>Array of hashes containing new custom field values.  Passing an empty array does nothing.</td></tr>
 <tr>
 <td>office_ids</td><td>No</td><td>Array</td><td>Replace the current offices for this job with new offices. If your organization requires at least one office, trying to set this to blank will return an error.</td></tr>
+<tr>
+<td>department_id*</td><td>No</td><td>number</td><td>Replace the current department for this job with a different department.</td></tr>
 </tbody></table>
+
+<ul>
+<li>- Updates to these fields may re-trigger approvals. For approvals to start recruiting, this will reset approvals only if the job is in draft mode. If the job is open for hiring, these approvals will not reset. For official job approvals, this will reset approvals only if the job is open.</li>
+</ul>
 
 <h3 id="custom-field-parameters">Custom Field Parameters</h3>
 
@@ -5239,6 +5392,7 @@ X-RateLimit-Remaining: 49
   </span><span class="p">},</span><span class="w">
   </span><span class="nt">"openings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
       </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"closed"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-09-10T19:01:46.077Z"</span><span class="p">,</span><span class="w">
@@ -5246,6 +5400,7 @@ X-RateLimit-Remaining: 49
       </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">18682391</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">124</span><span class="p">,</span><span class="w">
       </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"closed"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-09-21T21:28:17.679Z"</span><span class="p">,</span><span class="w">
@@ -5253,6 +5408,7 @@ X-RateLimit-Remaining: 49
       </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">18492607</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">125</span><span class="p">,</span><span class="w">
       </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-03-09T20:07:35.675Z"</span><span class="p">,</span><span class="w">
@@ -5416,6 +5572,7 @@ X-RateLimit-Remaining: 49
   </span><span class="p">},</span><span class="w">
   </span><span class="nt">"openings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
       </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc-123-1"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-09-10T19:01:46.077Z"</span><span class="p">,</span><span class="w">
@@ -5423,6 +5580,7 @@ X-RateLimit-Remaining: 49
       </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">124</span><span class="p">,</span><span class="w">
       </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc-123-2"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-09-10T19:01:46.077Z"</span><span class="p">,</span><span class="w">
