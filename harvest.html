@@ -4627,7 +4627,7 @@ X-RateLimit-Remaining: 49
 
 <p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/jobs/{job_id}/openings/{id}</code></p>
 
-<h3 id="url-paramters">URL Paramters</h3>
+<h3 id="url-parameters">URL Parameters</h3>
 
 <table><thead>
 <tr>
@@ -4640,6 +4640,63 @@ X-RateLimit-Remaining: 49
 </tbody></table>
 
 <p><a href="#the-job-opening-object">See noteworthy response attributes.</a></p>
+
+<h2 id="post-create-new-openings">POST: Create New Openings</h2>
+<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://harvest.greenhouse.io/v1/jobs/{job_id}/openings'</span>
+-H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"openings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc-123"</span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://harvest.greenhouse.io/v1/jobs/{job_id}/openings</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>job_id</td><td>The ID of the job on which to add new openings.</td></tr>
+</tbody></table>
+
+<h3 id="json-body-parameters">JSON Body Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Required</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>openings</td><td>yes</td><td>Array</td><td>This an array of opening IDs, which contain one element.</td></tr>
+<tr>
+<td>openings.opening_id</td><td>yes</td><td>Array</td><td>This is a string that contains an opening_id. One new opening will be created for each hash element in the array. Opening ID is not required to have a string value and may be null.  Greenhouse has an internal limit of 100 open openings. If you attempt to create more than 100 openings in a single request, or if this request would create more than 100 open openings, the request will fail.</td></tr>
+</tbody></table>
+
+<p><strong>Note</strong>: Adding new openings may re-trigger approvals. For approvals to start recruiting, this will reset approvals only if the job is in draft mode. If the job is open for hiring, these approvals will not reset. For official job approvals, this will reset approvals only if the job is open.</p>
+
+<blockquote>
+<p>The above returns a JSON response, structured like this:
+<code class="prettyprint">
+{
+    &quot;id&quot;: 123456,
+    &quot;opening_id&quot;: &quot;abc-123&quot;,
+    &quot;open_date&quot;: &quot;2017-10-02T19:53:32.565Z&quot;
+},
+{
+    &quot;id&quot;: 123457,
+    &quot;opening_id&quot;: null,
+    &quot;open_date&quot;: &quot;2017-10-02T19:53:32.565Z&quot;
+}
+</code></p>
+</blockquote>
 
           <h1 id="job-posts">Job Posts</h1>
 
