@@ -1859,6 +1859,8 @@ X-RateLimit-Remaining: 49
 <td>updated_after</td><td>Return only candidates that were updated after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
 <td>job_id</td><td>If supplied, only return candidates that have applied to this job. Will return both when a candidate has applied to a job and when they&rsquo;re a prospect for a job.</td></tr>
+<tr>
+<td>email</td><td>If supplied, only return candidates who have a matching e-mail address. If supplied with job_id, only return a candidate with a matching e-mail with an application on the job.</td></tr>
 </tbody></table>
 
 <p><br></p>
@@ -4648,8 +4650,8 @@ X-RateLimit-Remaining: 49
 </code></pre>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"openings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc-123"</span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">}</span><span class="w">
+      </span><span class="p">{</span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc-123"</span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -4683,20 +4685,19 @@ X-RateLimit-Remaining: 49
 <p><strong>Note</strong>: Adding new openings may re-trigger approvals. For approvals to start recruiting, this will reset approvals only if the job is in draft mode. If the job is open for hiring, these approvals will not reset. For official job approvals, this will reset approvals only if the job is open.</p>
 
 <blockquote>
-<p>The above returns a JSON response, structured like this:
-<code class="prettyprint">
-{
-    &quot;id&quot;: 123456,
-    &quot;opening_id&quot;: &quot;abc-123&quot;,
-    &quot;open_date&quot;: &quot;2017-10-02T19:53:32.565Z&quot;
-},
-{
-    &quot;id&quot;: 123457,
-    &quot;opening_id&quot;: null,
-    &quot;open_date&quot;: &quot;2017-10-02T19:53:32.565Z&quot;
-}
-</code></p>
+<p>The above returns a JSON response, structured like this:</p>
 </blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc-123"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"open_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-02T19:53:32.565Z"</span><span class="w">
+</span><span class="p">}</span><span class="err">,</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123457</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"open_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-02T19:53:32.565Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
           <h1 id="job-posts">Job Posts</h1>
 
