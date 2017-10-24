@@ -207,7 +207,7 @@ These scopes do not apply if you are authenticating via Basic Auth.
 
 <h3 id="request-parameters">Request Parameters</h3>
 
-<p>The request should contain a single query parameter that specifies a comma-delimited list of candidate IDs.</p>
+<p>The request should contain a single query parameter that specifies a comma-delimited list of candidate IDs. If you provide any candidate ids that don&rsquo;t exist or to which you do not have access, this endpoint will ignore them and only return the candidates that exist to this API key.</p>
 
 <table><thead>
 <tr>
@@ -436,7 +436,7 @@ These scopes do not apply if you are authenticating via Basic Auth.
 
           <h1 id="jobs">Jobs</h1>
 
-<h2 id="retreive-jobs">Retreive Jobs</h2>
+<h2 id="retrieve-jobs">Retrieve Jobs</h2>
 <pre class="highlight shell"><code>curl <span class="s1">'https://api.greenhouse.io/v1/partner/jobs'</span>
 -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
 </code></pre>

@@ -3494,6 +3494,8 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>name</td><td>The field&rsquo;s name in Greenhouse</td></tr>
 <tr>
+<td>active</td><td>Boolean value which is false if the custom field has been deleted, true otherwise.</td></tr>
+<tr>
 <td>field_type</td><td>One of job, candidate, application, offer, rejection_question, referral_question. This is also included in the URL as an argument, which will return only custom fields that match the given type.</td></tr>
 <tr>
 <td>priority</td><td>Numeric field used for ordering in Greenhouse.</td></tr>
@@ -3527,6 +3529,7 @@ X-RateLimit-Remaining: 49
   </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span><span class="p">,</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom Field Name"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nt">"field_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"job"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nt">"value_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"single_select"</span><span class="p">,</span><span class="w">
@@ -3555,6 +3558,16 @@ X-RateLimit-Remaining: 49
 
 <p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/custom_fields/{field_type}</code></p>
 
+<h3 id="url-parameters">URL parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>field_type</td><td>Returns only custom fields of this type. For example, if “offer” is included in the URL as the field_type, the endpoint will only return custom fields with the “offer” field type.  One of: <code class="prettyprint">offer</code>, <code class="prettyprint">candidate</code>, <code class="prettyprint">application</code>, <code class="prettyprint">job</code>, <code class="prettyprint">rejection_question</code>, <code class="prettyprint">referral_question</code>.</td></tr>
+</tbody></table>
+
 <h3 id="querystring-parameters">Querystring parameters</h3>
 
 <table><thead>
@@ -3562,7 +3575,7 @@ X-RateLimit-Remaining: 49
 <td>Parameter</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>field_type</td><td>Returns only custom fields of this type. For example, if “offer” is included in the URL as the field_type, the endpoint will only return custom fields with the “offer” field type.</td></tr>
+<td>include_inactive</td><td>When <code class="prettyprint">true</code>, include inactive custom fields. Otherwise excludes inactive custom fields.  Defaults to <code class="prettyprint">false</code>.</td></tr>
 </tbody></table>
 
 <p><br>
@@ -3581,6 +3594,7 @@ X-RateLimit-Remaining: 49
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span><span class="p">,</span><span class="w">
   </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom Field Name"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="nt">"field_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"job"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
   </span><span class="nt">"value_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"single_select"</span><span class="p">,</span><span class="w">
@@ -3627,7 +3641,7 @@ X-RateLimit-Remaining: 49
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span><span class="p">,</span><span class="w">
   </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Option A"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"prioirty"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -3653,17 +3667,17 @@ X-RateLimit-Remaining: 49
   </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span><span class="p">,</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Option A"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"prioirty"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123457</span><span class="p">,</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Option B"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"prioirty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123458</span><span class="p">,</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Option C"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"prioirty"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+    </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>

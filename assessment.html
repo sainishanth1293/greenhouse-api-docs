@@ -84,7 +84,7 @@ analytics.page()
 
 <h3 id="working-with-greenhouse-to-implement-the-integration">Working with Greenhouse to implement the integration</h3>
 
-<p>To begin the integration process, please send the following information to us at partners@greenhouse.io: </p>
+<p>To begin the integration process, please send the following information to us at partners@greenhouse.io:</p>
 
 <ol>
 <li>URL for your <code class="prettyprint">list_tests</code> API call</li>
@@ -101,19 +101,19 @@ analytics.page()
 
 <h3 id="selecting-the-test">Selecting the Test</h3>
 
-<p>Once Greenhouse enters the API key for the organization, a new partner interview stage will be available for use. The user can add this stage to the Hiring Plan of any job that has access to the new Assessment Partner stage. Greenhouse will then make an API call to the <a href="#list-tests">List Tests endpoint</a> to determine what tests the organization has configured. </p>
+<p>Once Greenhouse enters the API key for the organization, a new partner interview stage will be available for use. The user can add this stage to the Hiring Plan of any job that has access to the new Assessment Partner stage. Greenhouse will then make an API call to the <a href="#list-tests">List Tests endpoint</a> to determine what tests the organization has configured.</p>
 
 <p><img src="/images/add-stage.png" alt="Add Stage Image"></p>
 
 <h3 id="sending-the-test">Sending the Test</h3>
 
-<p>When a candidate reaches this Interview Stage, the user will click the &ldquo;Send Test&rdquo; button to send the test to the candidate via the <a href="#send-test">Send Test endpoint</a>. Greenhouse will send the Test ID and candidate email to the Assessment Partner, who will email the test to the candidate. The Assessment Partner will then send Greenhouse the ID for this unique test instance. </p>
+<p>When a candidate reaches this Interview Stage, the user will click the &ldquo;Send Test&rdquo; button to send the test to the candidate via the <a href="#send-test">Send Test endpoint</a>. Greenhouse will send the Test ID and candidate email to the Assessment Partner, who will email the test to the candidate. The Assessment Partner will then send Greenhouse the ID for this unique test instance.</p>
 
 <p><img src="/images/send-test.png" alt="Add Stage Image"></p>
 
 <h3 id="receiving-the-test-results">Receiving the Test Results</h3>
 
-<p>Greenhouse will periodically poll the <a href="#test-status">Test Status endpoint</a> to retreive the candidate&rsquo;s test status and results. When the candidate completes the test, Greenhouse will notify the appropriate user that the test is complete. The user will be able to view the candidate’s score, navigate to the partner site to see more details, and make an advance or reject decision within Greenhouse. The user will also be able to filter candidates by score and advance or reject candidates in bulk.</p>
+<p>Greenhouse will periodically poll the <a href="#test-status">Test Status endpoint</a> to retrieve the candidate&rsquo;s test status and results. When the candidate completes the test, Greenhouse will notify the appropriate user that the test is complete. The user will be able to view the candidate’s score, navigate to the partner site to see more details, and make an advance or reject decision within Greenhouse. The user will also be able to filter candidates by score and advance or reject candidates in bulk.</p>
 
 <h2 id="authentication">Authentication</h2>
 
@@ -130,10 +130,10 @@ analytics.page()
 <ul>
 <li><em>Assessment Partner A</em> provided <em>Customer 1</em> with an API key.</li>
 <li><em>Customer 1</em> provided this key to Greenhouse.</li>
-<li><p><em>Assessment Partner A</em> provided the following URL for its <code class="prettyprint">list_tests</code> endpoint: </p>
+<li><p><em>Assessment Partner A</em> provided the following URL for its <code class="prettyprint">list_tests</code> endpoint:</p>
 
 <p><em>https://www.testing-partner-a.com/api/list_tests</em></p></li>
-<li><p>Greenhouse would make the following request to retreive the list of available tests: </p>
+<li><p>Greenhouse would make the following request to retrieve the list of available tests:</p>
 
 <p><em>GET https://www.testing-partner-a.com/api/list_tests</em>
 <em>Authorization: Basic &lt; base-64-encoded-credentials &gt;</em></p></li>
@@ -141,7 +141,7 @@ analytics.page()
 
           <h1 id="list-tests">List Tests</h1>
 
-<p>Greenhouse will first need to retreive the list of tests from the Assessment Partner using the <code class="prettyprint">list_tests</code> API endpoint. We will show the list of available tests to the user, who will to select the appropriate test for a given candidate. </p>
+<p>Greenhouse will first need to retrieve the list of tests from the Assessment Partner using the <code class="prettyprint">list_tests</code> API endpoint. We will show the list of available tests to the user, who will to select the appropriate test for a given candidate. </p>
 
 <p><code class="prettyprint">GET https://www.testing-partner.com/api/list_tests</code></p>
 <pre class="highlight shell"><code>curl <span class="s1">'https://www.testing-partner.com/api/list_tests'</span>
