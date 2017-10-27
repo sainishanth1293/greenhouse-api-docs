@@ -3452,6 +3452,63 @@ X-RateLimit-Remaining: 49
 <td>duplicate_candidate_id</td><td>Yes</td><td>integer</td><td>The id of the second candidate that will be merged. <strong><em>This candidate will cease to exist after the merge is complete.</em></strong></td></tr>
 </tbody></table>
 
+          <h1 id="close-reasons">Close Reasons</h1>
+
+<p>When closing an opening, it is possible to designate the reason the opening is being closed. This might be &ldquo;Filled&rdquo; or &ldquo;Cancelled&rdquo; or some other reason.  These reasons are configured in Greenhouse.</p>
+
+<h2 id="the-close-reason-object">The close reason object</h2>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">230</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hired"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="noteworthy-attributes">Noteworthy attributes</h3>
+
+<table><thead>
+<tr>
+<td>Attribute</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>id</td><td>The close reason&rsquo;s unique identifier. This is the ID that would be used in POST or PATCH statements involving close reasons.</td></tr>
+<tr>
+<td>name</td><td>The name of the close reason</td></tr>
+</tbody></table>
+
+<h2 id="get-list-close-reasons">GET: List Close Reasons</h2>
+
+<p>List all of an organization&rsquo;s close reasons.</p>
+<pre class="highlight shell"><code>curl -X GET <span class="s1">'https://harvest.greenhouse.io/v1/close_reasons'</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">365</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hired"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">366</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Backfill"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">367</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Order cancelled"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/close_reasons</code></p>
+
+<p><br></p>
+
+<p><a href="#the-close-reason-object">See noteworthy response attributes.</a></p>
+
           <h1 id="custom-fields">Custom Fields</h1>
 
 <p>An organization&rsquo;s custom_fields.</p>
@@ -4744,6 +4801,58 @@ X-RateLimit-Remaining: 49
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2 opening(s) destroyed. 1 opening(s) were closed and not destroyed. 0 id(s) were not found."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h2 id="patch-edit-openings">PATCH: Edit Openings</h2>
+<pre class="highlight shell"><code>curl -X PATCH <span class="s1">'https://harvest.greenhouse.io/v1/jobs/{job_id}/openings/{d}'</span>
+-H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc-123"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"closed"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"close_reason_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PATCH https://harvest.greenhouse.io/v1/jobs/{job_id}/openings/{id}</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>job_id</td><td>The ID of the job on which to add new openings.</td></tr>
+<tr>
+<td>id</td><td>The ID of the opening. Note this is the immutable internal id, and not the free-text &ldquo;opening_id&rdquo; from the JSON body.</td></tr>
+</tbody></table>
+
+<h3 id="json-body-parameters">JSON Body Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Required</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>opening_id</td><td>no</td><td>string</td><td>This is a string that contains an opening_id. This may be a blank string. Changing an opening_id may re-trigger approvals. For approvals to start recruiting, this will reset approvals only if the job is in draft mode. If the job is open for hiring, these approvals will not reset. For official job approvals, this will reset approvals only if the job is open.</td></tr>
+<tr>
+<td>status</td><td>no</td><td>string</td><td>This can be used to set an open opening to closed by using the word &ldquo;closed&rdquo;.  Status may only be used to set an open opening to closed. It does not accept any other value and cannot be used to re-open a closed opening. If the last opening is closed, it will close the hiring plan.</td></tr>
+<tr>
+<td>close_reason_id</td><td>no</td><td>integer</td><td>When closing, you may provide a close_reason_id. Providing a close_reason_id without closing the opening will return an error.</td></tr>
+</tbody></table>
+
+<p><strong>Note</strong>: Only open openings may be patched. Attempting to patch a closed opening will return an error. If the job is closed at the same time the opening_id is changed, approvals will be ignored in favor of closing the opening.</p>
+
+<blockquote>
+<p>The above returns a JSON response, structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
