@@ -7475,6 +7475,8 @@ X-RateLimit-Remaining: 49
 <td>per_page</td><td>Return up to this number of objects per response. Must be an integer between 1 and 500. Defaults to 100.</td></tr>
 <tr>
 <td>page</td><td>A cursor for use in pagination.  Returns the n-th chunk of <code class="prettyprint">per_page</code> objects.</td></tr>
+<tr>
+<td>include_defaults</td><td>When included and set to true, this will also return Greenhouse&rsquo;s default rejection reasons which are included automatically in each account.</td></tr>
 </tbody></table>
 
 <p><br>
@@ -7868,6 +7870,21 @@ X-RateLimit-Remaining: 49
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Private Notes"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"answer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Seems like a decent candidate."</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234567</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Does the candidate have experience designing APIs?"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"answer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yes"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234568</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Which team would you suggest for this candidate?"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"answer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Alpha Team"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234569</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Where would the candidate be willing to work?"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"answer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"London, Dubai, San Diego"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -7980,6 +7997,21 @@ X-RateLimit-Remaining: 49
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Private Notes"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"answer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Seems like a decent candidate."</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234567</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Does the candidate have experience designing APIs?"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"answer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yes"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234568</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Which team would you suggest for this candidate?"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"answer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Alpha Team"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234569</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Where would the candidate be willing to work?"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"answer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"London, Dubai, San Diego"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
   </span><span class="p">},</span><span class="w">
@@ -8101,6 +8133,21 @@ X-RateLimit-Remaining: 49
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Private Notes"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"answer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Seems like a decent candidate."</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234567</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Does the candidate have experience designing APIs?"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"answer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yes"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234568</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Which team would you suggest for this candidate?"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"answer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Alpha Team"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234569</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Where would the candidate be willing to work?"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"answer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"London, Dubai, San Diego"</span><span class="w"> 
       </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
   </span><span class="p">},</span><span class="w">
@@ -8215,6 +8262,21 @@ X-RateLimit-Remaining: 49
       </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Private Notes"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"answer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Seems like a decent candidate."</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234567</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Does the candidate have experience designing APIs?"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"answer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yes"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234568</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Which team would you suggest for this candidate?"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"answer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Alpha Team"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234569</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Where would the candidate be willing to work?"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"answer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"London, Dubai, San Diego"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
