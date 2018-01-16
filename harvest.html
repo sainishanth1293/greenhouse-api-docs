@@ -4474,6 +4474,114 @@ X-RateLimit-Remaining: 49
 <td>id</td><td>ID of the application whose EEOC data you want to retrieve.</td></tr>
 </tbody></table>
 
+          <h1 id="education">Education</h1>
+
+<p>These endpoints are used to manage the list of education fields in Greenhouse.</p>
+
+<h2 id="the-education-objects">The education objects</h2>
+
+<p>Each of the education objects contain an <code class="prettyprint">id</code>, <code class="prettyprint">name</code>, and <code class="prettyprint">priority</code>. When ordering occurs, the items are organized by their priority number.
+<code class="prettyprint">
+{
+    &quot;id&quot;: 1234,
+    &quot;name&quot;: &quot;Siena College&quot;,
+    &quot;priority&quot;: 1
+}
+</code></p>
+
+<h2 id="get-list-degrees">GET: List Degrees</h2>
+<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/degrees'</span> -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bachelor's Degree"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">234</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Master's Degree"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>List all this organization&rsquo;s degree levels.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/degree</code></p>
+
+<p>This endpoint retrieves all the degree and/or education levels for this organization, sorted by priority.</p>
+
+<p><a href="#the-education-objects">See education object.</a></p>
+
+<h2 id="get-list-disciplines">GET: List Disciplines</h2>
+<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/disciplines'</span> -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Accounting"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">234</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Biology"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>List all this organization&rsquo;s disciplines.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/disciplines</code></p>
+
+<p>This endpoint retrieves all the disciplines for this organization, sorted by priority.</p>
+
+<p><a href="#the-education-objects">See education object.</a></p>
+
+<h2 id="get-list-schools">GET: List Schools</h2>
+<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/schools'</span> -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Siena College"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">234</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Union College"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>List all this organization&rsquo;s schools.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/schools</code></p>
+
+<p>This endpoint retrieves all the schools for this organization, sorted by priority.</p>
+
+<p><a href="#the-education-objects">See education object.</a></p>
+
           <h1 id="email-templates">Email Templates</h1>
 
 <p>An organization&rsquo;s email templates.</p>
