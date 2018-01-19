@@ -4514,7 +4514,7 @@ X-RateLimit-Remaining: 49
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/degree</code></p>
+<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/degrees</code></p>
 
 <p>This endpoint retrieves all the degree and/or education levels for this organization, sorted by priority.</p>
 
@@ -9175,8 +9175,8 @@ X-RateLimit-Remaining: 49
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bob@email.org"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"send_verification"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-</span><span class="err">}</span><span class="w">
+  </span><span class="nt">"send_verification"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 
 <p>Creates a new unverified e-mail address on the given user. The address will not be considered verified until the user receives the verification e-mail and clicks on the link to verify the address. There is no method in the API to verify an e-mail address. This endpoint is also used to re-send a verification e-mail. The request body to do this is exactly the same. If an unverified e-mail is received with send_verification set to true, Greenhouse will attempt to re-send the verification e-mail. If you attempt this with a verified e-mail, nothing occurs.</p>
