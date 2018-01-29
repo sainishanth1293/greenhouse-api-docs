@@ -227,6 +227,7 @@ X-RateLimit-Remaining: 49
 <li>Timestamps are rendered in ISO-8601 format (e.g. `2016-02-03T16:38:46.985Z)</li>
 <li>URLs to external resources are valid for 30 days</li>
 <li>We reserve the right to add more properties to objects, but will never change or remove them</li>
+<li>Custom Fields on the <a href="#applications">application object</a> are only available to customers with Enterprise-level accounts</li>
 </ul>
 
 <h2 id="errors">Errors</h2>
@@ -654,9 +655,9 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>created_before</td><td>Return only applications that were created before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
-<td>created_after</td><td>Return only applications that were created after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<td>created_after</td><td>Return only applications that were created at or after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
-<td>last_activity_after</td><td>Return only applications where &lsquo;last_activity_at&rsquo; is after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<td>last_activity_after</td><td>Return only applications where &lsquo;last_activity_at&rsquo; is at or after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
 <td>job_id</td><td>If supplied, only return applications that involve this job. Will return both candidates and prospects.</td></tr>
 </tbody></table>
@@ -1890,11 +1891,11 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>created_before</td><td>Return only candidates that were created before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
-<td>created_after</td><td>Return only candidates that were created after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<td>created_after</td><td>Return only candidates that were created at or after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
 <td>updated_before</td><td>Return only candidates that were updated before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
-<td>updated_after</td><td>Return only candidates that were updated after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<td>updated_after</td><td>Return only candidates that were updated at or after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
 <td>job_id</td><td>If supplied, only return candidates that have applied to this job. Will return both when a candidate has applied to a job and when they&rsquo;re a prospect for a job.</td></tr>
 <tr>
@@ -3347,7 +3348,7 @@ X-RateLimit-Remaining: 49
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Anonymize the data associated with a candidate.</p>
+<p>Anonymize the data associated with a candidate. Please note that this endpoint is only available to customers with Enterprise-level accounts.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -4454,7 +4455,7 @@ X-RateLimit-Remaining: 49
 <tr>
 <td class="optional">submitted_before</td><td>Return only EEOC data submitted before this timestamp. Timestamp must be in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
-<td class="optional">submitted_after</td><td>Return only EEOC data submitted after this timestamp. Timestamp must be in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<td class="optional">submitted_after</td><td>Return only EEOC data submitted at or after this timestamp. Timestamp must be in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 </tbody></table>
 
 <p>This endpoint supports pagination. See the <a href="#pagination">Pagination</a> section for more detail.</p>
@@ -4709,11 +4710,11 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>created_before</td><td>Return only email templates that were created before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
-<td>created_after</td><td>Return only email templates that were created after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<td>created_after</td><td>Return only email templates that were created at or after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
 <td>updated_before</td><td>Return only email templates that were updated before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
-<td>updated_after</td><td>Return only email templates that were updated after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<td>updated_after</td><td>Return only email templates that were updated at or after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 </tbody></table>
 
 <p><br></p>
@@ -5257,11 +5258,11 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>created_before</td><td>Return only job posts that were created before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
-<td>created_after</td><td>Return only job posts that were created after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<td>created_after</td><td>Return only job posts that were created at or after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
 <td>updated_before</td><td>Return only job posts that were updated before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
-<td>updated_after</td><td>Return only job posts that were updated after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<td>updated_after</td><td>Return only job posts that were updated at or after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
 <td>live</td><td>If <code class="prettyprint">true</code>, return only live job posts.</td></tr>
 </tbody></table>
@@ -5368,7 +5369,7 @@ X-RateLimit-Remaining: 49
 
 <h2 id="get-retrieve-job-post-for-job">GET: Retrieve Job Post for Job</h2>
 
-<aside class="warning">As of September 2016, we introduced the ability to add multiple job posts for a single job. To list all job posts for a job, see <a href="#list-multiple-job-posts-for-a-job">here</a>.</aside>
+<aside class="warning">As of September 2016, we introduced the ability to add multiple job posts for a single job. To list all job posts for a job, see <a href="#get-list-job-posts-for-job">here</a>.</aside>
 <pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/jobs/{id}/job_post'</span>
 -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
 </code></pre>
@@ -5616,6 +5617,14 @@ X-RateLimit-Remaining: 49
 <td>per_page</td><td>Return up to this number of objects per response. Must be an integer between 1 and 500. Defaults to 100.</td></tr>
 <tr>
 <td>page</td><td>A cursor for use in pagination.  Returns the n-th chunk of <code class="prettyprint">per_page</code> objects.</td></tr>
+<tr>
+<td>created_before</td><td>Return only job stages that were created before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td>created_after</td><td>Return only job stages that were created at or after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td>updated_before</td><td>Return only job stages that were updated before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td>updated_after</td><td>Return only job stages that were updated at or after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 </tbody></table>
 
 <p><br>
@@ -5728,11 +5737,11 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>created_before</td><td>Return only job stages that were created before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
-<td>created_after</td><td>Return only job stages that were created after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<td>created_after</td><td>Return only job stages that were created at or after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
 <td>updated_before</td><td>Return only job stages that were updated before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
-<td>updated_after</td><td>Return only job stages that were updated after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<td>updated_after</td><td>Return only job stages that were updated at or after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 </tbody></table>
 
 <p><br>
@@ -6106,11 +6115,11 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>created_before</td><td>Return only jobs that were created before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
-<td>created_after</td><td>Return only jobs that were created after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<td>created_after</td><td>Return only jobs that were created at or after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
 <td>updated_before</td><td>Return only jobs that were updated before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
-<td>updated_after</td><td>Return only jobs that were updated after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<td>updated_after</td><td>Return only jobs that were updated at or after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
 <td>requisition_id</td><td>If included, will return only the jobs that match the given requisition_id</td></tr>
 <tr>
@@ -6953,11 +6962,11 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>created_before</td><td>Return only offers that were created before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
-<td>created_after</td><td>Return only offers that were created after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<td>created_after</td><td>Return only offers that were created at or after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
 <td>updated_before</td><td>Return only offers that were updated before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
-<td>updated_after</td><td>Return only offers that were updated after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<td>updated_after</td><td>Return only offers that were updated at or after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 </tbody></table>
 
 <p><br>
@@ -7835,19 +7844,19 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>created_before</td><td>Only return scheduled interviews that were created before this timestamp.</td></tr>
 <tr>
-<td>created_after</td><td>Only return scheduled interviews that were created after this timestamp.</td></tr>
+<td>created_after</td><td>Only return scheduled interviews that were created at or after this timestamp.</td></tr>
 <tr>
 <td>updated_before</td><td>Only return scheduled interviews that were updated before this timestamp.</td></tr>
 <tr>
-<td>updated_after</td><td>Only return scheduled interviews that were updated after this timestamp.</td></tr>
+<td>updated_after</td><td>Only return scheduled interviews that were updated at or after this timestamp.</td></tr>
 <tr>
 <td>starts_before</td><td>Only return scheduled interviews scheduled to start before this timestamp.</td></tr>
 <tr>
-<td>starts_after</td><td>Only return scheduled interviews scheduled to start after this timestamp.</td></tr>
+<td>starts_after</td><td>Only return scheduled interviews scheduled to start at or after this timestamp.</td></tr>
 <tr>
 <td>ends_before</td><td>Only return scheduled interviews scheduled to end before this timestamp.</td></tr>
 <tr>
-<td>ends_after</td><td>Only return scheduled interviews scheduled to end after this timestamp.</td></tr>
+<td>ends_after</td><td>Only return scheduled interviews scheduled to end at or after this timestamp.</td></tr>
 </tbody></table>
 
 <h2 id="get-list-interviews-for-application">GET: List Interviews for Application</h2>
@@ -7935,11 +7944,11 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>created_before</td><td>Return only scheduled interviews that were created before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
-<td>created_after</td><td>Return only scheduled interviews that were created after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<td>created_after</td><td>Return only scheduled interviews that were created at or after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
 <td>updated_before</td><td>Return only scheduled interviews that were updated before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
-<td>updated_after</td><td>Return only scheduled interviews that were updated after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<td>updated_after</td><td>Return only scheduled interviews that were updated at or after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 </tbody></table>
 
 <p><br>
@@ -8248,11 +8257,11 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>created_before</td><td>Return only scorecards that were created before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
-<td>created_after</td><td>Return only scorecards that were created after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<td>created_after</td><td>Return only scorecards that were created at or after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
 <td>updated_before</td><td>Return only scorecards that were updated before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
-<td>updated_after</td><td>Return only scorecards that were updated after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<td>updated_after</td><td>Return only scorecards that were updated at or after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 </tbody></table>
 
 <p><br>
@@ -8978,11 +8987,11 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>created_before</td><td>Return only users that were created before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
-<td>created_after</td><td>Return only users that were created after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<td>created_after</td><td>Return only users that were created at or after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
 <td>updated_before</td><td>Return only users that were updated before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
-<td>updated_after</td><td>Return only users that were updated after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<td>updated_after</td><td>Return only users that were updated at or after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
 <td>email</td><td>Return only the user who has this e-mail address as their primary e-mail or a secondary e-mail.</td></tr>
 </tbody></table>
