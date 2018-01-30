@@ -1008,118 +1008,6 @@ X-RateLimit-Remaining: 49
 <td>from_stage_id</td><td>Yes</td><td>integer</td><td>The ID of the job stage this application is currently in.</td></tr>
 </tbody></table>
 
-<h2 id="post-move-application-same-job">POST: Move Application (Same Job)</h2>
-<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://harvest.greenhouse.io/v1/applications/{id}/move'</span>
--H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
--H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
-</code></pre>
-
-<blockquote>
-<p>The above command takes a JSON request, structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"from_stage_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"to_stage_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<blockquote>
-<p>The above returns a JSON response, structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">48206478</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"candidate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">36952451</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"prospect"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"applied_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-02-01T14:26:02.282Z"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"rejected_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"last_activity_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-02-01T14:51:12.670Z"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> 
-    </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New York, New York, USA"</span><span class="w"> 
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">33</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"public_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Glassdoor"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"credited_to"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"rejection_reason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"rejection_details"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"jobs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">211706</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Community Manager - New York"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"current_stage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1551142</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Offer"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"answers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"How many years experience do you have?"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"answer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2-4"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Can do you the travel required for this job?"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"answer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yes"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nt">"prospect_detail"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"prospect_pool"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"prospect_stage"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"prospect_owner"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"current_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Community Manager"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"requires_visa_sponsorship?"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"keyed_custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"current_title"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Current Title"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"short_text"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Community Manager"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"requires_visa_sponsorship_"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Requires visa sponsorship?"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"boolean"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>Move this application from one stage to another. An application can only be moved between stages on the same job. The response is populated with the application’s information which will reflect its new state. Note that only applications in the <code class="prettyprint">active</code> state can be moved.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">POST https://harvest.greenhouse.io/v1/applications/{id}/move</code></p>
-
-<h3 id="headers">Headers</h3>
-
-<table><thead>
-<tr>
-<td>Header</td><td>Description</td></tr>
-</thead><tbody>
-<tr>
-<td>On-Behalf-Of</td><td>ID of the user issuing this request. Required for auditing purposes.</td></tr>
-</tbody></table>
-
-<h3 id="json-body-parameters">JSON Body Parameters</h3>
-
-<table><thead>
-<tr>
-<td>Parameter</td><td>Required</td><td>Type</td><td>Description</td></tr>
-</thead><tbody>
-<tr>
-<td>from_stage_id</td><td>Yes</td><td>integer</td><td>The ID of the job stage this application is currently in.</td></tr>
-<tr>
-<td>to_stage_id</td><td>Yes</td><td>integer</td><td>The ID of the job stage this application should be moved to.</td></tr>
-</tbody></table>
-
-<p><br></p>
-
-<p><a href="#the-application-object">See noteworthy response attributes.</a></p>
-
 <h2 id="post-move-application-different-job">POST: Move Application (Different Job)</h2>
 <pre class="highlight shell"><code>curl -X POST <span class="s1">'https://harvest.greenhouse.io/v1/applications/{id}/transfer_to_job'</span>
 -H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
@@ -1226,6 +1114,118 @@ X-RateLimit-Remaining: 49
 <td>new_job_id</td><td>Yes</td><td>integer</td><td>The ID of the job to which this application should be transferred</td></tr>
 <tr>
 <td>new_stage_id</td><td>No</td><td>integer</td><td>The stage on the destination job this application should be placed in. If this is omitted, the application will be sent to the job&rsquo;s initial stage</td></tr>
+</tbody></table>
+
+<p><br></p>
+
+<p><a href="#the-application-object">See noteworthy response attributes.</a></p>
+
+<h2 id="post-move-application-same-job">POST: Move Application (Same Job)</h2>
+<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://harvest.greenhouse.io/v1/applications/{id}/move'</span>
+-H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command takes a JSON request, structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"from_stage_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"to_stage_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>The above returns a JSON response, structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">48206478</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"candidate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">36952451</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"prospect"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"applied_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-02-01T14:26:02.282Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"rejected_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"last_activity_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-02-01T14:51:12.670Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> 
+    </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New York, New York, USA"</span><span class="w"> 
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">33</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"public_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Glassdoor"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"credited_to"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"rejection_reason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"rejection_details"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"jobs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">211706</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Community Manager - New York"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"current_stage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1551142</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Offer"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"answers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"How many years experience do you have?"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"answer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2-4"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Can do you the travel required for this job?"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"answer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yes"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"prospect_detail"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"prospect_pool"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"prospect_stage"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"prospect_owner"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"current_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Community Manager"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"requires_visa_sponsorship?"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"keyed_custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"current_title"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Current Title"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"short_text"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Community Manager"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"requires_visa_sponsorship_"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Requires visa sponsorship?"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"boolean"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Move this application from one stage to another. An application can only be moved between stages on the same job. The response is populated with the application’s information which will reflect its new state. Note that only applications in the <code class="prettyprint">active</code> state can be moved.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://harvest.greenhouse.io/v1/applications/{id}/move</code></p>
+
+<h3 id="headers">Headers</h3>
+
+<table><thead>
+<tr>
+<td>Header</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>On-Behalf-Of</td><td>ID of the user issuing this request. Required for auditing purposes.</td></tr>
+</tbody></table>
+
+<h3 id="json-body-parameters">JSON Body Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Required</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>from_stage_id</td><td>Yes</td><td>integer</td><td>The ID of the job stage this application is currently in.</td></tr>
+<tr>
+<td>to_stage_id</td><td>Yes</td><td>integer</td><td>The ID of the job stage this application should be moved to.</td></tr>
 </tbody></table>
 
 <p><br></p>
@@ -1576,7 +1576,9 @@ X-RateLimit-Remaining: 49
             </span><span class="nt">"applied_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-15T03:31:46.637Z"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"rejected_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
             </span><span class="nt">"last_activity_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-28T12:29:30.481Z"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="err">nil</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New York, New York, United States"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
             </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"public_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Meetups"</span><span class="w">
@@ -2433,116 +2435,6 @@ X-RateLimit-Remaining: 49
 
 <p><a href="#the-candidate-object">See noteworthy response attributes.</a></p>
 
-<h2 id="post-add-candidate-application">POST: Add Candidate Application</h2>
-<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://harvest.greenhouse.io/v1/candidates/{id}/applications'</span>
--H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
--H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
-</code></pre>
-
-<blockquote>
-<p>The above command takes a JSON request, structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">266926</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"source_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"initial_stage_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2708728</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"referrer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">770</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"attachments"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-    </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"resume.pdf"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"resume"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6..."</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/pdf"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<blockquote>
-<p>The above command returns a JSON response, structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">38776620</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"candidate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15803530</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"prospect"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"applied_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-08T19:50:49.746Z"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"rejected_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"last_activity_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-04T19:46:40.377Z"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"public_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Indeed"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"credited_to"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">770</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Moon"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Colorado"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Moon Colorado"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"rejection_reason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"rejection_details"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"jobs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">266926</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Construction Project Manager"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"current_stage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1945557</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Application Review"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"answers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-  </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"birthday"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1992-01-27"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"bio"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is my bio"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nt">"prospect_detail"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"prospect_pool"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"prospect_stage"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"prospect_owner"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>Create a new application for this candidate or prospect. If a prospect, this will add a new candidate application to the given job on their profile, this will not convert their existing prospect application into a candidate application.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">POST https://harvest.greenhouse.io/v1/candidates/{id}/applications</code></p>
-
-<h3 id="headers">Headers</h3>
-
-<table><thead>
-<tr>
-<td>Header</td><td>Description</td></tr>
-</thead><tbody>
-<tr>
-<td>On-Behalf-Of</td><td>ID of the user issuing this request. Required for auditing purposes.</td></tr>
-</tbody></table>
-
-<h3 id="json-body-parameters">JSON Body Parameters</h3>
-
-<table><thead>
-<tr>
-<td>Parameter</td><td>Required</td><td>Type</td><td>Description</td></tr>
-</thead><tbody>
-<tr>
-<td>job_id</td><td>Yes</td><td>integer</td><td>The ID of the job you want to create an application to for this candidate</td></tr>
-<tr>
-<td>source_id</td><td>No</td><td>integer</td><td>The id of the source to be credited for this application</td></tr>
-<tr>
-<td>initial_stage_id</td><td>No</td><td>integer</td><td>The ID of the job stage this application will be created in.</td></tr>
-<tr>
-<td>referrer</td><td>No</td><td>object</td><td>An object representing the referrer</td></tr>
-<tr>
-<td>referrer[type]</td><td>No</td><td>string</td><td>A string representing the type of referrer: &lsquo;id&rsquo;, &#39;email&rsquo;, or &#39;outside&rsquo;</td></tr>
-<tr>
-<td>referrer[value]</td><td>No</td><td>string</td><td>The id of the user who made the referral (not the referrer id)</td></tr>
-<tr>
-<td>attachments</td><td>No</td><td>array</td><td>An array of attachments to be uploaded to this application. See <a href="#post-add-attachment">Add Attachment</a> for parameters.</td></tr>
-</tbody></table>
-
 <h2 id="post-add-attachment">POST: Add Attachment</h2>
 <pre class="highlight shell"><code>curl -X POST <span class="s1">'https://harvest.greenhouse.io/v1/candidates/{id}/attachments'</span>
 -H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
@@ -2893,9 +2785,121 @@ X-RateLimit-Remaining: 49
 <td>applications</td><td>Yes</td><td>Array</td><td>An array of application objects. At least one required. See <a href="#post-add-candidate-application">Add Application</a> for parameters.</td></tr>
 </tbody></table>
 
-<p><br></p>
+<aside class="notice">
+    There may be a lag between when Greenhouse receives the POST: Add Candidate request and when Greenhouse creates the full candidate record, which will result in a truncated API response. The truncated response body will contain the Candidate ID and the Application ID(s) of the newly created candidate. You can retrieve the full candidate record by requesting the Candidate ID with the GET: Retrieve Candidate endpoint. If you receive a 404 error from the GET: Retrieve Candidate endpoint, this indicates that the full candidate record is still not available. Please continue requesting the candidate record every 30 seconds until the API returns a successful response.
+</aside>
 
 <p><a href="#the-candidate-object">See noteworthy response attributes.</a></p>
+
+<h2 id="post-add-candidate-application">POST: Add Candidate Application</h2>
+<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://harvest.greenhouse.io/v1/candidates/{id}/applications'</span>
+-H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command takes a JSON request, structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">266926</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"source_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"initial_stage_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2708728</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"referrer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">770</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"attachments"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+    </span><span class="nt">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"resume.pdf"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"resume"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6..."</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"content_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/pdf"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>The above command returns a JSON response, structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">38776620</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"candidate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15803530</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"prospect"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"applied_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-08T19:50:49.746Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"rejected_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"last_activity_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-04T19:46:40.377Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"public_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Indeed"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"credited_to"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">770</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Moon"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Colorado"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Moon Colorado"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"rejection_reason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"rejection_details"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"jobs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">266926</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Construction Project Manager"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"current_stage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1945557</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Application Review"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"answers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"birthday"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1992-01-27"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"bio"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is my bio"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"prospect_detail"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"prospect_pool"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"prospect_stage"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"prospect_owner"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Create a new application for this candidate or prospect. If a prospect, this will add a new candidate application to the given job on their profile, this will not convert their existing prospect application into a candidate application.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://harvest.greenhouse.io/v1/candidates/{id}/applications</code></p>
+
+<h3 id="headers">Headers</h3>
+
+<table><thead>
+<tr>
+<td>Header</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>On-Behalf-Of</td><td>ID of the user issuing this request. Required for auditing purposes.</td></tr>
+</tbody></table>
+
+<h3 id="json-body-parameters">JSON Body Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Required</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>job_id</td><td>Yes</td><td>integer</td><td>The ID of the job you want to create an application to for this candidate</td></tr>
+<tr>
+<td>source_id</td><td>No</td><td>integer</td><td>The id of the source to be credited for this application</td></tr>
+<tr>
+<td>initial_stage_id</td><td>No</td><td>integer</td><td>The ID of the job stage this application will be created in.</td></tr>
+<tr>
+<td>referrer</td><td>No</td><td>object</td><td>An object representing the referrer</td></tr>
+<tr>
+<td>referrer[type]</td><td>No</td><td>string</td><td>A string representing the type of referrer: &lsquo;id&rsquo;, &#39;email&rsquo;, or &#39;outside&rsquo;</td></tr>
+<tr>
+<td>referrer[value]</td><td>No</td><td>string</td><td>The id of the user who made the referral (not the referrer id)</td></tr>
+<tr>
+<td>attachments</td><td>No</td><td>array</td><td>An array of attachments to be uploaded to this application. See <a href="#post-add-attachment">Add Attachment</a> for parameters.</td></tr>
+</tbody></table>
 
 <h2 id="post-add-note">POST: Add Note</h2>
 <pre class="highlight shell"><code>curl -X POST <span class="s1">'https://harvest.greenhouse.io/v1/candidates/{id}/activity_feed/notes'</span>
@@ -4768,28 +4772,30 @@ X-RateLimit-Remaining: 49
 <p>This endpoint is used to managing openings on jobs.</p>
 
 <h2 id="the-job-opening-object">The job opening object</h2>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPENED-1"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-19T19:53:32.565Z"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"closed_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"close_reason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-</span><span class="p">}</span><span class="err">,</span><span class="w">
-</span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CLOSED-1"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"closed"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"opened_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-19T19:53:32.565Z"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"closed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-12-14T19:53:32.565Z"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">65565</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"close_reason"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">678</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hired - Backfill"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<pre class="highlight plaintext"><code>[
+    {
+        "id": 123,
+        "opening_id": "OPENED-1",
+        "status": "open",
+        "opened_at": "2015-11-19T19:53:32.565Z",
+        "closed_at": null,
+        "application_id": null,
+        "close_reason": null
+    },
+    {
+        "id": 123,
+        "opening_id": "CLOSED-1",
+        "status": "closed",
+        "opened_at": "2015-11-19T19:53:32.565Z",
+        "closed_at": "2015-12-14T19:53:32.565Z",
+        "application_id": 65565,
+        "close_reason": {
+          "id": 678,
+          "name": "Hired - Backfill"
+        }
+    }
+]
+</code></pre>
 
 <h3 id="noteworthy-attributes">Noteworthy Attributes</h3>
 
@@ -4911,62 +4917,6 @@ X-RateLimit-Remaining: 49
 
 <p><a href="#the-job-opening-object">See noteworthy response attributes.</a></p>
 
-<h2 id="post-create-new-openings">POST: Create New Openings</h2>
-<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://harvest.greenhouse.io/v1/jobs/{job_id}/openings'</span>
--H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
--H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
-</code></pre>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"openings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc-123"</span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">POST https://harvest.greenhouse.io/v1/jobs/{job_id}/openings</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
-
-<table><thead>
-<tr>
-<td>Parameter</td><td>Description</td></tr>
-</thead><tbody>
-<tr>
-<td>job_id</td><td>The ID of the job on which to add new openings.</td></tr>
-</tbody></table>
-
-<h3 id="json-body-parameters">JSON Body Parameters</h3>
-
-<table><thead>
-<tr>
-<td>Parameter</td><td>Required</td><td>Type</td><td>Description</td></tr>
-</thead><tbody>
-<tr>
-<td>openings</td><td>yes</td><td>Array</td><td>This an array of opening IDs, which contain one element.</td></tr>
-<tr>
-<td>openings.opening_id</td><td>yes</td><td>Array</td><td>This is a string that contains an opening_id. One new opening will be created for each hash element in the array. Opening ID is not required to have a string value and may be null.  Greenhouse has an internal limit of 100 open openings. If you attempt to create more than 100 openings in a single request, or if this request would create more than 100 open openings, the request will fail.</td></tr>
-</tbody></table>
-
-<p><strong>Note</strong>: Adding new openings may re-trigger approvals. For approvals to start recruiting, this will reset approvals only if the job is in draft mode. If the job is open for hiring, these approvals will not reset. For official job approvals, this will reset approvals only if the job is open.</p>
-
-<blockquote>
-<p>The above returns a JSON response, structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc-123"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"open_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-02T19:53:32.565Z"</span><span class="w">
-</span><span class="p">}</span><span class="err">,</span><span class="w">
-</span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123457</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"open_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-02T19:53:32.565Z"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
 <h2 id="delete-destroy-openings">DELETE: Destroy Openings</h2>
 <pre class="highlight shell"><code>curl -X DELETE <span class="s1">'https://harvest.greenhouse.io/v1/jobs/{job_id}/openings'</span>
 -H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
@@ -5050,6 +5000,62 @@ X-RateLimit-Remaining: 49
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h2 id="post-create-new-openings">POST: Create New Openings</h2>
+<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://harvest.greenhouse.io/v1/jobs/{job_id}/openings'</span>
+-H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"openings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc-123"</span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://harvest.greenhouse.io/v1/jobs/{job_id}/openings</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>job_id</td><td>The ID of the job on which to add new openings.</td></tr>
+</tbody></table>
+
+<h3 id="json-body-parameters">JSON Body Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Required</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>openings</td><td>yes</td><td>Array</td><td>This an array of opening IDs, which contain one element.</td></tr>
+<tr>
+<td>openings.opening_id</td><td>yes</td><td>Array</td><td>This is a string that contains an opening_id. One new opening will be created for each hash element in the array. Opening ID is not required to have a string value and may be null.  Greenhouse has an internal limit of 100 open openings. If you attempt to create more than 100 openings in a single request, or if this request would create more than 100 open openings, the request will fail.</td></tr>
+</tbody></table>
+
+<p><strong>Note</strong>: Adding new openings may re-trigger approvals. For approvals to start recruiting, this will reset approvals only if the job is in draft mode. If the job is open for hiring, these approvals will not reset. For official job approvals, this will reset approvals only if the job is open.</p>
+
+<blockquote>
+<p>The above returns a JSON response, structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc-123"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"open_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-02T19:53:32.565Z"</span><span class="w">
+</span><span class="p">}</span><span class="err">,</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123457</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"opening_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"open_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-02T19:53:32.565Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -9074,35 +9080,6 @@ X-RateLimit-Remaining: 49
 
 <p><code class="prettyprint">PATCH https://harvest.greenhouse.io/v1/users/{id}/disable</code></p>
 
-<h2 id="patch-enable-user">PATCH: Enable User</h2>
-<pre class="highlight shell"><code>curl -X PATCH <span class="s1">'https://harvest.greenhouse.io/v1/users/{id}/enable'</span>
--H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
--H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
-</code></pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">253528</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bob Smith"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-23T18:58:27.796Z"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-04-28T15:28:16.440Z"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"disabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"site_admin"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"emails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="s2">"bob@email.org"</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"221"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>Enable a user. It is safe to call this method on a user that is currently enabled. If the user is already enabled, nothing happens.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">PATCH https://harvest.greenhouse.io/v1/users/{id}/enable</code></p>
-
 <h2 id="patch-edit-user">PATCH: Edit User</h2>
 <pre class="highlight shell"><code>curl -X PATCH <span class="s1">'https://harvest.greenhouse.io/v1/users/{id}'</span>
 -H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
@@ -9150,6 +9127,35 @@ X-RateLimit-Remaining: 49
 </tbody></table>
 
 <p>* - If the employee id feature is not enabled for your organization, attempting to edit this field will raise an API Error.</p>
+
+<h2 id="patch-enable-user">PATCH: Enable User</h2>
+<pre class="highlight shell"><code>curl -X PATCH <span class="s1">'https://harvest.greenhouse.io/v1/users/{id}/enable'</span>
+-H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">253528</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bob Smith"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-23T18:58:27.796Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-04-28T15:28:16.440Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"disabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"site_admin"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"emails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"bob@email.org"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"221"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Enable a user. It is safe to call this method on a user that is currently enabled. If the user is already enabled, nothing happens.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PATCH https://harvest.greenhouse.io/v1/users/{id}/enable</code></p>
 
 <h2 id="post-add-user">POST: Add User</h2>
 <pre class="highlight shell"><code>curl -X POST <span class="s1">'https://harvest.greenhouse.io/v1/users'</span>
