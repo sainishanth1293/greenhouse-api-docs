@@ -3009,10 +3009,11 @@ X-RateLimit-Remaining: 49
 <p>The above command returns a JSON response with a 201 status, structured like this:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5690098</span><span class="p">,</span><span class="w">
   </span><span class="nt">"school_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Siena College"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"discipline"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Computer Science"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"degree"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bachelor's Degree"</span><span class="w">
-  </span><span class="s2">"start_date"</span><span class="err">:</span><span class="w"> </span><span class="s2">"2001-09-15T00:00:00.000Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"degree"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bachelor's Degree"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2001-09-15T00:00:00.000Z"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"end_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2004-05-15T00:00:00.000Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -3052,7 +3053,7 @@ X-RateLimit-Remaining: 49
 </tbody></table>
 
 <ul>
-<li>- Note that start_date and end_date accept an <a href="#general-considerations">ISO-8601</a> timestamp in accordance with Harvest&rsquo;s standard timestamp rules, but only Month and Year will be displayed on the candidate profile in Greenhouse. The &ldquo;latest education&rdquo; will be updated automatically.</li>
+<li>- Note that start_date and end_date accept an <a href="#general-considerations">ISO-8601</a> timestamp in accordance with Harvest&rsquo;s standard timestamp rules, but only Month and Year will be displayed on the candidate profile in Greenhouse. The &ldquo;latest education&rdquo; will be updated automatically. Day and time information in these timestamps will be recorded but not referenced in Greenhouse.</li>
 </ul>
 
 <h2 id="post-add-prospect">POST: Add Prospect</h2>
