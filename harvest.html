@@ -2155,10 +2155,6 @@ X-RateLimit-Remaining: 49
 <td>On-Behalf-Of</td><td>ID of the user issuing this request. Required for auditing purposes.</td></tr>
 </tbody></table>
 
-<p><br></p>
-
-<p><a href="#the-candidate-object">See noteworthy response attributes.</a></p>
-
 <h2 id="patch-edit-candidate">PATCH: Edit Candidate</h2>
 <pre class="highlight shell"><code>curl -X PATCH <span class="s1">'https://harvest.greenhouse.io/v1/candidates/{id}'</span>
 -H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
@@ -3055,6 +3051,37 @@ X-RateLimit-Remaining: 49
 <ul>
 <li>- Note that start_date and end_date accept an <a href="#general-considerations">ISO-8601</a> timestamp in accordance with Harvest&rsquo;s standard timestamp rules, but only Month and Year will be displayed on the candidate profile in Greenhouse. The &ldquo;latest education&rdquo; will be updated automatically. Day and time information in these timestamps will be recorded but not referenced in Greenhouse.</li>
 </ul>
+
+<h2 id="delete-remove-education-from-candidate">DELETE: Remove Education From Candidate</h2>
+<pre class="highlight shell"><code>curl -X DELETE <span class="s1">'https://harvest.greenhouse.io/v1/candidates/{candidate_id}/educations/{education_id}'</span>
+-H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above returns a JSON response, structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Education 29622362 has been deleted."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Delete an education record by candidate and education id.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE https://harvest.greenhouse.io/v1/candidates/{candidate_id}/educations/{education_id}</code></p>
+
+<h3 id="headers">Headers</h3>
+
+<table><thead>
+<tr>
+<td>Header</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>On-Behalf-Of</td><td>ID of the user issuing this request. Required for auditing purposes.</td></tr>
+</tbody></table>
 
 <h2 id="post-add-prospect">POST: Add Prospect</h2>
 <pre class="highlight shell"><code>curl -X POST <span class="s1">'https://harvest.greenhouse.io/v1/prospects'</span>
