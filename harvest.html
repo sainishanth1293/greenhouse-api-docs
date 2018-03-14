@@ -3189,6 +3189,37 @@ X-RateLimit-Remaining: 49
 <li>- Note that start_date and end_date accept an <a href="#general-considerations">ISO-8601</a> timestamp in accordance with Harvest&rsquo;s standard timestamp rules, but time will be ignored in the context of employment. The &ldquo;latest employment&rdquo; will be updated automatically. </li>
 </ul>
 
+<h2 id="delete-remove-employment-from-candidate">DELETE: Remove Employment From Candidate</h2>
+<pre class="highlight shell"><code>curl -X DELETE <span class="s1">'https://harvest.greenhouse.io/v1/candidates/{candidate_id}/employments/{employment_id}'</span>
+-H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above returns a JSON response, structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Employment 29622362 has been deleted."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Delete an employment record by candidate and employment id.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE https://harvest.greenhouse.io/v1/candidates/{candidate_id}/employments/{employment_id}</code></p>
+
+<h3 id="headers">Headers</h3>
+
+<table><thead>
+<tr>
+<td>Header</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>On-Behalf-Of</td><td>ID of the user issuing this request. Required for auditing purposes.</td></tr>
+</tbody></table>
+
 <h2 id="post-add-prospect">POST: Add Prospect</h2>
 <pre class="highlight shell"><code>curl -X POST <span class="s1">'https://harvest.greenhouse.io/v1/prospects'</span>
 -H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
