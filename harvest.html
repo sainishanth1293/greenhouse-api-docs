@@ -9549,6 +9549,82 @@ X-RateLimit-Remaining: 49
 <li>204: A request was made which caused Greenhouse to do nothing. This will occur if you attempt to re-send a verification e-mail to an address that has already been verified or if you make a follow-up request to an unverified e-mail with send_verification set to false.</li>
 </ul>
 
+<h2 id="get-pending-approvals">GET: Pending Approvals</h2>
+<pre class="highlight shell"><code>curl -X GET <span class="s1">'https://harvest.greenhouse.io/v1/users/{id}/pending_approvals'</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns a JSON response, structured like this:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>[
+    {
+        "id": 34564,
+        "status": "waiting",
+        "created_at": "2017-03-23T18:58:27.796Z",
+        "resolved_at": nil,
+        "request_sent_at": "2017-03-23T18:58:27.796Z",
+        "reminder_sent_at": "2017-03-25T18:58:27.796Z",
+        "reminders_sent": 2,
+        "approver_group_id": 3432,
+        "reminder_sent_by_user_id": 343,
+        "hiring_plan_id": 4567,
+        "offer_id": null
+    },
+    {
+        "id": 34568,
+        "status": "due",
+        "created_at": "2017-04-23T18:58:27.796Z",
+        "resolved_at": nil,
+        "request_sent_at": "2017-04-23T18:58:27.796Z",
+        "reminder_sent_at": "2017-04-25T18:58:27.796Z",
+        "reminders_sent": 1,
+        "approver_group_id": 3436,
+        "reminder_sent_by_user_id": 343,
+        "hiring_plan_id": 4568,
+        "offer_id": 4534
+    }
+]
+</code></pre>
+
+<p>Returns all pending approvals for this user. Pending approvals are defined as an approval chain that is not approved or rejected, that this user has not already approved or rejected, in a group that has not yet determined approval or rejection.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/users/{id}/pending_approvals</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>id</td><td>The ID of the user whose pending approvals we want.</td></tr>
+</tbody></table>
+
+<h3 id="querystring-parameters">Querystring Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>type</td><td>&lsquo;job&rsquo; or &#39;offer&rsquo;, where &#39;job&rsquo; return approvals to start recruiting and official job approvals and &#39;offer&rsquo; returns offer approvals. Leave this blank to return all types.</td></tr>
+</tbody></table>
+
+<h3 id="noteworthy-attributes">Noteworthy Attributes</h3>
+
+<table><thead>
+<tr>
+<td>Attribute</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>status</td><td>This is either &ldquo;waiting&rdquo; or &ldquo;due&rdquo; for pending approvals</td></tr>
+<tr>
+<td>approver_group_id</td><td>This is Approver Group ID used in post requests to replace this user in approval steps.</td></tr>
+</tbody></table>
+
           <h1 id="user-permissions">User Permissions</h1>
 
 <h2 id="the-job-permission-object">The job permission object</h2>
