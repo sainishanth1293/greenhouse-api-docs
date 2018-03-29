@@ -199,6 +199,8 @@ X-RateLimit-Remaining: 49
 <li><a href="#get-list-custom-fields">GET: List Custom Fields</a></li>
 <li><a href="#get-list-custom-field-options">GET: List Custom Field Options</a></li>
 <li><a href="#get-list-job-openings">GET: List Job Openings</a></li>
+<li><a href="#get-list-approvals-for-job">GET: List Approvals For Job</a></li>
+<li><a href="#get-pending-approvals-for-user">GET: Pending Approvals For User</a></li>
 </ul>
 
 <aside class="warning">Since paging mechanisms may differ per paginated endpoint and may change in the future, it is important to use the Link headers and not page manually by changing the paging-related query parameters.</aside>
@@ -1447,6 +1449,215 @@ X-RateLimit-Remaining: 49
 <h3 id="json-body-parameters">JSON Body Parameters</h3>
 
 <p>No JSON body parameters</p>
+
+          <h1 id="approvals">Approvals</h1>
+
+<h1 id="the-approval-flow-object">The approval flow object</h1>
+
+<p>An organization&rsquo;s approvals</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">49394</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"offer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">45545</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"sequential"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"approval_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"offer_candidate"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"approval_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12321</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"requested_by_user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">543</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="noteworthy-attributes">Noteworthy Attributes</h3>
+
+<table><thead>
+<tr>
+<td>Attribute</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>id</td><td>The approval&rsquo;s unique identifier</td></tr>
+<tr>
+<td>offer_id</td><td>The specific offer for this approval. This will be empty for job approvals.</td></tr>
+<tr>
+<td>sequential</td><td>true or false based on whether the groups in this flow must approve sequentially</td></tr>
+<tr>
+<td>version</td><td>The specific version of this flow.</td></tr>
+<tr>
+<td>approval_type</td><td>one of &lsquo;offer_job&rsquo;, &#39;open_job&rsquo;, or &#39;offer_candidate&rsquo;</td></tr>
+<tr>
+<td>approval_status</td><td>one of &#39;pending&rsquo;, &#39;approved&rsquo;, or &#39;rejected&rsquo;</td></tr>
+<tr>
+<td>job_id</td><td>The job for which approval is configured. This always has a value.</td></tr>
+<tr>
+<td>requested_by_user_id</td><td>The user who requested this approval be started.</td></tr>
+</tbody></table>
+
+<h2 id="get-list-approvals-for-job">GET: List Approvals For Job</h2>
+<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/jobs/{job_id}/approval_flows'</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">49394</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"offer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">45545</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"sequential"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"approval_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"offer_candidate"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"approval_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12321</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"requested_by_user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">543</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">49395</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"offer_id"</span><span class="p">:</span><span class="w"> </span><span class="err">nil</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"sequential"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"approval_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"offer_job"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"approval_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12321</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"requested_by_user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">545</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>List all of a job&rsquo;s approval flows</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/jobs/{id}/approval_flow</code></p>
+
+<h3 id="querystring-parameters">Querystring parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>id</td><td>The id of the job for which you&rsquo;d like to see approvals</td></tr>
+</tbody></table>
+
+<p><br>
+<a href="#the-approval-flow-object">See noteworthy response attributes.</a></p>
+
+<h2 id="get-retrieve-approval-flow">GET: Retrieve Approval Flow</h2>
+<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/approval_flows/{id}'</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">49394</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"offer_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">45545</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"sequential"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"approval_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"offer_candidate"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"approval_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12321</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"requested_by_user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">543</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/approval_flows/{id}</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>id</td><td>The ID of the approval flow to retrieve</td></tr>
+</tbody></table>
+
+<p><br>
+<a href="#the-approval-flow-object">See noteworthy response attributes.</a></p>
+
+<h2 id="post-request-approvals">POST: Request Approvals</h2>
+<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://harvest.greenhouse.io/v1/approval_flows/{id}/request_approvals'</span>
+-H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<p>Given an approval flow, request it be started. This will change the state of the first approver group from &ldquo;waiting&rdquo; to &ldquo;due&rdquo; and mark the On-Behalf-Of user as the requesting user. This endpoint will fail with a 403 response if the On-Behalf-Of user can&rsquo;t see the hiring plan or can&rsquo;t request approvals. It will fail with a 422 response if the approval flow can&rsquo;t be started.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://harvest.greenhouse.io/v1/approval_flows/{id}/request_approvals</code></p>
+
+<h2 id="get-pending-approvals-for-user">GET: Pending Approvals For User</h2>
+<pre class="highlight shell"><code>curl -X GET <span class="s1">'https://harvest.greenhouse.io/v1/users/{id}/pending_approvals'</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns a JSON response, structured like this:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>[
+    {
+        "id": 34564,
+        "status": "waiting",
+        "created_at": "2017-03-23T18:58:27.796Z",
+        "resolved_at": nil,
+        "request_sent_at": "2017-03-23T18:58:27.796Z",
+        "reminder_sent_at": "2017-03-25T18:58:27.796Z",
+        "reminders_sent": 2,
+        "approver_group_id": 3432,
+        "reminder_sent_by_user_id": 343,
+        "hiring_plan_id": 4567,
+        "offer_id": null
+    },
+    {
+        "id": 34568,
+        "status": "due",
+        "created_at": "2017-04-23T18:58:27.796Z",
+        "resolved_at": nil,
+        "request_sent_at": "2017-04-23T18:58:27.796Z",
+        "reminder_sent_at": "2017-04-25T18:58:27.796Z",
+        "reminders_sent": 1,
+        "approver_group_id": 3436,
+        "reminder_sent_by_user_id": 343,
+        "hiring_plan_id": 4568,
+        "offer_id": 4534
+    }
+]
+</code></pre>
+
+<p>Returns all pending approvals for this user. Pending approvals are defined as an approval chain that is not approved or rejected, that this user has not already approved or rejected, in a group that has not yet determined approval or rejection.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/users/{user_id}/pending_approvals</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>id</td><td>The ID of the user whose pending approvals we want.</td></tr>
+</tbody></table>
+
+<h3 id="querystring-parameters">Querystring Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>type</td><td>&#39;job&rsquo; or &#39;offer&rsquo;, where &#39;offer&rsquo; returns only approvals which are for a specific offer and &#39;job&rsquo; specifically excludes approvals for specific offers. Leaving this blank will return all approvals.</td></tr>
+</tbody></table>
+
+<h3 id="noteworthy-attributes">Noteworthy Attributes</h3>
+
+<table><thead>
+<tr>
+<td>Attribute</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>status</td><td>This is either &ldquo;waiting&rdquo; or &ldquo;due&rdquo; for pending approvals</td></tr>
+<tr>
+<td>approver_group_id</td><td>This is Approver Group ID used in post requests to replace this user in approval steps.</td></tr>
+</tbody></table>
 
           <h1 id="candidates">Candidates</h1>
 
@@ -9548,82 +9759,6 @@ X-RateLimit-Remaining: 49
 <li>200: An e-mail was generated for an unverified e-mail address. This is the case if we attempt to re-send a verification e-mail to an unverified e-mail address.</li>
 <li>204: A request was made which caused Greenhouse to do nothing. This will occur if you attempt to re-send a verification e-mail to an address that has already been verified or if you make a follow-up request to an unverified e-mail with send_verification set to false.</li>
 </ul>
-
-<h2 id="get-pending-approvals">GET: Pending Approvals</h2>
-<pre class="highlight shell"><code>curl -X GET <span class="s1">'https://harvest.greenhouse.io/v1/users/{id}/pending_approvals'</span>
--H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
-</code></pre>
-
-<blockquote>
-<p>The above command returns a JSON response, structured like this:</p>
-</blockquote>
-<pre class="highlight plaintext"><code>[
-    {
-        "id": 34564,
-        "status": "waiting",
-        "created_at": "2017-03-23T18:58:27.796Z",
-        "resolved_at": nil,
-        "request_sent_at": "2017-03-23T18:58:27.796Z",
-        "reminder_sent_at": "2017-03-25T18:58:27.796Z",
-        "reminders_sent": 2,
-        "approver_group_id": 3432,
-        "reminder_sent_by_user_id": 343,
-        "hiring_plan_id": 4567,
-        "offer_id": null
-    },
-    {
-        "id": 34568,
-        "status": "due",
-        "created_at": "2017-04-23T18:58:27.796Z",
-        "resolved_at": nil,
-        "request_sent_at": "2017-04-23T18:58:27.796Z",
-        "reminder_sent_at": "2017-04-25T18:58:27.796Z",
-        "reminders_sent": 1,
-        "approver_group_id": 3436,
-        "reminder_sent_by_user_id": 343,
-        "hiring_plan_id": 4568,
-        "offer_id": 4534
-    }
-]
-</code></pre>
-
-<p>Returns all pending approvals for this user. Pending approvals are defined as an approval chain that is not approved or rejected, that this user has not already approved or rejected, in a group that has not yet determined approval or rejection.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/users/{id}/pending_approvals</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
-
-<table><thead>
-<tr>
-<td>Parameter</td><td>Description</td></tr>
-</thead><tbody>
-<tr>
-<td>id</td><td>The ID of the user whose pending approvals we want.</td></tr>
-</tbody></table>
-
-<h3 id="querystring-parameters">Querystring Parameters</h3>
-
-<table><thead>
-<tr>
-<td>Parameter</td><td>Description</td></tr>
-</thead><tbody>
-<tr>
-<td>type</td><td>&lsquo;job&rsquo; or &#39;offer&rsquo;, where &#39;job&rsquo; return approvals to start recruiting and official job approvals and &#39;offer&rsquo; returns offer approvals. Leave this blank to return all types.</td></tr>
-</tbody></table>
-
-<h3 id="noteworthy-attributes">Noteworthy Attributes</h3>
-
-<table><thead>
-<tr>
-<td>Attribute</td><td>Description</td></tr>
-</thead><tbody>
-<tr>
-<td>status</td><td>This is either &ldquo;waiting&rdquo; or &ldquo;due&rdquo; for pending approvals</td></tr>
-<tr>
-<td>approver_group_id</td><td>This is Approver Group ID used in post requests to replace this user in approval steps.</td></tr>
-</tbody></table>
 
           <h1 id="user-permissions">User Permissions</h1>
 
