@@ -103,7 +103,7 @@ analytics.page()
 
 <p>We have usage examples for cURL (and soon, Ruby)! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
 
-<p>This documentation is open source! Feel free to leave feedback as issues in the <a href="https://github.com/capablemonkey/greenhouse-api-docs">GitHub repo</a> or fork it and contribute changes!</p>
+<p>This documentation is open source! Feel free to leave feedback as issues in the <a href="https://github.com/grnhse/greenhouse-api-docs">GitHub repo</a> or fork it and contribute changes!</p>
 
 <h2 id="authentication">Authentication</h2>
 
@@ -1452,7 +1452,7 @@ X-RateLimit-Remaining: 49
 
           <h1 id="approvals">Approvals</h1>
 
-<h2 id="the-approval-flow-object">The approval flow object</h2>
+<h1 id="the-approval-flow-object">The approval flow object</h1>
 
 <p>An organization&rsquo;s approvals</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -1463,27 +1463,7 @@ X-RateLimit-Remaining: 49
   </span><span class="nt">"approval_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"offer_candidate"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"approval_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12321</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"requested_by_user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">543</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"approver_groups"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2011242</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"approvals_required"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-03-30T19:32:04.295Z"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"resolved_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12321</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"offer_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2011241</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"approvals_required"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-03-30T19:32:00.150Z"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"resolved_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-03-30T19:34:17.374Z"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12321</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"offer_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+  </span><span class="nt">"requested_by_user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">543</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -1524,27 +1504,7 @@ X-RateLimit-Remaining: 49
         </span><span class="nt">"approval_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"offer_candidate"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"approval_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12321</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"requested_by_user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">543</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"approver_groups"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2011242</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"approvals_required"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-03-30T19:32:04.295Z"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"resolved_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12321</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"offer_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2011241</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"approvals_required"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-03-30T19:32:00.150Z"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"resolved_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-03-30T19:34:17.374Z"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12321</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"offer_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">]</span><span class="w">
+        </span><span class="nt">"requested_by_user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">543</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">49395</span><span class="p">,</span><span class="w">
@@ -1554,19 +1514,8 @@ X-RateLimit-Remaining: 49
         </span><span class="nt">"approval_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"offer_job"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"approval_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12321</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"requested_by_user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">545</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"approver_groups"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2011247</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"approvals_required"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-03-30T19:32:04.295Z"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"resolved_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12321</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"offer_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-        </span><span class="p">]</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+        </span><span class="nt">"requested_by_user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">545</span><span class="w">
+    </span><span class="p">},</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 
@@ -1601,27 +1550,7 @@ X-RateLimit-Remaining: 49
   </span><span class="nt">"approval_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"offer_candidate"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"approval_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12321</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"requested_by_user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">543</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"approver_groups"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2011242</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"approvals_required"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-03-30T19:32:04.295Z"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"resolved_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12321</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"offer_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2011241</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"approvals_required"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-03-30T19:32:00.150Z"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"resolved_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-03-30T19:34:17.374Z"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12321</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"offer_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+  </span><span class="nt">"requested_by_user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">543</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -1728,82 +1657,6 @@ X-RateLimit-Remaining: 49
 <td>status</td><td>This is either &ldquo;waiting&rdquo; or &ldquo;due&rdquo; for pending approvals</td></tr>
 <tr>
 <td>approver_group_id</td><td>This is Approver Group ID used in post requests to replace this user in approval steps.</td></tr>
-</tbody></table>
-
-<h2 id="put-replace-an-approver-in-an-approver-group">PUT: Replace an approver in an approver group</h2>
-<pre class="highlight shell"><code>curl -X PUT <span class="s1">'https://harvest.greenhouse.io/v1/approver_groups/{id}/replace_approvers'</span>
-  -H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
-  -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
-</code></pre>
-
-<blockquote>
-<p>The above command takes a JSON request, structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"remove_user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1443</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"add_user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5432</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<blockquote>
-<p>The above returns a JSON success message with the following information.</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Approver group updated."</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"approval_flow_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">454</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"approver_group_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">343</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"removed_user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1443</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"added_user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5432</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>Removes the approver with user id given in remove_user_id and adds a new approver with the user id in add_user_id. Only approvers in unresolved groups may be replaced with this endpoint. If a group is currently &ldquo;due&rdquo;, the new user will be notified that action is required.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">PUT https://harvest.greenhouse.io/v1/approver_groups/{approver_group_id}/replace_approvers</code></p>
-
-<h3 id="headers">Headers</h3>
-
-<table><thead>
-<tr>
-<td>Header</td><td>Description</td></tr>
-</thead><tbody>
-<tr>
-<td>On-Behalf-Of</td><td>ID of the user issuing this request. Required for auditing purposes. Must have access to the approval flow.</td></tr>
-</tbody></table>
-
-<h3 id="url-parameters">URL Parameters</h3>
-
-<table><thead>
-<tr>
-<td>Parameter</td><td>Description</td></tr>
-</thead><tbody>
-<tr>
-<td>approver_group_id</td><td>The approver group in which we are replacing an approver.</td></tr>
-</tbody></table>
-
-<h3 id="input-json-parameters">Input JSON Parameters</h3>
-
-<table><thead>
-<tr>
-<td>Parameter</td><td>Description</td></tr>
-</thead><tbody>
-<tr>
-<td>remove_user_id</td><td>The user id of the approver to be removed.</td></tr>
-<tr>
-<td>add_user_id</td><td>The user id of the new approver. Must have access to this approval flow.</td></tr>
-</tbody></table>
-
-<h3 id="noteworthy-output-json-parameters">Noteworthy Output JSON Parameters</h3>
-
-<table><thead>
-<tr>
-<td>Parameter</td><td>Description</td></tr>
-</thead><tbody>
-<tr>
-<td>approval_flow_id</td><td>The approval flow that was changed.</td></tr>
 </tbody></table>
 
           <h1 id="candidates">Candidates</h1>

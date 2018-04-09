@@ -1,0 +1,785 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/favicons/apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/images/favicons/apple-touch-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/images/favicons/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/images/favicons/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-touch-icon-144x144.png">
+<link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="/images/favicons/manifest.json">
+<link rel="mask-icon" href="/images/favicons/safari-pinned-tab.svg" color="#00b2a9">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-TileImage" content="/images/favicons/mstile-144x144.png">
+<meta name="theme-color" content="#00b2a9">
+    <title>Greenhouse Onboarding API | Greenhouse</title>
+
+    <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+    <link href="stylesheets/screen_gho.css" rel="stylesheet" type="text/css" media="screen" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="javascripts/all.js" type="text/javascript"></script>
+
+      <script>
+        $(function() {
+          setupLanguages(["Examples"]);
+        });
+      </script>
+
+    <script type="text/javascript">
+!function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+analytics.load("2q7wwCrJormvWKrplqZYR2gXyxLK5Uhx");
+analytics.page()
+}}();
+</script>
+  </head>
+
+  <body class="gho">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <a href="/" class="nav-home-link">
+        <div class="nav-home">
+          <img src="images/logo.png" />
+          <span>Developers Home</span>
+        </div>
+      </a>
+        <div class="lang-selector">
+              <a href="#" data-language-name="Examples">Examples</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+      <ul class="toc-appendage">
+        <li id="github_link"><a href="https://github.com/grnhse/greenhouse-api-docs/tree/master/source/includes/gho" title="View on Github" target="_blank">View on GitHub</a></li>
+      </ul>
+        <ul class="toc-footer">
+            <li><a href="/harvest.html" title="Harvest API">Harvest API</a></li>
+            <li><a href="/job-board.html" title="Job Board API">Job Board API</a></li>
+            <li><a href='/webhooks.html' title="Web Hooks">Web Hooks</a></li>
+            <li><a href='/assessment.html' title="Assessment">Assessment API</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        
+          <h1 id="introduction">Introduction</h1>
+
+<p>Our Greenhouse Onboarding API allows you to query and modify your employee, task, and company information.</p>
+
+<p>If you are not using our Onboarding product and would like to know more, 
+<a href="https://greenhouse.io/onboarding">please visit our site.</a></p>
+
+<p>This documentation is open source! Feel free to leave feedback as issues in the 
+<a href="https://github.com/grnhse/greenhouse-api-docs">GitHub repo</a> or fork it and contribute changes!</p>
+
+<h2 id="graphql">GraphQL</h2>
+
+<p>Greenhouse Onboarding currently only supports GraphQL; we do not have a traditional REST API.  GraphQL is much more
+powerful than traditional APIs, allowing consumers to:</p>
+
+<ul>
+<li>Increase throughput by requesting only the data your are interested in.</li>
+<li>Use introspection to know precisely what our schema looks like.  Tools like 
+<a href="https://github.com/graphql/graphiql">GraphiQL</a> will allow you to quickly and easily explore our entire API.  It even
+supports autocomplete!</li>
+<li>Program against <a href="http://graphql.org/">an industry-wide standard</a> supported by a variety of tools and organizations.</li>
+</ul>
+
+<h2 id="authentication">Authentication</h2>
+
+<p>The Greenhouse Onboarding API is secured with HTTP Basic Authentication over HTTPS.  Clients are required to supply
+both a username and password.  Credentials can be generated inside of the Greenhouse Onboarding product on the
+<a href="https://onboarding.greenhouse.io/settings/api_management">Settings &gt; API Management screen</a>.  Only Super Admins can
+generate or revoke API keys.  Use the <code class="prettyprint">Access Key</code> field as the username and the <code class="prettyprint">Value</code> field as the password.</p>
+
+<p><img src="/images/gho/api-management.png" alt="API Management"></p>
+
+<p>Using the Greenhouse Onboarding API provides access to <em>all</em> of your companies information.  There is no way to limit
+the scope of an API key.  Only share your API key with people that you trust.  API keys can be revoked at any time
+on the API Management screen.</p>
+
+<h2 id="resource-limitations">Resource Limitations</h2>
+
+<p>Be kind.</p>
+
+          <h2 id="pagination">Pagination</h2>
+<pre class="highlight plaintext"><code>{
+    employees(first: 2, after: "NQ==") { # Please fetch the next 5 records, starting after the "NQ==" cursor
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+    edges {
+      node {
+        email
+      }
+    }
+  }
+}
+
+# Returns:
+
+{
+  "data": {
+    "employees": {
+      "pageInfo": {
+        "endCursor": "MTA=", # To get the next page, use this as the value to the `after` attribute.
+        "hasNextPage": true
+      },
+      "edges": [
+        {
+          "node": {
+            "email": "kima@example.com"
+          }
+        },
+        {
+          "node": {
+            "email": "omar@example.com"
+          }
+        }
+      ]
+    }
+  }
+}
+
+</code></pre>
+
+<p>For performance reasons, some result sets will be limited in size.  For example, when requesting employee profile
+information we need to limit the number of employees returned in a single query.  The API will return a &ldquo;page&rdquo; of
+records along with an object that describes how to get the next page.</p>
+
+<p>We are using the pagination system recommended by the <a href="http://graphql.org/learn/pagination/">GraphQL documentation</a>.
+Paginated connections return the following pieces of information:</p>
+
+<ul>
+<li><code class="prettyprint">edges</code>: You&rsquo;ll find your records in here.</li>
+<li><code class="prettyprint">pageInfo</code>: This has information about the current page.</li>
+</ul>
+
+<p>To fetch the next page of information, you will need to pass the <code class="prettyprint">endCursor</code> value into the <code class="prettyprint">after</code> filter on the
+connection.  To the right you can see an example on how to fetch employees via the 
+<a href="#employees-employeeconnection">employees</a> connection.</p>
+
+<p>As a general rule, we attempt to avoid nested sets of pagination.  For example, the list of CustomFieldValue records
+for each employee will be a simple array instead of another paginated connection.</p>
+
+          <h2 id="errors-and-validation">Errors and Validation</h2>
+<pre class="highlight plaintext"><code>{
+    employees(salary: 1) {
+    edges {
+      node {
+        email
+      }
+    }
+  }
+}
+</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Field 'employees' doesn't accept argument 'salary'"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"locations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"line"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"column"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"query"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"employees"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"salary"</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Unlike REST APIs, GraphQL will return an HTTP status of 200, even in cases where there are errors.  You can see an
+example of an error message to the right.  </p>
+
+<p>The <code class="prettyprint">message</code> is will let you know what&rsquo;s wrong.  The <code class="prettyprint">locations</code> property
+has the line number and column of where the error starts.  In this example, it&rsquo;s the second line, 12th column, which
+is the start of the word <code class="prettyprint">salary</code>.  The <code class="prettyprint">fields</code> property is a breadcrumb trail of how to get to the problem.  Here,
+we start at the root-level Query object, go into the <code class="prettyprint">employees</code> connection, and finally encounter the error at the
+<code class="prettyprint">salary</code> property.</p>
+
+<p>The only exception to this rule is authentication errors.  In these cases, our server will return HTTP status 401.
+This is because the authentication layer sits on top of the GraphQL API layer.</p>
+
+          <h1 id="queries">Queries</h1>
+
+<h2 id="employee-employee">employee (<a href="#employee">Employee</a>)</h2>
+
+<p>An Onboarding employee record</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>id</td><td><a href="#int">Int</a></td><td></td></tr>
+</tbody></table>
+
+<h2 id="employees-employeeconnection">employees (<a href="#employeeconnection">EmployeeConnection</a>)</h2>
+
+<p>A collection of Onboarding employee records</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>first</td><td><a href="#int">Int</a></td><td>Returns the first <em>n</em> elements from the list.</td></tr>
+<tr>
+<td>after</td><td><a href="#string">String</a></td><td>Returns the elements in the list that come after the specified global ID.</td></tr>
+<tr>
+<td>last</td><td><a href="#int">Int</a></td><td>Returns the last <em>n</em> elements from the list.</td></tr>
+<tr>
+<td>before</td><td><a href="#string">String</a></td><td>Returns the elements in the list that come before the specified global ID.</td></tr>
+<tr>
+<td>start_date</td><td><a href="#datefilter">DateFilter</a></td><td></td></tr>
+<tr>
+<td>date_of_birth</td><td><a href="#datefilter">DateFilter</a></td><td></td></tr>
+<tr>
+<td>with_custom_field_value</td><td><a href="#withcustomfieldvalue">WithCustomFieldValue</a></td><td></td></tr>
+</tbody></table>
+
+<h1 id="mutations">Mutations</h1>
+
+<h2 id="updateemployeeprofile-employee">updateEmployeeProfile (<a href="#employee">Employee</a>)</h2>
+
+<p>Update an Employee&rsquo;s profile</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>id</td><td><a href="#id">ID</a></td><td></td></tr>
+<tr>
+<td>employee_updates</td><td><a href="#updateemployee">UpdateEmployee</a></td><td></td></tr>
+</tbody></table>
+
+<h1 id="types">Types</h1>
+
+<h2 id="customfield">CustomField</h2>
+
+<p>Represents a single CustomField record for your company.  CustomFields can be stored and display in a variety of    different ways.  The types are described via the <a href="#customfieldtypes">CustomFieldTypes</a> enum.  </p>
+
+<table><thead>
+<tr>
+<td>Field</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>created_at</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
+<tr>
+<td>field_type</td><td><a href="#customfieldtypes">CustomFieldTypes</a></td><td>The field type determines how users input and view the data for this field.</td></tr>
+<tr>
+<td>id</td><td><a href="#id">ID</a></td><td></td></tr>
+<tr>
+<td>name</td><td><a href="#string">String</a></td><td>The name of this custom field as users would see it inside Greenhouse Onboarding.</td></tr>
+<tr>
+<td>permanent_field_id</td><td><a href="#string">String</a></td><td>A unique identifier for this CustomField.</td></tr>
+<tr>
+<td>updated_at</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
+</tbody></table>
+
+<h2 id="customfieldvalue">CustomFieldValue</h2>
+
+<p>A Custom Field Value Record</p>
+
+<table><thead>
+<tr>
+<td>Field</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>created_at</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
+<tr>
+<td>custom_field</td><td><a href="#customfield">CustomField</a></td><td></td></tr>
+<tr>
+<td>id</td><td><a href="#id">ID</a></td><td></td></tr>
+<tr>
+<td>updated_at</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
+<tr>
+<td>value</td><td><a href="#value">Value</a></td><td>A different type of value will be stored based upon the field type of the <a href="#customfield">CustomField</a>.  Some types    have the data stored as a nested object.  Note that the type is a scalar named <a href="#value">Value</a>.  Even though    it appears to be an object, you are not able to use GraphQL to determine its shape.</td></tr>
+<tr>
+<td>value_updated_at</td><td><a href="#datetime">DateTime</a></td><td>The time of the most recent update to this field.</td></tr>
+</tbody></table>
+
+<h2 id="department">Department</h2>
+
+<p>Represents a single department in your company.  Employees can belong only belong to a single Department.  It is    possible for employees to not belong to any Department.  Departments are used in a variety of ways in Greenhouse    Onboarding, including permissions and onboarding plans  </p>
+
+<table><thead>
+<tr>
+<td>Field</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>created_at</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
+<tr>
+<td>description</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
+<td>id</td><td><a href="#id">ID</a></td><td></td></tr>
+<tr>
+<td>name</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
+<td>updated_at</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
+</tbody></table>
+
+<h2 id="document">Document</h2>
+
+<p>Represents a single document attached to an <a href="#employee">Employee</a>.</p>
+
+<table><thead>
+<tr>
+<td>Field</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>created_at</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
+<tr>
+<td>file</td><td><a href="#file">File</a></td><td>Contains the file payload.</td></tr>
+<tr>
+<td>id</td><td><a href="#id">ID</a></td><td></td></tr>
+<tr>
+<td>updated_at</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
+</tbody></table>
+
+<h2 id="employee">Employee</h2>
+
+<p>A single Employee that works for your company.</p>
+
+<table><thead>
+<tr>
+<td>Field</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>about</td><td><a href="#string">String</a></td><td>A brief description of the employee.  This information is displayed on both the employee&rsquo;s profile and is also    featured prominently in the Welcome Experience for any new hires that report to them.</td></tr>
+<tr>
+<td>created_at</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
+<tr>
+<td>custom_field_values</td><td><a href="#customfieldvalue">CustomFieldValue</a></td><td>A list of all other profile information for this employee.  Administrators can configure these fields on the    <a href="https://onboarding.greenhouse.io/settings/fields">Settings &gt; Custom Fields</a> page.</td></tr>
+<tr>
+<td>date_of_birth</td><td><a href="#date">Date</a></td><td>Note that only administrators can see the birth year for employees</td></tr>
+<tr>
+<td>date_of_termination</td><td><a href="#date">Date</a></td><td>This information is only available on terminated employees</td></tr>
+<tr>
+<td>department</td><td><a href="#department">Department</a></td><td></td></tr>
+<tr>
+<td>documents</td><td><a href="#document">Document</a></td><td>These are documents that were either came over from Greenhouse Recruiting, were attached directly to the employee    profile, or attached to a task.  This does <em>not</em> include E-Signature requests.</td></tr>
+<tr>
+<td>email</td><td><a href="#string">String</a></td><td>The employee&rsquo;s work email.  They need this in order to sign in</td></tr>
+<tr>
+<td>employment_status</td><td><a href="#employmentstatus">EmploymentStatus</a></td><td></td></tr>
+<tr>
+<td>first_name</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
+<td>hr_manager</td><td><a href="#employee">Employee</a></td><td>The employee&rsquo;s HR Manager.</td></tr>
+<tr>
+<td>id</td><td><a href="#id">ID</a></td><td></td></tr>
+<tr>
+<td>last_name</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
+<td>location</td><td><a href="#location">Location</a></td><td></td></tr>
+<tr>
+<td>manager</td><td><a href="#employee">Employee</a></td><td>This employee&rsquo;s direct manager.</td></tr>
+<tr>
+<td>middle_name</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
+<td>personal_email</td><td><a href="#string">String</a></td><td>The employee&rsquo;s personal email.</td></tr>
+<tr>
+<td>phone_number</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
+<td>preferred_first_name</td><td><a href="#string">String</a></td><td>This is the name that your employee prefers to go by.  If this value is set, Greenhouse Onboarding will display    this name everywhere in the product instead of the employee&rsquo;s legal name.</td></tr>
+<tr>
+<td>preferred_last_name</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
+<td>profile_image</td><td><a href="#file">File</a></td><td>A file containing the employee&rsquo;s profile image.  This image is displayed in emails, reports and directory pages.</td></tr>
+<tr>
+<td>signature_requests</td><td><a href="#signaturerequest">SignatureRequest</a></td><td>These are E-Signature requests initiated through Greenhouse Onboardinging.  Keep in mind that these requests can    be in a number of different states in their lifecycle and may not always have a signed document available to    download.</td></tr>
+<tr>
+<td>start_date</td><td><a href="#date">Date</a></td><td></td></tr>
+<tr>
+<td>suffix</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
+<td>title</td><td><a href="#string">String</a></td><td>The employee&rsquo;s job title.</td></tr>
+<tr>
+<td>updated_at</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
+<tr>
+<td>work_country_code</td><td><a href="#string">String</a></td><td></td></tr>
+</tbody></table>
+
+<h2 id="employeeconnection">EmployeeConnection</h2>
+
+<p>The connection type for Employee.</p>
+
+<table><thead>
+<tr>
+<td>Field</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>edges</td><td><a href="#employeeedge">EmployeeEdge</a></td><td>A list of edges.</td></tr>
+<tr>
+<td>pageInfo</td><td><a href="#pageinfo">PageInfo</a></td><td>Information to aid in pagination.</td></tr>
+</tbody></table>
+
+<h2 id="employeeedge">EmployeeEdge</h2>
+
+<p>An edge in a connection.</p>
+
+<table><thead>
+<tr>
+<td>Field</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>cursor</td><td><a href="#string">String</a></td><td>A cursor for use in pagination.</td></tr>
+<tr>
+<td>node</td><td><a href="#employee">Employee</a></td><td>The item at the end of the edge.</td></tr>
+</tbody></table>
+
+<h2 id="file">File</h2>
+
+<p>A File record</p>
+
+<table><thead>
+<tr>
+<td>Field</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>expires_at</td><td><a href="#datetime">DateTime</a></td><td>The time when the URL will expire.  After this time, you will need to generate a new URL.</td></tr>
+<tr>
+<td>file_name</td><td><a href="#string">String</a></td><td>The original name of the file.</td></tr>
+<tr>
+<td>file_size</td><td><a href="#int">Int</a></td><td>The file size, in bytes</td></tr>
+<tr>
+<td>file_url</td><td><a href="#string">String</a></td><td>An expiring URL you can use to download the file.</td></tr>
+</tbody></table>
+
+<h2 id="location">Location</h2>
+
+<p>Represents a single location in your company.  Employees can belong only belong to a single Location.  It is    possible for employees to not belong to any Location.  Lepartments are used in a variety of ways in Greenhouse    Onboarding, including permissions and onboarding plans  </p>
+
+<table><thead>
+<tr>
+<td>Field</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>created_at</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
+<tr>
+<td>description</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
+<td>id</td><td><a href="#id">ID</a></td><td></td></tr>
+<tr>
+<td>name</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
+<td>updated_at</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
+</tbody></table>
+
+<h2 id="mutation">Mutation</h2>
+
+<table><thead>
+<tr>
+<td>Field</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>updateEmployeeProfile</td><td><a href="#employee">Employee</a></td><td>Update an Employee&rsquo;s profile</td></tr>
+</tbody></table>
+
+<h2 id="pageinfo">PageInfo</h2>
+
+<p>Information about pagination in a connection.</p>
+
+<table><thead>
+<tr>
+<td>Field</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>endCursor</td><td><a href="#string">String</a></td><td>When paginating forwards, the cursor to continue.</td></tr>
+<tr>
+<td>hasNextPage</td><td><a href="#boolean">Boolean</a></td><td>When paginating forwards, are there more items?</td></tr>
+<tr>
+<td>hasPreviousPage</td><td><a href="#boolean">Boolean</a></td><td>When paginating backwards, are there more items?</td></tr>
+<tr>
+<td>startCursor</td><td><a href="#string">String</a></td><td>When paginating backwards, the cursor to continue.</td></tr>
+</tbody></table>
+
+<h2 id="signaturerequest">SignatureRequest</h2>
+
+<p>An E-Signature Request for an Employee</p>
+
+<table><thead>
+<tr>
+<td>Field</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>counter_signer</td><td><a href="#employee">Employee</a></td><td>The employee responsible for counter-signing the document, if applicable</td></tr>
+<tr>
+<td>created_at</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
+<tr>
+<td>file</td><td><a href="#file">File</a></td><td>This is available only for completed signatures.</td></tr>
+<tr>
+<td>id</td><td><a href="#id">ID</a></td><td></td></tr>
+<tr>
+<td>signature_request_template_id</td><td><a href="#id">ID</a></td><td></td></tr>
+<tr>
+<td>status</td><td><a href="#signaturerequeststatus">SignatureRequestStatus</a></td><td>This request&rsquo;s current status.</td></tr>
+<tr>
+<td>updated_at</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
+</tbody></table>
+
+<h1 id="input-objects">Input Objects</h1>
+
+<h2 id="datefilter">DateFilter</h2>
+
+<p>Specify a range of dates using after (exclusive &gt;), before (exclusive &lt;), or on (exact match)</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>after</td><td><a href="#date">Date</a></td><td></td></tr>
+<tr>
+<td>before</td><td><a href="#date">Date</a></td><td></td></tr>
+<tr>
+<td>on</td><td><a href="#date">Date</a></td><td></td></tr>
+</tbody></table>
+
+<h2 id="datetimefilter">DateTimeFilter</h2>
+
+<p>Specify a range of datetimes using after (exclusive &gt;), before (exclusive &lt;), or on (exact match)</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>after</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
+<tr>
+<td>before</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
+<tr>
+<td>on</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
+</tbody></table>
+
+<h2 id="updatecustomfieldvalue">UpdateCustomFieldValue</h2>
+
+<p>Used to update an employee&rsquo;s Custom Field Value</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>permanent_field_id</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
+<td>value</td><td><a href="#value">Value</a></td><td></td></tr>
+</tbody></table>
+
+<h2 id="updateemployee">UpdateEmployee</h2>
+
+<p>Used to update an Employee.</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>about</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
+<td>date_of_birth</td><td><a href="#date">Date</a></td><td></td></tr>
+<tr>
+<td>department</td><td><a href="#id">ID</a></td><td></td></tr>
+<tr>
+<td>email</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
+<td>employment_status</td><td><a href="#employmentstatus">EmploymentStatus</a></td><td></td></tr>
+<tr>
+<td>first_name</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
+<td>hr_manager</td><td><a href="#id">ID</a></td><td></td></tr>
+<tr>
+<td>last_name</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
+<td>location</td><td><a href="#id">ID</a></td><td></td></tr>
+<tr>
+<td>manager</td><td><a href="#id">ID</a></td><td></td></tr>
+<tr>
+<td>middle_name</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
+<td>personal_email</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
+<td>phone_number</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
+<td>preferred_first_name</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
+<td>preferred_last_name</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
+<td>profile_image</td><td><a href="#url">URL</a></td><td></td></tr>
+<tr>
+<td>start_date</td><td><a href="#date">Date</a></td><td></td></tr>
+<tr>
+<td>suffix</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
+<td>title</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
+<td>work_country_code</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
+<td>custom_field_values</td><td><a href="#updatecustomfieldvalue">UpdateCustomFieldValue</a></td><td></td></tr>
+</tbody></table>
+
+<h2 id="withcustomfieldvalue">WithCustomFieldValue</h2>
+
+<p>Limit employees to those that contain at least one of the specified CustomFieldValues that have been updated in the provided time range</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>permanent_field_ids</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
+<td>updated</td><td><a href="#datetimefilter">DateTimeFilter</a></td><td></td></tr>
+</tbody></table>
+
+<h1 id="scalars">Scalars</h1>
+
+<h2 id="boolean">Boolean</h2>
+
+<p>Represents <code class="prettyprint">true</code> or <code class="prettyprint">false</code> values.</p>
+
+<h2 id="date">Date</h2>
+
+<p>Representation of a date in YYYY-MM-DD format</p>
+
+<h2 id="datetime">DateTime</h2>
+
+<p>Representation of datetime in RFC3339</p>
+
+<h2 id="id">ID</h2>
+
+<p>Represents a unique identifier that is Base64 obfuscated. It is often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as <code class="prettyprint">&quot;VXNlci0xMA==&quot;</code>) or integer (such as <code class="prettyprint">4</code>) input value will be accepted as an ID.</p>
+
+<h2 id="int">Int</h2>
+
+<p>Represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.</p>
+
+<h2 id="string">String</h2>
+
+<p>Represents textual data as UTF-8 character sequences. This type is most often used by GraphQL to represent free-form human-readable text.</p>
+
+<h2 id="url">URL</h2>
+
+<p>A URL-formatted String</p>
+
+<h2 id="value">Value</h2>
+
+<p>The actual value of a Custom Field Value. Can be of an arbitrary type (string, int, object, etc.)</p>
+
+<h1 id="enums">Enums</h1>
+
+<h2 id="customfieldtypes">CustomFieldTypes</h2>
+
+<p>Possible type values for CustomFieldValues</p>
+
+<table><thead>
+<tr>
+<td>Value</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>TEXT</td><td></td></tr>
+<tr>
+<td>LONG_TEXT</td><td></td></tr>
+<tr>
+<td>MULTIPLE_CHOICE</td><td></td></tr>
+<tr>
+<td>MULTIPLE_SELECT</td><td></td></tr>
+<tr>
+<td>CONFIRMABLE</td><td></td></tr>
+<tr>
+<td>CONTACT</td><td></td></tr>
+<tr>
+<td>TEAM</td><td></td></tr>
+<tr>
+<td>DATE</td><td></td></tr>
+<tr>
+<td>EMPLOYEE</td><td></td></tr>
+<tr>
+<td>ADDRESS</td><td></td></tr>
+<tr>
+<td>LEGAL_NAME</td><td></td></tr>
+<tr>
+<td>PREFERRED_NAME</td><td></td></tr>
+<tr>
+<td>IMAGE</td><td></td></tr>
+<tr>
+<td>COUNTRY</td><td></td></tr>
+</tbody></table>
+
+<h2 id="employmentstatus">EmploymentStatus</h2>
+
+<p>Possible employment statuses for an employee</p>
+
+<table><thead>
+<tr>
+<td>Value</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>FULL_TIME</td><td></td></tr>
+<tr>
+<td>PART_TIME</td><td></td></tr>
+<tr>
+<td>TEMPORARY</td><td></td></tr>
+<tr>
+<td>CONTRACTOR</td><td></td></tr>
+<tr>
+<td>INTERN</td><td></td></tr>
+<tr>
+<td>TERMINATED</td><td></td></tr>
+</tbody></table>
+
+<h2 id="signaturerequeststatus">SignatureRequestStatus</h2>
+
+<p>Possible status values for a Signature Request</p>
+
+<table><thead>
+<tr>
+<td>Value</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>COMPLETED</td><td>Document has been successfully signed and verified</td></tr>
+<tr>
+<td>WAITING_FOR_SIGNATURE</td><td>Waiting for the employee to sign the document</td></tr>
+<tr>
+<td>BEING_PROCESSED</td><td>Document is being processed by our E-Signature Vendor</td></tr>
+<tr>
+<td>WAITING_FOR_COUNTER_SIGNATURE</td><td>Document awaiting counter-signer signature</td></tr>
+<tr>
+<td>CANCELED</td><td>Signature request has been terminated</td></tr>
+<tr>
+<td>ERROR</td><td>Could not be completed due to an error processing the E-Signature</td></tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="Examples">Examples</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
