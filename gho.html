@@ -90,18 +90,25 @@ analytics.page()
 
 <h2 id="graphql">GraphQL</h2>
 
-<p>Greenhouse Onboarding currently only supports GraphQL; we do not have a traditional REST API.  GraphQL is much more
-powerful than traditional APIs, allowing consumers to:</p>
+<p>Greenhouse Onboarding only supports <a href="(http://graphql.org/)">GraphQL</a>; we do not have a traditional REST API.<br>
+We made the decision to use GraphQL because it allows us you to:</p>
 
 <ul>
-<li>Increase throughput by requesting only the data your are interested in.</li>
+<li>Increase throughput by requesting only the data you are interested in.</li>
 <li>Use introspection to know precisely what our schema looks like.  Tools like 
 <a href="https://github.com/graphql/graphiql">GraphiQL</a> will allow you to quickly and easily explore our entire API.  It even
 supports autocomplete!</li>
-<li>Program against <a href="http://graphql.org/">an industry-wide standard</a> supported by a variety of tools and organizations.</li>
+<li>Program against an industry-wide standard supported by a variety of tools and organizations.</li>
 </ul>
 
 <h2 id="authentication">Authentication</h2>
+<pre class="highlight shell"><code><span class="gp">$ </span>curl https://onboarding-api.greenhouse.io/api/v2/graphql -u your_access_key:your_value
+...
+
+<span class="gp">&gt; </span>GET /api/v2/graphql HTTP/1.1
+<span class="gp">&gt; </span>Host: onboarding-api.greenhouse.io
+<span class="gp">&gt; </span>Authorization: Basic <span class="nv">eW91cl9hY2Nlc3Nfa2V5OnlvdXJfdmFsdWU</span><span class="o">=</span>
+</code></pre>
 
 <p>The Greenhouse Onboarding API is secured with HTTP Basic Authentication over HTTPS.  Clients are required to supply
 both a username and password.  Credentials can be generated inside of the Greenhouse Onboarding product on the
@@ -110,7 +117,7 @@ generate or revoke API keys.  Use the <code class="prettyprint">Access Key</code
 
 <p><img src="/images/gho/api-management.png" alt="API Management"></p>
 
-<p>Using the Greenhouse Onboarding API provides access to <em>all</em> of your companies information.  There is no way to limit
+<p>Using the Greenhouse Onboarding API provides access to <em>all</em> of your company&rsquo;s information.  There is no way to limit
 the scope of an API key.  Only share your API key with people that you trust.  API keys can be revoked at any time
 on the API Management screen.</p>
 
@@ -120,7 +127,7 @@ on the API Management screen.</p>
 
           <h2 id="pagination">Pagination</h2>
 <pre class="highlight plaintext"><code>{
-    employees(first: 2, after: "NQ==") { # Please fetch the next 5 records, starting after the "NQ==" cursor
+  employees(first: 2, after: "NQ==") { # Please fetch the next 2 records, starting after the "NQ==" cursor
     pageInfo {
       endCursor
       hasNextPage
@@ -139,7 +146,7 @@ on the API Management screen.</p>
   "data": {
     "employees": {
       "pageInfo": {
-        "endCursor": "MTA=", # To get the next page, use this as the value to the `after` attribute.
+        "endCursor": "MTA=",
         "hasNextPage": true
       },
       "edges": [
@@ -161,7 +168,7 @@ on the API Management screen.</p>
 </code></pre>
 
 <p>For performance reasons, some result sets will be limited in size.  For example, when requesting employee profile
-information we need to limit the number of employees returned in a single query.  The API will return a &ldquo;page&rdquo; of
+information we limit the number of employees returned in a single query.  The API will return a &ldquo;page&rdquo; of
 records along with an object that describes how to get the next page.</p>
 
 <p>We are using the pagination system recommended by the <a href="http://graphql.org/learn/pagination/">GraphQL documentation</a>.
@@ -172,7 +179,7 @@ Paginated connections return the following pieces of information:</p>
 <li><code class="prettyprint">pageInfo</code>: This has information about the current page.</li>
 </ul>
 
-<p>To fetch the next page of information, you will need to pass the <code class="prettyprint">endCursor</code> value into the <code class="prettyprint">after</code> filter on the
+<p>To fetch the next page of information, pass the <code class="prettyprint">endCursor</code> value into the <code class="prettyprint">after</code> filter on the
 connection.  To the right you can see an example on how to fetch employees via the 
 <a href="#employees-employeeconnection">employees</a> connection.</p>
 
@@ -181,7 +188,7 @@ for each employee will be a simple array instead of another paginated connection
 
           <h2 id="errors-and-validation">Errors and Validation</h2>
 <pre class="highlight plaintext"><code>{
-    employees(salary: 1) {
+  employees(salary: 1) {
     edges {
       node {
         email
@@ -211,15 +218,16 @@ for each employee will be a simple array instead of another paginated connection
 </span></code></pre>
 
 <p>Unlike REST APIs, GraphQL will return an HTTP status of 200, even in cases where there are errors.  You can see an
-example of an error message to the right.  </p>
+example of an error message to the right.  The <code class="prettyprint">data</code> and <code class="prettyprint">errors</code> properties are siblings.  It&rsquo;s possible for a
+mutation to generate a response that has <em>both</em> <code class="prettyprint">data</code> and <code class="prettyprint">errors</code>.</p>
 
-<p>The <code class="prettyprint">message</code> is will let you know what&rsquo;s wrong.  The <code class="prettyprint">locations</code> property
-has the line number and column of where the error starts.  In this example, it&rsquo;s the second line, 12th column, which
+<p>The <code class="prettyprint">message</code> will let you know what&rsquo;s wrong.  The <code class="prettyprint">locations</code> property
+has the line number and column where the error starts.  In this example, it&rsquo;s the second line, 12th column, which
 is the start of the word <code class="prettyprint">salary</code>.  The <code class="prettyprint">fields</code> property is a breadcrumb trail of how to get to the problem.  Here,
-we start at the root-level Query object, go into the <code class="prettyprint">employees</code> connection, and finally encounter the error at the
+we start at the root-level <a href="#queries">Query</a> object, go into the <code class="prettyprint">employees</code> connection, and finally encounter the error at the
 <code class="prettyprint">salary</code> property.</p>
 
-<p>The only exception to this rule is authentication errors.  In these cases, our server will return HTTP status 401.
+<p>The only exception to this rule are authentication errors.  In these cases, our server will return HTTP status 401.
 This is because the authentication layer sits on top of the GraphQL API layer.</p>
 
           <h1 id="queries">Queries</h1>
@@ -264,7 +272,7 @@ This is because the authentication layer sits on top of the GraphQL API layer.</
 
 <h2 id="updateemployeeprofile-employee">updateEmployeeProfile (<a href="#employee">Employee</a>)</h2>
 
-<p>Update an Employee&rsquo;s profile</p>
+<p>Update an employee&rsquo;s profile</p>
 
 <table><thead>
 <tr>
@@ -280,7 +288,7 @@ This is because the authentication layer sits on top of the GraphQL API layer.</
 
 <h2 id="customfield">CustomField</h2>
 
-<p>Represents a single CustomField record for your company.  CustomFields can be stored and display in a variety of    different ways.  The types are described via the <a href="#customfieldtypes">CustomFieldTypes</a> enum.  </p>
+<p>Represents a single CustomField record for your company.  CustomFields can be stored and displayed in a variety of    ways.  The types are described via the <a href="#customfieldtypes">CustomFieldTypes</a> enum.</p>
 
 <table><thead>
 <tr>
@@ -324,7 +332,7 @@ This is because the authentication layer sits on top of the GraphQL API layer.</
 
 <h2 id="department">Department</h2>
 
-<p>Represents a single department in your company.  Employees can belong only belong to a single Department.  It is    possible for employees to not belong to any Department.  Departments are used in a variety of ways in Greenhouse    Onboarding, including permissions and onboarding plans  </p>
+<p>Represents a single department in your company.  Employees may belong to zero or one department. Departments are    used in a variety of ways in Greenhouse Onboarding, including permissions and onboarding plans.</p>
 
 <table><thead>
 <tr>
@@ -369,7 +377,7 @@ This is because the authentication layer sits on top of the GraphQL API layer.</
 <td>Field</td><td>Type</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>about</td><td><a href="#string">String</a></td><td>A brief description of the employee.  This information is displayed on both the employee&rsquo;s profile and is also    featured prominently in the Welcome Experience for any new hires that report to them.</td></tr>
+<td>about</td><td><a href="#string">String</a></td><td>A brief description of the employee.  This information is displayed on both the employee&rsquo;s profile and is also    featured prominently in the Welcome Experience for any new hires that report to this employee.</td></tr>
 <tr>
 <td>created_at</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
 <tr>
@@ -381,7 +389,7 @@ This is because the authentication layer sits on top of the GraphQL API layer.</
 <tr>
 <td>department</td><td><a href="#department">Department</a></td><td></td></tr>
 <tr>
-<td>documents</td><td><a href="#document">Document</a></td><td>These are documents that were either came over from Greenhouse Recruiting, were attached directly to the employee    profile, or attached to a task.  This does <em>not</em> include E-Signature requests.</td></tr>
+<td>documents</td><td><a href="#document">Document</a></td><td>These are documents that came over from Greenhouse Recruiting, were attached directly to the employee    profile, or attached to a task.  This does <em>not</em> include E-Signature requests.</td></tr>
 <tr>
 <td>email</td><td><a href="#string">String</a></td><td>The employee&rsquo;s work email.  They need this in order to sign in</td></tr>
 <tr>
@@ -472,7 +480,7 @@ This is because the authentication layer sits on top of the GraphQL API layer.</
 
 <h2 id="location">Location</h2>
 
-<p>Represents a single location in your company.  Employees can belong only belong to a single Location.  It is    possible for employees to not belong to any Location.  Lepartments are used in a variety of ways in Greenhouse    Onboarding, including permissions and onboarding plans  </p>
+<p>Represents a single location in your company.  Employees may belong to zero or one location. Locations are    used in a variety of ways in Greenhouse Onboarding, including permissions and onboarding plans.</p>
 
 <table><thead>
 <tr>
@@ -497,7 +505,7 @@ This is because the authentication layer sits on top of the GraphQL API layer.</
 <td>Field</td><td>Type</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>updateEmployeeProfile</td><td><a href="#employee">Employee</a></td><td>Update an Employee&rsquo;s profile</td></tr>
+<td>updateEmployeeProfile</td><td><a href="#employee">Employee</a></td><td>Update an employee&rsquo;s profile</td></tr>
 </tbody></table>
 
 <h2 id="pageinfo">PageInfo</h2>
@@ -520,14 +528,14 @@ This is because the authentication layer sits on top of the GraphQL API layer.</
 
 <h2 id="signaturerequest">SignatureRequest</h2>
 
-<p>An E-Signature Request for an Employee</p>
+<p>An E-Signature Request for assigned to an <a href="#employee">Employee</a>.</p>
 
 <table><thead>
 <tr>
 <td>Field</td><td>Type</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>counter_signer</td><td><a href="#employee">Employee</a></td><td>The employee responsible for counter-signing the document, if applicable</td></tr>
+<td>counter_signer</td><td><a href="#employee">Employee</a></td><td>The employee responsible for counter-signing the document, if applicable.</td></tr>
 <tr>
 <td>created_at</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
 <tr>
@@ -592,7 +600,7 @@ This is because the authentication layer sits on top of the GraphQL API layer.</
 
 <h2 id="updateemployee">UpdateEmployee</h2>
 
-<p>Used to update an Employee.</p>
+<p>The input object used to update an <a href="#employee">Employee</a>.</p>
 
 <table><thead>
 <tr>
@@ -644,7 +652,7 @@ This is because the authentication layer sits on top of the GraphQL API layer.</
 
 <h2 id="withcustomfieldvalue">WithCustomFieldValue</h2>
 
-<p>Limit employees to those that contain at least one of the specified CustomFieldValues that have been updated in the provided time range</p>
+<p>Limit employees to those that contain at least one of the specified CustomFieldValues that have been updated in the    provided time range.</p>
 
 <table><thead>
 <tr>
@@ -664,11 +672,11 @@ This is because the authentication layer sits on top of the GraphQL API layer.</
 
 <h2 id="date">Date</h2>
 
-<p>Representation of a date in YYYY-MM-DD format</p>
+<p>Representation of a date in YYYY-MM-DD format.</p>
 
 <h2 id="datetime">DateTime</h2>
 
-<p>Representation of datetime in RFC3339</p>
+<p>Representation of datetime in RFC3339.</p>
 
 <h2 id="id">ID</h2>
 
@@ -692,6 +700,8 @@ This is because the authentication layer sits on top of the GraphQL API layer.</
 
 <h1 id="enums">Enums</h1>
 
+<p>NOTE: Enums are unquoted in user input but quotes in API output.</p>
+
 <h2 id="customfieldtypes">CustomFieldTypes</h2>
 
 <p>Possible type values for CustomFieldValues</p>
@@ -701,33 +711,25 @@ This is because the authentication layer sits on top of the GraphQL API layer.</
 <td>Value</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>TEXT</td><td></td></tr>
+<td>TEXT</td><td>Displayed as a single line text field. Stored as a String.</td></tr>
 <tr>
-<td>LONG_TEXT</td><td></td></tr>
+<td>LONG_TEXT</td><td>Displayed as a multiline text box. Stored as a String.</td></tr>
 <tr>
-<td>MULTIPLE_CHOICE</td><td></td></tr>
+<td>MULTIPLE_CHOICE</td><td>Displayed as a dropdown.  Stored as a String.</td></tr>
 <tr>
-<td>MULTIPLE_SELECT</td><td></td></tr>
+<td>MULTIPLE_SELECT</td><td>Displayed as a tag field.  Stored as an Array of Strings.</td></tr>
 <tr>
-<td>CONFIRMABLE</td><td></td></tr>
+<td>CONFIRMABLE</td><td>Displayed as a text field where the user has to enter the value twice.  Stored as a String.</td></tr>
 <tr>
-<td>CONTACT</td><td></td></tr>
+<td>CONTACT</td><td>Displayed as group of inputs.  Stored as JSON.</td></tr>
 <tr>
-<td>TEAM</td><td></td></tr>
+<td>TEAM</td><td>Displayed as a dropdown of teams. Stored as a Team ID.</td></tr>
 <tr>
-<td>DATE</td><td></td></tr>
+<td>DATE</td><td>Displayed as a datepicker.  Stored as a DateTime</td></tr>
 <tr>
-<td>EMPLOYEE</td><td></td></tr>
+<td>EMPLOYEE</td><td>Displayed as a dropdown of employees.  Stored as an Employee ID.</td></tr>
 <tr>
-<td>ADDRESS</td><td></td></tr>
-<tr>
-<td>LEGAL_NAME</td><td></td></tr>
-<tr>
-<td>PREFERRED_NAME</td><td></td></tr>
-<tr>
-<td>IMAGE</td><td></td></tr>
-<tr>
-<td>COUNTRY</td><td></td></tr>
+<td>ADDRESS</td><td>Displayed as group of inputs.  Stored as JSON.</td></tr>
 </tbody></table>
 
 <h2 id="employmentstatus">EmploymentStatus</h2>
@@ -761,17 +763,17 @@ This is because the authentication layer sits on top of the GraphQL API layer.</
 <td>Value</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>COMPLETED</td><td>Document has been successfully signed and verified</td></tr>
+<td>COMPLETED</td><td>Document has been successfully signed and verified.</td></tr>
 <tr>
-<td>WAITING_FOR_SIGNATURE</td><td>Waiting for the employee to sign the document</td></tr>
+<td>WAITING_FOR_SIGNATURE</td><td>Waiting for the employee to sign the document.</td></tr>
 <tr>
-<td>BEING_PROCESSED</td><td>Document is being processed by our E-Signature Vendor</td></tr>
+<td>BEING_PROCESSED</td><td>Document is being processed by our E-Signature Vendor.</td></tr>
 <tr>
-<td>WAITING_FOR_COUNTER_SIGNATURE</td><td>Document awaiting counter-signer signature</td></tr>
+<td>WAITING_FOR_COUNTER_SIGNATURE</td><td>Document awaiting counter-signer signature.</td></tr>
 <tr>
-<td>CANCELED</td><td>Signature request has been terminated</td></tr>
+<td>CANCELED</td><td>Signature request has been terminated.</td></tr>
 <tr>
-<td>ERROR</td><td>Could not be completed due to an error processing the E-Signature</td></tr>
+<td>ERROR</td><td>Could not be completed due to an error processing the E-Signature.</td></tr>
 </tbody></table>
 
       </div>
