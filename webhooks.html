@@ -1938,6 +1938,112 @@ analytics.page()
 
 <p>See web hook <a href="#common-attributes">common attributes</a>.</p>
 
+<h2 id="candidate-anonymized">Candidate anonymized</h2>
+
+<p>This web hook will fire when a particular candidate receives an anonymize event. Anonymize events may occur from the <a href="#put-anonymize-candidate">Anonymize Endpoint</a> in Harvest or may be configured in the GDPR page in the Greenhouse application. An anonymize web hook consists of the action type, the id of the candidate who had properties anonymized, and the information that was anonymized. </p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"candidate_anonymized"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"candidate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">37031511</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"anonymized_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"full_name"</span><span class="p">,</span><span class="w"> </span><span class="s2">"current_title"</span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="anonymized-fields">Anonymized Fields</h3>
+
+<p>A list of possible anonymized fields are provided. If the item in &ldquo;attribute&rdquo; is received in the anonymized_fields array, the corresponding changes in notes have been applied in Greenhouse. Note that some of these fields may not be accessible via other web hooks or via Harvest.</p>
+
+<table><thead>
+<tr>
+<td>Attribute</td><td>Anonymize Process</td></tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">activity_items</code></td><td>Destroy all items in the candidate&rsquo;s activity feed of type &ldquo;activity&rdquo;. In Harvest&rsquo;s Activity Feed endpoint, these are items in the <code class="prettyprint">activities</code> section.</td></tr>
+<tr>
+<td><code class="prettyprint">addresses</code></td><td>Destroy all values from <code class="prettyprint">candidate.addresses</code></td></tr>
+<tr>
+<td><code class="prettyprint">all_offer_versions</code></td><td>For each of this candidate&rsquo;s applications, destroy all offers. (For legacy reasons, this will also raise an <a href="#offer-deleted">Offer Deleted</a> web hook if one is configured.)</td></tr>
+<tr>
+<td><code class="prettyprint">application_questions</code></td><td>For each of this candidate&rsquo;s applications, destroy all values from <code class="prettyprint">application.answers</code>.</td></tr>
+<tr>
+<td><code class="prettyprint">attachments</code></td><td>Destroy all attachments on this candidate and all their associated applications.</td></tr>
+<tr>
+<td><code class="prettyprint">candidate_photo</code></td><td>Destroy the candidate&rsquo;s photo.</td></tr>
+<tr>
+<td><code class="prettyprint">candidate_stage_data</code></td><td>For each of this candidate&rsquo;s applications, set the <code class="prettyprint">created_at</code> time to now, remove the candidate from the current stage, destroy all stage transition information, and set the candidate back to the first stage.</td></tr>
+<tr>
+<td><code class="prettyprint">coordinator</code></td><td>Set <code class="prettyprint">candidate.coordinator</code> to null</td></tr>
+<tr>
+<td><code class="prettyprint">credited_to</code></td><td>For each of this candidate&rsquo;s application, destroy <code class="prettyprint">application.credited_to</code>.</td></tr>
+<tr>
+<td><code class="prettyprint">custom_application_fields</code></td><td>For each of this candidate&rsquo;s applications, destroy <code class="prettyprint">application.custom_fields</code>.</td></tr>
+<tr>
+<td><code class="prettyprint">custom_candidate_fields</code></td><td>Destroy all values from <code class="prettyprint">candidate.custom_fields</code></td></tr>
+<tr>
+<td><code class="prettyprint">custom_rejection_question_fields</code></td><td>For each of this candidate&rsquo;s application, destroy all custom fields on rejection details.</td></tr>
+<tr>
+<td><code class="prettyprint">current_company</code></td><td>Set <code class="prettyprint">candidate.company</code> to null.</td></tr>
+<tr>
+<td><code class="prettyprint">current_title</code></td><td>Set <code class="prettyprint">candidate.title</code> to null.</td></tr>
+<tr>
+<td><code class="prettyprint">education</code></td><td>Remove all values from <code class="prettyprint">candidate.educations</code></td></tr>
+<tr>
+<td><code class="prettyprint">email_addresses</code></td><td>Destroy all values from <code class="prettyprint">candidate.email_addresses</code></td></tr>
+<tr>
+<td><code class="prettyprint">employment</code></td><td>Remove all values from <code class="prettyprint">candidate.employments</code></td></tr>
+<tr>
+<td><code class="prettyprint">emails</code></td><td>Destroy record of any e-mails sent to this candidate via Greenhouse.</td></tr>
+<tr>
+<td><code class="prettyprint">follow_up_reminders</code></td><td>Destroy any follow-up reminders configured on this person.</td></tr>
+<tr>
+<td><code class="prettyprint">full_name</code></td><td>Set <code class="prettyprint">candidate.first_name</code> to &ldquo;Anonymized&rdquo; and <code class="prettyprint">candidate.last_name</code> to the <code class="prettyprint">candidate.id</code>.</td></tr>
+<tr>
+<td><code class="prettyprint">headline</code></td><td>Set the candidate&rsquo;s headline to null.</td></tr>
+<tr>
+<td><code class="prettyprint">inmails</code></td><td>Destroy record of any LinkedIn Inmails synced to this candidate from LinkedIn.</td></tr>
+<tr>
+<td><code class="prettyprint">innotes</code></td><td>Destroy record of any LinkedIn Innotes synced to this candidate from LinkedIn.</td></tr>
+<tr>
+<td><code class="prettyprint">location</code></td><td>For each of this candidate&rsquo;s applications, set <code class="prettyprint">application.location</code> to null.</td></tr>
+<tr>
+<td><code class="prettyprint">notes</code></td><td>Destroy all notes on this candidate.</td></tr>
+<tr>
+<td><code class="prettyprint">offers</code></td><td>Destroy all information on all offers on any of this candidate&rsquo;s applications without destroying that an offer was made.</td></tr>
+<tr>
+<td><code class="prettyprint">phone_numbers</code></td><td>Remove all values from <code class="prettyprint">candidate.phone_numbers</code></td></tr>
+<tr>
+<td><code class="prettyprint">prospect_jobs</code></td><td>Remove all associations between this prospect and jobs.</td></tr>
+<tr>
+<td><code class="prettyprint">prospect_offices</code></td><td>Remove all associations between this prospect and offices.</td></tr>
+<tr>
+<td><code class="prettyprint">prospect_offices_and_departments</code></td><td>Remove all associations between this prospect and departments.</td></tr>
+<tr>
+<td><code class="prettyprint">prospect_owner</code></td><td>For each of this candidate&rsquo;s prospect applications, destroy the prospect owner.</td></tr>
+<tr>
+<td><code class="prettyprint">prospect_pool_and_stage</code></td><td>For each of this candidate&rsquo;s application, destroy the prospect pool and the prospect pool stage.</td></tr>
+<tr>
+<td><code class="prettyprint">recruiter</code></td><td>Set <code class="prettyprint">candidate.recruiter</code> to null</td></tr>
+<tr>
+<td><code class="prettyprint">referral_questions</code></td><td>Destroy all referral answers for this candidate.</td></tr>
+<tr>
+<td><code class="prettyprint">rejection_notes</code></td><td>Destroy all notes specifically related to this candidate&rsquo;s rejection.</td></tr>
+<tr>
+<td><code class="prettyprint">rejection_reasons</code></td><td>Set <code class="prettyprint">rejection_reason</code> on all candidate applications to null.</td></tr>
+<tr>
+<td><code class="prettyprint">scorecards_and_interviews</code></td><td>Destroy all scorecards with this candidate id and all interviews with any application from this candidate id</td></tr>
+<tr>
+<td><code class="prettyprint">social_media_links</code></td><td>Remove all values from <code class="prettyprint">candidate.social_media_addresses</code></td></tr>
+<tr>
+<td><code class="prettyprint">source</code></td><td>Remove <code class="prettyprint">application.source</code> in all this candidate&rsquo;s applications.</td></tr>
+<tr>
+<td><code class="prettyprint">tags</code></td><td>Remove all values from <code class="prettyprint">candidate.tags</code></td></tr>
+<tr>
+<td><code class="prettyprint">touchpoints</code></td><td>Destroy all touchpoints on the candidate, all the candidate&rsquo;s applications, and any notes associated with touchpoints.</td></tr>
+<tr>
+<td><code class="prettyprint">websites</code></td><td>Remove all values from <code class="prettyprint">candidate.website_addresses</code></td></tr>
+</tbody></table>
+
           <h1 id="interview-events">Interview Events</h1>
 
 <h2 id="interview-deleted">Interview deleted</h2>
