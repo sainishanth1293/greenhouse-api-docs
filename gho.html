@@ -232,7 +232,83 @@ This is because the authentication layer sits on top of the GraphQL API layer.</
 
           <h1 id="queries">Queries</h1>
 
-<h2 id="employee-employee">employee (<a href="#employee">Employee</a>)</h2>
+<h2 id="countries-country">countries (<a href="#[Country](#country)">[Country]</a>)</h2>
+
+<p>The list of countries</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>countryCodes</td><td><a href="#string">String</a></td><td></td></tr>
+</tbody></table>
+
+<h2 id="customfield-customfield">customField (<a href="#[CustomField](#customfield)">CustomField</a>)</h2>
+
+<p>A custom field</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>id</td><td><a href="#int">Int</a></td><td></td></tr>
+</tbody></table>
+
+<h2 id="customfields-customfieldconnection">customFields (<a href="#[CustomFieldConnection](#customfieldconnection)">CustomFieldConnection</a>)</h2>
+
+<p>A collection of custom fields</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>first</td><td><a href="#int">Int</a></td><td>Returns the first <em>n</em> elements from the list.</td></tr>
+<tr>
+<td>after</td><td><a href="#string">String</a></td><td>Returns the elements in the list that come after the specified global ID.</td></tr>
+<tr>
+<td>last</td><td><a href="#int">Int</a></td><td>Returns the last <em>n</em> elements from the list.</td></tr>
+<tr>
+<td>before</td><td><a href="#string">String</a></td><td>Returns the elements in the list that come before the specified global ID.</td></tr>
+<tr>
+<td>permanentFieldIds</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
+<td>fieldTypes</td><td><a href="#customfieldtypes">CustomFieldTypes</a></td><td></td></tr>
+</tbody></table>
+
+<h2 id="department-department">department (<a href="#[Department](#department)">Department</a>)</h2>
+
+<p>A single department</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>id</td><td><a href="#int">Int</a></td><td></td></tr>
+</tbody></table>
+
+<h2 id="departments-departmentconnection">departments (<a href="#[DepartmentConnection](#departmentconnection)">DepartmentConnection</a>)</h2>
+
+<p>All departments</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>first</td><td><a href="#int">Int</a></td><td>Returns the first <em>n</em> elements from the list.</td></tr>
+<tr>
+<td>after</td><td><a href="#string">String</a></td><td>Returns the elements in the list that come after the specified global ID.</td></tr>
+<tr>
+<td>last</td><td><a href="#int">Int</a></td><td>Returns the last <em>n</em> elements from the list.</td></tr>
+<tr>
+<td>before</td><td><a href="#string">String</a></td><td>Returns the elements in the list that come before the specified global ID.</td></tr>
+</tbody></table>
+
+<h2 id="employee-employee">employee (<a href="#[Employee](#employee)">Employee</a>)</h2>
 
 <p>An Onboarding employee record</p>
 
@@ -244,7 +320,7 @@ This is because the authentication layer sits on top of the GraphQL API layer.</
 <td>id</td><td><a href="#int">Int</a></td><td></td></tr>
 </tbody></table>
 
-<h2 id="employees-employeeconnection">employees (<a href="#employeeconnection">EmployeeConnection</a>)</h2>
+<h2 id="employees-employeeconnection">employees (<a href="#[EmployeeConnection](#employeeconnection)">EmployeeConnection</a>)</h2>
 
 <p>A collection of Onboarding employee records</p>
 
@@ -268,6 +344,126 @@ This is because the authentication layer sits on top of the GraphQL API layer.</
 <td>with_custom_field_value</td><td><a href="#withcustomfieldvalue">WithCustomFieldValue</a></td><td></td></tr>
 </tbody></table>
 
+<h2 id="location-location">location (<a href="#[Location](#location)">Location</a>)</h2>
+
+<p>A single location</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>id</td><td><a href="#int">Int</a></td><td></td></tr>
+</tbody></table>
+
+<h2 id="locations-locationconnection">locations (<a href="#[LocationConnection](#locationconnection)">LocationConnection</a>)</h2>
+
+<p>All locations</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>first</td><td><a href="#int">Int</a></td><td>Returns the first <em>n</em> elements from the list.</td></tr>
+<tr>
+<td>after</td><td><a href="#string">String</a></td><td>Returns the elements in the list that come after the specified global ID.</td></tr>
+<tr>
+<td>last</td><td><a href="#int">Int</a></td><td>Returns the last <em>n</em> elements from the list.</td></tr>
+<tr>
+<td>before</td><td><a href="#string">String</a></td><td>Returns the elements in the list that come before the specified global ID.</td></tr>
+</tbody></table>
+
+<h2 id="othercriteria-othercriterionconnection">otherCriteria (<a href="#[OtherCriterionConnection](#othercriterionconnection)">OtherCriterionConnection</a>)</h2>
+
+<p>All other criteria</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>first</td><td><a href="#int">Int</a></td><td>Returns the first <em>n</em> elements from the list.</td></tr>
+<tr>
+<td>after</td><td><a href="#string">String</a></td><td>Returns the elements in the list that come after the specified global ID.</td></tr>
+<tr>
+<td>last</td><td><a href="#int">Int</a></td><td>Returns the last <em>n</em> elements from the list.</td></tr>
+<tr>
+<td>before</td><td><a href="#string">String</a></td><td>Returns the elements in the list that come before the specified global ID.</td></tr>
+</tbody></table>
+
+<h2 id="othercriterion-othercriterion">otherCriterion (<a href="#[OtherCriterion](#othercriterion)">OtherCriterion</a>)</h2>
+
+<p>A single other criterion</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>id</td><td><a href="#int">Int</a></td><td></td></tr>
+</tbody></table>
+
+<h2 id="team-team">team (<a href="#[Team](#team)">Team</a>)</h2>
+
+<p>A single team</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>id</td><td><a href="#int">Int</a></td><td></td></tr>
+</tbody></table>
+
+<h2 id="teamcategories-teamcategoryconnection">teamCategories (<a href="#[TeamCategoryConnection](#teamcategoryconnection)">TeamCategoryConnection</a>)</h2>
+
+<p>All team categories</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>first</td><td><a href="#int">Int</a></td><td>Returns the first <em>n</em> elements from the list.</td></tr>
+<tr>
+<td>after</td><td><a href="#string">String</a></td><td>Returns the elements in the list that come after the specified global ID.</td></tr>
+<tr>
+<td>last</td><td><a href="#int">Int</a></td><td>Returns the last <em>n</em> elements from the list.</td></tr>
+<tr>
+<td>before</td><td><a href="#string">String</a></td><td>Returns the elements in the list that come before the specified global ID.</td></tr>
+</tbody></table>
+
+<h2 id="teamcategory-teamcategory">teamCategory (<a href="#[TeamCategory](#teamcategory)">TeamCategory</a>)</h2>
+
+<p>A single team category</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>id</td><td><a href="#int">Int</a></td><td></td></tr>
+</tbody></table>
+
+<h2 id="teams-teamconnection">teams (<a href="#[TeamConnection](#teamconnection)">TeamConnection</a>)</h2>
+
+<p>All teams</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>first</td><td><a href="#int">Int</a></td><td>Returns the first <em>n</em> elements from the list.</td></tr>
+<tr>
+<td>after</td><td><a href="#string">String</a></td><td>Returns the elements in the list that come after the specified global ID.</td></tr>
+<tr>
+<td>last</td><td><a href="#int">Int</a></td><td>Returns the last <em>n</em> elements from the list.</td></tr>
+<tr>
+<td>before</td><td><a href="#string">String</a></td><td>Returns the elements in the list that come before the specified global ID.</td></tr>
+</tbody></table>
+
 <h1 id="mutations">Mutations</h1>
 
 <h2 id="updateemployeeprofile-employee">updateEmployeeProfile (<a href="#employee">Employee</a>)</h2>
@@ -286,6 +482,22 @@ This is because the authentication layer sits on top of the GraphQL API layer.</
 
 <h1 id="types">Types</h1>
 
+<h2 id="country">Country</h2>
+
+<p>A country</p>
+
+<table><thead>
+<tr>
+<td>Field</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>countryCode</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
+<td>name</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
+<td>states</td><td><a href="#state">State</a></td><td></td></tr>
+</tbody></table>
+
 <h2 id="customfield">CustomField</h2>
 
 <p>Represents a single CustomField record for your company.  CustomFields can be stored and displayed in a variety of    ways.  The types are described via the <a href="#customfieldtypes">CustomFieldTypes</a> enum.</p>
@@ -295,17 +507,65 @@ This is because the authentication layer sits on top of the GraphQL API layer.</
 <td>Field</td><td>Type</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>created_at</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
+<td>createdAt</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
 <tr>
-<td>field_type</td><td><a href="#customfieldtypes">CustomFieldTypes</a></td><td>The field type determines how users input and view the data for this field.</td></tr>
+<td>customFieldGroup</td><td><a href="#customfieldgroup">CustomFieldGroup</a></td><td></td></tr>
+<tr>
+<td>fieldType</td><td><a href="#customfieldtypes">CustomFieldTypes</a></td><td>The field type determines how users input and view the data for this field.</td></tr>
 <tr>
 <td>id</td><td><a href="#id">ID</a></td><td></td></tr>
 <tr>
+<td>multipleChoiceOptions</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
 <td>name</td><td><a href="#string">String</a></td><td>The name of this custom field as users would see it inside Greenhouse Onboarding.</td></tr>
 <tr>
-<td>permanent_field_id</td><td><a href="#string">String</a></td><td>A unique identifier for this CustomField.</td></tr>
+<td>permanentFieldId</td><td><a href="#string">String</a></td><td>A unique identifier for this CustomField.</td></tr>
 <tr>
-<td>updated_at</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
+<td>teamCategory</td><td><a href="#teamcategory">TeamCategory</a></td><td></td></tr>
+<tr>
+<td>updatedAt</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
+</tbody></table>
+
+<h2 id="customfieldconnection">CustomFieldConnection</h2>
+
+<p>The connection type for CustomField.</p>
+
+<table><thead>
+<tr>
+<td>Field</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>edges</td><td><a href="#customfieldedge">CustomFieldEdge</a></td><td>A list of edges.</td></tr>
+<tr>
+<td>pageInfo</td><td><a href="#pageinfo">PageInfo</a></td><td>Information to aid in pagination.</td></tr>
+</tbody></table>
+
+<h2 id="customfieldedge">CustomFieldEdge</h2>
+
+<p>An edge in a connection.</p>
+
+<table><thead>
+<tr>
+<td>Field</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>cursor</td><td><a href="#string">String</a></td><td>A cursor for use in pagination.</td></tr>
+<tr>
+<td>node</td><td><a href="#customfield">CustomField</a></td><td>The item at the end of the edge.</td></tr>
+</tbody></table>
+
+<h2 id="customfieldgroup">CustomFieldGroup</h2>
+
+<p>A Group of Custom Field</p>
+
+<table><thead>
+<tr>
+<td>Field</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>id</td><td><a href="#id">ID</a></td><td></td></tr>
+<tr>
+<td>name</td><td><a href="#string">String</a></td><td></td></tr>
 </tbody></table>
 
 <h2 id="customfieldvalue">CustomFieldValue</h2>
@@ -339,7 +599,7 @@ This is because the authentication layer sits on top of the GraphQL API layer.</
 <td>Field</td><td>Type</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>created_at</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
+<td>createdAt</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
 <tr>
 <td>description</td><td><a href="#string">String</a></td><td></td></tr>
 <tr>
@@ -347,7 +607,35 @@ This is because the authentication layer sits on top of the GraphQL API layer.</
 <tr>
 <td>name</td><td><a href="#string">String</a></td><td></td></tr>
 <tr>
-<td>updated_at</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
+<td>updatedAt</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
+</tbody></table>
+
+<h2 id="departmentconnection">DepartmentConnection</h2>
+
+<p>The connection type for Department.</p>
+
+<table><thead>
+<tr>
+<td>Field</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>edges</td><td><a href="#departmentedge">DepartmentEdge</a></td><td>A list of edges.</td></tr>
+<tr>
+<td>pageInfo</td><td><a href="#pageinfo">PageInfo</a></td><td>Information to aid in pagination.</td></tr>
+</tbody></table>
+
+<h2 id="departmentedge">DepartmentEdge</h2>
+
+<p>An edge in a connection.</p>
+
+<table><thead>
+<tr>
+<td>Field</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>cursor</td><td><a href="#string">String</a></td><td>A cursor for use in pagination.</td></tr>
+<tr>
+<td>node</td><td><a href="#department">Department</a></td><td>The item at the end of the edge.</td></tr>
 </tbody></table>
 
 <h2 id="document">Document</h2>
@@ -408,6 +696,8 @@ This is because the authentication layer sits on top of the GraphQL API layer.</
 <td>manager</td><td><a href="#employee">Employee</a></td><td>This employee&rsquo;s direct manager.</td></tr>
 <tr>
 <td>middle_name</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
+<td>otherCriteria</td><td><a href="#othercriterion">OtherCriterion</a></td><td></td></tr>
 <tr>
 <td>personal_email</td><td><a href="#string">String</a></td><td>The employee&rsquo;s personal email.</td></tr>
 <tr>
@@ -487,7 +777,7 @@ This is because the authentication layer sits on top of the GraphQL API layer.</
 <td>Field</td><td>Type</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>created_at</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
+<td>createdAt</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
 <tr>
 <td>description</td><td><a href="#string">String</a></td><td></td></tr>
 <tr>
@@ -495,7 +785,35 @@ This is because the authentication layer sits on top of the GraphQL API layer.</
 <tr>
 <td>name</td><td><a href="#string">String</a></td><td></td></tr>
 <tr>
-<td>updated_at</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
+<td>updatedAt</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
+</tbody></table>
+
+<h2 id="locationconnection">LocationConnection</h2>
+
+<p>The connection type for Location.</p>
+
+<table><thead>
+<tr>
+<td>Field</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>edges</td><td><a href="#locationedge">LocationEdge</a></td><td>A list of edges.</td></tr>
+<tr>
+<td>pageInfo</td><td><a href="#pageinfo">PageInfo</a></td><td>Information to aid in pagination.</td></tr>
+</tbody></table>
+
+<h2 id="locationedge">LocationEdge</h2>
+
+<p>An edge in a connection.</p>
+
+<table><thead>
+<tr>
+<td>Field</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>cursor</td><td><a href="#string">String</a></td><td>A cursor for use in pagination.</td></tr>
+<tr>
+<td>node</td><td><a href="#location">Location</a></td><td>The item at the end of the edge.</td></tr>
 </tbody></table>
 
 <h2 id="mutation">Mutation</h2>
@@ -506,6 +824,52 @@ This is because the authentication layer sits on top of the GraphQL API layer.</
 </thead><tbody>
 <tr>
 <td>updateEmployeeProfile</td><td><a href="#employee">Employee</a></td><td>Update an employee&rsquo;s profile</td></tr>
+</tbody></table>
+
+<h2 id="othercriterion">OtherCriterion</h2>
+
+<p>A tag that can be used to refine on onboarding plan</p>
+
+<table><thead>
+<tr>
+<td>Field</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>createdAt</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
+<tr>
+<td>id</td><td><a href="#id">ID</a></td><td></td></tr>
+<tr>
+<td>name</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
+<td>updatedAt</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
+</tbody></table>
+
+<h2 id="othercriterionconnection">OtherCriterionConnection</h2>
+
+<p>The connection type for OtherCriterion.</p>
+
+<table><thead>
+<tr>
+<td>Field</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>edges</td><td><a href="#othercriterionedge">OtherCriterionEdge</a></td><td>A list of edges.</td></tr>
+<tr>
+<td>pageInfo</td><td><a href="#pageinfo">PageInfo</a></td><td>Information to aid in pagination.</td></tr>
+</tbody></table>
+
+<h2 id="othercriterionedge">OtherCriterionEdge</h2>
+
+<p>An edge in a connection.</p>
+
+<table><thead>
+<tr>
+<td>Field</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>cursor</td><td><a href="#string">String</a></td><td>A cursor for use in pagination.</td></tr>
+<tr>
+<td>node</td><td><a href="#othercriterion">OtherCriterion</a></td><td>The item at the end of the edge.</td></tr>
 </tbody></table>
 
 <h2 id="pageinfo">PageInfo</h2>
@@ -535,19 +899,147 @@ This is because the authentication layer sits on top of the GraphQL API layer.</
 <td>Field</td><td>Type</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>counter_signer</td><td><a href="#employee">Employee</a></td><td>The employee responsible for counter-signing the document, if applicable.</td></tr>
+<td>counterSigner</td><td><a href="#employee">Employee</a></td><td>The employee responsible for counter-signing this document, if applicable.</td></tr>
 <tr>
-<td>created_at</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
+<td>createdAt</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
 <tr>
 <td>file</td><td><a href="#file">File</a></td><td>This is available only for completed signatures.</td></tr>
 <tr>
 <td>id</td><td><a href="#id">ID</a></td><td></td></tr>
 <tr>
-<td>signature_request_template_id</td><td><a href="#id">ID</a></td><td></td></tr>
+<td>signatureRequestTemplate</td><td><a href="#signaturerequesttemplate">SignatureRequestTemplate</a></td><td></td></tr>
 <tr>
-<td>status</td><td><a href="#signaturerequeststatus">SignatureRequestStatus</a></td><td>This request&rsquo;s current status.</td></tr>
+<td>status</td><td><a href="#signaturerequeststatus">SignatureRequestStatus</a></td><td></td></tr>
 <tr>
-<td>updated_at</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
+<td>updatedAt</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
+</tbody></table>
+
+<h2 id="signaturerequesttemplate">SignatureRequestTemplate</h2>
+
+<p>A template used when assigning signature requests.</p>
+
+<table><thead>
+<tr>
+<td>Field</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>counterSigner</td><td><a href="#employee">Employee</a></td><td>The default employee responsible for counter-signing documents created from this template, if applicable.    Individual SignatureRequest objects can override the counter signer.</td></tr>
+<tr>
+<td>createdAt</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
+<tr>
+<td>name</td><td><a href="#string">String</a></td><td>The name of the template.  This is the label administrators will see.</td></tr>
+<tr>
+<td>publicName</td><td><a href="#string">String</a></td><td>The public-facing name of the template.  This is the name the new hire will see.    If this is null, new hires will see the name field.</td></tr>
+<tr>
+<td>updatedAt</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
+</tbody></table>
+
+<h2 id="state">State</h2>
+
+<p>A state</p>
+
+<table><thead>
+<tr>
+<td>Field</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>country</td><td><a href="#country">Country</a></td><td></td></tr>
+<tr>
+<td>name</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
+<td>stateCode</td><td><a href="#string">String</a></td><td></td></tr>
+</tbody></table>
+
+<h2 id="team">Team</h2>
+
+<p>A Team record</p>
+
+<table><thead>
+<tr>
+<td>Field</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>description</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
+<td>email</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
+<td>id</td><td><a href="#id">ID</a></td><td></td></tr>
+<tr>
+<td>location</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
+<td>name</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
+<td>teamCategory</td><td><a href="#teamcategory">TeamCategory</a></td><td></td></tr>
+</tbody></table>
+
+<h2 id="teamcategory">TeamCategory</h2>
+
+<p>A Team Category Record</p>
+
+<table><thead>
+<tr>
+<td>Field</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>id</td><td><a href="#id">ID</a></td><td></td></tr>
+<tr>
+<td>name</td><td><a href="#string">String</a></td><td></td></tr>
+</tbody></table>
+
+<h2 id="teamcategoryconnection">TeamCategoryConnection</h2>
+
+<p>The connection type for TeamCategory.</p>
+
+<table><thead>
+<tr>
+<td>Field</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>edges</td><td><a href="#teamcategoryedge">TeamCategoryEdge</a></td><td>A list of edges.</td></tr>
+<tr>
+<td>pageInfo</td><td><a href="#pageinfo">PageInfo</a></td><td>Information to aid in pagination.</td></tr>
+</tbody></table>
+
+<h2 id="teamcategoryedge">TeamCategoryEdge</h2>
+
+<p>An edge in a connection.</p>
+
+<table><thead>
+<tr>
+<td>Field</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>cursor</td><td><a href="#string">String</a></td><td>A cursor for use in pagination.</td></tr>
+<tr>
+<td>node</td><td><a href="#teamcategory">TeamCategory</a></td><td>The item at the end of the edge.</td></tr>
+</tbody></table>
+
+<h2 id="teamconnection">TeamConnection</h2>
+
+<p>The connection type for Team.</p>
+
+<table><thead>
+<tr>
+<td>Field</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>edges</td><td><a href="#teamedge">TeamEdge</a></td><td>A list of edges.</td></tr>
+<tr>
+<td>pageInfo</td><td><a href="#pageinfo">PageInfo</a></td><td>Information to aid in pagination.</td></tr>
+</tbody></table>
+
+<h2 id="teamedge">TeamEdge</h2>
+
+<p>An edge in a connection.</p>
+
+<table><thead>
+<tr>
+<td>Field</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>cursor</td><td><a href="#string">String</a></td><td>A cursor for use in pagination.</td></tr>
+<tr>
+<td>node</td><td><a href="#team">Team</a></td><td>The item at the end of the edge.</td></tr>
 </tbody></table>
 
 <h1 id="input-objects">Input Objects</h1>
@@ -648,6 +1140,8 @@ This is because the authentication layer sits on top of the GraphQL API layer.</
 <td>work_country_code</td><td><a href="#string">String</a></td><td></td></tr>
 <tr>
 <td>custom_field_values</td><td><a href="#updatecustomfieldvalue">UpdateCustomFieldValue</a></td><td></td></tr>
+<tr>
+<td>otherCriteria</td><td><a href="#id">ID</a></td><td></td></tr>
 </tbody></table>
 
 <h2 id="withcustomfieldvalue">WithCustomFieldValue</h2>
@@ -696,7 +1190,86 @@ This is because the authentication layer sits on top of the GraphQL API layer.</
 
 <h2 id="value">Value</h2>
 
-<p>The actual value of a Custom Field Value. Can be of an arbitrary type (string, int, object, etc.)</p>
+<p>The actual value of a Custom Field Value. This type is capable of holding both Strings and Integers. Its content will
+depend on the fieldType of its corresponding customField.</p>
+
+<h3 id="text-long_text-confirmable">text, long_text, confirmable</h3>
+
+<ul>
+<li>Allowed Type(s): String</li>
+<li>Must be less than 3000 chars</li>
+</ul>
+
+<h3 id="multiple_choice">multiple_choice</h3>
+
+<ul>
+<li>Allowed Type(s): String</li>
+<li>Must exactly match one of the customField&rsquo;s options</li>
+</ul>
+
+<h3 id="multiple_select">multiple_select</h3>
+
+<ul>
+<li>Allowed Type(s): String. Must be a JSON Array encoded string (with escaped quotes) e.g. <code class="prettyprint">&quot;[\&quot;Option A\&quot;, \&quot;Option B\&quot;]&quot;</code></li>
+<li>Each option must be a String that exactly matches one of the customField&rsquo;s options</li>
+</ul>
+
+<h3 id="team">team</h3>
+
+<ul>
+<li>Allowed Type(s): String or Integer</li>
+<li>Value must be valid Team ID</li>
+<li>The Team specified by the ID must have the same teamCategory as the customField</li>
+</ul>
+
+<h3 id="employee">employee</h3>
+
+<ul>
+<li>Allowed Type(s): String or Integer</li>
+<li>Provided value must be valid Employee ID</li>
+</ul>
+
+<h3 id="address">address</h3>
+
+<ul>
+<li>Allowed Type(s): String. Must be a JSON Object encoded string (with escaped quotes) e.g. <code class="prettyprint">&quot;{\&quot;key\&quot;: \&quot;value\&quot;}&quot;</code></li>
+<li>Provided value must be valid Employee ID</li>
+<li>All values must be Strings</li>
+<li>Must provide <code class="prettyprint">address_line_1</code>, <code class="prettyprint">city</code>, <code class="prettyprint">state</code>, <code class="prettyprint">country</code></li>
+<li><code class="prettyprint">country</code> must be a valid countryCode.</li>
+<li><code class="prettyprint">country</code> must match the <code class="prettyprint">workCountryCode</code> of the employee</li>
+<li><code class="prettyprint">state</code> must be a valid stateCode</li>
+<li><code class="prettyprint">state</code> must be a valid stateCode for the provided countryCode.</li>
+</ul>
+
+<h3 id="contact">contact</h3>
+
+<ul>
+<li>Allowed Type(s): String. Must be a JSON Object encoded string (with escaped quotes) e.g. <code class="prettyprint">&quot;{\&quot;key\&quot;: \&quot;value\&quot;}&quot;</code></li>
+<li>All values in the JSON Object must be Strings.</li>
+<li>Must provide <code class="prettyprint">first_name</code>, <code class="prettyprint">last_name</code>, and <code class="prettyprint">relationship</code></li>
+<li>must provide at least one of: <code class="prettyprint">email</code> or <code class="prettyprint">phone</code></li>
+<li><code class="prettyprint">relationship</code> must be one of:
+
+<ul>
+<li>Child</li>
+<li>Domestic Partner</li>
+<li>Domestic Partner Child</li>
+<li>Friend</li>
+<li>Grandparent</li>
+<li>Parent</li>
+<li>Sibling</li>
+<li>Spouse</li>
+<li>Other</li>
+</ul></li>
+</ul>
+
+<h3 id="date">date</h3>
+
+<ul>
+<li>Allowed Type(s): String</li>
+<li>Must formatted as YYYY-MM-DD</li>
+</ul>
 
 <h1 id="enums">Enums</h1>
 
