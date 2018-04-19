@@ -3378,9 +3378,81 @@ X-RateLimit-Remaining: 49
 
 <p>* - Due to a legacy typo, the response includes the same value as <code class="prettyprint">visiblity</code>. It is safe to ignore this value, but it is maintained for backward compatibility.</p>
 
-<aside class="notice">
-    There may be a delay between when Greenhouse receives the POST: Add Note request and when Greenhouse creates the full note record, which will result in a truncated API response. The truncated response body will contain the Note ID. You can retrieve the full note record by requesting the Candidate ID with the GET: Retrieve Candidate endpoint. The candidate record will contain the newly created note, which will have the Note ID from the truncated API response. If the newly created note is missing from the candidate record, this indicates that the full note record is still not available. Until the note record has been made fully-available in the API, please continue to request the candidate record until the note is included in the API Response. Our recommendation is to perform this check every 30 seconds until the data becomes available.
-</aside>
+<h2 id="post-add-e-mail-note">POST: Add E-mail Note</h2>
+<pre class="highlight shell"><code>curl -X POST <span class="s1">'https://harvest.greenhouse.io/v1/candidates/{id}/activity_feed/emails'</span>
+-H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command takes a JSON request, structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"214"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"candidate@example.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"recruiter@example.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"cc"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"manager@example.com"</span><span class="p">],</span><span class="w">
+  </span><span class="nt">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Interview Scheduled"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An interview has been scheduled for tomorrow."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>The above command returns a JSON response, structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">226809053</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-17T16:29:31Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Interview Scheduled"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An interview has been scheduled for tomorrow."</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"candidate@example.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"recruiter@example.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"cc"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"manager@example.com"</span><span class="p">],</span><span class="w">
+  </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">214</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Donald"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Johnson"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Donald Johnson"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Create a candidate e-mail note.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://harvest.greenhouse.io/v1/candidates/{id}/activity_feed/emails</code></p>
+
+<h3 id="headers">Headers</h3>
+
+<table><thead>
+<tr>
+<td>Header</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>On-Behalf-Of</td><td>ID of the user issuing this request. Required for auditing purposes.</td></tr>
+</tbody></table>
+
+<h3 id="json-body-parameters">JSON Body Parameters</h3>
+
+<table><thead>
+<tr>
+<td>Parameter</td><td>Required</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>user_id</td><td>Yes</td><td>integer</td><td>The ID of the user creating the note</td></tr>
+<tr>
+<td>to</td><td>Yes</td><td>string</td><td>This is a free text field that is meant to be an e-mail address. E-mail format will not be validated.</td></tr>
+<tr>
+<td>from</td><td>Yes</td><td>string</td><td>This is a free text field that is meant to be an e-mail address. E-mail format will not be validated.</td></tr>
+<tr>
+<td>cc</td><td>No</td><td>Array</td><td>This is meant to be an array of e-mail addresses. E-mail format will not be validated.</td></tr>
+<tr>
+<td>subject</td><td>Yes</td><td>string</td><td>The subject line of the e-mail.</td></tr>
+<tr>
+<td>body</td><td>Yes</td><td>string</td><td>The body of the e-mail.</td></tr>
+</tbody></table>
 
 <h2 id="post-add-education">POST: Add Education</h2>
 <pre class="highlight shell"><code>curl -X POST <span class="s1">'https://harvest.greenhouse.io/v1/candidates/{id}/educations'</span>
@@ -8773,7 +8845,7 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>submitted_by</td><td>The <a href="#users">user</a> who submitted this scorecard.</td></tr>
 <tr>
-<td>overall_recommendation</td><td>One of: <code class="prettyprint">definitely_not</code>, <code class="prettyprint">no</code>, <code class="prettyprint">yes</code>, <code class="prettyprint">strong_yes</code>, <code class="prettyprint">mixed</code>, <code class="prettyprint">no_decision</code></td></tr>
+<td>overall_recommendation</td><td>One of: <code class="prettyprint">definitely_not</code>, <code class="prettyprint">no</code>, <code class="prettyprint">yes</code>, <code class="prettyprint">strong_yes</code>, <code class="prettyprint">no_decision</code></td></tr>
 <tr>
 <td>attributes</td><td>Array containing the attributes of the Scorecard. Describes each attribute&rsquo;s name, type, rating (can be &ldquo;no_decision&rdquo;), and an optional note.</td></tr>
 </tbody></table>
