@@ -1343,7 +1343,9 @@ Please keep in mind that the HTTP Basic Auth API token is a secret key.  Any for
 <td>Parameter</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>Authorization</td><td>This header should include a basic authorization with a <strong>Base64 encoded</strong> API token</td></tr>
+<td>Authorization</td><td>This header should include a basic authorization with a <strong>Base64 encoded</strong> API key</td></tr>
+<tr>
+<td>Content-Type</td><td>Required if the request contains an attachment</td></tr>
 </tbody></table>
 
 <h3 id="request-parameters">Request Parameters</h3>
@@ -1369,26 +1371,75 @@ Please keep in mind that the HTTP Basic Auth API token is a secret key.  Any for
 <tr>
 <td class="optional">longitude</td><td>Applicant&rsquo;s home longitude. This is a <em>hidden</em> field and should not be exposed directly to the applicant.</td></tr>
 <tr>
-<td class="optional">resume_text</td><td>Plaintext resume body</td></tr>
+<td class="optional">resume</td><td><em>Please see below for details.</em></td></tr>
 <tr>
-<td class="optional">cover_letter_text</td><td>Plaintext cover letter body</td></tr>
-<tr>
-<td class="optional">resume</td><td>Resume file contents.  <em>Only allowed in <code class="prettyprint">multipart/form-data</code> requests</em></td></tr>
-<tr>
-<td class="optional">cover_letter</td><td>Cover letter file contents.  <em>Only allowed in <code class="prettyprint">multipart/form-data</code> requests</em></td></tr>
+<td class="optional">cover_letter</td><td><em>Please see below for details.</em></td></tr>
 <tr>
 <td class="optional">educations</td><td>An array of education objects. Each education object should have five fields: school_name_id, degree_id, discipline_id, start_date, and end_date. start_date and end_date will use a hash of month and year. You can get the school_name_id, degree_id, discipline_id from our <a href="#list-schools">List Schools</a>, <a href="#list-degrees">List Degrees</a>, and <a href="#list-disciplines">List Disciplines</a> endpoints.</td></tr>
 </tbody></table>
 
 <h3 id="submitting-attachments">Submitting Attachments</h3>
 
-<p>We support 3 ways to attach files to your payloads.</p>
+<p>We support 4 methods of uploading attachments when submitting a candidate application:</p>
 
 <ol>
-<li>Sending the document as an attachment in a multipart form.</li>
-<li>Sending URL and filename of the document.</li>
-<li>Sending a Base64 encoded string of the document and its filename.</li>
+<li>Submit the attachment via direct upload using multipart/form-data.</li>
+<li>Submit the attachment via direct upload using application/json. </li>
+<li>Submit a path to the attachment on an external server.</li>
+<li>Submit the plaintext file contents.</li>
 </ol>
+
+<p></br></p>
+
+<p><strong>Resume Attachments</strong></p>
+
+<table><thead>
+<tr>
+<td>Method</td><td>Content-Type</td><td>Required Fields</td><td>Example</td></tr>
+</thead><tbody>
+<tr>
+<td>Direct upload</td><td>multipart/form-data</td><td>&ldquo;resume&rdquo;</td><td>&ldquo;resume&rdquo;: &ldquo;@/Users/UserName/Documents/resume.pdf&rdquo; <em>(this example is specific to cURL)</em></td></tr>
+<tr>
+<td>Direct upload</td><td>application/json</td><td>&ldquo;resume_content&rdquo;, &ldquo;resume_content_filename&rdquo;</td><td>&ldquo;resume_content&rdquo;: &ldquo;SGVsbG8sIHdvcmxkIQo=&rdquo;, &ldquo;resume_content_filename&rdquo;: &ldquo;resume.pdf&rdquo;</td></tr>
+<tr>
+<td>Path to file on external server</td><td>multipart/form-data <em>or</em> application/json</td><td>&ldquo;resume_url&rdquo;, &ldquo;resume_url_filename&rdquo;</td><td>&ldquo;resume_url&rdquo;: &ldquo;https://example.com/resume.pdf&rdquo;, &ldquo;resume_url_filename&rdquo;: &ldquo;resume.pdf&rdquo;</td></tr>
+<tr>
+<td>Plaintext file contents</td><td>multipart/form-data <em>or</em> application/json</td><td>&ldquo;resume_text&rdquo;</td><td>&ldquo;resume_text&rdquo;: &ldquo;This is my awesome resume!&rdquo;</td></tr>
+</tbody></table>
+
+<p></br></p>
+
+<p><strong>Cover Letter Attachments</strong></p>
+
+<table><thead>
+<tr>
+<td>Method</td><td>Content-Type</td><td>Required Fields</td><td>Example</td></tr>
+</thead><tbody>
+<tr>
+<td>Direct upload</td><td>multipart/form-data</td><td>&ldquo;cover_letter&rdquo;</td><td>&ldquo;cover_letter&rdquo;: &ldquo;@/Users/UserName/Documents/coverletter.pdf&rdquo; <em>(this example is specific to cURL)</em></td></tr>
+<tr>
+<td>Direct upload</td><td>application/json</td><td>&ldquo;cover_letter_content&rdquo;, &ldquo;cover_letter_content_filename&rdquo;</td><td>&ldquo;cover_letter_content&rdquo;: &ldquo;SGVsbG8sIHdvcmxkIQo=&rdquo;, &ldquo;cover_letter_content_filename&rdquo;: &ldquo;coverletter.pdf&rdquo;</td></tr>
+<tr>
+<td>Path to file on external server</td><td>multipart/form-data <em>or</em> application/json</td><td>&ldquo;cover_letter_url&rdquo;, &ldquo;cover_letter_url_filename&rdquo;</td><td>&ldquo;cover_letter_url&rdquo;: &ldquo;https://example.com/coverletter.pdf&rdquo;, &ldquo;cover_letter_url_filename&rdquo;: &ldquo;coverletter.pdf&rdquo;</td></tr>
+<tr>
+<td>Plaintext file contents</td><td>multipart/form-data <em>or</em> application/json</td><td>&ldquo;cover_letter_text&rdquo;</td><td>&ldquo;cover_letter_text&rdquo;: &ldquo;This is my awesome cover letter!&rdquo;</td></tr>
+</tbody></table>
+
+<p></br></p>
+
+<p><strong>Custom Question Attachments</strong></p>
+
+<table><thead>
+<tr>
+<td>Method</td><td>Content-Type</td><td>Required Fields</td><td>Example</td></tr>
+</thead><tbody>
+<tr>
+<td>Direct upload</td><td>multipart/form-data</td><td>&ldquo;question_12345&rdquo;</td><td>&ldquo;question_12345&rdquo;: &ldquo;@/Users/UserName/Documents/attachment.pdf&rdquo; <em>(this example is specific to cURL)</em></td></tr>
+<tr>
+<td>Direct upload</td><td>application/json</td><td>&ldquo;question_12345_content&rdquo;, &ldquo;question_12345_content_filename&rdquo;</td><td>&ldquo;question_12345_content&rdquo;: &ldquo;SGVsbG8sIHdvcmxkIQo=&rdquo;, &ldquo;question_12345_content_filename&rdquo;: &ldquo;attachment.pdf&rdquo;</td></tr>
+<tr>
+<td>Path to file on external server</td><td>multipart/form-data <em>or</em> application/json</td><td>&ldquo;question_12345_url&rdquo;, &ldquo;question_12345_url_filename&rdquo;</td><td>&ldquo;question_12345_url&rdquo;: &ldquo;https://example.com/attachment.pdf&rdquo;, &ldquo;question_12345_url_filename&rdquo;: &ldquo;attachment.pdf&rdquo;</td></tr>
+</tbody></table>
 
 <h3 id="collecting-applicant-location">Collecting Applicant Location</h3>
 
