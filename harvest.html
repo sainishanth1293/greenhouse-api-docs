@@ -2887,10 +2887,6 @@ X-RateLimit-Remaining: 49
 
 <p>* - content_type is not required for purposes of backward compatibility. It is <em>strongly</em> recommended that you always include content type for document uploads.</p>
 
-<aside class="notice">
-    There may be a delay between when Greenhouse receives the POST: Add Attachment request and when Greenhouse creates the full attachment record, which will result in a truncated API response. The truncated response body will contain the Attachment ID. You can retrieve the full attachment record by requesting the Candidate ID with the GET: Retrieve Candidate endpoint. The candidate record will contain the newly created attachment. If the newly created attachment is missing from the candidate record, this indicates that the full attachment record is still not available. Until the attachment record has been made fully-available in the API, please continue to request the candidate record until the attachment is included in the API Response. Our recommendation is to perform this check every 30 seconds until the data becomes available.
-</aside>
-
 <h2 id="post-add-candidate">POST: Add Candidate</h2>
 <pre class="highlight shell"><code>curl -X POST <span class="s1">'https://harvest.greenhouse.io/v1/candidates'</span>
 -H <span class="s2">"On-Behalf-Of: {greenhouse user ID}"</span>
