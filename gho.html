@@ -246,35 +246,37 @@ Paginated connections return the following pieces of information:</p>
 connection.  To the right you can see an example on how to fetch employees via the 
 <a href="#employees-employeeconnection">employees</a> connection.</p>
 
+<p>When requesting a paginated resource, you will always need to provide a value for either the <code class="prettyprint">first</code> or <code class="prettyprint">last</code> arguments.
+You&rsquo;ll use these arguments to specify the number of records that should be included on a page. If you provide a value larger
+than our maximum, you will receive the maximum number of records.</p>
+
 <p>As a general rule, we attempt to avoid nested sets of pagination.  For example, the list of CustomFieldValue records
 for each employee will be a simple array instead of another paginated connection.</p>
 
           <h2 id="errors-and-validation">Errors and Validation</h2>
 <pre class="highlight plaintext"><code>{
-  employees(salary: 1) {
-    edges {
-      node {
-        email
-      }
-    }
+  employee(id: 100000000) {
+    email
   }
 }
 </code></pre>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"employee"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">},</span><span class="w">
   </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Field 'employees' doesn't accept argument 'salary'"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unable to find Employee with id 100000000"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"locations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
           </span><span class="nt">"line"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"column"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="w">
+          </span><span class="nt">"column"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">],</span><span class="w">
-      </span><span class="nt">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="s2">"query"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"employees"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"salary"</span><span class="w">
-      </span><span class="p">]</span><span class="w">
+      </span><span class="nt">"path"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"employee"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"errorCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NotFound"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -282,28 +284,40 @@ for each employee will be a simple array instead of another paginated connection
 
 <p>Unlike REST APIs, GraphQL will return an HTTP status of 200, even in cases where there are errors.  You can see an
 example of an error message to the right.  The <code class="prettyprint">data</code> and <code class="prettyprint">errors</code> properties are siblings.  It&rsquo;s possible for a
-mutation to generate a response that has <em>both</em> <code class="prettyprint">data</code> and <code class="prettyprint">errors</code>.</p>
+request to generate a response that has <em>both</em> <code class="prettyprint">data</code> and <code class="prettyprint">errors</code>. However, if there is ever an <code class="prettyprint">errors</code> key in the response,
+the request failed (despite the return code of 200).</p>
 
 <p>The <code class="prettyprint">message</code> will let you know what&rsquo;s wrong.  The <code class="prettyprint">locations</code> property
-has the line number and column where the error starts.  In this example, it&rsquo;s the second line, 12th column, which
-is the start of the word <code class="prettyprint">salary</code>.  The <code class="prettyprint">fields</code> property is a breadcrumb trail of how to get to the problem.  Here,
-we start at the root-level <a href="#queries">Query</a> object, go into the <code class="prettyprint">employees</code> connection, and finally encounter the error at the
-<code class="prettyprint">salary</code> property.</p>
+has the line number and column where the error starts.  In this example, it&rsquo;s the 2nd line, 3rd column, which
+is the start of the word <code class="prettyprint">employee</code>.  The <code class="prettyprint">fields</code> property is a breadcrumb trail of how to get to the problem.  Here,
+the problem can be found on the top-most <code class="prettyprint">employee</code> selection.</p>
 
-<p>The only exception to this rule are authentication errors.  In these cases, our server will return HTTP status 401.
-This is because the authentication layer sits on top of the GraphQL API layer.</p>
+<p>When we can, we&rsquo;ll also provide an <code class="prettyprint">errorCode</code> key for every entry in the <code class="prettyprint">errors</code> list. Here&rsquo;s a table of current errorCodes:</p>
+
+<table><thead>
+<tr>
+<td>Error Scenario</td><td>Error Code</td></tr>
+</thead><tbody>
+<tr>
+<td>Authentication Failure</td><td>Authentication</td></tr>
+<tr>
+<td>Validation Failure</td><td>Validation</td></tr>
+<tr>
+<td>Resource Not Found</td><td>NotFound</td></tr>
+<tr>
+<td>Server Error</td><td>Server</td></tr>
+<tr>
+<td>Rate Limit Exceeded</td><td>RateLimit</td></tr>
+</tbody></table>
+
+<p>There are undefined error scenarios in which we&rsquo;re unable to provide a code. In these cases, refer to the contents
+of the error list.</p>
 
           <h1 id="queries">Queries</h1>
 
 <h2 id="contactrelationships-string">contactRelationships (<a href="#string">[String]</a>)</h2>
 
 <p>The list of valid options for the &lsquo;Contact&rsquo; custom field type</p>
-
-<table><thead>
-<tr>
-<td>Argument</td><td>Type</td><td>Description</td><td>Required</td></tr>
-</thead><tbody>
-</tbody></table>
 
 <h2 id="countries-country">countries (<a href="#country">[Country]</a>)</h2>
 
@@ -739,12 +753,6 @@ This is because the authentication layer sits on top of the GraphQL API layer.</
 
 <p>Information about your current API quota</p>
 
-<table><thead>
-<tr>
-<td>Argument</td><td>Type</td><td>Description</td><td>Required</td></tr>
-</thead><tbody>
-</tbody></table>
-
 <h2 id="team-team">team (<a href="#team">Team</a>)</h2>
 
 <p>A single team</p>
@@ -1141,8 +1149,7 @@ mutation {
 
 <h2 id="customfield">CustomField</h2>
 
-<p>Represents a single CustomField record for your company.  CustomFields can be stored and displayed in a variety of
-ways.  The types are described via the <a href="#customfieldtypes">CustomFieldTypes</a> enum.</p>
+<p>Represents a single CustomField record for your company. CustomFields can be stored and displayed in a variety of ways. The types are described via the <a href="#customfieldtypes">CustomFieldTypes</a> enum.</p>
 
 <table><thead>
 <tr>
@@ -1223,17 +1230,14 @@ ways.  The types are described via the <a href="#customfieldtypes">CustomFieldTy
 <tr>
 <td>updatedAt</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
 <tr>
-<td>value</td><td><a href="#value">Value</a></td><td>A different type of value will be stored based upon the field type of the <a href="#customfield">CustomField</a>.  Some types</td></tr>
+<td>value</td><td><a href="#value">Value</a></td><td>A different type of value will be stored based upon the field type of the <a href="#customfield">CustomField</a>. Some types have the data stored as a nested object. Note that the type is a scalar named <a href="#value">Value</a>. Even though it appears to be an object, you are not able to use GraphQL to determine its shape.</td></tr>
+<tr>
+<td>valueUpdatedAt</td><td><a href="#datetime">DateTime</a></td><td>The time of the most recent update to this field.</td></tr>
 </tbody></table>
-
-<p>have the data stored as a nested object.  Note that the type is a scalar named <a href="#value">Value</a>.  Even though
-it appears to be an object, you are not able to use GraphQL to determine its shape.
-valueUpdatedAt | <a href="#datetime">DateTime</a> | The time of the most recent update to this field.</p>
 
 <h2 id="department">Department</h2>
 
-<p>Represents a single department in your company.  Employees may belong to zero or one department. Departments are
-used in a variety of ways in Greenhouse Onboarding, including permissions and onboarding plans.</p>
+<p>Represents a single department in your company. Employees may belong to zero or one department. Departments are used in a variety of ways in Greenhouse Onboarding, including permissions and onboarding plans.</p>
 
 <table><thead>
 <tr>
@@ -1306,42 +1310,62 @@ used in a variety of ways in Greenhouse Onboarding, including permissions and on
 <td>Field</td><td>Type</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>about</td><td><a href="#string">String</a></td><td>A brief description of the employee.  This information is displayed on both the employee&rsquo;s profile and is also</td></tr>
+<td>about</td><td><a href="#string">String</a></td><td>A brief description of the employee. This information is displayed on both the employee&rsquo;s profile and is also featured prominently in the Welcome Experience for any new hires that report to this employee.</td></tr>
+<tr>
+<td>createdAt</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
+<tr>
+<td>customFieldValues</td><td><a href="#customfieldvalue">[CustomFieldValue]</a></td><td>A list of all other profile information for this employee. Administrators can configure these fields on the <a href="https://onboarding.greenhouse.io/settings/fields">Settings &gt; Custom Fields</a> page.</td></tr>
+<tr>
+<td>dateOfBirth</td><td><a href="#date">Date</a></td><td>Note that only administrators can see the birth year for employees</td></tr>
+<tr>
+<td>dateOfTermination</td><td><a href="#date">Date</a></td><td>This information is only available on terminated employees</td></tr>
+<tr>
+<td>department</td><td><a href="#department">Department</a></td><td></td></tr>
+<tr>
+<td>documents</td><td><a href="#document">[Document]</a></td><td>These are documents that came over from Greenhouse Recruiting, were attached directly to the employee profile, or attached to a task. This does <em>not</em> include E-Signature requests.</td></tr>
+<tr>
+<td>email</td><td><a href="#string">String</a></td><td>The employee&rsquo;s work email. They need this in order to sign in</td></tr>
+<tr>
+<td>employmentStatus</td><td><a href="#employmentstatus">EmploymentStatus</a></td><td></td></tr>
+<tr>
+<td>firstName</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
+<td>hrManager</td><td><a href="#employee">Employee</a></td><td>The employee&rsquo;s HR Manager.</td></tr>
+<tr>
+<td>id</td><td><a href="#id">ID</a></td><td></td></tr>
+<tr>
+<td>lastName</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
+<td>location</td><td><a href="#location">Location</a></td><td></td></tr>
+<tr>
+<td>manager</td><td><a href="#employee">Employee</a></td><td>This employee&rsquo;s direct manager.</td></tr>
+<tr>
+<td>middleName</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
+<td>otherCriteria</td><td><a href="#othercriterion">[OtherCriterion]</a></td><td></td></tr>
+<tr>
+<td>personalEmail</td><td><a href="#string">String</a></td><td>The employee&rsquo;s personal email.</td></tr>
+<tr>
+<td>phoneNumber</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
+<td>preferredFirstName</td><td><a href="#string">String</a></td><td>This is the name that your employee prefers to go by. If this value is set, Greenhouse Onboarding will display this name everywhere in the product instead of the employee&rsquo;s legal name.</td></tr>
+<tr>
+<td>preferredLastName</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
+<td>profileImage</td><td><a href="#file">File</a></td><td>A file containing the employee&rsquo;s profile image. This image is displayed in emails, reports and directory pages.</td></tr>
+<tr>
+<td>signatureRequests</td><td><a href="#signaturerequest">[SignatureRequest]</a></td><td>These are E-Signature requests initiated through Greenhouse Onboardinging. Keep in mind that these requests can be in a number of different states in their lifecycle and may not always have a signed document available to download.</td></tr>
+<tr>
+<td>startDate</td><td><a href="#date">Date</a></td><td></td></tr>
+<tr>
+<td>suffix</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
+<td>title</td><td><a href="#string">String</a></td><td>The employee&rsquo;s job title.</td></tr>
+<tr>
+<td>updatedAt</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
+<tr>
+<td>workCountryCode</td><td><a href="#string">String</a></td><td></td></tr>
 </tbody></table>
-
-<p>featured prominently in the Welcome Experience for any new hires that report to this employee.
-createdAt | <a href="#datetime">DateTime</a> | 
-customFieldValues | <a href="#customfieldvalue">[CustomFieldValue]</a> | A list of all other profile information for this employee.  Administrators can configure these fields on the
-<a href="https://onboarding.greenhouse.io/settings/fields">Settings &gt; Custom Fields</a> page.
-dateOfBirth | <a href="#date">Date</a> | Note that only administrators can see the birth year for employees
-dateOfTermination | <a href="#date">Date</a> | This information is only available on terminated employees
-department | <a href="#department">Department</a> | 
-documents | <a href="#document">[Document]</a> | These are documents that came over from Greenhouse Recruiting, were attached directly to the employee
-profile, or attached to a task.  This does <em>not</em> include E-Signature requests.
-email | <a href="#string">String</a> | The employee&rsquo;s work email.  They need this in order to sign in
-employmentStatus | <a href="#employmentstatus">EmploymentStatus</a> | 
-firstName | <a href="#string">String</a> | 
-hrManager | <a href="#employee">Employee</a> | The employee&rsquo;s HR Manager.
-id | <a href="#id">ID</a> | 
-lastName | <a href="#string">String</a> | 
-location | <a href="#location">Location</a> | 
-manager | <a href="#employee">Employee</a> | This employee&rsquo;s direct manager.
-middleName | <a href="#string">String</a> | 
-otherCriteria | <a href="#othercriterion">[OtherCriterion]</a> | 
-personalEmail | <a href="#string">String</a> | The employee&rsquo;s personal email.
-phoneNumber | <a href="#string">String</a> | 
-preferredFirstName | <a href="#string">String</a> | This is the name that your employee prefers to go by.  If this value is set, Greenhouse Onboarding will display
-this name everywhere in the product instead of the employee&rsquo;s legal name.
-preferredLastName | <a href="#string">String</a> | 
-profileImage | <a href="#file">File</a> | A file containing the employee&rsquo;s profile image.  This image is displayed in emails, reports and directory pages.
-signatureRequests | <a href="#signaturerequest">[SignatureRequest]</a> | These are E-Signature requests initiated through Greenhouse Onboardinging.  Keep in mind that these requests can
-be in a number of different states in their lifecycle and may not always have a signed document available to
-download.
-startDate | <a href="#date">Date</a> | 
-suffix | <a href="#string">String</a> | 
-title | <a href="#string">String</a> | The employee&rsquo;s job title.
-updatedAt | <a href="#datetime">DateTime</a> | 
-workCountryCode | <a href="#string">String</a> | </p>
 
 <h2 id="employeeconnection">EmployeeConnection</h2>
 
@@ -1380,7 +1404,7 @@ workCountryCode | <a href="#string">String</a> | </p>
 <td>Field</td><td>Type</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>expiresAt</td><td><a href="#datetime">DateTime</a></td><td>The time when the URL will expire.  After this time, you will need to generate a new URL.</td></tr>
+<td>expiresAt</td><td><a href="#datetime">DateTime</a></td><td>The time when the URL will expire. After this time, you will need to generate a new URL.</td></tr>
 <tr>
 <td>fileName</td><td><a href="#string">String</a></td><td>The original name of the file.</td></tr>
 <tr>
@@ -1391,8 +1415,7 @@ workCountryCode | <a href="#string">String</a> | </p>
 
 <h2 id="location">Location</h2>
 
-<p>Represents a single location in your company.  Employees may belong to zero or one location. Locations are
-used in a variety of ways in Greenhouse Onboarding, including permissions and onboarding plans.</p>
+<p>Represents a single location in your company. Employees may belong to zero or one location. Locations are used in a variety of ways in Greenhouse Onboarding, including permissions and onboarding plans.</p>
 
 <table><thead>
 <tr>
@@ -1617,15 +1640,16 @@ used in a variety of ways in Greenhouse Onboarding, including permissions and on
 <td>Field</td><td>Type</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>counterSigner</td><td><a href="#employee">Employee</a></td><td>The default employee responsible for counter-signing documents created from this template, if applicable.</td></tr>
+<td>counterSigner</td><td><a href="#employee">Employee</a></td><td>The default employee responsible for counter-signing documents created from this template, if applicable. Individual SignatureRequest objects can override the counter signer.</td></tr>
+<tr>
+<td>createdAt</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
+<tr>
+<td>name</td><td><a href="#string">String</a></td><td>The name of the template. This is the label administrators will see.</td></tr>
+<tr>
+<td>publicName</td><td><a href="#string">String</a></td><td>The public-facing name of the template. This is the name the new hire will see. If this is null, new hires will see the name field.</td></tr>
+<tr>
+<td>updatedAt</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
 </tbody></table>
-
-<p>Individual SignatureRequest objects can override the counter signer.
-createdAt | <a href="#datetime">DateTime</a> | 
-name | <a href="#string">String</a> | The name of the template.  This is the label administrators will see.
-publicName | <a href="#string">String</a> | The public-facing name of the template.  This is the name the new hire will see.
-If this is null, new hires will see the name field.
-updatedAt | <a href="#datetime">DateTime</a> | </p>
 
 <h2 id="state">State</h2>
 
@@ -2030,21 +2054,21 @@ depend on the fieldType of its corresponding customField.</p>
 <td>Value</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>ADDRESS</td><td>Displayed as group of inputs.  Stored as JSON.</td></tr>
+<td>ADDRESS</td><td>Displayed as group of inputs. Stored as JSON.</td></tr>
 <tr>
-<td>CONFIRMABLE</td><td>Displayed as a text field where the user has to enter the value twice.  Stored as a String.</td></tr>
+<td>CONFIRMABLE</td><td>Displayed as a text field where the user has to enter the value twice. Stored as a String.</td></tr>
 <tr>
-<td>CONTACT</td><td>Displayed as group of inputs.  Stored as JSON.</td></tr>
+<td>CONTACT</td><td>Displayed as group of inputs. Stored as JSON.</td></tr>
 <tr>
-<td>DATE</td><td>Displayed as a datepicker.  Stored as a DateTime</td></tr>
+<td>DATE</td><td>Displayed as a datepicker. Stored as a DateTime</td></tr>
 <tr>
-<td>EMPLOYEE</td><td>Displayed as a dropdown of employees.  Stored as an Employee ID.</td></tr>
+<td>EMPLOYEE</td><td>Displayed as a dropdown of employees. Stored as an Employee ID.</td></tr>
 <tr>
 <td>LONG_TEXT</td><td>Displayed as a multiline text box. Stored as a String.</td></tr>
 <tr>
-<td>MULTIPLE_CHOICE</td><td>Displayed as a dropdown.  Stored as a String.</td></tr>
+<td>MULTIPLE_CHOICE</td><td>Displayed as a dropdown. Stored as a String.</td></tr>
 <tr>
-<td>MULTIPLE_SELECT</td><td>Displayed as a tag field.  Stored as an Array of Strings.</td></tr>
+<td>MULTIPLE_SELECT</td><td>Displayed as a tag field. Stored as an Array of Strings.</td></tr>
 <tr>
 <td>TEAM</td><td>Displayed as a dropdown of teams. Stored as a Team ID.</td></tr>
 <tr>
