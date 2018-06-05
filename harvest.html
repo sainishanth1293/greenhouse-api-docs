@@ -8017,9 +8017,15 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>created_after</td><td>Return only offers that were created at or after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
-<td>updated_before</td><td>Return only offers that were updated before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<td>updated_before</td><td>Return only offers that were updated at or before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
 <tr>
 <td>updated_after</td><td>Return only offers that were updated at or after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td>resolved_after</td><td>Return only offers that were resolved at or after this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td>resolved_before</td><td>Return only offers that were resolved at or before this timestamp. Timestamp must be in in <a href="#general-considerations">ISO-8601</a> format.</td></tr>
+<tr>
+<td>status</td><td>Return only offers that have a particular status.  One of: <code class="prettyprint">unresolved</code>, <code class="prettyprint">accepted</code>, <code class="prettyprint">rejected</code>, <code class="prettyprint">deprecated</code>.</td></tr>
 </tbody></table>
 
 <p><br>
