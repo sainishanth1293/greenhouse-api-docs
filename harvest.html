@@ -6468,6 +6468,154 @@ X-RateLimit-Remaining: 49
 <p><br>
 <a href="#the-job-post-object">See noteworthy response attributes.</a></p>
 
+<h2 id="get-retrieve-job-post">GET: Retrieve Job Post</h2>
+<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/job_posts/{id}'</span> 
+-H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Button Pusher"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Island"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"internal"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"external"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"live"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;Do you want to save the world? &amp;nbsp;If so, apply today!&lt;/p&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"internal_content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;Do you want to save the world? &amp;nbsp;If so, apply today!&lt;/p&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-21T15:39:24Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-04-01T17:56:19Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"First Name"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"first_name"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"short_text"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Last Name"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"last_name"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"short_text"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Email"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"short_text"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Phone"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"phone"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"short_text"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Resume"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"resume"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"attachment"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cover Letter"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cover_letter"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"attachment"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Have you ever won the lottery?"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"question_234567"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"boolean"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yes"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;Please select Yes or No.&lt;/p&gt;"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Do you know what 'the numbers' are?"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"multi_select"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"question_345678[]"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">862</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Yes"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">863</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">864</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Maybe"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LinkedIn Profile"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"question_45678"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"short_text"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;Please enter the URL for your LinkedIn profile.&lt;/p&gt;"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"How did you hear about this job?"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"question_56789"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"short_text"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Get a single job post.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://harvest.greenhouse.io/v1/job_posts/{id}</code></p>
+
+<p><br>
+<a href="#the-job-post-object">See noteworthy response attributes.</a></p>
+
 <h2 id="get-list-job-posts-for-job">GET: List Job Posts for Job</h2>
 <pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/jobs/{id}/job_posts'</span>
 -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
@@ -6846,7 +6994,10 @@ X-RateLimit-Remaining: 49
 <p>The above command takes a JSON request, structured like this:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"live"</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"live"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"New Job Title"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NYC"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p style=\"text-align: center;\"&gt;&lt;span style=\"font-weight: 400;\"&gt;My exciting new job post!&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Check it out!&lt;/p&gt;"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -6854,11 +7005,11 @@ X-RateLimit-Remaining: 49
 <p>The above returns a JSON response on success:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Update the live/offline status for a single job post by its <code class="prettyprint">id</code>.</p>
+<p>Update some properties of a job post.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -6881,8 +7032,16 @@ X-RateLimit-Remaining: 49
 <td>Parameter</td><td>Required</td><td>Type</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
-<td>status</td><td>yes</td><td>string</td><td>One of &lsquo;live&rsquo; or &#39;offline&rsquo;</td></tr>
+<td>status</td><td>No</td><td>string</td><td>One of &lsquo;live&rsquo; or &#39;offline&rsquo;</td></tr>
+<tr>
+<td>title</td><td>No</td><td>string</td><td>The new title for this job post.</td></tr>
+<tr>
+<td>location</td><td>No</td><td>string</td><td>The new location for this job post. This is just a plain text string.</td></tr>
+<tr>
+<td>content</td><td>No</td><td>string</td><td>The new body of the job post. This will replace the entire existing job post body.</td></tr>
 </tbody></table>
+
+<p><strong>Important Note</strong>: Due to JSON restrictions, the HTML body of the new job post should be a single line, with no newline characters and with all double quotes escaped. If your job posts require significant formatting, we recommend using Greenhouse&rsquo;s job post editor to make changes.</p>
 
           <h1 id="job-stages">Job Stages</h1>
 
