@@ -189,7 +189,7 @@ When submitting a job application, you will use the <code>id</code> field to spe
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://api.greenhouse.io/v1/boards/{board_token}/jobs</code></p>
+<p><code class="prettyprint">GET https://boards-api.greenhouse.io/v1/boards/{board_token}/jobs</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -322,7 +322,7 @@ can be used to dynamically construct your own job application form.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://api.greenhouse.io/v1/boards/{board_token}/jobs/{job_id}</code></p>
+<p><code class="prettyprint">GET https://boards-api.greenhouse.io/v1/boards/{board_token}/jobs/{job_id}</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -502,7 +502,7 @@ can be used to dynamically construct your own job application form.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://api.greenhouse.io/v1/boards/{board_token}/offices</code></p>
+<p><code class="prettyprint">GET https://boards-api.greenhouse.io/v1/boards/{board_token}/offices</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -627,7 +627,7 @@ can be used to dynamically construct your own job application form.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://api.greenhouse.io/v1/boards/{board_token}/offices/{office_id}</code></p>
+<p><code class="prettyprint">GET https://boards-api.greenhouse.io/v1/boards/{board_token}/offices/{office_id}</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -777,7 +777,7 @@ can be used to dynamically construct your own job application form.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://api.greenhouse.io/v1/boards/{board_token}/departments</code></p>
+<p><code class="prettyprint">GET https://boards-api.greenhouse.io/v1/boards/{board_token}/departments</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -889,7 +889,7 @@ can be used to dynamically construct your own job application form.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://api.greenhouse.io/v1/boards/{board_token}/departments/{department_id}</code></p>
+<p><code class="prettyprint">GET https://boards-api.greenhouse.io/v1/boards/{board_token}/departments/{department_id}</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -985,7 +985,7 @@ can be used to dynamically construct your own job application form.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://api.greenhouse.io/v1/boards/{board_token}/education/degrees</code></p>
+<p><code class="prettyprint">GET https://boards-api.greenhouse.io/v1/boards/{board_token}/education/degrees</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -1064,7 +1064,7 @@ can be used to dynamically construct your own job application form.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://api.greenhouse.io/v1/boards/{board_token}/education/disciplines</code></p>
+<p><code class="prettyprint">GET https://boards-api.greenhouse.io/v1/boards/{board_token}/education/disciplines</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -1143,7 +1143,7 @@ can be used to dynamically construct your own job application form.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://api.greenhouse.io/v1/boards/{board_token}/education/schools</code></p>
+<p><code class="prettyprint">GET https://boards-api.greenhouse.io/v1/boards/{board_token}/education/schools</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -1180,7 +1180,7 @@ can be used to dynamically construct your own job application form.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://api.greenhouse.io/v1/boards/{board_token}</code></p>
+<p><code class="prettyprint">GET https://boards-api.greenhouse.io/v1/boards/{board_token}</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -1235,8 +1235,8 @@ Please keep in mind that the HTTP Basic Auth API token is a secret key.  Any for
 <p>cURL equivalent:</p>
 </blockquote>
 <pre class="highlight plaintext"><code>curl -X POST \ 
-  -H "Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6" \
   -H "Content-Type: multipart/form-data" \
+  -H "Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6" \
   -F "first_name=Sammy" \
   -F "last_name=McSamson" \
   -F "email=sammy@example.com" \
@@ -1253,12 +1253,19 @@ Please keep in mind that the HTTP Basic Auth API token is a secret key.  Any for
   -F "educations[][start_date][year]=2012" \
   -F "educations[][end_date][month]=5" \
   -F "educations[][end_date][year]=2016" \
+  -F "employments[][company_name]=Business Co" \
+  -F "employments[][title]=Sales Manager" \
+  -F "employments[][start_date][month]=1" \
+  -F "employments[][start_date][year]=2016" \
+  -F "employments[][end_date][month]=2" \
+  -F "employments[][end_date][year]=2018" \
+  -F "employments[][current]=false"
   -F "mapped_url_token=token12345" \
   -F "question_12349_url=http://dropbox.com/dl/attachment.pdf" \
   -F "question_12349_url_filename=attachment.pdf" \
   -F "question_12350_content=SGVsbG8sIHdvcmxkIQo=" \
   -F "question_12350_content_filename=something_else.txt" \
-  "https://api.greenhouse.io/v1/boards/very_awesome_inc/jobs/127817"
+  "https://boards-api.greenhouse.io/v1/boards/very_awesome_inc/jobs/127817"
 </code></pre>
 
 <blockquote>
@@ -1305,9 +1312,23 @@ Please keep in mind that the HTTP Basic Auth API token is a secret key.  Any for
         "end_date": { "month": "2", "year": "2012"}
       }
     ],
+     "employments": [
+    {
+        "company_name": "Business Co.",
+        "title": "Sales Manager",
+        "start_date": {
+          "month": "1",
+          "year": "2016"
+        },
+        "end_date": {
+          "month": "2",
+          "year": "2018"
+        },
+        "current": "false"
+    },
     "mapped_url_token":"token12345"
   }' \
-  "https://api.greenhouse.io/v1/boards/very_awesome_inc/jobs/127817"
+  "https://boards-api.greenhouse.io/v1/boards/very_awesome_inc/jobs/127817"
 </code></pre>
 
 <p>Use this endpoint to submit a new application. This endpoint accepts a multipart form POST representing a job application. Application forms are job-specific and will be constructed via the &ldquo;questions&rdquo; array available via the <a href="#retrieve-a-job">Job method</a>. Please see the <a href="#retrieve-a-job">Job method</a> documentation for instructions on submitting location information through the API.</p>
@@ -1324,7 +1345,7 @@ Please keep in mind that the HTTP Basic Auth API token is a secret key.  Any for
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">POST https://api.greenhouse.io/v1/boards/{board_token}/jobs/{id}</code></p>
+<p><code class="prettyprint">POST https://boards-api.greenhouse.io/v1/boards/{board_token}/jobs/{id}</code></p>
 
 <table><thead>
 <tr>
@@ -1375,7 +1396,9 @@ Please keep in mind that the HTTP Basic Auth API token is a secret key.  Any for
 <tr>
 <td class="optional">cover_letter</td><td><em>Please see below for details.</em></td></tr>
 <tr>
-<td class="optional">educations</td><td>An array of education objects. Each education object should have five fields: school_name_id, degree_id, discipline_id, start_date, and end_date. start_date and end_date will use a hash of month and year. You can get the school_name_id, degree_id, discipline_id from our <a href="#list-schools">List Schools</a>, <a href="#list-degrees">List Degrees</a>, and <a href="#list-disciplines">List Disciplines</a> endpoints.</td></tr>
+<td class="optional">educations</td><td>An array of education objects. Each education object should have five fields: <code class="prettyprint">school_name_id</code>, <code class="prettyprint">degree_id</code>, <code class="prettyprint">discipline_id</code>, <code class="prettyprint">start_date</code>, and <code class="prettyprint">end_date</code>. You can get the <code class="prettyprint">school_name_id</code>, <code class="prettyprint">degree_id</code>, <code class="prettyprint">discipline_id</code> from our <a href="#list-schools">List Schools</a>, <a href="#list-degrees">List Degrees</a>, and <a href="#list-disciplines">List Disciplines</a> endpoints. <code class="prettyprint">start_date</code> and <code class="prettyprint">end_date</code> will use a hash of month and year.</td></tr>
+<tr>
+<td class="optional">employments</td><td>An array of employments objects. Each employment object should have: <code class="prettyprint">company_name</code>, <code class="prettyprint">title</code>, <code class="prettyprint">start_date</code>, and <code class="prettyprint">current</code> (must be <code class="prettyprint">true</code> or <code class="prettyprint">false</code>). If <code class="prettyprint">current</code> is <code class="prettyprint">false</code>, must have <code class="prettyprint">end_date</code>. <code class="prettyprint">start_date</code> and <code class="prettyprint">end_date</code> will use a hash of month and year.</td></tr>
 </tbody></table>
 
 <h3 id="submitting-attachments">Submitting Attachments</h3>
@@ -1459,6 +1482,35 @@ this API call.</li>
 </ol>
 
 <p>Note that all 3 fields must be included. If only <code class="prettyprint">location</code> is sent and <code class="prettyprint">latitude</code> and <code class="prettyprint">longitude</code> are omitted, <code class="prettyprint">location</code> will be ignored entirely.</p>
+
+<h3 id="validations-on-post-requests">Validations on POST Requests</h3>
+
+<p><strong>Job validations:</strong></p>
+
+<ul>
+<li>The job must be live and published</li>
+<li>The job board must be live and published</li>
+<li>The job post ID must exist on the job board with the supplied board_token</li>
+</ul>
+
+<p><strong>Field validations:</strong> </p>
+
+<ul>
+<li><code class="prettyprint">first_name</code>, <code class="prettyprint">last_name</code>, and <code class="prettyprint">email</code> fields are required </li>
+<li><code class="prettyprint">first_name</code>, <code class="prettyprint">last_name</code>, and <code class="prettyprint">phone</code> fields must not contain a URL</li>
+<li><code class="prettyprint">email</code> field must contain a valid email address</li>
+<li><code class="prettyprint">educations</code> object must contain valid <code class="prettyprint">school_name_id</code>, <code class="prettyprint">degree_id</code>, <code class="prettyprint">discipline_id</code>, <code class="prettyprint">start_date</code>, and <code class="prettyprint">end_date</code></li>
+<li><code class="prettyprint">employments</code> object must contain <code class="prettyprint">company_name</code>, <code class="prettyprint">title</code>, <code class="prettyprint">start_date</code> and <code class="prettyprint">current</code> (must be <code class="prettyprint">true</code> or <code class="prettyprint">false</code>). If <em>current=false</em>, must contain <code class="prettyprint">end_date</code></li>
+<li><code class="prettyprint">start_date</code> must be before <code class="prettyprint">end_date</code></li>
+<li>Field values must match the field type specified on the job post question</li>
+</ul>
+
+<p><strong>Attachments:</strong></p>
+
+<ul>
+<li>Must be a supported file type (pdf, doc, docx, txt, rtf)</li>
+<li>File size must be &gt; 0 bytes</li>
+</ul>
 
       </div>
       <div class="dark-box">
