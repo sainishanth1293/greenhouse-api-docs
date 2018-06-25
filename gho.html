@@ -96,7 +96,7 @@ We made the decision to use GraphQL because it allows us you to:</p>
 <ul>
 <li>Increase throughput by requesting only the data you are interested in.</li>
 <li>Use introspection to know precisely what our schema looks like.  Tools like 
-<a href="https://github.com/graphql/graphiql">GraphiQL</a> will allow you to quickly and easily explore our entire API.  It even
+<a href="https://github.com/skevy/graphiql-app">GraphiQL</a> will allow you to quickly and easily explore our entire API.  It even
 supports autocomplete!</li>
 <li>Program against an industry-wide standard supported by a variety of tools and organizations.</li>
 </ul>
@@ -446,7 +446,43 @@ of the error list.</p>
 <pre class="highlight plaintext"><code># Request only those employees that have title "Account Manager". For each employee that fits the criteria,
 # return their id and email
 {
-  employees(first: 25, titles: ["Account Manager"]) {
+  employees(first: 25, titleFilter: { titles: ["Account Manager"] }) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        id
+        email
+      }
+    }
+  }
+}
+
+</code></pre>
+<pre class="highlight plaintext"><code># Request only those employees that have a department set (department is not null). For each employee that fits the criteria,
+# return their id and email
+{
+  employees(first: 25, departmentFilter: { anyValue: true }) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    edges {
+      node {
+        id
+        email
+      }
+    }
+  }
+}
+
+</code></pre>
+<pre class="highlight plaintext"><code># Request only those employees that lack a department (department is null). For each employee that fits the criteria,
+# return their id and email
+{
+  employees(first: 25, departmentFilter: { noValue: true }) {
     pageInfo {
       hasNextPage
       endCursor
@@ -464,7 +500,7 @@ of the error list.</p>
 <pre class="highlight plaintext"><code># Request only those employees that have a startDate between 2017-03-25 and 2018-03-25.
 # These dates are exclusive (e.g. someone who started on 2017-03-25 or 2018-03-25 would not be included.
 {
-  employees(first: 25, startDate: { after: "2017-03-25", before: "2018-03-25" }) {
+  employees(first: 25, startDateFilter: { dateFilter: { after: "2017-03-25", before: "2018-03-25" } }) {
     pageInfo {
       hasNextPage
       endCursor
@@ -545,7 +581,7 @@ of the error list.</p>
 
 </code></pre>
 <pre class="highlight plaintext"><code># Request employees that have a value set for the "favorite_food" Custom Field. Return each employee's ID and
-# customFieldValues, but only return the customFieldValue for the "favorite_food" customFieldValue.
+# customFieldValues, but only return the customFieldValue for the "favorite_food" customField.
 {
   employees(
     first: 25,
@@ -620,7 +656,7 @@ of the error list.</p>
 
 </code></pre>
 
-<p>A collection of Onboarding employee records</p>
+<p>A collection of Onboarding employee records. The following arguments are depreacated and should be avoided as support for them will be dropped: dateOfBirth, departmentIds, emails, employmentStatuses, hrManagerIds, locationIds, managerIds, personalEmails, startDate, titles, and workCountryCodes. Each of these arguments has a newer, more powerful companion named *Filter. For example, departmentIds has been replaced by the argument departmentFilter - which allows for the specification of department IDs, but also allows for more flexibility (e.g. filtering by lack/presence of a given field - as opposed to filtering by specific values).</p>
 
 <table><thead>
 <tr>
@@ -631,35 +667,57 @@ of the error list.</p>
 <tr>
 <td>before</td><td><a href="#string">String</a></td><td>Returns the elements in the list that come before the specified global ID.</td><td></td></tr>
 <tr>
-<td>customFieldValues</td><td><a href="#customfieldvaluesinput">[CustomFieldValuesInput]</a></td><td></td><td></td></tr>
+<td>customFieldValues</td><td><a href="#customfieldvaluesinput">[CustomFieldValuesInput]</a></td><td>filter employees by their custom field values</td><td></td></tr>
 <tr>
-<td>dateOfBirth</td><td><a href="#datefilter">DateFilter</a></td><td></td><td></td></tr>
+<td>dateOfBirth</td><td><a href="#datefilter">DateFilter</a></td><td>DEPRECATED. Use dateOfBirthFilter instead</td><td></td></tr>
 <tr>
-<td>departmentIds</td><td><a href="#int">[Int]</a></td><td></td><td></td></tr>
+<td>dateOfBirthFilter</td><td><a href="#dateofbirthfilter">DateOfBirthFilter</a></td><td>filter employees by their date of birth</td><td></td></tr>
 <tr>
-<td>emails</td><td><a href="#string">[String]</a></td><td></td><td></td></tr>
+<td>departmentFilter</td><td><a href="#departmentfilter">DepartmentFilter</a></td><td>filter employees by their department</td><td></td></tr>
 <tr>
-<td>employmentStatuses</td><td><a href="#employmentstatus">[EmploymentStatus]</a></td><td></td><td></td></tr>
+<td>departmentIds</td><td><a href="#int">[Int]</a></td><td>DEPRECATED. Use departmentFilter instead</td><td></td></tr>
+<tr>
+<td>emailFilter</td><td><a href="#emailfilter">EmailFilter</a></td><td>filter employees by their email</td><td></td></tr>
+<tr>
+<td>emails</td><td><a href="#string">[String]</a></td><td>DEPRECATED. Use emailFilter instead</td><td></td></tr>
+<tr>
+<td>employmentStatusFilter</td><td><a href="#employmentstatusfilter">EmploymentStatusFilter</a></td><td>filter employees by their employment status</td><td></td></tr>
+<tr>
+<td>employmentStatuses</td><td><a href="#employmentstatus">[EmploymentStatus]</a></td><td>DEPRECATED. Use employmentStatusFilter instead</td><td></td></tr>
 <tr>
 <td>first</td><td><a href="#int">Int</a></td><td>Returns the first <em>n</em> elements from the list.</td><td></td></tr>
 <tr>
-<td>hrManagerIds</td><td><a href="#int">[Int]</a></td><td></td><td></td></tr>
+<td>hrManagerFilter</td><td><a href="#hrmanagerfilter">HrManagerFilter</a></td><td>filter employees by their hr manager</td><td></td></tr>
+<tr>
+<td>hrManagerIds</td><td><a href="#int">[Int]</a></td><td>DEPRECATED. Use hrManagerFilter instead</td><td></td></tr>
 <tr>
 <td>last</td><td><a href="#int">Int</a></td><td>Returns the last <em>n</em> elements from the list.</td><td></td></tr>
 <tr>
-<td>locationIds</td><td><a href="#int">[Int]</a></td><td></td><td></td></tr>
+<td>locationFilter</td><td><a href="#locationfilter">LocationFilter</a></td><td>filter employees by their location</td><td></td></tr>
 <tr>
-<td>managerIds</td><td><a href="#int">[Int]</a></td><td></td><td></td></tr>
+<td>locationIds</td><td><a href="#int">[Int]</a></td><td>DEPRECATED. Use locationFilter instead</td><td></td></tr>
 <tr>
-<td>personalEmails</td><td><a href="#string">[String]</a></td><td></td><td></td></tr>
+<td>managerFilter</td><td><a href="#managerfilter">ManagerFilter</a></td><td>filter employees by their manager</td><td></td></tr>
 <tr>
-<td>startDate</td><td><a href="#datefilter">DateFilter</a></td><td></td><td></td></tr>
+<td>managerIds</td><td><a href="#int">[Int]</a></td><td>DEPRECATED. Use managerFilter instead</td><td></td></tr>
 <tr>
-<td>titles</td><td><a href="#string">[String]</a></td><td></td><td></td></tr>
+<td>personalEmailFilter</td><td><a href="#personalemailfilter">PersonalEmailFilter</a></td><td>filter employees by their personal email</td><td></td></tr>
 <tr>
-<td>updatedAt</td><td><a href="#datetimefilter">DateTimeFilter</a></td><td></td><td></td></tr>
+<td>personalEmails</td><td><a href="#string">[String]</a></td><td>DEPRECATED. Use personalEmailFilter instead</td><td></td></tr>
 <tr>
-<td>workCountryCodes</td><td><a href="#string">[String]</a></td><td></td><td></td></tr>
+<td>startDate</td><td><a href="#datefilter">DateFilter</a></td><td>DEPRECATED. Use startDateFilter instead</td><td></td></tr>
+<tr>
+<td>startDateFilter</td><td><a href="#startdatefilter">StartDateFilter</a></td><td>filter employees by their start date</td><td></td></tr>
+<tr>
+<td>titleFilter</td><td><a href="#titlefilter">TitleFilter</a></td><td>filter employees by their title</td><td></td></tr>
+<tr>
+<td>titles</td><td><a href="#string">[String]</a></td><td>DEPRECATED. Use titleFilter instead</td><td></td></tr>
+<tr>
+<td>updatedAt</td><td><a href="#datetimefilter">DateTimeFilter</a></td><td>filter employees based on when they were last updated</td><td></td></tr>
+<tr>
+<td>workCountryCodeFilter</td><td><a href="#workcountrycodefilter">WorkCountryCodeFilter</a></td><td>filter employees by their work country code</td><td></td></tr>
+<tr>
+<td>workCountryCodes</td><td><a href="#string">[String]</a></td><td>DEPRECATED. Use WorkCountryCodeFilter instead</td><td></td></tr>
 </tbody></table>
 
 <h2 id="location-location">location (<a href="#location">Location</a>)</h2>
@@ -799,7 +857,7 @@ mutation {
       email: "joe123@example.com"
       workCountryCode: "USA"
       customFieldValues: [
-        { id: "favorite_food", value: "Egg McMuffins" }
+        { customFieldId: "favorite_food", value: "Egg McMuffins" }
       ]
     }
   ) {
@@ -826,7 +884,7 @@ mutation {
       email: "joe123@example.com"
       workCountryCode: "USA"
       customFieldValues: [
-        { id: "required_equipment", value: "[\"Ergonomic Keyboard\", \"Standing Desk\"]" }
+        { customFieldId: "required_equipment", value: "[\"Ergonomic Keyboard\", \"Standing Desk\"]" }
       ]
     }
   ) {
@@ -852,7 +910,7 @@ mutation {
       email: "joe123@example.com"
       workCountryCode: "USA"
       customFieldValues: [
-        { id: "primary_social_club", value: 14 }
+        { customFieldId: "primary_social_club", value: 14 }
       ]
     }
   ) {
@@ -879,7 +937,7 @@ mutation {
       workCountryCode: "USA"
       customFieldValues: [
         {
-          id: "address",
+          customFieldId: "address",
           value: "{\"address_line_1\":\"123 Test Street\",\"address_line_2\":\"Apartment 1\",\"city\":\"Pawnee\", \"state\":\"IN\", \"zipcode\":\"12345\",\"country\":\"USA\"}"
         }
       ]
@@ -904,11 +962,11 @@ mutation {
     pendingHireInfo: {
       firstName: "Joe"
       lastName: "Schmoe"
-      email:"joe12344321@example.com"
+      email:"joe123@example.com"
       workCountryCode: "USA"
       customFieldValues: [
         {
-          id: "emergency_contact",
+          customFieldId: "emergency_contact",
           value: "{\"first_name\": \"Joe\", \"last_name\": \"Schmoe\", \"email\":\"jschmoe@aol.com\", \"phone\": \"123.456.7890\", \"relationship\": \"Other\"}" }
       ]
     }
@@ -932,10 +990,10 @@ mutation {
     pendingHireInfo: {
       firstName: "Joe"
       lastName: "Schmoe"
-      email:"joe4321@example.com"
+      email:"joe123@example.com"
       workCountryCode: "USA"
       customFieldValues: [
-        { id: "fully_vested", value: "2019-12-12" }
+        { customFieldId: "fully_vested", value: "2019-12-12" }
       ]
     }
   ) {
@@ -991,7 +1049,7 @@ mutation {
     id: 20,
     employeeUpdates: {
       customFieldValues: [
-        { id: "favorite_food", value: "Egg McMuffins" }
+        { customFieldId: "favorite_food", value: "Egg McMuffins" }
       ]
     }
   ) {
@@ -1015,7 +1073,7 @@ mutation {
     id: 20,
     employeeUpdates: {
       customFieldValues: [
-        { id: "required_equipment", value: "[\"Ergonomic Keyboard\", \"Standing Desk\"]" }
+        { customFieldId: "required_equipment", value: "[\"Ergonomic Keyboard\", \"Standing Desk\"]" }
       ]
     }
   ) {
@@ -1038,7 +1096,7 @@ mutation {
     id: 20,
     employeeUpdates: {
       customFieldValues: [
-        { id: "primary_social_club", value: 14 }
+        { customFieldId: "primary_social_club", value: 14 }
       ]
     }
   ) {
@@ -1061,7 +1119,7 @@ mutation {
     employeeUpdates: {
       customFieldValues: [
         {
-          id: "address",
+          customFieldId: "address",
           value: "{\"address_line_1\":\"123 Test Street\",\"address_line_2\":\"Apartment 1\",\"city\":\"Pawnee\", \"state\":\"IN\", \"zipcode\":\"12345\",\"country\":\"USA\"}"
         }
       ]
@@ -1085,7 +1143,7 @@ mutation {
     employeeUpdates: {
       customFieldValues: [
         {
-          id: "emergency_contact",
+          customFieldId: "emergency_contact",
           value: "{\"first_name\": \"Joe\", \"last_name\": \"Schmoe\", \"email\":\"jschmoe@aol.com\", \"phone\": \"123.456.7890\", \"relationship\": \"Other\"}" }
       ]
     }
@@ -1107,7 +1165,7 @@ mutation {
     id: 20,
     employeeUpdates: {
       customFieldValues: [
-        { id: "fully_vested", value: "2019-12-12" }
+        { customFieldId: "fully_vested", value: "2019-12-12" }
       ]
     }
   ) {
@@ -1360,7 +1418,7 @@ mutation {
 <tr>
 <td>profileImage</td><td><a href="#file">File</a></td><td>A file containing the employee&rsquo;s profile image. This image is displayed in emails, reports and directory pages.</td></tr>
 <tr>
-<td>signatureRequests</td><td><a href="#signaturerequest">[SignatureRequest]</a></td><td>These are E-Signature requests initiated through Greenhouse Onboardinging. Keep in mind that these requests can be in a number of different states in their lifecycle and may not always have a signed document available to download.</td></tr>
+<td>signatureRequests</td><td><a href="#signaturerequest">[SignatureRequest]</a></td><td>These are E-Signature requests initiated through Greenhouse Onboarding. Keep in mind that these requests can be in a number of different states in their lifecycle and may not always have a signed document available to download.</td></tr>
 <tr>
 <td>startDate</td><td><a href="#date">Date</a></td><td></td></tr>
 <tr>
@@ -1851,6 +1909,22 @@ mutation {
 <td>on</td><td><a href="#date">Date</a></td><td></td><td></td></tr>
 </tbody></table>
 
+<h2 id="dateofbirthfilter">DateOfBirthFilter</h2>
+
+<p>Filter employees based on their date of birth</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td><td>Required</td></tr>
+</thead><tbody>
+<tr>
+<td>anyValue</td><td><a href="#boolean">Boolean</a></td><td></td><td></td></tr>
+<tr>
+<td>dateFilter</td><td><a href="#datefilter">DateFilter</a></td><td></td><td></td></tr>
+<tr>
+<td>noValue</td><td><a href="#boolean">Boolean</a></td><td></td><td></td></tr>
+</tbody></table>
+
 <h2 id="datetimefilter">DateTimeFilter</h2>
 
 <p>Specify a range of datetimes using after (exclusive &gt;), before (exclusive &lt;)</p>
@@ -1865,6 +1939,150 @@ mutation {
 <td>before</td><td><a href="#datetime">DateTime</a></td><td></td><td></td></tr>
 </tbody></table>
 
+<h2 id="departmentfilter">DepartmentFilter</h2>
+
+<p>Filter employees based on their department</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td><td>Required</td></tr>
+</thead><tbody>
+<tr>
+<td>anyValue</td><td><a href="#boolean">Boolean</a></td><td></td><td></td></tr>
+<tr>
+<td>departmentIds</td><td><a href="#int">[Int]</a></td><td></td><td></td></tr>
+<tr>
+<td>noValue</td><td><a href="#boolean">Boolean</a></td><td></td><td></td></tr>
+</tbody></table>
+
+<h2 id="emailfilter">EmailFilter</h2>
+
+<p>Filter employees based on their email address</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td><td>Required</td></tr>
+</thead><tbody>
+<tr>
+<td>anyValue</td><td><a href="#boolean">Boolean</a></td><td></td><td></td></tr>
+<tr>
+<td>emails</td><td><a href="#string">[String]</a></td><td></td><td></td></tr>
+<tr>
+<td>noValue</td><td><a href="#boolean">Boolean</a></td><td></td><td></td></tr>
+</tbody></table>
+
+<h2 id="employmentstatusfilter">EmploymentStatusFilter</h2>
+
+<p>Filter employees based on their Employment Status</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td><td>Required</td></tr>
+</thead><tbody>
+<tr>
+<td>anyValue</td><td><a href="#boolean">Boolean</a></td><td></td><td></td></tr>
+<tr>
+<td>employmentStatuses</td><td><a href="#employmentstatus">[EmploymentStatus]</a></td><td></td><td></td></tr>
+<tr>
+<td>noValue</td><td><a href="#boolean">Boolean</a></td><td></td><td></td></tr>
+</tbody></table>
+
+<h2 id="hrmanagerfilter">HrManagerFilter</h2>
+
+<p>Filter employees based on their HR Manager</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td><td>Required</td></tr>
+</thead><tbody>
+<tr>
+<td>anyValue</td><td><a href="#boolean">Boolean</a></td><td></td><td></td></tr>
+<tr>
+<td>hrManagerIds</td><td><a href="#int">[Int]</a></td><td></td><td></td></tr>
+<tr>
+<td>noValue</td><td><a href="#boolean">Boolean</a></td><td></td><td></td></tr>
+</tbody></table>
+
+<h2 id="locationfilter">LocationFilter</h2>
+
+<p>Filter employees based on their location</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td><td>Required</td></tr>
+</thead><tbody>
+<tr>
+<td>anyValue</td><td><a href="#boolean">Boolean</a></td><td></td><td></td></tr>
+<tr>
+<td>locationIds</td><td><a href="#int">[Int]</a></td><td></td><td></td></tr>
+<tr>
+<td>noValue</td><td><a href="#boolean">Boolean</a></td><td></td><td></td></tr>
+</tbody></table>
+
+<h2 id="managerfilter">ManagerFilter</h2>
+
+<p>Filter employees based on their Manager</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td><td>Required</td></tr>
+</thead><tbody>
+<tr>
+<td>anyValue</td><td><a href="#boolean">Boolean</a></td><td></td><td></td></tr>
+<tr>
+<td>managerIds</td><td><a href="#int">[Int]</a></td><td></td><td></td></tr>
+<tr>
+<td>noValue</td><td><a href="#boolean">Boolean</a></td><td></td><td></td></tr>
+</tbody></table>
+
+<h2 id="personalemailfilter">PersonalEmailFilter</h2>
+
+<p>Filter employees based on their personal email address</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td><td>Required</td></tr>
+</thead><tbody>
+<tr>
+<td>anyValue</td><td><a href="#boolean">Boolean</a></td><td></td><td></td></tr>
+<tr>
+<td>noValue</td><td><a href="#boolean">Boolean</a></td><td></td><td></td></tr>
+<tr>
+<td>personalEmails</td><td><a href="#string">[String]</a></td><td></td><td></td></tr>
+</tbody></table>
+
+<h2 id="startdatefilter">StartDateFilter</h2>
+
+<p>Filter employees based on their start date</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td><td>Required</td></tr>
+</thead><tbody>
+<tr>
+<td>anyValue</td><td><a href="#boolean">Boolean</a></td><td></td><td></td></tr>
+<tr>
+<td>dateFilter</td><td><a href="#datefilter">DateFilter</a></td><td></td><td></td></tr>
+<tr>
+<td>noValue</td><td><a href="#boolean">Boolean</a></td><td></td><td></td></tr>
+</tbody></table>
+
+<h2 id="titlefilter">TitleFilter</h2>
+
+<p>Filter employees based on their title</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td><td>Required</td></tr>
+</thead><tbody>
+<tr>
+<td>anyValue</td><td><a href="#boolean">Boolean</a></td><td></td><td></td></tr>
+<tr>
+<td>noValue</td><td><a href="#boolean">Boolean</a></td><td></td><td></td></tr>
+<tr>
+<td>titles</td><td><a href="#string">[String]</a></td><td></td><td></td></tr>
+</tbody></table>
+
 <h2 id="updatecustomfieldvalue">UpdateCustomFieldValue</h2>
 
 <p>Used to update an employee&rsquo;s Custom Field Value</p>
@@ -1874,7 +2092,7 @@ mutation {
 <td>Argument</td><td>Type</td><td>Description</td><td>Required</td></tr>
 </thead><tbody>
 <tr>
-<td>id</td><td><a href="#id">ID!</a></td><td></td><td>Required</td></tr>
+<td>customFieldId</td><td><a href="#id">ID!</a></td><td></td><td>Required</td></tr>
 <tr>
 <td>value</td><td><a href="#value">Value</a></td><td></td><td></td></tr>
 </tbody></table>
@@ -1931,6 +2149,22 @@ mutation {
 <td>title</td><td><a href="#string">String</a></td><td></td><td></td></tr>
 <tr>
 <td>workCountryCode</td><td><a href="#string">String</a></td><td></td><td></td></tr>
+</tbody></table>
+
+<h2 id="workcountrycodefilter">WorkCountryCodeFilter</h2>
+
+<p>Filter employees based on their work country code</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td><td>Required</td></tr>
+</thead><tbody>
+<tr>
+<td>anyValue</td><td><a href="#boolean">Boolean</a></td><td></td><td></td></tr>
+<tr>
+<td>noValue</td><td><a href="#boolean">Boolean</a></td><td></td><td></td></tr>
+<tr>
+<td>workCountryCodes</td><td><a href="#string">[String]</a></td><td></td><td></td></tr>
 </tbody></table>
 
 <h1 id="scalars">Scalars</h1>
