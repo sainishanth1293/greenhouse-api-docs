@@ -188,6 +188,39 @@ and the budgets for API keys, at any time.</p>
 
 <p>The Greenhouse Onboarding API limits the maximum depth of any request to 10.</p>
 
+<h2 id="a-basic-request">A Basic Request</h2>
+<pre class="highlight plaintext"><code># If we wanted to retrieve the email address of the employee 
+# with ID 25, the GraphQL query would look like this:
+
+{
+  employee(id: 25) {
+    email
+  }
+}
+</code></pre>
+<pre class="highlight plaintext"><code># We then pack this query into a JSON object as a string
+
+{
+    "query": "{\n  employee(id: 25) {\n    email\n  }\n}"
+}
+</code></pre>
+<pre class="highlight shell"><code><span class="c"># Here's what the final cURL request would look like</span>
+
+curl <span class="s1">'https://onboarding-api.greenhouse.io/graphql'</span> <span class="se">\</span>
+  -X POST <span class="se">\</span>
+  -u your_access_key:your_secret_key <span class="se">\</span>
+  -d <span class="s1">'{"query":"{\n  employee(id: 25) {\n    email\n  }\n}"}'</span> <span class="se">\</span>
+  -H <span class="s1">'content-type: application/json'</span>
+
+<span class="c"># and here's what the response would look like</span>
+
+<span class="o">{</span><span class="s2">"data"</span>:<span class="o">{</span><span class="s2">"employee"</span>:<span class="o">{</span><span class="s2">"email"</span>:<span class="s2">"employee_25_email@example.com"</span><span class="o">}}}</span>
+</code></pre>
+
+<p>GraphQL requests are simply POSTs made to our API endpoint.  In its most simple form, the request payload consists of a 
+JSON object with a single key: &ldquo;query&rdquo;. The corresponding value for the &ldquo;query&rdquo; key is the GraphQL query itself, and it 
+is expressed as a string.</p>
+
           <h2 id="pagination">Pagination</h2>
 <pre class="highlight plaintext"><code>{
   employees(first: 2, after: "NQ==") { # Please fetch the next 2 records, starting after the "NQ==" cursor
