@@ -127,11 +127,6 @@ the scope of an API key.  Only share your API key with people that you trust.  A
 on the API Management screen.</p>
 
 <h2 id="rate-limiting">Rate Limiting</h2>
-
-<p>The Greenhouse Onboarding API imposes limits on the the number of requests a single client can send us, as well as the
-complexity of these requests.  This is done to ensure our servers can always service requests as quickly as possible.</p>
-
-<h3 id="request-costs">Request Costs</h3>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -144,16 +139,10 @@ complexity of these requests.  This is done to ensure our servers can always ser
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>GraphQL gives clients the ability to specify the exact data to be returned in each request.  This means that some
-requests can query lots of data, while others are much simpler and only return a handful of fields.  For this reason,
-a simple rate-limiting protocol of &ldquo;X requests per hour&rdquo; is not a good fit.</p>
+<p>The Greenhouse Onboarding API imposes limits on the amount of data a single client can request over time, as well as the
+complexity of individual requests.  This is done to ensure our servers can always service requests as quickly as possible.</p>
 
-<p>Instead, each API key is given a budget of &ldquo;API points&rdquo; that can be spent on requests.  Each request can have a separate
-cost.  Once the API key has run out of points, all further requests will return an error message stating that requests
-are now being throttled.</p>
-
-<p>This message indicates the total number of API points this API key has in its budget and when the API points will
-be restored to the maximum limit.</p>
+<h3 id="request-costs">Request Costs</h3>
 <pre class="highlight plaintext"><code>{
   employee(id: 1) {
     email
@@ -180,13 +169,69 @@ be restored to the maximum limit.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Clients can ask for this information before their requests have been throttled by querying for the <code class="prettyprint">rateLimit</code> object.
-In general, the more complex a query, the higher its cost.  We reserve the right to change the costs for each query,
+<p>GraphQL gives clients the ability to specify the exact data to be returned in each request.  This means that some
+requests can query lots of data, while others are much simpler and only return a handful of fields.  For this reason,
+a simple rate-limiting protocol of &ldquo;X requests per hour&rdquo; is not a good fit.</p>
+
+<p>Instead, each API key is given a budget of &ldquo;API points&rdquo; that can be spent on requests.  Each request can have a separate
+cost.  Once the API key has run out of points, all further requests will return an error message stating that requests
+are now being throttled.</p>
+
+<p>This message indicates the total number of API points this API key has in its budget and when the API points will
+be restored to the maximum limit.</p>
+
+<p>Clients can ask for this information by querying for the <code class="prettyprint">rateLimit</code> object.
+In general, the more involved a query, the higher its cost.  We reserve the right to change the costs for each query,
 and the budgets for API keys, at any time.</p>
 
-<h3 id="maximum-depth">Maximum Depth</h3>
+<h3 id="maximum-complexity">Maximum Complexity</h3>
+<pre class="highlight plaintext"><code># Say we had the following query:
+{
+  employee(id: 25) {
+    email
+  }
+}
 
-<p>The Greenhouse Onboarding API limits the maximum depth of any request to 10.</p>
+# To request the complexity score of this query, simply 
+# include complexityInfo as such:
+{
+  employee(id: 25) {
+    email
+  }
+  complexityInfo {
+    score
+    maximum
+  }
+}
+
+# The response:
+{
+  "data": {
+    "employee": {
+      "email": "email_address@example.com"
+    },
+    "complexityInfo": {
+      "score": 1,
+      "maximum": 2500
+    }
+  }
+}
+</code></pre>
+
+<p>In addition to limiting the number of API points used in a given time period, we limit the &ldquo;complexity&rdquo; of any given 
+request. If this score exceeds our maximum, the request will be rejected and an error response will be returned.</p>
+
+<p>We reserve the right to adjust the complexity score of any given field at any time. However, for the time being, a 
+query&rsquo;s complexity score can be estimated like so:</p>
+
+<ul>
+<li><p>For non-connections (e.g. an employee or a department query): simply add up each field being requested.</p></li>
+<li><p>For connections (e.g an employees or departments query): add up all requested fields and multiply by the number of 
+requested records (e.g. the <code class="prettyprint">first</code> or <code class="prettyprint">last</code> argument)</p></li>
+</ul>
+
+<p>Clients can determine a query&rsquo;s complexity score by also requesting the <code class="prettyprint">complexityInfo</code> object (see example to the
+right).</p>
 
 <h2 id="a-basic-request">A Basic Request</h2>
 <pre class="highlight plaintext"><code># If we wanted to retrieve the email address of the employee 
