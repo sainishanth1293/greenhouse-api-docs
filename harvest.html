@@ -12184,7 +12184,9 @@ X-RateLimit-Remaining: 49
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">87819</span><span class="p">,</span><span class="w">
   </span><span class="nt">"office_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">29192</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"external_office_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ex-office-1"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"department_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23425</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"external_department_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ex-dept-1"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"user_role_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4730</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -12200,7 +12202,11 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>office_id</td><td>The ID of the office of the job</td></tr>
 <tr>
+<td>external_office_id</td><td>The ID of the office in an external system. This is set by users and has no bearing on any other object in Greenhouse. If not set in Greenhouse, this will be null.</td></tr>
+<tr>
 <td>department_id</td><td>The ID of the department of the job</td></tr>
+<tr>
+<td>external_department_id</td><td>The ID of the department in an external system. This is set by users and has no bearing on any other object in Greenhouse. If not set in Greenhouse, this will be null.</td></tr>
 <tr>
 <td>user_role_id</td><td>The ID of the user role that will be granted</td></tr>
 </tbody></table>
@@ -12213,19 +12219,25 @@ X-RateLimit-Remaining: 49
   </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">87819</span><span class="p">,</span><span class="w">
     </span><span class="nt">"office_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24141</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"external_office_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ex-office-1"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"department_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12315</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"external_department_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ex-dept-1"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"user_role_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4730</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">92834</span><span class="p">,</span><span class="w">
     </span><span class="nt">"office_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8232</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"external_office_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ex-office-2"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"department_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12315</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"external_department_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ex-dept-2"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"user_role_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4730</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">82129</span><span class="p">,</span><span class="w">
     </span><span class="nt">"office_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8232</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"external_office_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ex-office-2"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"department_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">92921</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"external_department_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
     </span><span class="nt">"user_role_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4730</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
@@ -12321,7 +12333,9 @@ X-RateLimit-Remaining: 49
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9283</span><span class="p">,</span><span class="w">
   </span><span class="nt">"office_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">281921</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"external_office_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ex-office-1"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"department_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">61921</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"external_department_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ex-dept-1"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"user_role_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">91821</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
