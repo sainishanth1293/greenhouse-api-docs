@@ -1940,7 +1940,7 @@ analytics.page()
 
 <h2 id="candidate-anonymized">Candidate anonymized</h2>
 
-<p>This web hook will fire when a particular candidate receives an anonymize event. Anonymize events may occur from the <a href="#put-anonymize-candidate">Anonymize Endpoint</a> in Harvest or may be configured in the GDPR page in the Greenhouse application. An anonymize web hook consists of the action type, the id of the candidate who had properties anonymized, and the information that was anonymized. </p>
+<p>This web hook will fire when a particular candidate receives an anonymize event. Anonymize events may occur from the <a href="#put-anonymize-candidate">Anonymize Endpoint</a> in Harvest or may be configured in the GDPR page in the Greenhouse application. An anonymize web hook consists of the action type, the id of the candidate who had properties anonymized, and the information that was anonymized.</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"candidate_anonymized"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -2038,6 +2038,8 @@ analytics.page()
 <td><code class="prettyprint">source</code></td><td>Remove <code class="prettyprint">application.source</code> in all this candidate&rsquo;s applications.</td></tr>
 <tr>
 <td><code class="prettyprint">tags</code></td><td>Remove all values from <code class="prettyprint">candidate.tags</code></td></tr>
+<tr>
+<td><code class="prettyprint">third_party_integrations</code></td><td>Disconnect the candidate&rsquo;s profile from the LinkedIn CSA and RSC integrations.</td></tr>
 <tr>
 <td><code class="prettyprint">touchpoints</code></td><td>Destroy all touchpoints on the candidate, all the candidate&rsquo;s applications, and any notes associated with touchpoints.</td></tr>
 <tr>
