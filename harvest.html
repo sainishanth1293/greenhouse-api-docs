@@ -8807,7 +8807,11 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>department_id</td><td>No</td><td>Number</td><td>The department of the new job. This should be a department id from the Departments endpoint. If this element is omitted, the new job will receive the department of the template job. If this element is included but blank, it will create the job with no departments. If the organization requires jobs to have a department, this case will return a 422 response.</td></tr>
 <tr>
+<td>external_department_id</td><td>No</td><td>String</td><td>This may be used instead of department_id and represents the ID of the department in an external system. If this is used, department_id must be blank and vice versa.</td></tr>
+<tr>
 <td>office_ids</td><td>No</td><td>Array[Numbers]</td><td>The offices of the new job. These should be office ids from the Offices endpoint. If this element is omitted, the new job will receive the offices of the template job.  If this element is included but blank, it will create the job with no offices. If the organization requires jobs to have an office, this case will return a 422 response.</td></tr>
+<tr>
+<td>external_office_ids</td><td>No</td><td>Array[Srings]</td><td>This may be used instead of office_ids and represents the IDs of the offices in an external system. If this is used, office_ids must be blank and vice versa.</td></tr>
 <tr>
 <td>requisition_id</td><td>No</td><td>String</td><td>A requisition id for this job.</td></tr>
 <tr>
