@@ -8174,7 +8174,9 @@ X-RateLimit-Remaining: 49
    </span><span class="nt">"team_and_responsibilities"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Info"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"how_to_sell_this_job"</span><span class="p">:</span><span class="w"> </span><span class="s2">"the snacks"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"office_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1556</span><span class="p">],</span><span class="w">
+   </span><span class="nt">"external_office_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"office-1"</span><span class="p">],</span><span class="w">
    </span><span class="nt">"department_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">74</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"external_department_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dept-1"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
@@ -8215,7 +8217,7 @@ X-RateLimit-Remaining: 49
           </span><span class="nt">"child_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
               </span><span class="mi">14510</span><span class="w">
           </span><span class="p">],</span><span class="w">
-          </span><span class="nt">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="w">
+          </span><span class="nt">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dept-1"</span><span class="w">
       </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
   </span><span class="nt">"offices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -8231,7 +8233,7 @@ X-RateLimit-Remaining: 49
               </span><span class="mi">50852</span><span class="p">,</span><span class="w">
               </span><span class="mi">50891</span><span class="w">
           </span><span class="p">],</span><span class="w">
-          </span><span class="nt">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15679"</span><span class="w">
+          </span><span class="nt">"external_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"office-1"</span><span class="w">
       </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
   </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -8420,7 +8422,11 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>office_ids</td><td>No</td><td>Array</td><td>Replace the current offices for this job with new offices. If your organization requires at least one office, trying to set this to blank will return an error.</td></tr>
 <tr>
+<td>external_office_ids</td><td>No</td><td>Array</td><td>This may be used instead of office_ids and represents the ID of the office in an external system. If this is used, office_id must be blank and vice versa.</td></tr>
+<tr>
 <td>department_id*</td><td>No</td><td>number</td><td>Replace the current department for this job with a different department.</td></tr>
+<tr>
+<td>external_department_id*</td><td>No</td><td>string</td><td>This may be used instead of department_id and represents the ID of the department in an external system. If used, department_id must be blank and vice versa.</td></tr>
 </tbody></table>
 
 <ul>
