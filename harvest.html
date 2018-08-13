@@ -12375,7 +12375,11 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>office_id</td><td>No</td><td>integer</td><td>The ID of the office. Set to null to include all offices.</td></tr>
 <tr>
+<td>external_office_id</td><td>No</td><td>string</td><td>An ID that represents the office in an external system. This may be used instead of office_id. If included, office_id must be blank, and vice versa.</td></tr>
+<tr>
 <td>department_id</td><td>No</td><td>integer</td><td>The ID of the department. Set to null to include all departments.</td></tr>
+<tr>
+<td>external_department_id</td><td>No</td><td>string</td><td>This may be used instead of department_id. If included, department_id must be blank, and vice versa.</td></tr>
 <tr>
 <td>user_role_id</td><td>Yes</td><td>integer</td><td>The ID of the user role</td></tr>
 </tbody></table>
