@@ -661,6 +661,33 @@ analytics.page()
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
+<h2 id="offer-approved">Offer approved</h2>
+
+<p>This web hook fires when an offer requires approval and the approval is received. </p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"offer_approved"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"payload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">234556</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">45678</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">67890</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"sent_on"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-03-22"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"resolved_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-03-25T00:00:00Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"04/15/2013"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vacation scheduled 4/20 - 4/23"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"offer_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Accepted"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"custom_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"custom_application_field"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Custom Application Field"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"short_text"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Example"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
 <h2 id="offer-updated">Offer updated</h2>
 
 <p>This web hook fires when an offer is updated. In some cases, an offer may be changed without generating a new version. In that case, this will fire by itself. If a change causes a new offer version to be generated, this will fire on the old version with the update to deprecate this offer and also a new &ldquo;create&rdquo; web hook will fire for the new version. This web hook should also fire when a person is hired,  which marks the offer as &ldquo;accepted.&rdquo; </p>
