@@ -393,6 +393,10 @@ of the error list.</p>
 
           <h1 id="queries">Queries</h1>
 
+<h2 id="complexityinfo-complexityinfo">complexityInfo (<a href="#complexityinfo">ComplexityInfo</a>)</h2>
+
+<p>The complexity information for the current query</p>
+
 <h2 id="contactrelationships-string">contactRelationships (<a href="#string">[String]</a>)</h2>
 
 <p>The list of valid options for the &lsquo;Contact&rsquo; custom field type</p>
@@ -924,6 +928,30 @@ of the error list.</p>
 
 <h1 id="mutations">Mutations</h1>
 
+<h2 id="adddepartment-adddepartmentpayload">addDepartment (<a href="#adddepartmentpayload">AddDepartmentPayload</a>)</h2>
+
+<p>Add a new Department</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td><td>Required</td></tr>
+</thead><tbody>
+<tr>
+<td>addDepartmentInput</td><td><a href="#adddepartmentinput">AddDepartmentInput!</a></td><td></td><td>Required</td></tr>
+</tbody></table>
+
+<h2 id="addlocation-addlocationpayload">addLocation (<a href="#addlocationpayload">AddLocationPayload</a>)</h2>
+
+<p>Add a new Location</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td><td>Required</td></tr>
+</thead><tbody>
+<tr>
+<td>addLocationInput</td><td><a href="#addlocationinput">AddLocationInput!</a></td><td></td><td>Required</td></tr>
+</tbody></table>
+
 <h2 id="addpendinghire-pendinghire">addPendingHire (<a href="#pendinghire">PendingHire</a>)</h2>
 <pre class="highlight plaintext"><code># Create a PendingHire with required information as well as a value for a text Custom Field (long text, confirmable,
 # and multiple_choice Custom Fields also take Strings as the "value").
@@ -1096,6 +1124,42 @@ mutation {
 </thead><tbody>
 <tr>
 <td>pendingHireInfo</td><td><a href="#addpendinghireinput">AddPendingHireInput!</a></td><td></td><td>Required</td></tr>
+</tbody></table>
+
+<h2 id="deletedepartment-deletedepartmentpayload">deleteDepartment (<a href="#deletedepartmentpayload">DeleteDepartmentPayload</a>)</h2>
+
+<p>Delete a Department</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td><td>Required</td></tr>
+</thead><tbody>
+<tr>
+<td>deleteDepartmentInput</td><td><a href="#deletedepartmentinput">DeleteDepartmentInput!</a></td><td></td><td>Required</td></tr>
+</tbody></table>
+
+<h2 id="deletelocation-deletelocationpayload">deleteLocation (<a href="#deletelocationpayload">DeleteLocationPayload</a>)</h2>
+
+<p>Delete a Location</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td><td>Required</td></tr>
+</thead><tbody>
+<tr>
+<td>deleteLocationInput</td><td><a href="#deletelocationinput">DeleteLocationInput!</a></td><td></td><td>Required</td></tr>
+</tbody></table>
+
+<h2 id="updatedepartment-updatedepartmentpayload">updateDepartment (<a href="#updatedepartmentpayload">UpdateDepartmentPayload</a>)</h2>
+
+<p>Update a Department</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td><td>Required</td></tr>
+</thead><tbody>
+<tr>
+<td>updateDepartmentInput</td><td><a href="#updatedepartmentinput">UpdateDepartmentInput!</a></td><td></td><td>Required</td></tr>
 </tbody></table>
 
 <h2 id="updateemployeeprofile-employee">updateEmployeeProfile (<a href="#employee">Employee</a>)</h2>
@@ -1271,7 +1335,57 @@ mutation {
 <td>id</td><td><a href="#id">ID!</a></td><td></td><td>Required</td></tr>
 </tbody></table>
 
+<h2 id="updatelocation-updatelocationpayload">updateLocation (<a href="#updatelocationpayload">UpdateLocationPayload</a>)</h2>
+
+<p>Update a Location</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td><td>Required</td></tr>
+</thead><tbody>
+<tr>
+<td>updateLocationInput</td><td><a href="#updatelocationinput">UpdateLocationInput!</a></td><td></td><td>Required</td></tr>
+</tbody></table>
+
 <h1 id="types">Types</h1>
+
+<h2 id="adddepartmentpayload">AddDepartmentPayload</h2>
+
+<p>The result of running an addDepartment mutation</p>
+
+<table><thead>
+<tr>
+<td>Field</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>department</td><td><a href="#department">Department</a></td><td>The new department</td></tr>
+</tbody></table>
+
+<h2 id="addlocationpayload">AddLocationPayload</h2>
+
+<p>The result of running an addLocation mutation</p>
+
+<table><thead>
+<tr>
+<td>Field</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>location</td><td><a href="#location">Location</a></td><td>The new location</td></tr>
+</tbody></table>
+
+<h2 id="complexityinfo">ComplexityInfo</h2>
+
+<p>Information about the current request&rsquo;s complexity. If the complexity exceeds the maxium, the request will fail</p>
+
+<table><thead>
+<tr>
+<td>Field</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>maximum</td><td><a href="#int">Int</a></td><td></td></tr>
+<tr>
+<td>score</td><td><a href="#int">Int</a></td><td></td></tr>
+</tbody></table>
 
 <h2 id="country">Country</h2>
 
@@ -1377,6 +1491,30 @@ mutation {
 <td>valueUpdatedAt</td><td><a href="#datetime">DateTime</a></td><td>The time of the most recent update to this field.</td></tr>
 </tbody></table>
 
+<h2 id="deletedepartmentpayload">DeleteDepartmentPayload</h2>
+
+<p>The result of running an deleteDepartment mutation</p>
+
+<table><thead>
+<tr>
+<td>Field</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>deletedDepartmentId</td><td><a href="#id">ID</a></td><td>The ID of the department that was just deleted</td></tr>
+</tbody></table>
+
+<h2 id="deletelocationpayload">DeleteLocationPayload</h2>
+
+<p>The result of running an deleteLocation mutation</p>
+
+<table><thead>
+<tr>
+<td>Field</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>deletedLocationId</td><td><a href="#id">ID</a></td><td>The ID of the location that was just deleted</td></tr>
+</tbody></table>
+
 <h2 id="department">Department</h2>
 
 <p>Represents a single department in your company. Employees may belong to zero or one department. Departments are used in a variety of ways in Greenhouse Onboarding, including permissions and onboarding plans.</p>
@@ -1388,7 +1526,11 @@ mutation {
 <tr>
 <td>createdAt</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
 <tr>
+<td>departmentLead</td><td><a href="#employee">Employee</a></td><td></td></tr>
+<tr>
 <td>description</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
+<td>email</td><td><a href="#string">String</a></td><td></td></tr>
 <tr>
 <td>id</td><td><a href="#id">ID</a></td><td></td></tr>
 <tr>
@@ -1564,11 +1706,17 @@ mutation {
 <td>Field</td><td>Type</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
+<td>address</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
 <td>createdAt</td><td><a href="#datetime">DateTime</a></td><td></td></tr>
 <tr>
 <td>description</td><td><a href="#string">String</a></td><td></td></tr>
 <tr>
+<td>email</td><td><a href="#string">String</a></td><td></td></tr>
+<tr>
 <td>id</td><td><a href="#id">ID</a></td><td></td></tr>
+<tr>
+<td>locationLead</td><td><a href="#employee">Employee</a></td><td></td></tr>
 <tr>
 <td>name</td><td><a href="#string">String</a></td><td></td></tr>
 <tr>
@@ -1610,9 +1758,21 @@ mutation {
 <td>Field</td><td>Type</td><td>Description</td></tr>
 </thead><tbody>
 <tr>
+<td>addDepartment</td><td><a href="#adddepartmentpayload">AddDepartmentPayload</a></td><td>Add a new Department</td></tr>
+<tr>
+<td>addLocation</td><td><a href="#addlocationpayload">AddLocationPayload</a></td><td>Add a new Location</td></tr>
+<tr>
 <td>addPendingHire</td><td><a href="#pendinghire">PendingHire</a></td><td>Add a Pending Hire to Greenhouse Onboarding</td></tr>
 <tr>
+<td>deleteDepartment</td><td><a href="#deletedepartmentpayload">DeleteDepartmentPayload</a></td><td>Delete a Department</td></tr>
+<tr>
+<td>deleteLocation</td><td><a href="#deletelocationpayload">DeleteLocationPayload</a></td><td>Delete a Location</td></tr>
+<tr>
+<td>updateDepartment</td><td><a href="#updatedepartmentpayload">UpdateDepartmentPayload</a></td><td>Update a Department</td></tr>
+<tr>
 <td>updateEmployeeProfile</td><td><a href="#employee">Employee</a></td><td>Update an employee&rsquo;s profile</td></tr>
+<tr>
+<td>updateLocation</td><td><a href="#updatelocationpayload">UpdateLocationPayload</a></td><td>Update a Location</td></tr>
 </tbody></table>
 
 <h2 id="othercriterion">OtherCriterion</h2>
@@ -1901,7 +2061,69 @@ mutation {
 <td>node</td><td><a href="#team">Team</a></td><td>The item at the end of the edge.</td></tr>
 </tbody></table>
 
+<h2 id="updatedepartmentpayload">UpdateDepartmentPayload</h2>
+
+<p>The result of running an updateDepartment mutation</p>
+
+<table><thead>
+<tr>
+<td>Field</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>department</td><td><a href="#department">Department</a></td><td>The updated department</td></tr>
+</tbody></table>
+
+<h2 id="updatelocationpayload">UpdateLocationPayload</h2>
+
+<p>The result of running an updateLocation mutation</p>
+
+<table><thead>
+<tr>
+<td>Field</td><td>Type</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>location</td><td><a href="#location">Location</a></td><td>The updated location</td></tr>
+</tbody></table>
+
 <h1 id="input-objects">Input Objects</h1>
+
+<h2 id="adddepartmentinput">AddDepartmentInput</h2>
+
+<p>The input object used to add a <a href="#department">Department</a>.</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td><td>Required</td></tr>
+</thead><tbody>
+<tr>
+<td>departmentLead</td><td><a href="#id">ID</a></td><td></td><td></td></tr>
+<tr>
+<td>description</td><td><a href="#string">String</a></td><td></td><td></td></tr>
+<tr>
+<td>email</td><td><a href="#string">String</a></td><td></td><td></td></tr>
+<tr>
+<td>name</td><td><a href="#string">String</a></td><td></td><td></td></tr>
+</tbody></table>
+
+<h2 id="addlocationinput">AddLocationInput</h2>
+
+<p>The input object used to add a <a href="#location">Location</a>.</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td><td>Required</td></tr>
+</thead><tbody>
+<tr>
+<td>address</td><td><a href="#string">String</a></td><td></td><td></td></tr>
+<tr>
+<td>description</td><td><a href="#string">String</a></td><td></td><td></td></tr>
+<tr>
+<td>email</td><td><a href="#string">String</a></td><td></td><td></td></tr>
+<tr>
+<td>locationLead</td><td><a href="#id">ID</a></td><td></td><td></td></tr>
+<tr>
+<td>name</td><td><a href="#string">String</a></td><td></td><td></td></tr>
+</tbody></table>
 
 <h2 id="addpendinghireinput">AddPendingHireInput</h2>
 
@@ -2015,6 +2237,30 @@ mutation {
 <td>after</td><td><a href="#datetime">DateTime</a></td><td></td><td></td></tr>
 <tr>
 <td>before</td><td><a href="#datetime">DateTime</a></td><td></td><td></td></tr>
+</tbody></table>
+
+<h2 id="deletedepartmentinput">DeleteDepartmentInput</h2>
+
+<p>The input object used to delete a <a href="#department">Department</a>.</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td><td>Required</td></tr>
+</thead><tbody>
+<tr>
+<td>id</td><td><a href="#id">ID!</a></td><td></td><td>Required</td></tr>
+</tbody></table>
+
+<h2 id="deletelocationinput">DeleteLocationInput</h2>
+
+<p>The input object used to delete a <a href="#location">Location</a>.</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td><td>Required</td></tr>
+</thead><tbody>
+<tr>
+<td>id</td><td><a href="#id">ID!</a></td><td></td><td>Required</td></tr>
 </tbody></table>
 
 <h2 id="departmentfilter">DepartmentFilter</h2>
@@ -2175,6 +2421,26 @@ mutation {
 <td>value</td><td><a href="#value">Value</a></td><td></td><td></td></tr>
 </tbody></table>
 
+<h2 id="updatedepartmentinput">UpdateDepartmentInput</h2>
+
+<p>The input object used to update a <a href="#department">Department</a>.</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td><td>Required</td></tr>
+</thead><tbody>
+<tr>
+<td>departmentLead</td><td><a href="#id">ID</a></td><td></td><td></td></tr>
+<tr>
+<td>description</td><td><a href="#string">String</a></td><td></td><td></td></tr>
+<tr>
+<td>email</td><td><a href="#string">String</a></td><td></td><td></td></tr>
+<tr>
+<td>id</td><td><a href="#id">ID!</a></td><td></td><td>Required</td></tr>
+<tr>
+<td>name</td><td><a href="#string">String</a></td><td></td><td></td></tr>
+</tbody></table>
+
 <h2 id="updateemployee">UpdateEmployee</h2>
 
 <p>The input object used to update an <a href="#employee">Employee</a>.</p>
@@ -2227,6 +2493,28 @@ mutation {
 <td>title</td><td><a href="#string">String</a></td><td></td><td></td></tr>
 <tr>
 <td>workCountryCode</td><td><a href="#string">String</a></td><td></td><td></td></tr>
+</tbody></table>
+
+<h2 id="updatelocationinput">UpdateLocationInput</h2>
+
+<p>The input object used to update a <a href="#location">Location</a>.</p>
+
+<table><thead>
+<tr>
+<td>Argument</td><td>Type</td><td>Description</td><td>Required</td></tr>
+</thead><tbody>
+<tr>
+<td>address</td><td><a href="#string">String</a></td><td></td><td></td></tr>
+<tr>
+<td>description</td><td><a href="#string">String</a></td><td></td><td></td></tr>
+<tr>
+<td>email</td><td><a href="#string">String</a></td><td></td><td></td></tr>
+<tr>
+<td>id</td><td><a href="#id">ID!</a></td><td></td><td>Required</td></tr>
+<tr>
+<td>locationLead</td><td><a href="#id">ID</a></td><td></td><td></td></tr>
+<tr>
+<td>name</td><td><a href="#string">String</a></td><td></td><td></td></tr>
 </tbody></table>
 
 <h2 id="workcountrycodefilter">WorkCountryCodeFilter</h2>
