@@ -12252,6 +12252,11 @@ X-RateLimit-Remaining: 49
 
 <p>Note: This endpoint does not support assigning a user role to a user for a confidential job.</p>
 
+<h3 id="response">Response</h3>
+
+<p>Adding a job permission to a regular user returns status 201. 
+Adding a job permission to a site admin user has no effect, and returns 204.</p>
+
 <h2 id="the-future-job-permission-object">The future job permission object</h2>
 
 <p>The user role a user will get when a job with the specified criteria is created.</p>
@@ -12447,6 +12452,11 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>user_role_id</td><td>Yes</td><td>integer</td><td>The ID of the user role</td></tr>
 </tbody></table>
+
+<h3 id="response">Response</h3>
+
+<p>Adding a future job permission to a regular user returns status 201. 
+Adding a future job permission to a site admin user has no effect, and returns 204.</p>
 
           <h1 id="user-roles">User Roles</h1>
 
