@@ -127,62 +127,46 @@ the scope of an API key.  Only share your API key with people that you trust.  A
 on the API Management screen.</p>
 
 <h2 id="rate-limiting">Rate Limiting</h2>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rate limit reached."</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"remaining"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"resetAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-01T01:00:00Z"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+<pre class="highlight plaintext"><code># When the rate limit is reached, ensuing requests will result 
+# in the following response (until the next time period begins):
+{
+  "errors": [
+    {
+      "message": "Rate limit reached.",
+      "limit": 100,
+      "remaining": 0,
+      "resetAt": "2018-01-01T01:00:00Z"
+    }
+  ]
+}
+</code></pre>
 
 <p>The Greenhouse Onboarding API imposes limits on the amount of data a single client can request over time, as well as the
 complexity of individual requests.  This is done to ensure our servers can always service requests as quickly as possible.</p>
 
-<h3 id="request-costs">Request Costs</h3>
-<pre class="highlight plaintext"><code>{
-  employee(id: 1) {
-    email
-  }
-
+<h3 id="request-limits">Request Limits</h3>
+<pre class="highlight plaintext"><code># To request the current rate limit information:
+{
   rateLimit {
-    cost
+    resetAt
     limit
     remaining
   }
 }
+
+# rateLimit response:
+{
+  "data": { 
+    "rateLimit": {
+      "resetAt": "2018-09-12T18:00:00Z",
+      "limit": 100,
+      "remaining": 99
+    }
+  }
+}
 </code></pre>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-     </span><span class="nt">"employee"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-       </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@example.com"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"rateLimit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"cost"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"remaining"</span><span class="p">:</span><span class="w"> </span><span class="mi">99</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
 
-<p>GraphQL gives clients the ability to specify the exact data to be returned in each request.  This means that some
-requests can query lots of data, while others are much simpler and only return a handful of fields.  For this reason,
-a simple rate-limiting protocol of &ldquo;X requests per hour&rdquo; is not a good fit.</p>
-
-<p>Instead, each API key is given a budget of &ldquo;API points&rdquo; that can be spent on requests.  Each request can have a separate
-cost.  Once the API key has run out of points, all further requests will return an error message stating that requests
-are now being throttled.</p>
-
-<p>This message indicates the total number of API points this API key has in its budget and when the API points will
-be restored to the maximum limit.</p>
-
-<p>Clients can ask for this information by querying for the <code class="prettyprint">rateLimit</code> object.
-In general, the more involved a query, the higher its cost.  We reserve the right to change the costs for each query,
-and the budgets for API keys, at any time.</p>
+<p>In order to ensure API stability, we limit the number of requests that can made within a given time window. Consumers can access this rate limit information by querying the <code class="prettyprint">rateLimit</code> type (see example to the right). The number of remaining requests is indicated by the value in the <code class="prettyprint">remaining</code> field. When this request limit has been reached, every ensuing request will fail until the next time window begins (indicated by the <code class="prettyprint">resetAt</code> field). Then, once the next time window starts, the number of requests will be replenished (to the number indicated by the <code class="prettyprint">limit</code> property). </p>
 
 <h3 id="maximum-complexity">Maximum Complexity</h3>
 <pre class="highlight plaintext"><code># Say we had the following query:
@@ -218,7 +202,7 @@ and the budgets for API keys, at any time.</p>
 }
 </code></pre>
 
-<p>In addition to limiting the number of API points used in a given time period, we limit the &ldquo;complexity&rdquo; of any given 
+<p>In addition to limiting the number of requests used in a given time period, we limit the &ldquo;complexity&rdquo; of any given 
 request. If this score exceeds our maximum, the request will be rejected and an error response will be returned.</p>
 
 <p>We reserve the right to adjust the complexity score of any given field at any time. However, for the time being, a 
@@ -230,7 +214,7 @@ query&rsquo;s complexity score can be estimated like so:</p>
 requested records (e.g. the <code class="prettyprint">first</code> or <code class="prettyprint">last</code> argument)</p></li>
 </ul>
 
-<p>Clients can determine a query&rsquo;s complexity score by also requesting the <code class="prettyprint">complexityInfo</code> object (see example to the
+<p>Clients can also determine a query&rsquo;s complexity score by requesting the <code class="prettyprint">complexityInfo</code> object (see example to the
 right).</p>
 
 <h2 id="a-basic-request">A Basic Request</h2>
