@@ -144,7 +144,7 @@ analytics.page()
 <tr>
 <td><code class="prettyprint">application.id</code></td><td>Unique Greenhouse identifier of the application. Information not included in the web hook can be retrieved via <a href="harvest.html#applications">Harvest API - GET Applications</a></td></tr>
 <tr>
-<td><code class="prettyprint">application.credited_to</code></td><td>If populated and a Greenhouse user, the user&rsquo;s Greenhouse ID and e-mail address will be provided. If populated and not a Greenhouse user, just the name will be provided.</td></tr>
+<td><code class="prettyprint">application.credited_to</code></td><td>If populated and a Greenhouse user, the user&rsquo;s Greenhouse ID, e-mail address, and Employee ID (if available) will be provided. If populated and not a Greenhouse user, just the name will be provided.</td></tr>
 <tr>
 <td><code class="prettyprint">application.status</code></td><td>One of: <code class="prettyprint">rejected</code>, <code class="prettyprint">hired</code>, <code class="prettyprint">active</code></td></tr>
 <tr>
@@ -232,7 +232,8 @@ analytics.page()
       </span><span class="nt">"credited_to"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">92120</span><span class="p">,</span><span class="w">
         </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test123@example.com"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Greenhouse Admin"</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Greenhouse Admin"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123ABC"</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="nt">"rejection_reason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"rejection_details"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -335,14 +336,16 @@ analytics.page()
         </span><span class="p">],</span><span class="w">
         </span><span class="nt">"employments"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
         </span><span class="nt">"recruiter"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">92120</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">92121</span><span class="p">,</span><span class="w">
           </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"employee@test.com"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Betty Smith"</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Betty Smith"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123ABC"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="nt">"coordinator"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">92427</span><span class="p">,</span><span class="w">
           </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user@example.com"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bonnie Bonnet"</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bonnie Bonnet"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"456DEF"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="nt">"attachments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
           </span><span class="p">{</span><span class="w">
@@ -544,7 +547,8 @@ analytics.page()
       </span><span class="nt">"credited_to"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3695</span><span class="p">,</span><span class="w">
         </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"beauregard.blacksmith.3695@example.com"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Beauregard Blacksmith"</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Beauregard Blacksmith"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123ABC"</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="nt">"rejection_reason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"rejection_details"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -814,7 +818,8 @@ analytics.page()
       </span><span class="nt">"credited_to"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">158104</span><span class="p">,</span><span class="w">
         </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bob_johnson1@localhost.com"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Robert Johnson"</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Robert Johnson"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123ABC"</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
@@ -876,12 +881,14 @@ analytics.page()
         </span><span class="nt">"recruiter"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">55</span><span class="p">,</span><span class="w">
           </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bob_johnson@localhost.com"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bob Johnson"</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bob Johnson"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"456DEF"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="nt">"coordinator"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">56</span><span class="p">,</span><span class="w">
           </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bob_johnson_approver1@localhost.com"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Robert J Approver"</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Robert J Approver"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"789GHI"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="nt">"attachments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
           </span><span class="p">{</span><span class="w">
@@ -1124,7 +1131,8 @@ analytics.page()
       </span><span class="nt">"credited_to"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
         </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ada@example.com"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ada Lacey"</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ada Lacey"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123ABC"</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="nt">"rejection_reason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"rejection_details"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -1219,12 +1227,14 @@ analytics.page()
         </span><span class="nt">"recruiter"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3128</span><span class="p">,</span><span class="w">
           </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"alicia.flopple.3128@example.com"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Alicia Flopple"</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Alicia Flopple"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"789GHI"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="nt">"coordinator"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3128</span><span class="p">,</span><span class="w">
           </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"alicia.flopple.3128@example.com"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Alicia Flopple"</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Alicia Flopple"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"789GHI"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="nt">"attachments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
           </span><span class="p">{</span><span class="w">
@@ -1813,12 +1823,14 @@ analytics.page()
       </span><span class="nt">"recruiter"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">169779</span><span class="p">,</span><span class="w">
         </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hank.hollandaise.169779@example.com"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hank Hollandaise"</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hank Hollandaise"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123ABC"</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="nt">"coordinator"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">83637</span><span class="p">,</span><span class="w">
         </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sterling.kang.83637@example.com"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sterling Kang"</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sterling Kang"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"456DEF"</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="nt">"attachments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
@@ -1876,7 +1888,8 @@ analytics.page()
       </span><span class="nt">"credited_to"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2622</span><span class="p">,</span><span class="w">
         </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"carl.buddha.2622@example.com"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Carl Buddha"</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Carl Buddha"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123ABC"</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="nt">"rejection_reason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="nt">"rejection_details"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -1934,7 +1947,8 @@ analytics.page()
         </span><span class="nt">"recruiter"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
           </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3128</span><span class="p">,</span><span class="w">
           </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"alicia.flopple.3128@example.com"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Alicia Flopple"</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Alicia Flopple"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"employee_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"456DEF"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="nt">"coordinator"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"attachments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
