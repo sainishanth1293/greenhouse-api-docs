@@ -170,7 +170,7 @@ X-RateLimit-Limit: 50
 X-RateLimit-Remaining: 49
 </code></pre>
 
-<p>API requests are limited to the amount specified in the returned <code class="prettyprint">X-RateLimit-Limit</code> header (per 10 seconds). Exceeding that limit will cause Harvest to return an <code class="prettyprint">HTTP 429</code> response. Check the <code class="prettyprint">X-RateLimit-Limit</code> and <code class="prettyprint">X-RateLimit-Remaining</code> headers to see how many more requests you are allowed until throttling kicks in.</p>
+<p>API requests are limited to the amount specified in the returned <code class="prettyprint">X-RateLimit-Limit</code> header (per 10 seconds). Exceeding that limit will cause Harvest to return an <code class="prettyprint">HTTP 429</code> response. Check the <code class="prettyprint">X-RateLimit-Limit</code> and <code class="prettyprint">X-RateLimit-Remaining</code> headers to see how many more requests you are allowed until throttling kicks in. Note that the <code class="prettyprint">HTTP 429</code> response will exclude the <code class="prettyprint">X-RateLimit-Limit</code> and <code class="prettyprint">X-RateLimit-Remaining</code> headers.</p>
 
 <h2 id="pagination">Pagination</h2>
 
@@ -1560,7 +1560,13 @@ X-RateLimit-Remaining: 49
 </code></pre>
 
 <blockquote>
-<p>A successful response:</p>
+<p>The above command requires an empty JSON body:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>The above returns a JSON response, structured like this:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">69306314</span><span class="p">,</span><span class="w">
@@ -1925,6 +1931,16 @@ X-RateLimit-Remaining: 49
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">POST https://harvest.greenhouse.io/v1/approval_flows/{id}/request_approvals</code></p>
+
+<h3 id="headers">Headers</h3>
+
+<table><thead>
+<tr>
+<td>Header</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>On-Behalf-Of</td><td>ID of the user issuing this request. Required for auditing purposes.</td></tr>
+</tbody></table>
 
 <h2 id="get-pending-approvals-for-user">GET: Pending Approvals For User</h2>
 <pre class="highlight shell"><code>curl -X GET <span class="s1">'https://harvest.greenhouse.io/v1/users/{id}/pending_approvals'</span>
@@ -2439,7 +2455,7 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>coordinator</td><td>The coordinator <a href="#users">user</a> who is responsible for this candidate.</td></tr>
 <tr>
-<td>attachments[].type</td><td>One of: [&ldquo;admin_only&rdquo;, &ldquo;public&rdquo;, &ldquo;cover_letter&rdquo;, &ldquo;offer_packet&rdquo;, &ldquo;resume&rdquo;, &ldquo;take_home_test&rdquo;]</td></tr>
+<td>attachments[].type</td><td>One of: [&ldquo;resume&rdquo;, &ldquo;cover_letter&rdquo;, &ldquo;admin_only&rdquo;, &ldquo;public&rdquo;, &ldquo;offer_packet&rdquo;, &ldquo;offer_letter&rdquo;, &ldquo;take_home_test&rdquo;, &ldquo;other&rdquo;]</td></tr>
 <tr>
 <td>attachments[].url</td><td>URLs expire in 30 days.</td></tr>
 <tr>
@@ -3332,7 +3348,7 @@ X-RateLimit-Remaining: 49
 <tr>
 <td>type</td><td>Yes</td><td>string</td><td>One of: [&ldquo;resume&rdquo;, &ldquo;cover_letter&rdquo;, &ldquo;admin_only&rdquo;]</td></tr>
 <tr>
-<td>content</td><td>No</td><td>string</td><td>Base64 encoded content of the attachment (if you are providing content, you do not need to provide url)</td></tr>
+<td>content</td><td>No</td><td>string</td><td>Base64 encoded content of the attachment (if you are providing content, you do not need to provide url). String must be UTF-8 encoded.</td></tr>
 <tr>
 <td>url</td><td>No</td><td>string</td><td>Url of the attachment (if you are providing the url, you do not need to provide the content)</td></tr>
 <tr>
@@ -3404,7 +3420,6 @@ X-RateLimit-Remaining: 49
   </span><span class="p">],</span><span class="w">
   </span><span class="nt">"employments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8485064</span><span class="p">,</span><span class="w">
           </span><span class="nt">"company_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Greenhouse"</span><span class="p">,</span><span class="w">
           </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Engineer"</span><span class="p">,</span><span class="w">
           </span><span class="nt">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-08-15T00:00:00.000Z"</span><span class="p">,</span><span class="w">
@@ -4171,7 +4186,6 @@ X-RateLimit-Remaining: 49
   </span><span class="p">],</span><span class="w">
   </span><span class="nt">"employments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8485064</span><span class="p">,</span><span class="w">
           </span><span class="nt">"company_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Greenhouse"</span><span class="p">,</span><span class="w">
           </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Engineer"</span><span class="p">,</span><span class="w">
           </span><span class="nt">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-08-15T00:00:00.000Z"</span><span class="p">,</span><span class="w">
@@ -6282,6 +6296,16 @@ X-RateLimit-Remaining: 49
 
 <p><code class="prettyprint">DELETE https://harvest.greenhouse.io/v1/jobs/{job_id}/openings</code></p>
 
+<h3 id="headers">Headers</h3>
+
+<table><thead>
+<tr>
+<td>Header</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>On-Behalf-Of</td><td>ID of the user issuing this request. Required for auditing purposes.</td></tr>
+</tbody></table>
+
 <h3 id="json-body-parameters">JSON Body Parameters</h3>
 
 <table><thead>
@@ -6317,6 +6341,16 @@ X-RateLimit-Remaining: 49
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">PATCH https://harvest.greenhouse.io/v1/jobs/{job_id}/openings/{id}</code></p>
+
+<h3 id="headers">Headers</h3>
+
+<table><thead>
+<tr>
+<td>Header</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>On-Behalf-Of</td><td>ID of the user issuing this request. Required for auditing purposes.</td></tr>
+</tbody></table>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -6370,6 +6404,16 @@ X-RateLimit-Remaining: 49
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">POST https://harvest.greenhouse.io/v1/jobs/{job_id}/openings</code></p>
+
+<h3 id="headers">Headers</h3>
+
+<table><thead>
+<tr>
+<td>Header</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>On-Behalf-Of</td><td>ID of the user issuing this request. Required for auditing purposes.</td></tr>
+</tbody></table>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -8949,6 +8993,16 @@ X-RateLimit-Remaining: 49
 
 <p><code class="prettyprint">POST https://harvest.greenhouse.io/v1/jobs</code></p>
 
+<h3 id="headers">Headers</h3>
+
+<table><thead>
+<tr>
+<td>Header</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>On-Behalf-Of</td><td>ID of the user issuing this request. Required for auditing purposes.</td></tr>
+</tbody></table>
+
 <h3 id="json-body-parameters">JSON Body Parameters</h3>
 
 <table><thead>
@@ -10515,7 +10569,7 @@ X-RateLimit-Remaining: 49
 
 <h2 id="the-scheduled-interview-object">The scheduled interview object</h2>
 
-<p>Interviews that have been scheduled for the specified application.</p>
+<p>Interviews that have been scheduled for the specified application. Note that all-day interviews will have a start and end date with no specified time.</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9128481</span><span class="p">,</span><span class="w">
   </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4684156</span><span class="p">,</span><span class="w">
@@ -10616,10 +10670,10 @@ X-RateLimit-Remaining: 49
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9128482</span><span class="p">,</span><span class="w">
     </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">432905</span><span class="p">,</span><span class="w">
     </span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"date_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-22T12:00:00.000Z"</span><span class="w">
+      </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-22"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nt">"end"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"date_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-22T12:30:00.000Z"</span><span class="w">
+      </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-23"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Small Conference Room"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"complete"</span><span class="p">,</span><span class="w">
@@ -10724,10 +10778,10 @@ X-RateLimit-Remaining: 49
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9128482</span><span class="p">,</span><span class="w">
     </span><span class="nt">"application_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4684156</span><span class="p">,</span><span class="w">
     </span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"date_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-22T12:00:00.000Z"</span><span class="w">
+      </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-22"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nt">"end"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"date_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-22T12:30:00.000Z"</span><span class="w">
+      </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-23"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Small Conference Room"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"complete"</span><span class="p">,</span><span class="w">
@@ -12129,6 +12183,16 @@ X-RateLimit-Remaining: 49
 
 <p><code class="prettyprint">PATCH https://harvest.greenhouse.io/v1/users/{id}/disable</code></p>
 
+<h3 id="headers">Headers</h3>
+
+<table><thead>
+<tr>
+<td>Header</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>On-Behalf-Of</td><td>ID of the user issuing this request. Required for auditing purposes.</td></tr>
+</tbody></table>
+
 <h2 id="patch-edit-user">PATCH: Edit User</h2>
 <pre class="highlight shell"><code>curl -X PATCH <span class="s1">'https://harvest.greenhouse.io/v1/users/{id}'</span>
 -H <span class="s2">"Content-Type: application/json"</span>
@@ -12214,6 +12278,16 @@ X-RateLimit-Remaining: 49
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">PATCH https://harvest.greenhouse.io/v1/users/{id}/enable</code></p>
+
+<h3 id="headers">Headers</h3>
+
+<table><thead>
+<tr>
+<td>Header</td><td>Description</td></tr>
+</thead><tbody>
+<tr>
+<td>On-Behalf-Of</td><td>ID of the user issuing this request. Required for auditing purposes.</td></tr>
+</tbody></table>
 
 <h2 id="post-add-user">POST: Add User</h2>
 <pre class="highlight shell"><code>curl -X POST <span class="s1">'https://harvest.greenhouse.io/v1/users'</span>
