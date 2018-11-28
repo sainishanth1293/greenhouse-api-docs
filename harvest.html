@@ -5314,7 +5314,7 @@ X-RateLimit-Remaining: 49
 <h2 id="get-list-departments">GET: List Departments</h2>
 
 <p>List all of an organization&rsquo;s departments.</p>
-<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/departments'</span> 
+<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/departments'</span>
 -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
 </code></pre>
 
@@ -5404,7 +5404,7 @@ X-RateLimit-Remaining: 49
 <a href="#the-department-object">See noteworthy response attributes.</a></p>
 
 <h2 id="get-retrieve-department">GET: Retrieve Department</h2>
-<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/departments/{id}'</span> 
+<pre class="highlight shell"><code>curl <span class="s1">'https://harvest.greenhouse.io/v1/departments/{id}'</span>
 -H <span class="s2">"Authorization: Basic MGQwMzFkODIyN2VhZmE2MWRjMzc1YTZjMmUwNjdlMjQ6"</span>
 </code></pre>
 
@@ -5612,9 +5612,9 @@ X-RateLimit-Remaining: 49
 <td>external_id**</td><td>no</td><td>string</td><td>The external_id for the office.</td></tr>
 </tbody></table>
 
-<p>* - The tiered department feature is available only for customers with Standard or Premium Greenhouse Recruiting. Use of this field will return an error for Basic Greenhouse Recruiting customers.</p>
+<p>* - The tiered department feature is available only for customers with the Pro or Enterprise Greenhouse Recruiting package. Use of this field will return an error for other Greenhouse Recruiting customers.</p>
 
-<p>** - The external_id feature is available only for customers with Standard or Premium Greenhouse Recruiting. Use of this field will return an error for Basic Greenhouse Recruiting customers.</p>
+<p>** - The external_id feature is available only for customers with the Enterprise Greenhouse Recruiting package. Use of this field will return an error for other Greenhouse Recruiting customers.</p>
 
           <h1 id="education">Education</h1>
 
@@ -5783,66 +5783,66 @@ X-RateLimit-Remaining: 49
 
 <table><thead>
 <tr>
-<td>id</td><td>description</td></tr>
+<td>description</td></tr>
 </thead><tbody>
 <tr>
-<td>1</td><td>American Indian or Alaskan Native</td></tr>
+<td>American Indian or Alaskan Native</td></tr>
 <tr>
-<td>2</td><td>Asian</td></tr>
+<td>Asian</td></tr>
 <tr>
-<td>3</td><td>Black or African American</td></tr>
+<td>Black or African American</td></tr>
 <tr>
-<td>4</td><td>Hispanic or Latino</td></tr>
+<td>Hispanic or Latino</td></tr>
 <tr>
-<td>5</td><td>White</td></tr>
+<td>White</td></tr>
 <tr>
-<td>6</td><td>Native Hawaiian or Other Pacific Islander</td></tr>
+<td>Native Hawaiian or Other Pacific Islander</td></tr>
 <tr>
-<td>7</td><td>Two or More Races</td></tr>
+<td>Two or More Races</td></tr>
 <tr>
-<td>8</td><td>Decline To Self Identify</td></tr>
+<td>Decline To Self Identify</td></tr>
 </tbody></table>
 
 <h3 id="gender">Gender</h3>
 
 <table><thead>
 <tr>
-<td>id</td><td>description</td></tr>
+<td>description</td></tr>
 </thead><tbody>
 <tr>
-<td>1</td><td>Male</td></tr>
+<td>Male</td></tr>
 <tr>
-<td>2</td><td>Female</td></tr>
+<td>Female</td></tr>
 <tr>
-<td>3</td><td>Decline To Self Identify</td></tr>
+<td>Decline To Self Identify</td></tr>
 </tbody></table>
 
 <h3 id="veteran-status">Veteran Status</h3>
 
 <table><thead>
 <tr>
-<td>id</td><td>description</td></tr>
+<td>description</td></tr>
 </thead><tbody>
 <tr>
-<td>1</td><td>I am not a protected veteran</td></tr>
+<td>I am not a protected veteran</td></tr>
 <tr>
-<td>2</td><td>I identify as one or more of the classifications of a protected veteran</td></tr>
+<td>I identify as one or more of the classifications of a protected veteran</td></tr>
 <tr>
-<td>3</td><td>I don&rsquo;t wish to answer</td></tr>
+<td>I don&rsquo;t wish to answer</td></tr>
 </tbody></table>
 
 <h3 id="disability-status">Disability Status</h3>
 
 <table><thead>
 <tr>
-<td>id</td><td>description</td></tr>
+<td>description</td></tr>
 </thead><tbody>
 <tr>
-<td>1</td><td>Yes, I have a disability (or previously had a disability)</td></tr>
+<td>Yes, I have a disability (or previously had a disability)</td></tr>
 <tr>
-<td>2</td><td>No, I don&rsquo;t have a disability</td></tr>
+<td>No, I don&rsquo;t have a disability</td></tr>
 <tr>
-<td>3</td><td>I don&rsquo;t wish to answer</td></tr>
+<td>I don&rsquo;t wish to answer</td></tr>
 </tbody></table>
 
 <h2 id="get-list-eeoc">GET: List EEOC</h2>
@@ -10314,9 +10314,9 @@ X-RateLimit-Remaining: 49
 <td><code class="prettyprint">external_id</code>**</td><td>no</td><td>string</td><td>The external_id for the office.</td></tr>
 </tbody></table>
 
-<p>* - The tiered office feature is available only for customers with Standard or Premium Greenhouse Recruiting. Use of this field will return an error for Basic Greenhouse Recruiting customers.</p>
+<p>* - The tiered office feature is available only for customers with the Pro or Enterprise Greenhouse Recruiting package. Use of this field will return an error for other Greenhouse Recruiting customers.</p>
 
-<p>** - The external_id feature is available only for customers with Standard or Premium Greenhouse Recruiting. Use of this field will return an error for Basic Greenhouse Recruiting customers.</p>
+<p>** - The external_id feature is available only for customers with the Enterprise Greenhouse Recruiting package. Use of this field will return an error for other Greenhouse Recruiting customers.</p>
 
           <h1 id="prospect-pools">Prospect Pools</h1>
 
@@ -12248,7 +12248,7 @@ X-RateLimit-Remaining: 49
 <td>employee_id*</td><td>No</td><td>string</td><td>The user&rsquo;s external employee id. If included, this cannot be blank, nor can it match any other employee-id for a user in this organization.</td></tr>
 </tbody></table>
 
-<p>* - If the employee id feature is not enabled for your organization, attempting to edit this field will raise an API Error.</p>
+<p>* - If the employee_id feature is not enabled for your organization, attempting to edit this field will raise an API Error.</p>
 
 <h2 id="patch-enable-user">PATCH: Enable User</h2>
 <pre class="highlight shell"><code>curl -X PATCH <span class="s1">'https://harvest.greenhouse.io/v1/users/{id}/enable'</span>
@@ -12361,7 +12361,8 @@ X-RateLimit-Remaining: 49
 <td>employee_id</td><td>No</td><td>string</td><td>The user&rsquo;s external employee id.</td></tr>
 </tbody></table>
 
-<p>* - A newly created user will not be able to login until they create a password via the invitation link or configured in an SSO system.</p>
+<p>* - A newly created user will not be able to login until they create a password via the invitation link or configured in an SSO system.
+** - The employee_id feature is available only for customers with the Enterprise Greenhouse Recruiting package. Use of this field will return an error for other Greenhouse Recruiting customers.</p>
 
 <h2 id="post-add-e-mail-address-to-user">POST: Add E-mail Address To User</h2>
 <pre class="highlight shell"><code>curl -X POST <span class="s1">'https://harvest.greenhouse.io/v1/users/{id}/email_addresses'</span>
